@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10244a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2310244a' stroke='%232e5496' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='10.5' fill='none' stroke='%23ffffff' stroke-opacity='0.22' stroke-width='1.2'/%3E%3Cpath d='M4.5 18.5 L11.5 9.5 L20.5 22.5 L27.5 13.5' fill='none' stroke='%23ffffff' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23e85d26' stroke='%2310244a' stroke-width='1.2'/%3E%3C/svg%3E">
+  <title>Concept, Library &amp; Venture Studio | Synapse Chamba</title>
+  <meta name="description" content="Explore the three-tier Synapse ecosystem in Chamba: Ground Floor Learning Commons, First Floor Silent Library &amp; Teaching Fellowship, and Second Floor Venture &amp; Heritage Studio.">
+  <style>
+    :root{color-scheme:light dark;--sans:'Noto Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--serif:'Iowan Old Style','Palatino Linotype',Palatino,'Noto Serif',Georgia,serif;--bg:#faf7f0;--surface:#fff;--surface-2:#f3eee2;--text:#1a1f33;--muted:#566074;--line:#e3ddcf;--gold:#f2b01e;--oxide:#e85d26;--link:#1c4fd1;--focus:#1c4fd1;--btn-bg:#10244a;--btn-ink:#fff;--nav-on:#fdf0cf;--hdr:rgba(250,247,240,.88);--amber-bg:linear-gradient(135deg,#fff3d6,#ffe0a3);--amber-ink:#3a2600;--shadow:0 1px 2px rgba(16,36,74,.06),0 8px 24px rgba(16,36,74,.08);--shadow-lg:0 2px 4px rgba(16,36,74,.06),0 18px 44px rgba(16,36,74,.15);--r:20px;font-family:var(--sans);font-synthesis:none}
+    @media(prefers-color-scheme:dark){:root{--bg:#0b1020;--surface:#141b30;--surface-2:#101729;--text:#eef1fa;--muted:#aab3cb;--line:#27314e;--link:#9db8ff;--focus:#9db8ff;--btn-bg:#f2b01e;--btn-ink:#14213d;--nav-on:rgba(242,176,30,.16);--hdr:rgba(11,16,32,.88);--amber-bg:linear-gradient(135deg,#3a2a0a,#2b1f08);--amber-ink:#ffe3ad;--shadow:0 1px 2px #0006,0 8px 24px #0005;--shadow-lg:0 2px 4px #0006,0 18px 44px #0007}}
+    [data-t=engineering]{--c:#2f6bff;--c-mid:#1d4ed8;--c-deep:#0f2a6b;--c-ink:#1e40af;--c-soft:#e8efff}
+    [data-t=medical]{--c:#12b3a3;--c-mid:#0b7a70;--c-deep:#06443f;--c-ink:#0b6b62;--c-soft:#dff5f1}
+    [data-t=general]{--c:#8b5cf6;--c-mid:#6d28d9;--c-deep:#35177a;--c-ink:#5b21b6;--c-soft:#efe8ff}
+    [data-t=arts]{--c:#e5446d;--c-mid:#b4233f;--c-deep:#6e0f25;--c-ink:#9b1c36;--c-soft:#fde6ec}
+    [data-t=communication]{--c:#f08a1c;--c-mid:#b45309;--c-deep:#6b3000;--c-ink:#9a4a00;--c-soft:#fff0db}
+    [data-t=venture]{--c:#e85d26;--c-mid:#c44514;--c-deep:#6b2206;--c-ink:#a8380d;--c-soft:#ffede5}
+    @media(prefers-color-scheme:dark){[data-t=engineering]{--c-ink:#a9c0ff;--c-soft:#16254f}[data-t=medical]{--c-ink:#7fe3d6;--c-soft:#0f2f2d}[data-t=general]{--c-ink:#cbb5ff;--c-soft:#261a4d}[data-t=arts]{--c-ink:#ffa8bc;--c-soft:#3a1520}[data-t=communication]{--c-ink:#ffc27a;--c-soft:#35230d}[data-t=venture]{--c-ink:#ffb194;--c-soft:#3b1a0e}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+    a{color:var(--link);text-underline-offset:3px}
+    .wrap{width:min(100% - 36px,1120px);margin-inline:auto}
+    h1,h2,h3,p,ul,ol{margin-top:0}h1,h2,h3{font-family:var(--serif);line-height:1.14;letter-spacing:-.012em}
+    h2{font-size:clamp(1.6rem,4.4vw,2.3rem);margin-bottom:.5em}h3{font-size:1.28rem;margin-bottom:8px}p{margin-bottom:16px}
+    .lead{font-size:1.15rem;line-height:1.7;max-width:64ch}.muted{color:var(--muted);font-size:.94rem}.ico{width:1.25em;height:1.25em;flex-shrink:0}
+    .site-header{position:sticky;top:0;z-index:20;background:var(--hdr);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px;flex-wrap:wrap}
+    .brand{display:inline-flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:-.02em;color:var(--text);text-decoration:none}.brand-mark{width:38px;height:38px}
+    .site-nav{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+    .site-nav a{font-size:.94rem;font-weight:600;color:var(--text);text-decoration:none;padding:9px 14px;border-radius:999px}.site-nav a:hover{background:var(--surface-2)}
+    .site-nav a[aria-current=page]{background:var(--nav-on)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--btn-bg);color:var(--btn-ink);border:2px solid transparent;font-weight:700;text-decoration:none;padding:12px 24px;min-height:48px;border-radius:999px;box-shadow:0 6px 16px rgba(16,36,74,.22);transition:transform .15s,filter .15s}
+    .button:hover{transform:translateY(-2px);filter:brightness(1.07)}
+    .button.gold{background:linear-gradient(180deg,#ffc83d,#f2a90f);color:#14213d;box-shadow:0 8px 22px rgba(242,176,30,.38)}
+    .button.ghost{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.55);box-shadow:none}
+    .hero{position:relative;overflow:hidden;color:#fff;padding:84px 0 165px;background:radial-gradient(800px 380px at 88% 8%,rgba(232,93,38,.28),transparent 60%),radial-gradient(640px 380px at 0 100%,rgba(18,179,163,.24),transparent 60%),linear-gradient(135deg,#091733,#132a60 55%,#1f4294)}
+    .hero-inner{position:relative;z-index:2}.hero h1{color:#fff;font-size:clamp(2.2rem,6.5vw,3.8rem);max-width:16ch;margin-bottom:18px;line-height:1.06}
+    .hero h1 em{font-style:normal;color:var(--gold)}.hero .lead{color:#e6ecfb}
+    .hero-action{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+    .chip-eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:6px 15px;border-radius:999px;font-size:.88rem;font-weight:600;margin-bottom:22px}.chip-eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--oxide)}
+    .net{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 10%,#000 75%);mask-image:linear-gradient(90deg,transparent 10%,#000 75%)}
+    .net line{stroke:rgba(255,255,255,.22);stroke-width:1}.net circle{fill:var(--gold)}
+    .ridge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(90px,15vw,180px);z-index:1}.r1{fill:rgba(255,255,255,.08)}.r2{fill:rgba(255,255,255,.14)}.r3{fill:var(--bg)}
+    .facts{position:relative;z-index:3;margin-top:-84px}.fact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media(min-width:760px){.fact-grid{grid-template-columns:repeat(4,1fr);gap:18px}}
+    .fact{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 18px 18px;box-shadow:var(--shadow-lg)}
+    .fact::before,.tier-card::before,.track-card::before{content:'';position:absolute;inset:0 0 auto;height:6px;background:linear-gradient(90deg,var(--c-mid),var(--c))}
+    .fact strong{display:block;font-family:var(--serif);font-size:clamp(1.2rem,3.4vw,1.7rem);line-height:1.15;color:var(--c-ink)}.fact span{display:block;font-size:.86rem;color:var(--muted);line-height:1.4;margin-top:6px}
+    .section{padding:72px 0}.section.alt{background:var(--surface-2)}.sec-head{margin-bottom:36px}
+    .sec-head h2::after{content:'';display:block;width:56px;height:5px;border-radius:5px;margin-top:14px;background:linear-gradient(90deg,var(--gold),var(--oxide))}
+    .tier-stack{display:grid;gap:24px}
+    .tier-card{position:relative;overflow:hidden;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:var(--shadow);display:grid;gap:24px}
+    @media(min-width:860px){.tier-card{grid-template-columns:260px 1fr;align-items:start}}
+    .tier-badge{display:inline-flex;align-items:center;gap:8px;background:var(--c-soft);color:var(--c-ink);font-weight:800;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;padding:6px 13px;border-radius:999px;margin-bottom:12px}
+    .tier-meta h3{font-size:1.5rem;margin-bottom:8px}.tier-meta p{color:var(--muted);font-size:.95rem;margin:0}
+    .tier-body h4{font-family:var(--serif);font-size:1.15rem;margin:0 0 10px;color:var(--text)}
+    .checks{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:10px}
+    .checks li{display:flex;gap:11px;align-items:flex-start;font-size:.96rem}
+    .checks .dot{margin-top:6px;width:9px;height:9px;border-radius:50%;background:var(--c);flex-shrink:0}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .chip{background:var(--c-soft);color:var(--c-ink);font-size:.82rem;font-weight:700;padding:5px 12px;border-radius:999px}
+    .track-grid,.grid-2,.grid-3{display:grid;gap:20px}
+    @media(min-width:720px){.track-grid,.grid-2{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:980px){.track-grid,.grid-3{grid-template-columns:repeat(3,1fr)}}
+    .card,.track-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px;box-shadow:var(--shadow);overflow:hidden}
+    .t-icon{width:52px;height:52px;border-radius:14px;background:var(--c-soft);color:var(--c-ink);display:grid;place-items:center;margin-bottom:16px}
+    .flywheel-box{background:linear-gradient(135deg,#0d1f44,#1b397a);color:#fff;border-radius:24px;padding:36px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+    .flywheel-box h3{color:var(--gold);font-size:1.45rem;margin-bottom:12px}
+    .flywheel-steps{display:grid;gap:18px;margin-top:24px}
+    @media(min-width:860px){.flywheel-steps{grid-template-columns:repeat(4,1fr)}}
+    .fw-step{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:16px;padding:20px}
+    .fw-step strong{display:block;color:var(--gold);font-family:var(--serif);font-size:1.15rem;margin-bottom:6px}
+    .fw-step span{font-size:.9rem;color:#e3ebff;line-height:1.5;display:block}
+    .cta-band-wrap{padding:0 0 72px}.cta-band{position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between;color:#fff;border-radius:26px;padding:40px;background:radial-gradient(500px 280px at 90% 0,rgba(232,93,38,.32),transparent 60%),linear-gradient(135deg,#0c1d3f,#244aa3)}
+    .cta-band h2{color:#fff;margin-bottom:6px}.cta-band p{margin:0;color:#e6ecfb;max-width:50ch}
+    .site-footer{position:relative;background:#0a1730;color:#c5cfe6;padding:60px 0 90px}.site-footer::before{content:'';position:absolute;inset:0 0 auto;height:5px;background:linear-gradient(90deg,#2f6bff,#12b3a3,#8b5cf6,#e85d26,#f2b01e)}
+    .footer-inner{display:grid;gap:32px}@media(min-width:760px){.footer-inner{grid-template-columns:1.5fr 1fr 1fr}}
+    .site-footer .brand{color:#fff}.site-footer p{font-size:.92rem;margin:10px 0 0}.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}.site-footer a{color:#a9c0ff;font-size:.93rem}.f-title{color:#fff;font-weight:700;margin:0 0 12px!important;letter-spacing:.04em}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <defs>
+            <linearGradient id="loops1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#19356e"/>
+              <stop offset="1" stop-color="#0b1838"/>
+            </linearGradient>
+          </defs>
+          <circle cx="16" cy="16" r="15" fill="url(#loops1)" stroke="#3864b8" stroke-width="1.4"/>
+          <circle cx="16" cy="16" r="10.8" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.1"/>
+          <path d="M4.5 18.5 L11.5 9.5 L20.5 22.5 L27.5 13.5" fill="none" stroke="#ffffff" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="16" cy="16" r="3.3" fill="#e85d26" stroke="#0b1838" stroke-width="1.1"/>
+        </svg>
+        <span>Synapse</span>
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html">Learning Home</a>
+        <a href="programmes.html">Programmes</a>
+        <a href="innovation-concept.html" aria-current="page">Concept &amp; Innovation</a>
+        <a href="#tiers">3-Tier Hub</a>
+        <a href="#ventures">Venture Studio</a>
+        <a href="#fellowship">Library &amp; Fellowship</a>
+        <a class="button" href="index.html#enquiry" style="color:var(--btn-ink);padding:9px 18px;min-height:0">Enquire / Collaborate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <svg class="net" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <line x1="620" y1="70" x2="740" y2="130"/><line x1="740" y1="130" x2="880" y2="85"/><line x1="740" y1="130" x2="790" y2="250"/>
+        <line x1="620" y1="70" x2="670" y2="210"/><line x1="670" y1="210" x2="790" y2="250"/><line x1="790" y1="250" x2="920" y2="210"/>
+        <line x1="880" y1="85" x2="920" y2="210"/><line x1="540" y1="160" x2="670" y2="210"/><line x1="670" y1="210" x2="630" y2="330"/>
+        <circle cx="620" cy="70" r="3.5"/><circle cx="740" cy="130" r="4.5"/><circle cx="880" cy="85" r="3"/>
+        <circle cx="670" cy="210" r="4"/><circle cx="790" cy="250" r="5" style="fill:#e85d26"/><circle cx="920" cy="210" r="3.5"/>
+        <circle cx="540" cy="160" r="3"/><circle cx="630" cy="330" r="3.5"/>
+      </svg>
+      <div class="wrap hero-inner">
+        <p class="chip-eyebrow">Three-Tier Learning, Library &amp; Venture Ecosystem · Chamba, HP</p>
+        <h1>More than classes. <em>An engine for Chamba.</em></h1>
+        <p class="lead">Synapse is built as a three-story community institution behind the Post Office in Chamba. We combine small-group academic preparation on the Ground Floor, a silent study library and teaching fellowship on the First Floor, and a local venture, media and heritage incubator on the Second Floor.</p>
+        <div class="hero-action">
+          <a class="button gold" href="#tiers">Explore the 3-Tier Architecture</a>
+          <a class="button ghost" href="#ventures">Chamba Venture &amp; Heritage Lab</a>
+        </div>
+      </div>
+      <svg class="ridge" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+        <path class="r1" d="M0 140L90 95 170 130 260 70 350 120 440 60 540 125 640 85 740 130 840 55 950 120 1050 80 1150 125 1250 75 1340 115 1440 90V220H0z"/>
+        <path class="r2" d="M0 170L120 125 210 155 330 105 430 150 560 100 670 150 780 115 900 160 1020 110 1130 155 1260 120 1360 150 1440 130V220H0z"/>
+        <path class="r3" d="M0 200L150 165 260 190 400 150 520 185 650 160 780 192 910 158 1040 188 1180 165 1300 190 1440 170V220H0z"/>
+      </svg>
+    </section>
+
+    <section class="facts">
+      <div class="wrap">
+        <div class="fact-grid">
+          <div class="fact" data-t="engineering">
+            <strong>Floor 0 · Learn</strong>
+            <span>Small-group PCM, PCB, CUET, NDA &amp; practical AI/communication rooms</span>
+          </div>
+          <div class="fact" data-t="medical">
+            <strong>Floor 1 · Focus</strong>
+            <span>Silent study library, deep-work desks &amp; Senior Teaching Fellowship</span>
+          </div>
+          <div class="fact" data-t="venture">
+            <strong>Floor 2 · Build</strong>
+            <span>Venture studio, creator media lab &amp; Chamba heritage brand incubator</span>
+          </div>
+          <div class="fact" data-t="communication">
+            <strong>Self-Funded</strong>
+            <span>Community flywheel where learning sustains local innovation &amp; micro-grants</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tiers" class="section">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>The Three-Tier Architecture</h2>
+          <p class="lead">Traditional coaching centres stop at exam memorisation. Synapse is designed so that academic rigour, distraction-free self-study, and real-world venture building happen under one roof.</p>
+        </div>
+
+        <div class="tier-stack">
+          <!-- Tier 1: Ground Floor -->
+          <article class="tier-card" data-t="engineering">
+            <div class="tier-meta">
+              <span class="tier-badge">Ground Floor · Tier 01</span>
+              <h3>The Learning Commons</h3>
+              <p>High-engagement micro-classrooms &amp; applied skill studios</p>
+            </div>
+            <div class="tier-body">
+              <h4>Strong fundamentals, Socratic questioning &amp; practical fluency</h4>
+              <p>The ground floor runs structured small-group sessions from 3:30 PM to 6:30 PM (Monday to Saturday). Instead of passive one-way lectures, classes combine board teaching, immediate problem-solving, daily exam practice tests, and dedicated doubt clinics.</p>
+              <ul class="checks">
+                <li><span class="dot"></span><span><strong>Academic &amp; Entrance Tracks (₹2,000/mo):</strong> Engineering &amp; Research (PCM — JEE, IISER, NEST), Medical &amp; Allied Health (PCB — NEET, AIIMS), CUET UG Domain/General, and UPSC NDA.</span></li>
+                <li><span class="dot"></span><span><strong>Communication, Business &amp; AI Literacy (₹1,000/mo):</strong> Spoken and written English, business fundamentals, computational thinking, and responsible use of modern AI tools.</span></li>
+                <li><span class="dot"></span><span><strong>No-Device Testing &amp; Real Work:</strong> Regular screen-free assessments paired with tangible student projects and presentations.</span></li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Small-Group Micro-Tuitions</span>
+                <span class="chip">Daily Practice &amp; Doubt Clinic</span>
+                <span class="chip">AI &amp; Communication Studio</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tier 2: First Floor -->
+          <article class="tier-card" data-t="medical">
+            <div class="tier-meta">
+              <span class="tier-badge">First Floor · Tier 02</span>
+              <h3>Silent Library &amp; Fellowship Hub</h3>
+              <p>Calm, distraction-free deep work space &amp; earn-while-you-learn mentorship</p>
+            </div>
+            <div class="tier-body">
+              <h4>A sanctuary for serious aspirants and peer mentors</h4>
+              <p>Many students in Chamba have the talent to clear national exams or build careers, but lack a quiet, high-trust environment outside home. The First Floor provides dedicated study desks, curated reference books, and high-speed research terminals under a strict calm-computing norm.</p>
+              <ul class="checks">
+                <li><span class="dot"></span><span><strong>Silent Study Library:</strong> Dedicated reading room for board students, droppers, college learners, and competitive exam aspirants (UPSC, state services, banking, UGC NET).</span></li>
+                <li><span class="dot"></span><span><strong>The Synapse Teaching Fellowship:</strong> Senior aspirants and sharp graduates can serve as Junior Fellows—helping run ground-floor doubt clinics and test reviews for a monthly stipend, free library membership, and career safety nets.</span></li>
+                <li><span class="dot"></span><span><strong>Curated Resource Bank:</strong> Standard NCERT/reference texts, previous-year test banks, and offline-first study workflows without social media distractions.</span></li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Distraction-Free Study Desks</span>
+                <span class="chip">Teaching Fellowship Stipends</span>
+                <span class="chip">Reference &amp; Test Archive</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tier 3: Second Floor -->
+          <article class="tier-card" data-t="venture">
+            <div class="tier-meta">
+              <span class="tier-badge">Second Floor · Tier 03</span>
+              <h3>Venture Studio &amp; Media Engine</h3>
+              <p>Incubating Chamba heritage brands, digital creators &amp; local enterprises</p>
+            </div>
+            <div class="tier-body">
+              <h4>Where Chamba’s cultural heritage meets modern D2C &amp; software execution</h4>
+              <p>The top floor is an active venture and prototyping workspace. Rather than waiting for outside jobs, students and local artisans collaborate to launch real commercial products, digital media channels, and software workflows from Chamba for national and global markets.</p>
+              <ul class="checks">
+                <li><span class="dot"></span><span><strong>Heritage-to-D2C Brand Incubation:</strong> Modern packaging, storytelling, e-commerce, and supply-chain support for authentic <em>Chamba Rumal</em> embroidery, <em>Chamba Chukh</em> &amp; specialty mountain pantry foods, and <em>Gaddi Wool</em> apparel.</span></li>
+                <li><span class="dot"></span><span><strong>Creator &amp; Media Production Studio:</strong> Audio/video recording setup, product photography lighting, and design workstations for documentary storytelling and brand catalogues.</span></li>
+                <li><span class="dot"></span><span><strong>Software, AI &amp; MSME Tooling:</strong> Building practical digital workflows—from automated GST/invoice validation and business marketplaces to calm, local-first learning tools.</span></li>
+              </ul>
+              <div class="chips">
+                <span class="chip">Chamba Rumal · Chukh · Gaddi Wool</span>
+                <span class="chip">Audio/Visual Media Studio</span>
+                <span class="chip">Zero-Burn Student Venture Teams</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ventures" class="section alt">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Second-Floor Focus: Chamba Heritage &amp; Tech Lab</h2>
+          <p class="lead">Our innovation side gives learners real commercial problems to solve—bridging local craftsmanship, modern design, and AI-enabled operations.</p>
+        </div>
+
+        <div class="track-grid">
+          <article class="track-card" data-t="venture">
+            <div class="t-icon">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3>Heritage Craft &amp; D2C Brands</h3>
+            <p>Partnering with local weavers, artisans, and food producers to bring GI-tagged and traditional Chamba crafts to modern buyers with fair artisan margins.</p>
+            <div class="chips">
+              <span class="chip">Chamba Rumal Art</span>
+              <span class="chip">Chamba Chukh &amp; Pickles</span>
+              <span class="chip">Gaddi Wool Craft</span>
+            </div>
+          </article>
+
+          <article class="track-card" data-t="general">
+            <div class="t-icon">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h3>Applied AI &amp; Calm Computing</h3>
+            <p>Training students to build real software utilities, document automation pipelines for local businesses, and distraction-free study tools that respect human attention.</p>
+            <div class="chips">
+              <span class="chip">Python &amp; Web Workflows</span>
+              <span class="chip">MSME &amp; Accounting Automation</span>
+              <span class="chip">Calm Technology</span>
+            </div>
+          </article>
+
+          <article class="track-card" data-t="communication">
+            <div class="t-icon">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            </div>
+            <h3>Media &amp; Documentary Studio</h3>
+            <p>Students learn business communication by doing: writing real product copy, shooting brand visuals, recording podcasts, and documenting Himalayan architecture and history.</p>
+            <div class="chips">
+              <span class="chip">Product Photography</span>
+              <span class="chip">Regional Storytelling</span>
+              <span class="chip">Live Client Portfolios</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="fellowship" class="section">
+      <div class="wrap">
+        <div class="flywheel-box">
+          <h3>The Self-Sustaining Community Flywheel</h3>
+          <p style="color:#dce6ff;max-width:68ch;margin-bottom:0">Synapse does not rely on external charity or high-fee coaching tropes. Every floor strengthens the others in a transparent, cash-flow-positive loop:</p>
+          <div class="flywheel-steps">
+            <div class="fw-step">
+              <strong>1. Accessible Tuition</strong>
+              <span>Affordable ground-floor courses (₹1,000–₹2,000/mo) and library memberships cover core building operations in Chamba.</span>
+            </div>
+            <div class="fw-step">
+              <strong>2. Fellow Mentorship</strong>
+              <span>Top senior aspirants earn stipends as Teaching Fellows—guiding younger students in daily doubt clinics while preparing for their own exams.</span>
+            </div>
+            <div class="fw-step">
+              <strong>3. Live Apprenticeships</strong>
+              <span>Communication &amp; Business learners graduate from classroom exercises to real projects in the 2nd-floor Venture &amp; Media Studio.</span>
+            </div>
+            <div class="fw-step">
+              <strong>4. Local Wealth Creation</strong>
+              <span>Revenue and skills from D2C heritage brands and digital services flow back into student micro-grants, equipment, and local employment.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>School Partnerships, Fellowships &amp; Founder Background</h2>
+        </div>
+        <div class="grid-2">
+          <div class="card" data-t="engineering">
+            <h3>For Local Schools &amp; Principals</h3>
+            <p>We collaborate with schools across Chamba district to host weekend innovation workshops, AI &amp; scientific reasoning demos, and communication labs—helping students connect textbook concepts to modern careers.</p>
+            <p class="muted" style="margin-bottom:0">To schedule a school workshop or institutional visit, call or WhatsApp <strong>8287248119</strong>.</p>
+          </div>
+          <div class="card" data-t="medical">
+            <h3>Research-Driven Pedagogy</h3>
+            <p>Founded by an IIT Delhi (M.Sc. Cognitive Science) and BHU (B.A. Hons Psychology with Zoology &amp; Chemistry) alumnus from Chamba with experience evaluating deep-tech and AI ventures at IHFC, IIT Delhi. Our teaching and venture systems are grounded in how the brain actually learns: active inquiry, prediction, error-correction, and real creation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band-wrap" style="padding-top:48px">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Join a class, reserve a library desk, or build with us</h2>
+            <p>Whether you are a Class 11–12 student, a competitive exam aspirant seeking a Fellowship, a local artisan, or a school administrator—we would love to speak with you.</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px">
+            <a class="button gold" href="index.html#enquiry">Send an Enquiry</a>
+            <a class="button ghost" href="https://wa.me/918287248119" target="_blank" rel="noopener noreferrer">WhatsApp 8287248119</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <a class="brand" href="index.html">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="16" cy="16" r="15" fill="#10244a" stroke="#3864b8" stroke-width="1.4"/>
+            <circle cx="16" cy="16" r="10.8" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.1"/>
+            <path d="M4.5 18.5 L11.5 9.5 L20.5 22.5 L27.5 13.5" fill="none" stroke="#ffffff" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="16" cy="16" r="3.3" fill="#e85d26" stroke="#10244a" stroke-width="1.1"/>
+          </svg>
+          <span>Synapse</span>
+        </a>
+        <p>Behind the Post Office, Chamba, Himachal Pradesh</p>
+        <p>Ground Floor: Learning Commons · 1st Floor: Silent Library &amp; Fellowship · 2nd Floor: Venture &amp; Heritage Studio</p>
+      </div>
+      <div>
+        <p class="f-title">Explore</p>
+        <ul>
+          <li><a href="index.html">Learning Home</a></li>
+          <li><a href="programmes.html">Programmes</a></li>
+          <li><a href="innovation-concept.html">Concept &amp; Innovation</a></li>
+          <li><a href="how-we-teach.html">How We Teach</a></li>
+          <li><a href="admissions.html">Admissions &amp; FAQ</a></li>
+          <li><a href="teacher.html">Founder &amp; Teacher</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="f-title">Contact</p>
+        <ul>
+          <li><a href="tel:+918287248119">Call or WhatsApp: 8287248119</a></li>
+          <li><a href="mailto:cksynapse@mail.com">cksynapse@mail.com</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

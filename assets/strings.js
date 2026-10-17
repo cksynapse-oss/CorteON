@@ -2,7 +2,7 @@
 window.SYNAPSE_STRINGS = {
   en: {
     brand:'Synapse', skip:'Skip to main content', menu:'Menu', closeMenu:'Close menu',
-    nav:{home:'Home',programmes:'Programmes',approach:'How we teach',admissions:'Admissions & FAQ',teacher:'Teacher',contact:'Contact'},
+    nav:{home:'Home',programmes:'Programmes',concept:'Concept & Innovation',approach:'How we teach',admissions:'Admissions & FAQ',teacher:'Teacher',contact:'Contact'},
     apply:'Apply for a seat', eyebrow:'Learning centre · Chamba, Himachal Pradesh', more:'more', footerExplore:'Explore',
     facts:[{v:'Mon–Sat',l:'Class days'},{v:'3:30–6:30 PM',l:'Every class day'},{v:'5 days',l:'Attended by each student, every week'},{v:'₹2,000',l:'Per month, any exam track'}], enquiry:'Send enquiry', explore:'View programme details', back:'Back to programmes',
     wa:'Chat on WhatsApp', photoClass:'Photo: classroom', photoTeacher:'Photo: teacher', map:'Map: centre location (embed after confirming pin)',

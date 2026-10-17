@@ -14,8 +14,11 @@ pages=[
 ('teacher.html','teacher','About the teacher | Synapse Chamba','Meet the teacher at Synapse and read about the approach to teaching.'),
 ('contact.html','contact','Contact | Synapse Chamba','Find Synapse behind the Post Office in Chamba. Call or WhatsApp 8287248119.'),
 ('privacy.html','policy','Privacy policy | Synapse Chamba','How Synapse uses admission enquiry details and how to ask for their deletion.'),
-('thank-you.html','thanks','Thank you | Synapse Chamba','Your enquiry to Synapse has been sent. We will call within 24 hours.')]
+('thank-you.html','thanks','Thank you | Synapse Chamba','Your enquiry to Synapse has been sent. We will call within 24 hours.'),
+('innovation-concept.html','concept','Concept, Library & Venture Studio | Synapse Chamba','Explore the three-tier Synapse ecosystem in Chamba: Ground Floor Learning Commons, First Floor Silent Library & Teaching Fellowship, and Second Floor Venture & Heritage Studio.')]
 for fname,page,title,desc,*track in pages:
+ if fname == 'innovation-concept.html':
+  continue
  url='https://corteon.in/'+('' if fname=='index.html' else fname)
  schema='''{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Synapse","url":"https://corteon.in/","telephone":"+918287248119","email":"cksynapse@mail.com","address":{"@type":"PostalAddress","streetAddress":"Behind the Post Office","addressLocality":"Chamba","addressRegion":"Himachal Pradesh","addressCountry":"IN"}}'''
  txt=f'''<!doctype html>

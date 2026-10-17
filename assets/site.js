@@ -5,7 +5,7 @@ const S = window.SYNAPSE_STRINGS[LANG];
 const ROOT = document.getElementById('app');
 const PAGE = document.body.dataset.page || 'home';
 const TRACK = document.body.dataset.track || '';
-const routes = {home:'index.html',programmes:'programmes.html',approach:'how-we-teach.html',admissions:'admissions.html',teacher:'teacher.html',contact:'contact.html',policy:'privacy.html',thanks:'thank-you.html'};
+const routes = {home:'index.html',programmes:'programmes.html',concept:'innovation-concept.html',approach:'how-we-teach.html',admissions:'admissions.html',teacher:'teacher.html',contact:'contact.html',policy:'privacy.html',thanks:'thank-you.html'};
 const trackPages = {engineering:'engineering-research.html',medical:'medical-allied-health.html',general:'cuet-general-english.html',arts:'cuet-arts-commerce-nda.html',communication:'communication-business.html'};
 const TK = Object.keys(S.tracks), cyc = i => TK[i % TK.length];
 const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

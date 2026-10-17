@@ -3,7 +3,7 @@
  * Set SHEET_ID to the ID between /d/ and /edit in your spreadsheet URL.
  * Deploy as Web app; execute as you; access: Anyone.
  */
-const SHEET_ID = 'REPLACE_WITH_GOOGLE_SHEET_ID'; // [replace]
+const SHEET_ID = '1GFDoG5nRKzT4OSMPRhvBc5CVSCgdD6PbNJJMlZJh3m8';
 const SHEET_NAME = 'Enquiries';
 const HEADERS = [
   'Timestamp','Student name','Class or status','Track of interest',

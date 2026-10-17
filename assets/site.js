@@ -1,5 +1,5 @@
 /* Global configuration: add your deployed Google Apps Script web app /exec URL. */
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwkppyRRSRQ5B1bnAzERIxOegaUicHJxlFHcSLlYoq8jqgapImtPc7U-hP9pvfW_V2H/exec';
 const LANG = 'en'; // Translation-ready: add completed translations in strings.js first.
 const S = window.SYNAPSE_STRINGS[LANG];
 const ROOT = document.getElementById('app');

@@ -24,6 +24,9 @@ function output(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj))
     .setMimeType(ContentService.MimeType.JSON);
 }
+function doGet(e) {
+  return output({ok: true, message: 'Synapse admissions receiver is active'});
+}
 function clean(v, max) {
   return String(v ?? '').trim().slice(0, max).replace(/^([=+@\-\t\r])/,'\'$1');
 }

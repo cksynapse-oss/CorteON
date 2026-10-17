@@ -23,7 +23,8 @@ for fname,page,title,desc,*track in pages:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#10244a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310244a'/%3E%3Cpath d='M9 22l7-12 7 12z' fill='none' stroke='%23f2b01e' stroke-width='1.8' stroke-linejoin='round'/%3E%3Ccircle cx='9' cy='22' r='2.6' fill='%23fff'/%3E%3Ccircle cx='16' cy='10' r='2.6' fill='%23fff'/%3E%3Ccircle cx='23' cy='22' r='2.6' fill='%23fff'/%3E%3C/svg%3E">
   <title>{escape(title)}</title>
   <meta name="description" content="{escape(desc,quote=True)}">
   <link rel="canonical" href="{url}">

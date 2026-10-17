@@ -63,7 +63,7 @@ Publish the **contents of this directory**, preserving the filenames and `assets
 
 All visible copy on JS-rendered pages is centralized in `assets/strings.js` under `en`. Do not hardcode new public copy in templates. Add fully translated matching keys to `hi`, then add an explicit language toggle that updates `<html lang>` and rerenders/rebinds navigation/forms in `site.js`. Do not offer an incomplete Hindi mode. SEO metadata, JSON-LD, `noscript` fallback and official URL references are in the HTML shells / page generator and require separately localized metadata if Hindi SEO pages are created.
 
-The site uses a single **system sans-serif family with Noto Sans if installed**, without remote font downloads. This avoids a large Devanagari font payload until Hindi is enabled. Images are not loaded, only labelled placeholders.
+The site uses **Noto Sans / system sans for body text and a system serif (Iowan Old Style, Palatino, Georgia) for headings**, without remote font downloads. This avoids a large Devanagari font payload until Hindi is enabled. Images are not loaded, only labelled placeholders. Colour: each programme track has its own colour (set via `data-t` in `assets/style.css`); the hero ridge and network graphics are inline SVG generated in `site.js`.
 
 ## [confirm] / [replace] before launch
 

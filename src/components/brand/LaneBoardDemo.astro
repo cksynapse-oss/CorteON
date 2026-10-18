@@ -39,7 +39,7 @@ const data = rawData as LaneBoardContent;
               <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
                 Lane {lane.number}
               </span>
-              <span class="rounded border border-hair bg-paper px-2 py-0.5 font-mono text-[11px] text-muted">
+              <span class="rounded border border-hair bg-paper px-2 py-0.5 font-mono text-xs text-muted">
                 {lane.cards.length} {lane.cards.length === 1 ? 'task' : 'tasks'}
               </span>
             </div>
@@ -54,10 +54,10 @@ const data = rawData as LaneBoardContent;
             {lane.cards.map((c) => (
               <div class="hover:border-spark-ink/50 rounded border border-hair bg-paper p-3 shadow-none transition-colors">
                 <div class="mb-1.5 flex items-center justify-between">
-                  <span class="font-mono text-[11px] uppercase tracking-wider text-muted">
+                  <span class="font-mono text-xs uppercase tracking-wider text-muted">
                     {c.subject}
                   </span>
-                  <span class="rounded-full border border-hair px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-spark-ink">
+                  <span class="rounded-full border border-hair px-2 py-0.5 font-mono text-xs uppercase tracking-wider text-spark-ink">
                     {c.tag}
                   </span>
                 </div>

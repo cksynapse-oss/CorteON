@@ -566,3 +566,79 @@ export const ideaSchema = z.object({
   }),
 });
 export type IdeaContent = z.infer<typeof ideaSchema>;
+
+export const fellowshipLadderStageSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  status: StatusChipEnum,
+  statusNote: z.string().min(1),
+  role: z.string().min(1),
+  load: z.string().min(1),
+  benefits: z.array(z.string().min(1)),
+  compensation: z.string().min(1),
+});
+
+export const fellowshipSelectionStepSchema = z.object({
+  number: z.string().min(1),
+  name: z.string().min(1),
+  summary: z.string().min(1),
+  focus: z.string().min(1),
+});
+
+export const fellowshipSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+    primaryCta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+    secondaryCta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+  theDeal: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    give: z.object({
+      heading: z.string().min(1),
+      summary: z.string().min(1),
+      items: z.array(z.string().min(1)),
+    }),
+    receive: z.object({
+      heading: z.string().min(1),
+      summary: z.string().min(1),
+      items: z.array(z.string().min(1)),
+    }),
+    note: z.string().min(1),
+  }),
+  ladder: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    stages: z.array(fellowshipLadderStageSchema),
+  }),
+  selection: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    steps: z.array(fellowshipSelectionStepSchema),
+    closingNote: z.string().min(1),
+  }),
+  applyForm: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    doorNote: z.string().min(1),
+    callbackPromise: z.string().min(1),
+    termsNotice: z.string().min(1),
+  }),
+});
+export type FellowshipContent = z.infer<typeof fellowshipSchema>;

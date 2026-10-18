@@ -1,14 +1,671 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Field from '../components/ui/Field.astro';
+import Checkbox from '../components/ui/Checkbox.astro';
+
+import site from '../content/site.json';
+import fellowshipRaw from '../content/fellowship.json';
+import type { FellowshipContent } from '../content/schemas';
+
+const fellowship = fellowshipRaw as FellowshipContent;
+
+// Handle URL parameters for native form submission callbacks
+const isSubmittedSuccess =
+  Astro.url.searchParams.get('submitted') === 'success';
+const errorMessage = Astro.url.searchParams.get('error') || '';
+
+// WhatsApp click-to-chat fallback URL prefilled for Fellowship
+const whatsAppFellowText = encodeURIComponent(
+  `Hello Synapse, I am applying for the Teaching Fellowship in Chamba.`
+);
+const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowText}`;
 ---
 
-<BaseLayout title="The Fellowship — Synapse">
-  <ComingSoonStub
-    title="The Fellowship"
-    status="LIVE NOW"
-    phase="Phase 1 · Applications Open"
-    description="Graduates preparing for an exam teach one class a day and receive a reserved library desk, certified teaching hours, and access to Corteon for their own preparation. Applications are open now."
-    plannedNote="The fellow ladder details and application form are coming in Task T11."
-  />
+<BaseLayout
+  title={`The Fellowship — ${site.name}`}
+  description="Graduates preparing for an examination teach one class a day in Chamba. In return: a reserved library desk, certified teaching hours, access to Corteon for your own preparation, and a place to stay on if you do well."
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {fellowship.hero.eyebrow}
+        </span>
+        <StatusChip status={fellowship.status} size="sm" />
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        Your hardest years should count, <span class="italic text-spark-ink"
+          >whatever the result.</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {fellowship.hero.sub}
+      </p>
+
+      {/* Classroom Hours & Location Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            {fellowship.hero.strip}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.hours} · {site.place}
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div class="mb-12 flex flex-wrap items-center gap-4">
+        <Button href={fellowship.hero.primaryCta.href} variant="primary">
+          {fellowship.hero.primaryCta.label}
+        </Button>
+        <Button href={fellowship.hero.secondaryCta.href} variant="secondary">
+          {fellowship.hero.secondaryCta.label}
+        </Button>
+        <Button href="#ladder" variant="ghost"> Pedagogical Ladder </Button>
+      </div>
+
+      {/* 4 Quick Pillars */}
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded border border-hair bg-paper p-5">
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            Daily Load
+          </span>
+          <div class="font-serif text-2xl font-normal text-ink">
+            1 class a day
+          </div>
+          <p class="mt-1 font-body text-xs text-muted">
+            Nothing else: no hidden minutes or extra administrative tasks.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-5">
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            Class Format
+          </span>
+          <div class="font-serif text-2xl font-normal text-ink">
+            Small groups
+          </div>
+          <p class="mt-1 font-body text-xs text-muted">
+            A guide who knows every student with pedagogical patience.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-5">
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            Study Space
+          </span>
+          <div class="font-serif text-2xl font-normal text-ink">
+            Reserved desk
+          </div>
+          <p class="mt-1 font-body text-xs text-muted">
+            Free quiet study desk in the building for your own examination.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-5">
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            Preparation
+          </span>
+          <div class="font-serif text-2xl font-normal text-ink">
+            Corteon tutor
+          </div>
+          <p class="mt-1 font-body text-xs text-muted">
+            Full access to our tutor and practice engine for your own
+            preparation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE DEAL */}
+  <Section id="deal" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={fellowship.theDeal.number}
+      label={fellowship.theDeal.label}
+      title={fellowship.theDeal.title}
+      sub={fellowship.theDeal.lead}
+    />
+
+    <div class="mt-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {/* What You Give */}
+      <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+        <div
+          class="mb-4 flex items-center justify-between border-b border-hair pb-3"
+        >
+          <h2 class="font-serif text-2xl font-normal text-ink">
+            {fellowship.theDeal.give.heading}
+          </h2>
+          <span
+            class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+          >
+            Commitment
+          </span>
+        </div>
+
+        <p class="mb-6 font-body text-sm text-muted">
+          {fellowship.theDeal.give.summary}
+        </p>
+
+        <ul class="space-y-4 font-body text-sm leading-relaxed text-ink">
+          {
+            fellowship.theDeal.give.items.map((item) => (
+              <li class="flex items-start gap-3">
+                <span
+                  class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      {/* What You Receive */}
+      <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+        <div
+          class="mb-4 flex items-center justify-between border-b border-hair pb-3"
+        >
+          <h2 class="font-serif text-2xl font-normal text-ink">
+            {fellowship.theDeal.receive.heading}
+          </h2>
+          <span
+            class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+          >
+            Return
+          </span>
+        </div>
+
+        <p class="mb-6 font-body text-sm text-muted">
+          {fellowship.theDeal.receive.summary}
+        </p>
+
+        <ul class="space-y-4 font-body text-sm leading-relaxed text-ink">
+          {
+            fellowship.theDeal.receive.items.map((item) => (
+              <li class="flex items-start gap-3">
+                <span
+                  class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    {/* Transparent Policy Note */}
+    <div
+      class="bg-surface-dim/20 mt-8 rounded border border-hair p-5 font-body text-sm text-muted"
+    >
+      <span class="font-mono font-semibold uppercase tracking-wider text-ink">
+        Note on terms:
+      </span>{' '}
+      {fellowship.theDeal.note}
+    </div>
+  </Section>
+
+  {/* SECTION 02: THE PEDAGOGICAL LADDER */}
+  <Section id="ladder" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={fellowship.ladder.number}
+      label={fellowship.ladder.label}
+      title={fellowship.ladder.title}
+      sub={fellowship.ladder.lead}
+    />
+
+    <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {
+        fellowship.ladder.stages.map((stage) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6">
+            <div>
+              <div class="mb-3 flex items-center justify-between gap-2">
+                <StatusChip status={stage.status} size="sm" />
+                <span class="font-mono text-xs text-muted">
+                  {stage.statusNote}
+                </span>
+              </div>
+
+              <h2 class="mb-2 font-serif text-2xl font-normal text-ink">
+                {stage.name}
+              </h2>
+
+              <p class="mb-4 font-body text-sm text-muted">{stage.role}</p>
+
+              <div class="border-hair/60 bg-surface-dim/20 mb-6 rounded border p-3">
+                <span class="block font-mono text-xs font-semibold uppercase tracking-wider text-muted">
+                  Daily Load
+                </span>
+                <span class="font-body text-sm font-medium text-ink">
+                  {stage.load}
+                </span>
+              </div>
+
+              <div class="mb-6 space-y-2">
+                <span class="block font-mono text-xs font-semibold uppercase tracking-wider text-muted">
+                  Benefits & Scope
+                </span>
+                <ul class="space-y-2 font-body text-xs leading-relaxed text-ink">
+                  {stage.benefits.map((b) => (
+                    <li class="flex items-start gap-2">
+                      <span class="mt-1 h-1 w-1 shrink-0 rounded-full bg-spark-ink" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="border-t border-hair pt-4">
+              <span class="block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Compensation & Terms
+              </span>
+              <p class="mt-1 font-body text-xs font-medium text-ink">
+                {stage.compensation}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 03: SELECTION PROCESS */}
+  <Section
+    id="selection"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number={fellowship.selection.number}
+      label={fellowship.selection.label}
+      title={fellowship.selection.title}
+      sub={fellowship.selection.lead}
+    />
+
+    <div class="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        fellowship.selection.steps.map((step) => (
+          <div class="rounded border border-hair bg-paper p-6">
+            <span class="mb-3 inline-block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+              Step {step.number}
+            </span>
+
+            <h2 class="mb-2 font-serif text-xl font-normal text-ink">
+              {step.name}
+            </h2>
+
+            <p class="mb-4 font-body text-sm leading-relaxed text-muted">
+              {step.summary}
+            </p>
+
+            <div class="border-hair/60 border-t pt-3">
+              <span class="block font-mono text-xs font-semibold uppercase tracking-wider text-muted">
+                What we observe
+              </span>
+              <p class="mt-1 font-body text-xs text-ink">{step.focus}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Selection Policy Note */}
+    <div
+      class="bg-surface-dim/20 mt-8 rounded border border-hair p-5 font-body text-sm text-muted"
+    >
+      <span class="font-mono font-semibold uppercase tracking-wider text-ink">
+        Honest admissions:
+      </span>{' '}
+      {fellowship.selection.closingNote}
+    </div>
+  </Section>
+
+  {/* SECTION 04: APPLY FORM */}
+  <Section id="apply" theme="paper" padding="lg">
+    <SectionHeader
+      number={fellowship.applyForm.number}
+      label={fellowship.applyForm.label}
+      title={fellowship.applyForm.title}
+      sub={fellowship.applyForm.lead}
+    />
+
+    <div class="mt-12 max-w-2xl">
+      {
+        /* SUCCESS CONFIRMATION PANEL (Displayed when ?submitted=success or via JS) */
+      }
+      <div
+        id="confirmation"
+        tabindex="-1"
+        class:list={[
+          'rounded border border-spark-ink bg-paper p-6 sm:p-8',
+          isSubmittedSuccess ? 'block' : 'hidden',
+        ]}
+      >
+        <div class="flex items-start gap-4">
+          <div
+            class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-spark-ink text-paper"
+            aria-hidden="true"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="space-y-3">
+            <h2 class="font-serif text-2xl font-normal text-ink">Thank you.</h2>
+            <p class="font-body text-base text-muted">
+              We have received your fellowship application. The owner will phone
+              you back personally {site.callbackWindow}.
+            </p>
+            <p class="font-body text-sm text-muted">
+              If your request is urgent, message us directly on WhatsApp:
+            </p>
+            <div class="pt-2">
+              <Button
+                href={whatsAppFellowUrl}
+                variant="primary"
+                size="sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Message on WhatsApp
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ERROR ALERT (Displayed when query has error) */}
+      {
+        errorMessage && (
+          <div
+            id="server-error-alert"
+            class="border-error bg-error-container/20 text-error mb-6 rounded border p-4 font-body text-sm"
+          >
+            <strong class="font-semibold">Notice:</strong> {errorMessage}
+          </div>
+        )
+      }
+
+      {/* DYNAMIC CLIENT ERROR ALERT */}
+      <div
+        id="client-error-alert"
+        class="border-error bg-error-container/20 text-error mb-6 hidden rounded border p-4 font-body text-sm"
+        role="alert"
+      >
+      </div>
+
+      {/* THE APPLICATION FORM */}
+      <div id="form-container" class:list={[isSubmittedSuccess && 'hidden']}>
+        <div
+          class="bg-surface-dim/20 mb-8 rounded border border-hair p-4 font-body text-xs text-muted"
+        >
+          {fellowship.applyForm.doorNote}
+        </div>
+
+        <form
+          id="fellowship-form"
+          action="/api/enquire"
+          method="POST"
+          class="space-y-6"
+          novalidate
+        >
+          {/* Hidden fields */}
+          <input type="hidden" name="door" value="fellow" />
+          <input type="hidden" name="redirect_to" value="/fellowship" />
+
+          {/* Invisible honeypot field (anti-spam) */}
+          <div style="display: none;" aria-hidden="true">
+            <label for="_hp_company">Do not fill this field</label>
+            <input
+              type="text"
+              id="_hp_company"
+              name="_hp_company"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          {/* Full Name */}
+          <Field
+            id="fellow_name"
+            name="name"
+            label="Full Name"
+            placeholder="Enter your full name"
+            required
+            autocomplete="name"
+          />
+
+          {/* Phone / WhatsApp */}
+          <Field
+            id="fellow_phone"
+            name="phone"
+            type="tel"
+            label="Phone / WhatsApp"
+            placeholder="10-digit mobile number"
+            helpText="We use this only to phone you back personally within 24 hours."
+            required
+            autocomplete="tel"
+          />
+
+          {/* Email Address */}
+          <Field
+            id="fellow_email"
+            name="email"
+            type="email"
+            label="Email Address (Optional)"
+            placeholder="name@example.com"
+            autocomplete="email"
+          />
+
+          {/* Subject You Teach */}
+          <Field
+            id="fellow_subject"
+            name="fellow_subject"
+            label="Subject You Teach"
+            placeholder="e.g. Physics, Mathematics, Chemistry, Biology, Reasoning"
+            required
+          />
+
+          {/* Exam You Are Preparing For */}
+          <Field
+            id="fellow_exam"
+            name="fellow_exam"
+            label="Exam You Are Preparing For"
+            placeholder="e.g. UPSC, State PSC, GATE, NET, SSC"
+            required
+          />
+
+          {/* Statement / Questions */}
+          <div>
+            <label
+              for="fellow_message"
+              class="mb-2 block select-none font-sans text-xs font-medium uppercase tracking-[0.12em] text-muted"
+            >
+              Why do you want to teach? (Optional)
+            </label>
+            <textarea
+              id="fellow_message"
+              name="message"
+              rows="3"
+              placeholder="Tell us about your teaching experience, study schedule, or any specific questions."
+              class="placeholder:text-muted/60 box-border min-h-[96px] w-full rounded border border-hair bg-transparent px-4 py-3 font-body text-base text-ink outline-none transition-colors duration-150 focus:border-spark focus:ring-1 focus:ring-spark"
+            ></textarea>
+          </div>
+
+          {/* Consent Checkbox */}
+          <div class="pt-2">
+            <Checkbox
+              id="fellow_consent"
+              name="consent"
+              label="We use this only to contact you about Synapse."
+              required
+              checked
+            />
+          </div>
+
+          {/* Terms Disclaimer Note */}
+          <div
+            class="border-hair/80 bg-surface-dim/30 rounded border p-4 font-body text-xs text-muted"
+          >
+            {fellowship.applyForm.termsNotice}
+          </div>
+
+          {/* Submit Button & WhatsApp Alternative */}
+          <div
+            class="flex flex-col gap-4 border-t border-hair pt-6 sm:flex-row sm:items-center"
+          >
+            <Button
+              type="submit"
+              variant="primary"
+              size="md"
+              id="submit-button"
+              class="w-full sm:w-auto"
+            >
+              Send Application
+            </Button>
+
+            <a
+              id="whatsapp-fellow-link"
+              href={whatsAppFellowUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 py-2 font-sans text-xs uppercase tracking-[0.12em] text-muted transition-colors hover:text-spark-ink"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29"
+                ></path>
+              </svg>
+              <span>Or apply via WhatsApp</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </Section>
+
+  {/* Progressive enhancement script for form submission */}
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('fellowship-form');
+      if (!form) return;
+
+      const submitButton = document.getElementById('submit-button');
+      const confirmationEl = document.getElementById('confirmation');
+      const formContainer = document.getElementById('form-container');
+      const clientErrorAlert = document.getElementById('client-error-alert');
+      const nameInput = document.getElementById('fellow_name');
+      const subjectInput = document.getElementById('fellow_subject');
+      const whatsappLink = document.getElementById('whatsapp-fellow-link');
+
+      function updateWhatsAppLink() {
+        if (!whatsappLink) return;
+        const name = nameInput ? nameInput.value.trim() : '';
+        const subject = subjectInput ? subjectInput.value.trim() : '';
+        let msg =
+          'Hello Synapse, I am applying for the Teaching Fellowship in Chamba.';
+        if (name) msg += ' My name is ' + name + '.';
+        if (subject) msg += ' Subject: ' + subject + '.';
+        whatsappLink.href =
+          'https://wa.me/918287248119?text=' + encodeURIComponent(msg);
+      }
+
+      if (nameInput) nameInput.addEventListener('input', updateWhatsAppLink);
+      if (subjectInput)
+        subjectInput.addEventListener('input', updateWhatsAppLink);
+
+      form.addEventListener('submit', async function (evt) {
+        evt.preventDefault();
+
+        if (clientErrorAlert) {
+          clientErrorAlert.classList.add('hidden');
+          clientErrorAlert.textContent = '';
+        }
+
+        const originalBtnText = submitButton
+          ? submitButton.textContent
+          : 'Send Application';
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Sending...';
+        }
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/api/enquire', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+            },
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.ok) {
+            if (formContainer) formContainer.classList.add('hidden');
+            if (confirmationEl) {
+              confirmationEl.classList.remove('hidden');
+              confirmationEl.focus();
+            }
+          } else {
+            const err = data.error || 'Please fill in all required fields.';
+            if (clientErrorAlert) {
+              clientErrorAlert.textContent = err;
+              clientErrorAlert.classList.remove('hidden');
+              clientErrorAlert.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+              });
+            }
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.textContent = originalBtnText;
+            }
+          }
+        } catch {
+          // If network error, fall back to native submission
+          form.submit();
+        }
+      });
+    })();
+  </script>
 </BaseLayout>

@@ -1,0 +1,130 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "TEACH WHILE YOU PREPARE · CHAMBA",
+    "title": "Your hardest years should count, whatever the result.",
+    "sub": "Graduates preparing for an examination teach one class a day in Chamba. In return: a reserved library desk, certified teaching hours, access to Corteon for your own preparation, and a place to stay on if you do well.",
+    "strip": "Behind the Post Office, Chamba · Applications Open · 1 class a day",
+    "primaryCta": {
+      "label": "Apply for Fellowship",
+      "href": "#apply"
+    },
+    "secondaryCta": {
+      "label": "The Deal",
+      "href": "#deal"
+    }
+  },
+  "theDeal": {
+    "number": "01",
+    "label": "THE DEAL",
+    "title": "Colleagues, not cheap labour.",
+    "lead": "A transparent agreement between Synapse and every fellow. What you give and what you receive are explicit from day one.",
+    "give": {
+      "heading": "What you give",
+      "summary": "Focused teaching commitment with zero administrative burden.",
+      "items": [
+        "One class a day: teach exactly one class per day. Nothing else (no hidden minutes, no collaboration hours).",
+        "Small groups: work with a small group of learners with pedagogical patience.",
+        "Subject mastery: guide students through core concepts, daily practice tests, and doubt clinics."
+      ]
+    },
+    "receive": {
+      "heading": "What you receive",
+      "summary": "Quiet space, recognized hours, and tools for your own goals.",
+      "items": [
+        "Free reserved library desk: a dedicated quiet study desk in the building for your own preparation.",
+        "Certified teaching hours: verified certificate of teaching hours and pedagogical practice.",
+        "Access to Corteon: full access to our tutor and practice engine for your own examination preparation.",
+        "A place to stay on if you do well: clear opportunity to continue as a senior fellow or centre guide."
+      ]
+    },
+    "note": "Fellow load is strictly one class a day. Terms not published or settled here are to be agreed."
+  },
+  "ladder": {
+    "number": "02",
+    "label": "PEDAGOGICAL LADDER",
+    "title": "A progression built on pedagogical practice.",
+    "lead": "Teaching at Synapse is structured into clear stages. Only what is live today is described in the present tense; others use planned or direction.",
+    "stages": [
+      {
+        "id": "teaching-fellow",
+        "name": "Teaching Fellow",
+        "status": "LIVE NOW",
+        "statusNote": "Applications open now in Chamba",
+        "role": "Graduates preparing for an examination who teach one class a day.",
+        "load": "One class a day",
+        "benefits": [
+          "Free reserved library desk in the building",
+          "Certified teaching hours",
+          "Access to Corteon for own preparation",
+          "A place to stay on if you do well"
+        ],
+        "compensation": "Free reserved desk and tools. Other terms to be agreed."
+      },
+      {
+        "id": "senior-fellow",
+        "name": "Senior Pedagogical Fellow",
+        "status": "OPENING NEXT",
+        "statusNote": "Planned next stage",
+        "role": "Leads a pod, records lessons, and guides newer fellows.",
+        "load": "One class a day and lesson curation",
+        "benefits": [
+          "Pod guidance and lesson recording",
+          "Priority quiet study desk",
+          "Senior pedagogical certification"
+        ],
+        "compensation": "Stipend and a share of media revenue: amount to be agreed."
+      },
+      {
+        "id": "centre-guide",
+        "name": "Centre Guide & Faculty",
+        "status": "DIRECTION",
+        "statusNote": "Future direction as centres grow",
+        "role": "A place to stay on if you do well, or after your examination.",
+        "load": "Centre guidance and curriculum development",
+        "benefits": [
+          "Long-term role within Synapse Chamba",
+          "Leadership across district classes"
+        ],
+        "compensation": "Terms to be agreed."
+      }
+    ]
+  },
+  "selection": {
+    "number": "03",
+    "label": "SELECTION PROCESS",
+    "title": "Children deserve good teachers, so we take care.",
+    "lead": "Selection focuses on pedagogical patience, subject mastery, and communication. We look for graduates who respect learners and value deep foundational understanding.",
+    "steps": [
+      {
+        "number": "01",
+        "name": "Application & Review",
+        "summary": "Tell us about your subject background and the exam you are preparing for.",
+        "focus": "We review your academic background, subject clarity, and motivation to teach in Chamba."
+      },
+      {
+        "number": "02",
+        "name": "Personal Interview",
+        "summary": "A conversation with the centre guide on study rhythms and pedagogical patience.",
+        "focus": "We discuss how you balance your own exam preparation with classroom commitment."
+      },
+      {
+        "number": "03",
+        "name": "Teaching Simulation",
+        "summary": "Explain a foundational concept to a small group using hints before answers.",
+        "focus": "We observe your patience, clarity, and how you respond to student doubts."
+      }
+    ],
+    "closingNote": "No exam rank cutoffs or artificial selection barriers. The owner phones back personally within 24 hours."
+  },
+  "applyForm": {
+    "number": "04",
+    "label": "APPLY NOW",
+    "title": "Apply for the Fellowship.",
+    "lead": "Applications are open now for classes in Chamba. Tell us what you teach and what you are preparing for; the owner phones back personally within 24 hours.",
+    "doorNote": "Applications are open now. Each fellow teaches one class a day.",
+    "callbackPromise": "The owner phones back personally within 24 hours.",
+    "termsNotice": "Terms: One class a day. Reserved desk, certified teaching hours, and Corteon tutor access included. Senior roles stipend and media share: amount to be agreed. Unresolved terms say to be agreed."
+  }
+}

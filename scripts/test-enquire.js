@@ -235,6 +235,35 @@ await runAsyncTest(
   }
 );
 
+await runAsyncTest(
+  'handles native HTML form POST with redirect_to (/fellowship)',
+  async () => {
+    const formData = new URLSearchParams();
+    formData.append('door', 'fellow');
+    formData.append('name', 'Pooja Sharma');
+    formData.append('phone', '8287248119');
+    formData.append('fellow_subject', 'Mathematics');
+    formData.append('fellow_exam', 'UPSC');
+    formData.append('consent', 'on');
+    formData.append('redirect_to', '/fellowship');
+
+    const req = new Request('https://corteon.in/api/enquire', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: 'text/html',
+      },
+      body: formData.toString(),
+    });
+
+    const response = await onRequestPost({ request: req, env: {} });
+    assert.strictEqual(response.status, 303);
+    const location = response.headers.get('Location');
+    assert.ok(location);
+    assert.ok(location.includes('/fellowship?submitted=success#apply'));
+  }
+);
+
 console.log(
   '--------------------------------------------------------------------------------'
 );

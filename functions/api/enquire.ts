@@ -264,6 +264,12 @@ export async function onRequestPost(context: {
     );
   }
 
+  const rawRedirect = (rawData.redirect_to || '') as string;
+  const safeRedirect =
+    rawRedirect.startsWith('/') && !rawRedirect.startsWith('//')
+      ? rawRedirect
+      : '';
+
   // 1. Honeypot anti-spam check
   // Hidden field _hp_company or website; if filled, silently return success
   const honeypot = (rawData._hp_company || rawData.website || '') as string;
@@ -279,7 +285,11 @@ export async function onRequestPost(context: {
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
     }
-    return Response.redirect(`${url.origin}/enquire?submitted=success`, 303);
+    const targetBase = safeRedirect || '/enquire';
+    return Response.redirect(
+      `${url.origin}${targetBase}?submitted=success`,
+      303
+    );
   }
 
   // 2. Map door-specific fields to unified stage/interest properties
@@ -334,8 +344,9 @@ export async function onRequestPost(context: {
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
+    const targetBase = safeRedirect || '/enquire';
     return Response.redirect(
-      `${url.origin}/enquire?door=${door}&error=${encodeURIComponent(errorMsg)}`,
+      `${url.origin}${targetBase}?door=${door}&error=${encodeURIComponent(errorMsg)}#apply`,
       303
     );
   }
@@ -362,8 +373,9 @@ export async function onRequestPost(context: {
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
+      const targetBase = safeRedirect || '/enquire';
       return Response.redirect(
-        `${url.origin}/enquire?door=${door}&error=${encodeURIComponent(errorMsg)}`,
+        `${url.origin}${targetBase}?door=${door}&error=${encodeURIComponent(errorMsg)}#apply`,
         303
       );
     }
@@ -414,6 +426,12 @@ export async function onRequestPost(context: {
   }
 
   // Native HTML Form POST redirect (JS-disabled mode)
+  if (safeRedirect) {
+    return Response.redirect(
+      `${url.origin}${safeRedirect}?submitted=success#apply`,
+      303
+    );
+  }
   return Response.redirect(
     `${url.origin}/enquire?submitted=success&door=${cleaned.door}#confirmation`,
     303

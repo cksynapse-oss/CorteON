@@ -8,26 +8,77 @@ import '../styles/global.css';
 import NavBar from '../components/brand/NavBar.astro';
 import Footer from '../components/brand/Footer.astro';
 import FloorGauge from '../components/brand/FloorGauge.astro';
+import site from '../content/site.json';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
   theme?: 'paper' | 'ink';
   activeFloor?: 'g' | '1' | '2' | null;
   hideNav?: boolean;
   hideFooter?: boolean;
   hideGauge?: boolean;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Synapse',
-  description = 'A modern gurukul for the age of AI. Learn, teach and build, under one roof.',
+  title = `${site.name} — A modern gurukul in Chamba`,
+  description = site.tagline,
+  image = '/og-image.png',
   theme = 'paper',
   activeFloor = null,
   hideNav = false,
   hideFooter = false,
   hideGauge = false,
+  noindex = false,
 } = Astro.props;
+
+const siteUrl = Astro.site
+  ? Astro.site.toString().replace(/\/$/, '')
+  : 'https://corteon.in';
+const cleanPath = Astro.url.pathname.replace(/\/$/, '');
+const canonicalUrl = cleanPath ? `${siteUrl}${cleanPath}` : `${siteUrl}/`;
+const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const isDevRoute =
+  noindex ||
+  Astro.url.pathname.startsWith('/_kit') ||
+  Astro.url.pathname.startsWith('/kit');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['EducationalOrganization', 'LocalBusiness'],
+  name: site.name,
+  description: site.tagline,
+  url: 'https://corteon.in/',
+  logo: `${siteUrl}/favicon.svg`,
+  image: ogImageUrl,
+  telephone: `+91${site.phone}`,
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Behind the Post Office',
+    addressLocality: 'Chamba',
+    addressRegion: 'Himachal Pradesh',
+    addressCountry: 'IN',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ],
+      opens: '15:30',
+      closes: '18:30',
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -37,8 +88,41 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {
+      isDevRoute ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta name="robots" content="index, follow" />
+      )
+    }
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(jsonLd)}
+    />
   </head>
   <body class="min-h-screen bg-paper text-ink">
     <!-- Accessible Skip Link (AGENTS.md rule 10 & BUILD_PLAN.md T1) -->

@@ -745,6 +745,10 @@ const currentDoorItem =
         const matchingRadio = document.getElementById('door-radio-' + urlDoor);
         if (matchingRadio) {
           matchingRadio.checked = true;
+          window.synapseTrack?.('door_select', {
+            door: urlDoor,
+            source: 'url',
+          });
         }
       }
 
@@ -755,6 +759,10 @@ const currentDoorItem =
       doorRadios.forEach(function (radio) {
         radio.addEventListener('change', function () {
           updateWhatsAppLink();
+          window.synapseTrack?.('door_select', {
+            door: radio.value,
+            source: 'radio',
+          });
           // Update URL without reloading
           if (window.history && window.history.replaceState) {
             const newUrl = new URL(window.location);
@@ -770,9 +778,34 @@ const currentDoorItem =
 
       updateWhatsAppLink();
 
+      // Track enquiry_start on first form field interaction
+      let enquiryStarted = false;
+      form.addEventListener('focusin', function () {
+        if (!enquiryStarted) {
+          enquiryStarted = true;
+          let currentDoor = 'parent';
+          doorRadios.forEach(function (r) {
+            if (r.checked) currentDoor = r.value;
+          });
+          window.synapseTrack?.('enquire_start', {
+            door: currentDoor,
+            form_id: 'enquiry-form',
+          });
+        }
+      });
+
       // Progressive enhancement: AJAX submission
       form.addEventListener('submit', async function (evt) {
         evt.preventDefault();
+
+        let currentDoor = 'parent';
+        doorRadios.forEach(function (r) {
+          if (r.checked) currentDoor = r.value;
+        });
+        window.synapseTrack?.('enquire_submit', {
+          door: currentDoor,
+          form_id: 'enquiry-form',
+        });
 
         if (clientErrorAlert) {
           clientErrorAlert.classList.add('hidden');

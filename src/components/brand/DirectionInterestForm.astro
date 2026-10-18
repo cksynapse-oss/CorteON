@@ -374,8 +374,27 @@ const whatsAppUrl = `https://wa.me/91${site.phone}?text=${waText}`;
       });
     }
 
+    let interestStarted = false;
+    form.addEventListener('focusin', function () {
+      if (!interestStarted) {
+        interestStarted = true;
+        const doorInput = form.querySelector('input[name="door"]');
+        window.synapseTrack?.('enquire_start', {
+          door: doorInput ? doorInput.value : 'direction',
+          form_id: formId,
+        });
+      }
+    });
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      const doorInput = form.querySelector('input[name="door"]');
+      window.synapseTrack?.('enquire_submit', {
+        door: doorInput ? doorInput.value : 'direction',
+        form_id: formId,
+      });
+
       if (alertBox) alertBox.classList.add('hidden');
       if (submitBtn) {
         submitBtn.disabled = true;

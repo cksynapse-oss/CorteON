@@ -9,16 +9,18 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  theme?: 'paper' | 'ink';
 }
 
 const {
   title = 'Synapse',
   description = 'A modern gurukul for the age of AI. Learn, teach and build, under one roof.',
+  theme = 'paper',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={theme} class={theme === 'ink' ? 'theme-ink' : ''}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,6 +30,15 @@ const {
     <meta name="description" content={description} />
   </head>
   <body class="min-h-screen bg-paper text-ink">
-    <slot />
+    <!-- Accessible Skip Link (AGENTS.md rule 10 & BUILD_PLAN.md T1) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <slot name="header" />
+
+    <main id="main-content" tabindex="-1" class="focus:outline-none">
+      <slot />
+    </main>
+
+    <slot name="footer" />
   </body>
 </html>

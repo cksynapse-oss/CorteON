@@ -4,15 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: '#F3EEE4',
-        ink: '#15130F',
-        muted: '#5C574B',
-        'muted-on-ink': '#A29D91',
-        hair: '#D8D0BF',
-        'hair-ink': '#3A362E',
-        spark: '#D9481F',
-        'spark-ink': '#B22C01',
-        'spark-glow': '#FF6338',
+        paper: 'var(--paper)',
+        ink: 'var(--ink)',
+        muted: 'var(--muted)',
+        'muted-on-ink': 'var(--muted-on-ink)',
+        hair: 'var(--hair)',
+        'hair-ink': 'var(--hair-ink)',
+        spark: 'var(--spark)',
+        'spark-ink': 'var(--spark-ink)',
+        'spark-glow': 'var(--spark-glow)',
       },
       fontFamily: {
         serif: ['"EB Garamond"', 'Garamond', 'Georgia', 'serif'],
@@ -38,6 +38,41 @@ export default {
           'monospace',
         ],
       },
+      fontSize: {
+        'display-xl': [
+          '5.5rem',
+          { lineHeight: '1.02', letterSpacing: '-0.03em' },
+        ],
+        'display-xl-mobile': [
+          '3.25rem',
+          { lineHeight: '1.08', letterSpacing: '-0.02em' },
+        ],
+        'display-lg': [
+          '4rem',
+          { lineHeight: '1.05', letterSpacing: '-0.025em' },
+        ],
+        'display-lg-mobile': [
+          '2.5rem',
+          { lineHeight: '1.12', letterSpacing: '-0.015em' },
+        ],
+        'headline-lg': [
+          '2.75rem',
+          { lineHeight: '1.15', letterSpacing: '-0.015em' },
+        ],
+        'headline-md': [
+          '2rem',
+          { lineHeight: '1.2', letterSpacing: '-0.01em' },
+        ],
+        'headline-sm': ['1.5rem', { lineHeight: '1.3' }],
+        'body-lg': [
+          '1.125rem',
+          { lineHeight: '1.65', letterSpacing: '-0.01em' },
+        ],
+        'body-md': ['1rem', { lineHeight: '1.6' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.55' }],
+        'label-md': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.12em' }],
+        'label-sm': ['0.75rem', { lineHeight: '1.3', letterSpacing: '0.14em' }],
+      },
       borderRadius: {
         DEFAULT: '4px',
         sm: '2px',
@@ -49,6 +84,10 @@ export default {
       },
       maxWidth: {
         content: '1280px',
+      },
+      spacing: {
+        gutter: '1.5rem',
+        'gutter-desktop': '2.5rem',
       },
     },
   },

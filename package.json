@@ -10,11 +10,12 @@
     "lint": "eslint .",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
+    "test:contrast": "node scripts/test-contrast.js",
     "content-lint": "node scripts/stub-check.js content-lint",
     "link-check": "node scripts/stub-check.js link-check",
     "axe": "node scripts/stub-check.js axe",
     "lighthouse-ci": "node scripts/stub-check.js lighthouse-ci",
-    "check": "astro check && eslint . && prettier --check . && npm run content-lint && npm run build && npm run link-check && npm run axe && npm run lighthouse-ci"
+    "check": "astro check && eslint . && prettier --check . && npm run test:contrast && npm run content-lint && npm run build && npm run link-check && npm run axe && npm run lighthouse-ci"
   },
   "dependencies": {
     "@astrojs/tailwind": "^5.1.5",

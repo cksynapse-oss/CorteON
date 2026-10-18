@@ -1,0 +1,86 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "A modern gurukul, for every district.",
+    "title": "Learn it. Teach it. Build it. Show it.",
+    "sub": "Synapse is a learning centre in Chamba that is growing into a three-floor place where students, graduates, readers and builders learn, teach and build together.",
+    "stripLabel": "OPEN NOW",
+    "strip": "Small-group classes, Monday to Saturday, 3:30 PM to 6:30 PM, behind the Post Office, Chamba.",
+    "primaryCta": {
+      "label": "Enquire about admission",
+      "href": "/enquire"
+    },
+    "secondaryCta": {
+      "label": "Read the idea",
+      "href": "/idea"
+    }
+  },
+  "openNow": {
+    "number": "01",
+    "label": "OPEN NOW",
+    "title": "The Chamba Classroom",
+    "sub": "Small groups, a guide who knows every student.",
+    "fee": "Fees are shared when you enquire.",
+    "lead": "Four tracks, five days a week per student. Fees are shared when you enquire. Every class ends with a practice test on what was just taught; doubts are solved in a separate short session.",
+    "cta": {
+      "label": "Enquire about admission",
+      "href": "/enquire"
+    }
+  },
+  "theIdea": {
+    "number": "02",
+    "label": "THE IDEA",
+    "title": "Three worlds that never meet, and the loop.",
+    "problem": "School gives a syllabus. Coaching gives exam technique. Innovation happens elsewhere. Nothing joins them.",
+    "solution": "Synapse puts learners, teachers and builders in one building so people take turns: learn it, teach it, build it, show it.",
+    "analogy": "AI is the encyclopaedia; Synapse is the gym and the workshop.",
+    "cta": {
+      "label": "Read the idea",
+      "href": "/idea"
+    }
+  },
+  "theBuilding": {
+    "number": "03",
+    "label": "THE BUILDING",
+    "title": "Three floors, built in order",
+    "sub": "One building in Chamba growing floor by floor as each community proves itself.",
+    "cta": {
+      "label": "Walk through the building",
+      "href": "/building"
+    }
+  },
+  "fellowshipAndTools": {
+    "number": "04",
+    "label": "FELLOWSHIP & TOOLS",
+    "title": "Graduates who teach. Software that steps back.",
+    "fellowship": {
+      "title": "The Fellowship",
+      "summary": "Graduates preparing for an exam teach one class a day and get a library desk, certified teaching hours and the tutor for their own preparation. Applications are open now.",
+      "action": "Apply to teach",
+      "href": "/fellowship"
+    },
+    "tutor": {
+      "title": "The Tutor (Corteon)",
+      "summary": "Corteon gives hints before answers, asks how sure you are, and defers to a no-device quiz. In development."
+    },
+    "passport": {
+      "title": "The Passport",
+      "summary": "A record the world can trust — an evidentiary portfolio, not a test paper.",
+      "action": "See direction",
+      "href": "/passport"
+    }
+  },
+  "principles": {
+    "number": "05",
+    "label": "PRINCIPLES",
+    "title": "What we stand for",
+    "sub": "A child ends a term with marks and a body of work."
+  },
+  "chooseDoor": {
+    "number": "06",
+    "label": "CHOOSE YOUR DOOR",
+    "title": "Choose your door",
+    "sub": "The building welcomes people at every stage of learning and building. Select the door that fits you."
+  }
+}

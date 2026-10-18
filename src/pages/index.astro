@@ -1,102 +1,507 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import DoorCard from '../components/ui/DoorCard.astro';
+import Building from '../components/brand/Building.astro';
+import ThreeWorlds from '../components/brand/ThreeWorlds.astro';
+import LoopDiagram from '../components/brand/LoopDiagram.astro';
+
+import site from '../content/site.json';
+import homeRaw from '../content/home.json';
+import programmesRaw from '../content/programmes.json';
+import floorsRaw from '../content/floors.json';
+import principlesRaw from '../content/principles.json';
+import doorsRaw from '../content/doors.json';
+
+import type {
+  HomeContent,
+  ProgrammesContent,
+  FloorsContent,
+  PrinciplesContent,
+  DoorsContent,
+} from '../content/schemas';
+
+const home = homeRaw as HomeContent;
+const programmes = programmesRaw as ProgrammesContent;
+const floors = floorsRaw as FloorsContent;
+const principles = principlesRaw as PrinciplesContent;
+const doors = doorsRaw as DoorsContent;
 ---
 
-<BaseLayout title="Synapse">
-  <div class="mx-auto max-w-content px-4 py-16 sm:px-6 md:px-8 lg:px-10">
-    <header class="mb-12">
-      <span class="font-mono text-label-md uppercase text-muted">
-        Task T1 · Base Layout & Tokens
-      </span>
-      <h1
-        class="mt-4 font-serif text-display-xl-mobile font-normal tracking-tight text-ink md:text-display-xl"
-      >
-        Synapse
-      </h1>
-      <p class="mt-4 max-w-2xl font-sans text-body-lg text-muted">
-        A modern gurukul for the age of AI. Learn, teach and build, under one
-        roof.
-      </p>
-    </header>
-
-    <section aria-labelledby="tokens-heading" class="mt-16 space-y-8">
-      <h2
-        id="tokens-heading"
-        class="font-serif text-headline-sm font-medium text-ink"
-      >
-        Verified Token Hierarchy
-      </h2>
-
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-        <div class="border border-hair p-4">
-          <span class="font-mono text-label-sm uppercase text-muted"
-            >Paper Canvas</span
-          >
-          <p class="mt-1 font-serif text-headline-sm text-ink">#F3EEE4</p>
-          <p class="mt-1 font-sans text-body-sm text-muted">Main background</p>
+<BaseLayout
+  title={`${site.name} — ${site.tagline}`}
+  description={site.subline}
+  activeFloor="g"
+>
+  {/* SECTION 1: HERO (Nocturnal Ink Canvas) */}
+  <Section id="hero" theme="ink" padding="lg" class="border-b border-hair-ink">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
+      {/* Left Column: Headline, Plain Subline, Strip, CTAs */}
+      <div class="lg:col-span-7">
+        <div
+          class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-glow"
+        >
+          <span>{home.hero.eyebrow}</span>
         </div>
 
-        <div class="border border-hair p-4">
-          <span class="font-mono text-label-sm uppercase text-muted"
-            >Ink Tone</span
+        {/* The SINGLE <h1> on the page */}
+        <h1
+          class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-paper sm:text-display-lg lg:text-display-xl"
+        >
+          Learn it. Teach it. Build it. <span class="text-paper/90 italic"
+            >Show it.</span
           >
-          <p class="mt-1 font-serif text-headline-sm text-ink">#15130F</p>
-          <p class="mt-1 font-sans text-body-sm text-muted">
-            16.0:1 contrast on paper
-          </p>
+        </h1>
+
+        <p
+          class="mb-8 max-w-xl font-body text-base leading-relaxed text-muted-on-ink sm:text-body-lg"
+        >
+          {home.hero.sub}
+        </p>
+
+        {/* "Open now" Strip (Hours, Place) */}
+        <div
+          class="bg-ink/60 mb-8 flex flex-col gap-3 rounded border border-hair-ink p-4 sm:flex-row sm:items-center"
+        >
+          <StatusChip status="LIVE NOW" onDark={true} />
+          <span class="text-paper/90 font-sans text-xs sm:text-sm">
+            {home.hero.strip}
+          </span>
         </div>
 
-        <div class="border border-hair p-4">
-          <span class="font-mono text-label-sm uppercase text-muted"
-            >Muted Text</span
+        {/* Exactly ONE primary CTA above the fold */}
+        <div class="flex flex-wrap items-center gap-4">
+          <Button
+            href={home.hero.primaryCta.href}
+            variant="primary"
+            onDark={true}
           >
-          <p class="mt-1 font-serif text-headline-sm text-muted">#5C574B</p>
-          <p class="mt-1 font-sans text-body-sm text-muted">
-            6.2:1 contrast on paper
-          </p>
-        </div>
-
-        <div class="border border-hair p-4">
-          <span class="font-mono text-label-sm uppercase text-muted"
-            >Spark (Display)</span
+            {home.hero.primaryCta.label}
+          </Button>
+          <Button
+            href={home.hero.secondaryCta.href}
+            variant="ghost"
+            onDark={true}
           >
-          <p class="mt-1 font-serif text-headline-sm text-spark">#D9481F</p>
-          <p class="mt-1 font-sans text-body-sm text-muted">
-            Rules, dots, display &ge; 24px
-          </p>
-        </div>
-
-        <div class="border border-hair p-4">
-          <span class="font-mono text-label-sm uppercase text-muted"
-            >Spark Ink</span
-          >
-          <p class="mt-1 font-serif text-headline-sm text-spark-ink">#B22C01</p>
-          <p class="mt-1 font-sans text-body-sm text-muted">
-            Small red text & buttons (5.6:1)
-          </p>
-        </div>
-
-        <div class="border border-hair-ink bg-ink p-4 text-paper">
-          <span class="font-mono text-label-sm uppercase text-muted-on-ink"
-            >Spark Glow (On Ink)</span
-          >
-          <p class="mt-1 font-serif text-headline-sm text-spark-glow">
-            #FF6338
-          </p>
-          <p class="mt-1 font-sans text-body-sm text-muted-on-ink">
-            Small red text on ink (6.3:1)
-          </p>
+            {home.hero.secondaryCta.label}
+          </Button>
         </div>
       </div>
 
-      <div class="pt-4">
-        <a
-          href="#main-content"
-          class="inline-block rounded-pill bg-ink px-6 py-3 font-sans text-label-md uppercase text-paper transition-colors hover:bg-spark-ink"
+      {/* Right Column: Isometric Building with Progressive Thread */}
+      <div
+        class="flex items-center justify-center lg:col-span-5"
+        aria-hidden="true"
+      >
+        <div class="w-full max-w-md lg:max-w-none">
+          <Building active="g" scrollThread={true} onDark={true} />
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 2: WHAT IS OPEN NOW: THE CHAMBA CLASSROOM */}
+  <Section id="open-now" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.openNow.number}
+      label={home.openNow.label}
+      title={home.openNow.title}
+      sub={home.openNow.sub}
+    />
+
+    <div class="mb-10 max-w-3xl">
+      <p
+        class="mb-6 font-body text-base leading-relaxed text-ink sm:text-body-lg"
+      >
+        {home.openNow.lead}
+      </p>
+
+      <div
+        class="grid grid-cols-1 gap-4 border-t border-hair pt-4 font-sans text-xs uppercase tracking-wider text-muted sm:grid-cols-3"
+      >
+        <div>
+          <span class="block font-mono font-medium text-ink"
+            >{programmes.schedule.days}</span
+          >
+          <span>{programmes.schedule.hours}</span>
+        </div>
+        <div>
+          <span class="block font-mono font-medium text-ink">Weekly Rhythm</span
+          >
+          <span>{programmes.schedule.attendance}</span>
+        </div>
+        <div>
+          <span class="block font-mono font-medium text-ink"
+            >Transparent Terms</span
+          >
+          <span class="font-semibold text-spark-ink">{home.openNow.fee}</span>
+        </div>
+      </div>
+    </div>
+
+    {/* 4 Launch Tracks */}
+    <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        programmes.tracks.map((track) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8">
+            <div>
+              <div class="mb-3 flex items-center justify-between gap-3">
+                <h3 class="font-serif text-headline-sm text-ink">
+                  {track.name}
+                </h3>
+                <StatusChip status={track.status} />
+              </div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-wider text-muted">
+                Target Exams
+              </span>
+              <ul class="mb-4 flex flex-wrap gap-2">
+                {track.exams.map((exam) => (
+                  <li class="bg-surface-dim/30 rounded-pill border border-hair px-3 py-1 font-sans text-xs text-ink">
+                    {exam}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Baseline Diagnostic & Class Structure Callout */}
+    <div
+      class="bg-surface-dim/20 mb-8 flex flex-col justify-between gap-6 rounded border border-hair p-6 sm:p-8 md:flex-row md:items-center"
+    >
+      <div class="max-w-2xl space-y-2">
+        <div class="flex items-center gap-3">
+          <StatusChip status={programmes.baseline.status} />
+          <h3 class="font-serif text-xl font-medium text-ink">
+            {programmes.baseline.name}
+          </h3>
+        </div>
+        <p class="font-body text-base leading-relaxed text-muted">
+          {programmes.baseline.description}
+        </p>
+      </div>
+      <div class="shrink-0">
+        <Button href={home.openNow.cta.href} variant="primary">
+          {home.openNow.cta.label}
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 3: THE IDEA IN ONE SCREEN */}
+  <Section id="the-idea" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.theIdea.number}
+      label={home.theIdea.label}
+      title={home.theIdea.title}
+    />
+
+    {/* Problem, Solution, Analogy Triad */}
+    <div class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
         >
-          Focus Ring Test Button
+          The Problem
+        </span>
+        <p class="font-body text-base leading-relaxed text-ink">
+          {home.theIdea.problem}
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-spark-ink"
+        >
+          The Solution
+        </span>
+        <p class="font-body text-base leading-relaxed text-ink">
+          {home.theIdea.solution}
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          The Analogy
+        </span>
+        <p class="font-serif text-lg italic leading-relaxed text-ink">
+          “{home.theIdea.analogy}”
+        </p>
+      </div>
+    </div>
+
+    {/* Visual Illustrations: Three Worlds & The Loop */}
+    <div class="mb-12 sm:mb-16">
+      <ThreeWorlds />
+    </div>
+
+    <div class="mb-12 sm:mb-16">
+      <LoopDiagram />
+    </div>
+
+    <div class="text-center">
+      <Button href={home.theIdea.cta.href} variant="secondary">
+        {home.theIdea.cta.label}
+      </Button>
+    </div>
+  </Section>
+
+  {/* SECTION 4: THE BUILDING */}
+  <Section id="the-building" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.theBuilding.number}
+      label={home.theBuilding.label}
+      title={home.theBuilding.title}
+      sub={home.theBuilding.sub}
+    />
+
+    {/* Three Floors, Built in Order */}
+    <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        floors.map((floor) => (
+          <div
+            data-floor={floor.id}
+            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+          >
+            <div>
+              <div class="mb-4 flex items-center justify-between gap-3">
+                <span class="font-mono text-xs font-semibold uppercase tracking-widest text-muted">
+                  Floor {floor.shortName}
+                </span>
+                <StatusChip status={floor.status} />
+              </div>
+              <h3 class="mb-3 font-serif text-headline-sm text-ink">
+                {floor.name}
+              </h3>
+              <p class="mb-6 font-body text-base leading-relaxed text-muted">
+                {floor.summary}
+              </p>
+            </div>
+            <div class="border-t border-hair pt-4 font-mono text-xs uppercase tracking-wider text-muted">
+              {floor.id === 'g'
+                ? 'LIVE IN CHAMBA'
+                : floor.id === '1'
+                  ? 'OPENING NEXT'
+                  : 'FUTURE DIRECTION'}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center">
+      <Button href={home.theBuilding.cta.href} variant="secondary">
+        {home.theBuilding.cta.label}
+      </Button>
+    </div>
+  </Section>
+
+  {/* SECTION 5: FELLOWSHIP & TOOLS */}
+  <Section id="fellowship-tools" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.fellowshipAndTools.number}
+      label={home.fellowshipAndTools.label}
+      title={home.fellowshipAndTools.title}
+    />
+
+    <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {/* Fellowship Card */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <span class="font-mono text-xs uppercase tracking-wider text-muted"
+              >For Graduates</span
+            >
+            <StatusChip status="LIVE NOW" />
+          </div>
+          <h3 class="mb-3 font-serif text-headline-sm text-ink">
+            {home.fellowshipAndTools.fellowship.title}
+          </h3>
+          <p class="mb-6 font-body text-base leading-relaxed text-muted">
+            {home.fellowshipAndTools.fellowship.summary}
+          </p>
+        </div>
+        <div>
+          <Button
+            href={home.fellowshipAndTools.fellowship.href}
+            variant="secondary"
+            size="sm"
+          >
+            {home.fellowshipAndTools.fellowship.action}
+          </Button>
+        </div>
+      </div>
+
+      {/* Tutor Card (Corteon) */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <span class="font-mono text-xs uppercase tracking-wider text-muted"
+              >Practice Engine</span
+            >
+            <StatusChip status="DIRECTION" />
+          </div>
+          <h3 class="mb-3 font-serif text-headline-sm text-ink">
+            {home.fellowshipAndTools.tutor.title}
+          </h3>
+          <p class="mb-6 font-body text-base leading-relaxed text-muted">
+            {home.fellowshipAndTools.tutor.summary}
+          </p>
+        </div>
+        <div
+          class="border-t border-hair pt-4 font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          In development
+        </div>
+      </div>
+    </div>
+
+    {/* Passport Direction Teaser */}
+    <div
+      class="bg-surface-dim/30 flex flex-col justify-between gap-4 rounded border border-dashed border-hair p-6 sm:flex-row sm:items-center sm:p-8"
+    >
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <StatusChip status="DIRECTION" />
+        <div>
+          <span class="mr-2 font-serif text-lg font-medium text-ink">
+            {home.fellowshipAndTools.passport.title}:
+          </span>
+          <span class="font-body text-base text-muted">
+            {home.fellowshipAndTools.passport.summary}
+          </span>
+        </div>
+      </div>
+      <div class="shrink-0">
+        <Button
+          href={home.fellowshipAndTools.passport.href}
+          variant="ghost"
+          size="sm"
+        >
+          {home.fellowshipAndTools.passport.action} &rarr;
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 6: PRINCIPLES */}
+  <Section id="principles" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.principles.number}
+      label={home.principles.label}
+      title={principles.heading}
+      sub={principles.sub}
+    />
+
+    {/* 8 One-Liners */}
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        principles.items.map((item) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6">
+            <div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-widest text-spark-ink">
+                {item.number}
+              </span>
+              <h3 class="mb-2 font-serif text-xl font-normal text-ink">
+                {item.title}
+              </h3>
+              <p class="font-body text-base leading-relaxed text-muted">
+                {item.detail}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Negative Space / Boundary Callout + Unsolved Link */}
+    <div
+      class="bg-surface-dim/40 flex flex-col justify-between gap-6 rounded border border-hair p-6 sm:p-8 md:flex-row md:items-center"
+    >
+      <div class="max-w-2xl">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          {principles.boundary.label}
+        </span>
+        <p class="font-body text-base leading-relaxed text-ink">
+          {principles.boundary.text}
+        </p>
+      </div>
+      <div class="shrink-0">
+        <Button href={principles.unsolved.href} variant="secondary">
+          {principles.unsolved.label} &rarr;
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 7: CHOOSE YOUR DOOR */}
+  <Section id="choose-door" theme="paper" padding="lg">
+    <SectionHeader
+      number={home.chooseDoor.number}
+      label={home.chooseDoor.label}
+      title={home.chooseDoor.title}
+      sub={home.chooseDoor.sub}
+    />
+
+    {/* 5 Entry Doors */}
+    <div class="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        doors.map((door) => (
+          <DoorCard
+            id={door.id}
+            number={door.number}
+            title={door.title}
+            summary={door.summary}
+            action={door.action}
+            href={door.href}
+            status={door.status}
+          />
+        ))
+      }
+    </div>
+
+    {/* Direct Contact Fallback Strip */}
+    <div
+      class="flex flex-col justify-between gap-4 rounded border border-hair bg-paper p-6 sm:flex-row sm:items-center sm:p-8"
+    >
+      <div>
+        <span
+          class="mb-1 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Direct Contact
+        </span>
+        <p class="font-body text-base text-ink">
+          Prefer to speak directly? Call or message the centre guide in Chamba.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={`https://wa.me/91${site.phone}?text=Hello%20Synapse%2C%20I%20would%20like%20to%20enquire`}
+          class="inline-flex min-h-[48px] items-center justify-center rounded-pill bg-ink px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.14em] text-paper transition-colors hover:bg-spark-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp Us
+        </a>
+        <a
+          href={`tel:${site.phone}`}
+          class="hover:bg-hair/30 inline-flex min-h-[48px] items-center justify-center rounded-pill border border-ink px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+        >
+          {site.phoneDisplay}
         </a>
       </div>
-    </section>
-  </div>
+    </div>
+  </Section>
 </BaseLayout>

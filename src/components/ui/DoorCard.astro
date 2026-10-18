@@ -1,0 +1,71 @@
+---
+import StatusChip from './StatusChip.astro';
+import type { StatusType } from './StatusChip.astro';
+
+interface Props {
+  id?: string;
+  number: string;
+  title: string;
+  summary: string;
+  action: string;
+  href: string;
+  status: StatusType;
+  class?: string;
+}
+
+const {
+  id,
+  number,
+  title,
+  summary,
+  action,
+  href,
+  status,
+  class: className = '',
+} = Astro.props;
+---
+
+<a
+  id={id ? `door-${id}` : undefined}
+  href={href}
+  class={`group relative flex flex-col justify-between p-6 sm:p-8 rounded border border-hair bg-paper transition-all duration-150 hover:border-ink hover:bg-surface-dim/40 focus-visible:outline-2 focus-visible:outline-spark focus-visible:outline-offset-2 ${className}`}
+>
+  <div>
+    <div class="mb-6 flex items-center justify-between gap-4">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink group-hover:text-spark"
+      >
+        Door {number}
+      </span>
+      <StatusChip status={status} />
+    </div>
+
+    <h3
+      class="mb-3 font-serif text-headline-sm leading-snug text-ink transition-colors group-hover:text-ink"
+    >
+      {title}
+    </h3>
+
+    <p class="mb-6 font-body text-base leading-relaxed text-muted">
+      {summary}
+    </p>
+  </div>
+
+  <div
+    class="border-hair/60 flex items-center justify-between border-t pt-4 font-sans text-xs font-medium uppercase tracking-[0.12em] text-ink transition-colors group-hover:text-spark-ink"
+  >
+    <span>{action}</span>
+    <svg
+      class="h-4 w-4 transform transition-transform duration-150 group-hover:translate-x-1"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 8h10M9 4l4 4-4 4"></path>
+    </svg>
+  </div>
+</a>

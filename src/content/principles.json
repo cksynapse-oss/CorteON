@@ -1,0 +1,56 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "heading": "What we stand for.",
+  "sub": "A child ends a term with marks and a body of work.",
+  "items": [
+    {
+      "number": "01",
+      "title": "Think first.",
+      "detail": "The pencil and the clear sentence precede the code and the terminal prompt."
+    },
+    {
+      "number": "02",
+      "title": "Marks and a body of work.",
+      "detail": "We secure marks first to open gates, then build the real portfolio on top."
+    },
+    {
+      "number": "03",
+      "title": "Honesty.",
+      "detail": "No faked outcomes, no vanity certificates, no inflated promises."
+    },
+    {
+      "number": "04",
+      "title": "Safety and dignity.",
+      "detail": "A quiet, respectful study environment for women, adolescents, and older citizens alike."
+    },
+    {
+      "number": "05",
+      "title": "Everyone teaches.",
+      "detail": "You do not truly understand a concept until you can teach it to someone else."
+    },
+    {
+      "number": "06",
+      "title": "Local first.",
+      "detail": "District youth should not have to leave their family home to access serious mentorship."
+    },
+    {
+      "number": "07",
+      "title": "Open doors.",
+      "detail": "A reader or retired citizen has equal right to the building as an exam student."
+    },
+    {
+      "number": "08",
+      "title": "No hype.",
+      "detail": "We build with stone, wood, books, and disciplined code. Not temporary digital fads."
+    }
+  ],
+  "boundary": {
+    "label": "Negative Space · What Synapse is not",
+    "text": "Not a coaching mill, not a software app with a classroom attached, and not an accelerator that sells equity to speculators."
+  },
+  "unsolved": {
+    "label": "What we haven't solved",
+    "href": "/idea#unsolved"
+  }
+}

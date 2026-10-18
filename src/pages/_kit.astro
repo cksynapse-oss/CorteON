@@ -11,6 +11,7 @@ import Checkbox from '../components/ui/Checkbox.astro';
 import Section from '../components/ui/Section.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import Rule from '../components/ui/Rule.astro';
+import DoorCard from '../components/ui/DoorCard.astro';
 import Building from '../components/brand/Building.astro';
 import LoopDiagram from '../components/brand/LoopDiagram.astro';
 import ThreeWorlds from '../components/brand/ThreeWorlds.astro';
@@ -296,6 +297,40 @@ const sampleOptions = [
           teaching children in return for benches.
         </p>
       </Card>
+    </div>
+
+    <div class="mt-8">
+      <h3
+        class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+      >
+        Door Cards (Five-Door Adaptive Architecture)
+      </h3>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <DoorCard
+          number="01"
+          title="A parent or student"
+          summary="Small-group classes, foundational reasoning, and daily practice tests. Or take the short entrance baseline diagnostic."
+          action="Enquire about admission"
+          href="/enquire?door=parent"
+          status="LIVE NOW"
+        />
+        <DoorCard
+          number="02"
+          title="A graduate who wants to teach"
+          summary="Teach one class a day while preparing for your own examination. Receive a reserved library desk, certified teaching hours, and the tutor."
+          action="Apply for fellowship"
+          href="/fellowship"
+          status="LIVE NOW"
+        />
+        <DoorCard
+          number="03"
+          title="A reader"
+          summary="Access the quiet desks, reference collections, and reading rooms of the Knowledge Commons when reader cards open."
+          action="Register interest"
+          href="/library"
+          status="OPENING NEXT"
+        />
+      </div>
     </div>
   </Section>
 

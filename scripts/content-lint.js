@@ -6,6 +6,9 @@ import {
   siteSchema,
   programmesSchema,
   floorsSchema,
+  principlesSchema,
+  doorsSchema,
+  homeSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -136,6 +139,16 @@ const ALLOWED_NUMBERS = new Set([
   '2', // Floor 2
   '0', // Floor G / 0
   '4', // 4 tracks
+  '7', // 7 sections
+  '8', // 8 principles
+  '01', // door/principle/section 01
+  '02', // door/principle/section 02
+  '03', // door/principle/section 03
+  '04', // door/principle/section 04
+  '05', // door/principle/section 05
+  '06', // door/principle/section 06
+  '07', // door/principle/section 07
+  '08', // door/principle/section 08
   '24', // callback window 24 hours (owner decision 2026-10-18)
   '2026', // decision year
   '10', // decision month
@@ -354,15 +367,23 @@ console.log(
 lintFile('site.json', siteSchema);
 lintFile('programmes.json', programmesSchema);
 lintFile('floors.json', floorsSchema);
+lintFile('principles.json', principlesSchema);
+lintFile('doors.json', doorsSchema);
+lintFile('home.json', homeSchema);
 
 // Lint any additional JSON files in src/content
 if (fs.existsSync(contentDir)) {
   const files = fs.readdirSync(contentDir);
+  const knownFiles = [
+    'site.json',
+    'programmes.json',
+    'floors.json',
+    'principles.json',
+    'doors.json',
+    'home.json',
+  ];
   for (const file of files) {
-    if (
-      file.endsWith('.json') &&
-      !['site.json', 'programmes.json', 'floors.json'].includes(file)
-    ) {
+    if (file.endsWith('.json') && !knownFiles.includes(file)) {
       lintFile(file, null);
     }
   }

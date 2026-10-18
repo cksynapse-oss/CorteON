@@ -1,0 +1,52 @@
+[
+  {
+    "id": "parent",
+    "number": "01",
+    "title": "A parent or student",
+    "summary": "Small-group classes, foundational reasoning, and daily practice tests. Or take the short entrance baseline diagnostic.",
+    "action": "Enquire about admission",
+    "href": "/enquire?door=parent",
+    "status": "LIVE NOW",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "fellow",
+    "number": "02",
+    "title": "A graduate who wants to teach",
+    "summary": "Teach one class a day while preparing for your own examination. Receive a reserved library desk, certified teaching hours, and the tutor.",
+    "action": "Apply for fellowship",
+    "href": "/fellowship",
+    "status": "LIVE NOW",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "reader",
+    "number": "03",
+    "title": "A reader",
+    "summary": "Access the quiet desks, reference collections, and reading rooms of the Knowledge Commons when reader cards open.",
+    "action": "Register interest",
+    "href": "/library",
+    "status": "OPENING NEXT",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "founder",
+    "number": "04",
+    "title": "A founder or builder",
+    "summary": "Desks and community on the top floor in return for mentoring and teaching children. Agreed per founder.",
+    "action": "Join venture hub",
+    "href": "/venture",
+    "status": "DIRECTION",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "partner",
+    "number": "05",
+    "title": "A district partner",
+    "summary": "Bring a Synapse Circle to your district. Each centre rooted in its district with local space and community.",
+    "action": "Partner with us",
+    "href": "/centres",
+    "status": "DIRECTION",
+    "source": "owner-confirmed"
+  }
+]

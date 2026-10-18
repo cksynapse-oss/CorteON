@@ -74,3 +74,117 @@ export const floorItemSchema = z.object({
 export const floorsSchema = z.array(floorItemSchema).length(3);
 export type FloorItem = z.infer<typeof floorItemSchema>;
 export type FloorsContent = z.infer<typeof floorsSchema>;
+
+export const principleItemSchema = z.object({
+  number: z.string().min(1),
+  title: z.string().min(1),
+  detail: z.string().min(1),
+});
+
+export const principlesSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  items: z.array(principleItemSchema).length(8),
+  boundary: z.object({
+    label: z.string().min(1),
+    text: z.string().min(1),
+  }),
+  unsolved: z.object({
+    label: z.string().min(1),
+    href: z.string().min(1),
+  }),
+});
+export type PrinciplesContent = z.infer<typeof principlesSchema>;
+
+export const doorItemSchema = z.object({
+  id: z.enum(['parent', 'fellow', 'reader', 'founder', 'partner']),
+  number: z.string().min(1),
+  title: z.string().min(1),
+  summary: z.string().min(1),
+  action: z.string().min(1),
+  href: z.string().min(1),
+  status: z.enum(['LIVE NOW', 'OPENING NEXT', 'DIRECTION']),
+  source: z.literal('owner-confirmed'),
+});
+
+export const doorsSchema = z.array(doorItemSchema).length(5);
+export type DoorItem = z.infer<typeof doorItemSchema>;
+export type DoorsContent = z.infer<typeof doorsSchema>;
+
+export const homeSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    stripLabel: z.string().min(1),
+    strip: z.string().min(1),
+    primaryCta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+    secondaryCta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+  openNow: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    fee: z.literal('Fees are shared when you enquire.'),
+    lead: z.string().min(1),
+    cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+  }),
+  theIdea: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    problem: z.string().min(1),
+    solution: z.string().min(1),
+    analogy: z.string().min(1),
+    cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+  }),
+  theBuilding: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+  }),
+  fellowshipAndTools: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    fellowship: z.object({
+      title: z.string().min(1),
+      summary: z.string().min(1),
+      action: z.string().min(1),
+      href: z.string().min(1),
+    }),
+    tutor: z.object({
+      title: z.string().min(1),
+      summary: z.string().min(1),
+    }),
+    passport: z.object({
+      title: z.string().min(1),
+      summary: z.string().min(1),
+      action: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+  principles: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+  }),
+  chooseDoor: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+  }),
+});
+export type HomeContent = z.infer<typeof homeSchema>;

@@ -1,0 +1,65 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "fee": "Fees are shared when you enquire.",
+  "schedule": {
+    "days": "Monday to Saturday",
+    "hours": "3:30 PM to 6:30 PM",
+    "attendance": "Each student attends five days a week, with one rotating weekday off, Sunday off."
+  },
+  "classStructure": {
+    "groupSize": "Small groups with a guide who knows every student.",
+    "dailyPracticeTest": "Every class ends with a practice test on what was just taught.",
+    "doubtClinics": "Doubts are solved in a separate short session."
+  },
+  "tracks": [
+    {
+      "id": "pcm",
+      "name": "PCM",
+      "exams": [
+        "JEE Main/Advanced",
+        "IAT",
+        "NEST",
+        "CUET PCM",
+        "NDA",
+        "AIIMS Paramedical PCM"
+      ],
+      "status": "LIVE NOW",
+      "source": "owner-confirmed"
+    },
+    {
+      "id": "pcb",
+      "name": "PCB",
+      "exams": [
+        "NEET UG",
+        "AIIMS Nursing",
+        "AIIMS Paramedical PCB",
+        "NEST",
+        "IAT",
+        "CUET PCB"
+      ],
+      "status": "LIVE NOW",
+      "source": "owner-confirmed"
+    },
+    {
+      "id": "cuet-gt-english",
+      "name": "CUET UG General Test + English",
+      "exams": ["CUET UG General Test", "CUET UG English"],
+      "status": "LIVE NOW",
+      "source": "owner-confirmed"
+    },
+    {
+      "id": "cuet-arts-commerce-nda",
+      "name": "CUET UG Arts/Commerce + NDA Army",
+      "exams": ["CUET UG Arts/Commerce", "NDA Army"],
+      "status": "LIVE NOW",
+      "source": "owner-confirmed"
+    }
+  ],
+  "baseline": {
+    "name": "Entrance baseline for children",
+    "description": "A short diagnostic on reasoning, reading and arithmetic; it places learners, it never excludes.",
+    "status": "LIVE NOW",
+    "source": "owner-confirmed"
+  }
+}

@@ -9,5 +9,7 @@
   "email": "cksynapse@mail.com",
   "hours": "Monday to Saturday, 3:30 PM to 6:30 PM",
   "hoursDetail": "Each student attends five days a week, with one rotating weekday off, Sunday off.",
-  "callbackWindow": "TBD"
+  "callbackWindow": "TBD",
+  "status": "LIVE NOW",
+  "source": "owner-confirmed"
 }

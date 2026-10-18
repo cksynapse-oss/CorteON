@@ -1,0 +1,45 @@
+[
+  {
+    "id": "g",
+    "shortName": "G",
+    "name": "Floor G: Learning Commons",
+    "status": "LIVE NOW",
+    "summary": "Small-group classes, daily practice tests, doubt clinics, and fellowship teaching.",
+    "liveItems": [
+      "Small-group classes across four tracks (PCM, PCB, CUET UG)",
+      "Daily practice tests at the end of each class",
+      "Doubt clinics in separate short sessions",
+      "Entrance baseline diagnostic for children",
+      "Graduates teaching one class a day while preparing"
+    ],
+    "plannedItems": [],
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "1",
+    "shortName": "1",
+    "name": "Floor 1: Knowledge Commons",
+    "status": "OPENING NEXT",
+    "summary": "A library open to anyone with a card, opening when people will buy the card.",
+    "liveItems": [],
+    "plannedItems": [
+      "Library open to anyone with a reader card",
+      "Quiet desks for reading and study",
+      "Physical and digital reference collections"
+    ],
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "2",
+    "shortName": "2",
+    "name": "Floor 2: Venture Hub",
+    "status": "DIRECTION",
+    "summary": "Desks for a few startups who must teach, opening only when there are real founders.",
+    "liveItems": [],
+    "plannedItems": [
+      "Desks and community for local founders and builders",
+      "Founders teach and mentor children in return for space"
+    ],
+    "source": "owner-confirmed"
+  }
+]

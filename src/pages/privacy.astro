@@ -1,14 +1,172 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Button from '../components/ui/Button.astro';
+import Rule from '../components/ui/Rule.astro';
+import privacyRaw from '../content/privacy.json';
+import site from '../content/site.json';
+import type { PrivacyContent } from '../content/schemas';
+
+const privacy = privacyRaw as PrivacyContent;
 ---
 
-<BaseLayout title="Privacy — Synapse">
-  <ComingSoonStub
-    title="Privacy"
-    status="LIVE NOW"
-    phase="Phase 1 · Policy"
-    description="Synapse collects only the minimum necessary information to respond to your enquiry. We never use third-party ad trackers, tracking cookies, or commercial chat widgets."
-    plannedNote="The complete privacy policy conforming to India's DPDP Act will be finalized in Task T16."
-  />
+<BaseLayout
+  title={`Privacy Policy — ${site.name}`}
+  description={privacy.hero.sub}
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {privacy.hero.eyebrow}
+        </span>
+        <span class="text-hair" aria-hidden="true">/</span>
+        <StatusChip status={privacy.status} />
+        <span class="text-hair" aria-hidden="true">/</span>
+        <span class="font-mono text-xs uppercase tracking-wider text-muted">
+          Updated {privacy.hero.lastUpdated}
+        </span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        {privacy.hero.title}
+      </h1>
+
+      <p class="font-body text-base leading-relaxed text-muted sm:text-body-lg">
+        {privacy.hero.sub}
+      </p>
+    </div>
+  </Section>
+
+  {/* THREE CORE PRINCIPLES */}
+  <Section
+    theme="paper"
+    padding="md"
+    class="bg-surface-dim/20 border-b border-hair"
+  >
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        privacy.principles.map((pr) => (
+          <div class="rounded border border-hair bg-paper p-6">
+            <span class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+              Principle {pr.number}
+            </span>
+            <h3 class="mb-2 font-serif text-xl font-normal text-ink">
+              {pr.title}
+            </h3>
+            <p class="font-body text-sm leading-relaxed text-muted">
+              {pr.summary}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* DETAILED POLICY ARTICLES */}
+  <Section theme="paper" padding="lg">
+    <div class="mx-auto max-w-3xl space-y-12">
+      {
+        privacy.sections.map((sec, idx) => (
+          <article id={sec.id} class="scroll-mt-8">
+            <div class="mb-3 flex items-center gap-3">
+              <span class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+                Section {sec.number}
+              </span>
+              <span class="text-hair" aria-hidden="true">
+                ·
+              </span>
+              <h2 class="font-serif text-2xl font-normal text-ink">
+                {sec.title}
+              </h2>
+            </div>
+
+            <div class="space-y-4 font-body text-base leading-relaxed text-muted">
+              {sec.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+
+              {sec.bullets && (
+                <ul class="my-4 space-y-2 border-l-2 border-hair pl-4 font-body text-sm leading-relaxed text-ink">
+                  {sec.bullets.map((b) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-spark-ink" aria-hidden="true">
+                        —
+                      </span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            {idx < privacy.sections.length - 1 && (
+              <div class="mt-12">
+                <Rule />
+              </div>
+            )}
+          </article>
+        ))
+      }
+
+      {/* CONTACT & DIRECT REMOVAL NOTICE */}
+      <div
+        class="bg-surface-dim/30 mt-12 rounded border border-hair p-6 sm:p-8"
+      >
+        <h3 class="mb-3 font-serif text-xl font-normal text-ink">
+          Questions or Data Removal
+        </h3>
+        <p class="mb-6 font-body text-sm leading-relaxed text-muted">
+          {privacy.contact.notice}
+        </p>
+
+        <div
+          class="mb-6 flex flex-col gap-2 font-body text-sm text-ink sm:flex-row sm:items-center sm:gap-6"
+        >
+          <div>
+            <span class="font-mono text-xs uppercase tracking-wider text-muted"
+              >Email:</span
+            >{' '}
+            <a
+              href={`mailto:${privacy.contact.email}`}
+              class="font-medium text-ink underline hover:text-spark-ink"
+            >
+              {privacy.contact.email}
+            </a>
+          </div>
+          <div>
+            <span class="font-mono text-xs uppercase tracking-wider text-muted"
+              >Phone / WhatsApp:</span
+            >{' '}
+            <a
+              href={`tel:+91${privacy.contact.phone}`}
+              class="font-medium text-ink underline hover:text-spark-ink"
+            >
+              {site.phoneDisplay}
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <Button href="/enquire" variant="primary" size="md">
+            Enquire about Admission
+          </Button>
+          <Button
+            href={`https://wa.me/91${site.phone}?text=${encodeURIComponent('Hello Synapse, I have a question regarding privacy.')}`}
+            variant="secondary"
+            size="md"
+          >
+            Message on WhatsApp
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

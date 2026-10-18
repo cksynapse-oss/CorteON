@@ -25,6 +25,8 @@ import {
   passportCardSchema,
   laneBoardSchema,
   centresModelSchema,
+  privacySchema,
+  notFoundSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -169,6 +171,7 @@ const ALLOWED_NUMBERS = new Set([
   '11', // school class stage (Class 11)
   '12', // school class stage (Class 12)
   '24', // callback window 24 hours (owner decision 2026-10-18)
+  '404', // HTTP status code for Not Found page
   '2026', // decision year
   '10', // decision month
   '18', // decision day
@@ -399,6 +402,8 @@ lintFile('library.json', librarySchema);
 lintFile('venture.json', ventureSchema);
 lintFile('passport.json', passportSchema);
 lintFile('centres.json', centresSchema);
+lintFile('privacy.json', privacySchema);
+lintFile('404.json', notFoundSchema);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
 lintFile('illustrative/question-board.json', questionBoardSchema);
 lintFile('illustrative/venture-problems.json', ventureProblemBoardSchema);
@@ -426,6 +431,8 @@ if (fs.existsSync(contentDir)) {
     'venture.json',
     'passport.json',
     'centres.json',
+    'privacy.json',
+    '404.json',
   ];
   for (const file of files) {
     if (file.endsWith('.json') && !knownFiles.includes(file)) {

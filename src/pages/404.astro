@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import notFoundRaw from '../content/404.json';
+import site from '../content/site.json';
+import type { NotFoundContent } from '../content/schemas';
+
+const notFound = notFoundRaw as NotFoundContent;
+---
+
+<BaseLayout
+  title={`Page Not Found — ${site.name}`}
+  description={notFound.description}
+  noindex={true}
+>
+  <Section
+    theme="paper"
+    padding="lg"
+    class="flex min-h-[70vh] items-center justify-center"
+  >
+    <div class="mx-auto max-w-2xl text-center">
+      {/* 404 Display Number */}
+      <span
+        class="mb-2 block font-mono text-display-lg font-normal tracking-tight text-spark-ink sm:text-display-xl"
+        aria-hidden="true"
+      >
+        {notFound.code}
+      </span>
+
+      <span
+        class="mb-4 inline-block font-mono text-xs font-semibold uppercase tracking-[0.16em] text-muted"
+      >
+        {notFound.eyebrow}
+      </span>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-4 font-serif text-headline-lg font-normal leading-tight text-ink sm:text-display-lg"
+      >
+        {notFound.title}
+      </h1>
+
+      <p
+        class="mx-auto mb-6 max-w-lg font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {notFound.sub}
+      </p>
+
+      <p
+        class="mx-auto mb-10 max-w-lg font-body text-sm leading-relaxed text-muted"
+      >
+        {notFound.description}
+      </p>
+
+      {/* Action Buttons */}
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        {
+          notFound.actions.map((act) => (
+            <Button
+              href={act.href}
+              variant={act.variant as 'primary' | 'secondary' | 'ghost'}
+              size="md"
+            >
+              {act.label}
+            </Button>
+          ))
+        }
+      </div>
+
+      {/* Direct Contact Fallback */}
+      <div class="mt-12 border-t border-hair pt-8">
+        <p class="font-body text-xs text-muted">
+          {notFound.contactNotice}
+        </p>
+        <div
+          class="mt-3 flex items-center justify-center gap-4 font-sans text-xs uppercase tracking-wider text-ink"
+        >
+          <a
+            href={`tel:+91${site.phone}`}
+            class="underline hover:text-spark-ink"
+          >
+            Call {site.phoneDisplay}
+          </a>
+          <span class="text-hair" aria-hidden="true">·</span>
+          <a
+            href={`https://wa.me/91${site.phone}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-spark-ink"
+          >
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

@@ -1,0 +1,27 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "code": "404",
+  "eyebrow": "PAGE NOT FOUND",
+  "title": "This page does not exist.",
+  "sub": "The link you followed may be outdated, or the page has moved.",
+  "description": "Synapse is a modern gurukul in Chamba. If you were looking for our classroom tracks or seeking admission, please explore the links below or contact us directly.",
+  "actions": [
+    {
+      "label": "Return to Home",
+      "href": "/",
+      "variant": "primary"
+    },
+    {
+      "label": "View Programmes",
+      "href": "/programmes",
+      "variant": "secondary"
+    },
+    {
+      "label": "Enquire about Admission",
+      "href": "/enquire",
+      "variant": "ghost"
+    }
+  ],
+  "contactNotice": "For immediate questions or classroom visits behind the Post Office in Chamba, phone or message us directly on WhatsApp."
+}

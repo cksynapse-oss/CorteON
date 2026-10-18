@@ -987,3 +987,56 @@ export const centresModelSchema = z.object({
   ),
 });
 export type CentresModelContent = z.infer<typeof centresModelSchema>;
+
+export const privacySchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    lastUpdated: z.string().min(1),
+  }),
+  principles: z.array(
+    z.object({
+      number: z.string().min(1),
+      title: z.string().min(1),
+      summary: z.string().min(1),
+    })
+  ),
+  sections: z.array(
+    z.object({
+      id: z.string().min(1),
+      number: z.string().min(1),
+      title: z.string().min(1),
+      paragraphs: z.array(z.string().min(1)),
+      bullets: z.array(z.string().min(1)).optional(),
+    })
+  ),
+  contact: z.object({
+    notice: z.string().min(1),
+    email: z.string().email(),
+    phone: z.string().min(1),
+    place: z.string().min(1),
+  }),
+});
+export type PrivacyContent = z.infer<typeof privacySchema>;
+
+export const notFoundSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  code: z.literal('404'),
+  eyebrow: z.string().min(1),
+  title: z.string().min(1),
+  sub: z.string().min(1),
+  description: z.string().min(1),
+  actions: z.array(
+    z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+      variant: z.enum(['primary', 'secondary', 'ghost']),
+    })
+  ),
+  contactNotice: z.string().min(1),
+});
+export type NotFoundContent = z.infer<typeof notFoundSchema>;

@@ -1,0 +1,102 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "PRIVACY NOTICE",
+    "title": "Plain words on your data and privacy.",
+    "sub": "Synapse operates with minimal data collection. We do not run ad trackers, we do not use tracking cookies, and we never sell your details.",
+    "lastUpdated": "October 2026"
+  },
+  "principles": [
+    {
+      "number": "01",
+      "title": "Minimal Collection",
+      "summary": "We collect only what is strictly necessary to return your enquiry about Synapse in Chamba."
+    },
+    {
+      "number": "02",
+      "title": "Direct Callback",
+      "summary": "The founder calls every enquiry back personally within 24 hours. Your information is never sent to marketing brokers."
+    },
+    {
+      "number": "03",
+      "title": "Children and Consent",
+      "summary": "Enquiries for learners under 18 years must have parental or guardian consent. We do not track or profile children."
+    }
+  ],
+  "sections": [
+    {
+      "id": "collection",
+      "number": "01",
+      "title": "What information we collect",
+      "paragraphs": [
+        "When you enquire about admissions, fellowship, or visiting Synapse, we ask only for details necessary to answer you directly."
+      ],
+      "bullets": [
+        "Your name and phone or WhatsApp number so we can contact you.",
+        "Your chosen entry door (parent or student, graduate who wants to teach, reader, founder, or district partner).",
+        "Your academic track or area of focus (such as PCM, PCB, or CUET) to prepare for our conversation.",
+        "An optional short message describing what you need."
+      ]
+    },
+    {
+      "id": "purpose",
+      "number": "02",
+      "title": "Why we collect this information",
+      "paragraphs": [
+        "Your details are used for exactly one purpose: to return your enquiry and discuss admission, teaching, or visiting our centre behind the Post Office in Chamba.",
+        "We do not send unsolicited marketing messages, automated commercial campaigns, or share your contact number with coaching aggregator platforms."
+      ]
+    },
+    {
+      "id": "children",
+      "number": "03",
+      "title": "Children and parental consent",
+      "paragraphs": [
+        "Synapse provides learning spaces for children and school learners. In accordance with India's Digital Personal Data Protection Act principles, enquiries for individuals under 18 years of age must be submitted by or with the consent of a parent or guardian.",
+        "We do not track children across the web, build behavioral advertising profiles, or display commercial third-party advertisements anywhere on this site."
+      ]
+    },
+    {
+      "id": "trackers",
+      "number": "04",
+      "title": "No ad trackers or tracking cookies",
+      "paragraphs": [
+        "This website does not load third-party ad pixels, commercial surveillance scripts, or advertising trackers. We do not use cookies to identify you across visits.",
+        "We use cookieless analytics that aggregate page visits without storing personal identifiers in your browser."
+      ]
+    },
+    {
+      "id": "storage",
+      "number": "05",
+      "title": "How your data is held",
+      "paragraphs": [
+        "When you submit an enquiry form, the details are sent securely to an internal Google Sheet used only by the founder, Chandan Kumar, who phones each applicant back personally.",
+        "Cloudflare Turnstile is used on our submission endpoint solely to protect the form from spam and malicious automated abuse."
+      ]
+    },
+    {
+      "id": "rights",
+      "number": "06",
+      "title": "Your rights and data removal",
+      "paragraphs": [
+        "You may request to inspect, update, or permanently delete your contact details from our records at any time.",
+        "To request removal, send an email to cksynapse@mail.com or message us on WhatsApp at 8287248119 with your name and number. We will remove your record promptly."
+      ]
+    },
+    {
+      "id": "external",
+      "number": "07",
+      "title": "External communication channels",
+      "paragraphs": [
+        "If you choose to use our click-to-chat links to reach us on WhatsApp, your interaction through WhatsApp is governed by WhatsApp's own privacy policies and terms of service."
+      ]
+    }
+  ],
+  "contact": {
+    "notice": "If you have questions about privacy or wish to update your details, contact the founder directly:",
+    "email": "cksynapse@mail.com",
+    "phone": "8287248119",
+    "place": "Behind the Post Office, Chamba, Himachal Pradesh"
+  }
+}

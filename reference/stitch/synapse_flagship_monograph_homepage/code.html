@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Synapse — Gurukul for the Age of AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-container-highest": "#e7e2d8",
+        "inverse-on-surface": "#f5f0e6",
+        "secondary-container": "#ff6338",
+        "tertiary": "#000000",
+        "primary-fixed-dim": "#cbc6bf",
+        "inverse-primary": "#cbc6bf",
+        "surface-tint": "#625e58",
+        "outline": "#7b766e",
+        "on-error": "#ffffff",
+        "surface": "#fef9ef",
+        "on-secondary-container": "#5d1200",
+        "surface-container-high": "#ede8de",
+        "error-container": "#ffdad6",
+        "tertiary-fixed-dim": "#cdc6b7",
+        "on-primary": "#ffffff",
+        "on-secondary-fixed-variant": "#881f00",
+        "surface-bright": "#fef9ef",
+        "secondary": "#b22c01",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#898377",
+        "on-primary-fixed": "#1d1b17",
+        "on-tertiary-fixed-variant": "#4b463c",
+        "on-surface-variant": "#4a463f",
+        "on-background": "#1d1c16",
+        "on-error-container": "#93000a",
+        "on-primary-fixed-variant": "#494641",
+        "on-surface": "#1d1c16",
+        "on-secondary": "#ffffff",
+        "surface-variant": "#e7e2d8",
+        "error": "#ba1a1a",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#88837d",
+        "surface-container": "#f2ede3",
+        "outline-variant": "#ccc6bc",
+        "on-secondary-fixed": "#3b0800",
+        "primary-fixed": "#e8e1da",
+        "inverse-surface": "#32302a",
+        "secondary-fixed": "#ffdbd1",
+        "tertiary-container": "#1e1b12",
+        "surface-container-low": "#f8f3e9",
+        "surface-dim": "#dedad0",
+        "tertiary-fixed": "#e9e2d3",
+        "background": "#fef9ef",
+        "on-tertiary-fixed": "#1e1b12",
+        "secondary-fixed-dim": "#ffb5a1",
+        "primary": "#000000",
+        "primary-container": "#1d1b17"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "space-md": "1.5rem",
+        "margin": "1.25rem",
+        "space-sm": "1rem",
+        "margin-desktop": "3rem",
+        "space-xl": "4rem",
+        "space-lg": "2.5rem",
+        "space-xs": "0.5rem",
+        "gutter-desktop": "2.5rem",
+        "gutter": "1.5rem",
+        "space-2xl": "8rem"
+      },
+      "fontFamily": {
+        "headline-lg": ["EB Garamond"],
+        "display-lg": ["EB Garamond"],
+        "body-sm": ["Geist"],
+        "headline-md": ["EB Garamond"],
+        "display-lg-mobile": ["EB Garamond"],
+        "display-xl": ["EB Garamond"],
+        "label-sm": ["Geist"],
+        "body-md": ["Geist"],
+        "display-xl-mobile": ["EB Garamond"],
+        "headline-sm": ["EB Garamond"],
+        "body-lg": ["Geist"],
+        "label-md": ["Geist"],
+        "mono": ["Geist Mono", "monospace"]
+      },
+      "fontSize": {
+        "headline-lg": ["2.75rem", {"lineHeight": "1.15", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg": ["4rem", {"lineHeight": "1.05", "letterSpacing": "-0.025em", "fontWeight": "400"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.55", "fontWeight": "400"}],
+        "headline-md": ["2rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "display-lg-mobile": ["2.5rem", {"lineHeight": "1.12", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-xl": ["5.5rem", {"lineHeight": "1.02", "letterSpacing": "-0.03em", "fontWeight": "400"}],
+        "label-sm": ["0.6875rem", {"lineHeight": "1.3", "letterSpacing": "0.14em", "fontWeight": "500"}],
+        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+        "display-xl-mobile": ["3.25rem", {"lineHeight": "1.08", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+        "headline-sm": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "500"}],
+        "body-lg": ["1.125rem", {"lineHeight": "1.65", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "label-md": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "500"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEE4] border-b border-[#D8D0BF]"><div class="h-20 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-2.5 group" data-path="the-idea" href="#"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-normal">Synapse</span><span aria-hidden="true" class="flex items-center text-secondary"><svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1.2" x1="2" x2="12" y1="7" y2="7"></line><circle cx="7" cy="7" fill="currentColor" r="2.5"></circle></svg></span></a></div><nav class="hidden xl:flex items-center gap-8 font-mono text-[11px] tracking-[0.2em] uppercase" data-active-classes="text-secondary font-medium"><a aria-current="page" class="transition-colors py-1 text-secondary font-medium" data-path="the-idea" href="#">THE IDEA</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-building" href="#">THE BUILDING</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="fellowship" href="#">FELLOWSHIP</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="passport" href="#">PASSPORT</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="centres" href="#">CENTRES</a></nav><div class="flex items-center gap-4"><a class="hidden sm:inline-flex items-center h-10 px-5 rounded-[9999px] border border-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-on-surface hover:bg-[#D8D0BF]/30 hover:text-on-surface transition-colors" data-path="teach-with-us" href="#">Teach with us</a><a class="inline-flex items-center h-10 px-6 rounded-[9999px] bg-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-[#F3EEE4] hover:bg-secondary transition-colors" data-path="visit-or-enquire" href="#">Visit or enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 select-none font-mono text-[11px] text-on-surface-variant/70"><div class="w-px h-8 bg-[#D8D0BF]"></div><div class="flex flex-col items-center gap-3"><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="text-secondary font-semibold">2</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">1</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">G</span></div></div><div class="w-px h-8 bg-[#D8D0BF]"></div><span class="[writing-mode:vertical-rl] font-mono text-[9px] tracking-[0.25em] text-on-surface-variant/50 uppercase mt-1">FLOOR GAUGE</span></aside><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full relative selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- ==========================================
+       SECTION 01: HERO (INK #15130F)
+       Full bleed architectural perspective & cutaway
+       ========================================== -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] relative overflow-hidden -mt-20 pt-28 pb-20 border-b border-[#3A362E]">
+<!-- Background Ambient Grid Draft -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#F3EEE4 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop relative z-10 flex flex-col justify-between min-h-[92vh]">
+<!-- Top Meta Eyebrow -->
+<div class="pt-6 flex flex-wrap items-center justify-between gap-4 border-b border-[#3A362E]/60 pb-5">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F] animate-pulse"></span>
+<span class="font-mono text-[11px] tracking-[0.24em] uppercase text-[#CDC6B7]">A MODERN GURUKUL · FOR EVERY DISTRICT</span>
+</div>
+<div class="font-mono text-[10px] tracking-[0.2em] text-[#CDC6B7]/60 uppercase hidden sm:block">
+          ARCHITECTURAL PLATE NO. 01 — FOLIO MMXXIV
+        </div>
+</div>
+<!-- Main Typographic Hero Core -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-end pt-16 pb-12">
+<div class="lg:col-span-8 space-y-6">
+<h1 class="font-headline-lg text-4xl sm:text-6xl lg:text-[4.75rem] font-normal leading-[1.04] tracking-[-0.025em] text-[#F3EEE4]">
+            Learn it. Teach it. Build it.<br/>
+<span class="text-[#D9481F] italic font-serif">Show it.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-[#CDC6B7] max-w-2xl font-normal leading-relaxed pt-2">
+            Synapse is a three-floor learning institution where students, graduates, readers and founders share one building and take turns being learner, teacher and builder.
+          </p>
+<div class="flex flex-wrap items-center gap-4 pt-4">
+<a class="inline-flex items-center justify-center h-12 px-8 rounded-full bg-[#D9481F] text-[#F3EEE4] font-mono text-[11px] font-semibold tracking-[0.16em] uppercase hover:bg-[#b22c01] transition-all duration-300" href="#section-building">
+              Walk through the building
+            </a>
+<a class="inline-flex items-center justify-center h-12 px-8 rounded-full border border-[#D8D0BF]/40 text-[#F3EEE4] font-mono text-[11px] tracking-[0.16em] uppercase hover:bg-[#3A362E]/50 transition-all duration-300" href="#section-thesis">
+              Read the idea
+            </a>
+</div>
+</div>
+<div class="lg:col-span-4 flex flex-col justify-end lg:items-end border-t lg:border-t-0 border-[#3A362E] pt-6 lg:pt-0">
+<div class="space-y-3 font-mono text-[11px] text-[#CDC6B7]/80 leading-relaxed border-l border-[#3A362E] pl-4 lg:pl-6">
+<div class="text-[#D9481F] tracking-widest uppercase font-semibold">DISTRICT 01 ACTIVE</div>
+<div>Behind the Post Office, Chamba</div>
+<div>Himachal Pradesh 176310</div>
+<div class="text-[10px] text-[#CDC6B7]/50 pt-2 tracking-wider">LAT 32.5534° N · LON 76.1258° E</div>
+</div>
+</div>
+</div>
+<!-- Architectural Elevation Vector Cutaway Section -->
+<div class="relative w-full pt-6 mt-4 border-t border-[#3A362E]">
+<div class="flex items-center justify-between pb-3 font-mono text-[10px] tracking-[0.2em] text-[#CDC6B7]/70 uppercase">
+<span class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D9481F]"></span>
+            ELEVATION SECTION · AXONOMETRIC SCHEMATIC
+          </span>
+<span>G · FIRST · SECOND — ONE BUILDING, THREE KINDS OF WORK</span>
+</div>
+<!-- Cutaway Diagram SVG -->
+<div class="w-full bg-[#1A1813] border border-[#3A362E] p-6 lg:p-8 rounded-[2px] relative overflow-hidden">
+<svg class="w-full h-auto" fill="none" viewbox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="warmWindow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#F3EEE4" stop-opacity="0.16"></stop>
+<stop offset="100%" stop-color="#F3EEE4" stop-opacity="0.04"></stop>
+</lineargradient>
+<lineargradient id="sparkFade" x1="0" x2="0" y1="1" y2="0">
+<stop offset="0%" stop-color="#D9481F"></stop>
+<stop offset="100%" stop-color="#D9481F"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#3A362E" stroke-dasharray="4 4" stroke-width="0.8" x1="60" x2="1140" y1="40" y2="40"></line>
+<line stroke="#3A362E" stroke-width="0.8" x1="60" x2="1140" y1="140" y2="140"></line>
+<line stroke="#3A362E" stroke-width="0.8" x1="60" x2="1140" y1="240" y2="240"></line>
+<line stroke="#6F6A5E" stroke-width="1.2" x1="60" x2="1140" y1="340" y2="340"></line>
+<!-- Structural Columns -->
+<line stroke="#3A362E" stroke-width="1" x1="200" x2="200" y1="40" y2="340"></line>
+<line stroke="#3A362E" stroke-width="1" x1="500" x2="500" y1="40" y2="340"></line>
+<line stroke="#3A362E" stroke-width="1" x1="800" x2="800" y1="40" y2="340"></line>
+<line stroke="#3A362E" stroke-width="1" x1="1050" x2="1050" y1="40" y2="340"></line>
+<!-- Central Staircase Core -->
+<path d="M490 340 L510 240 L490 240 L510 140 L490 140 L510 40" stroke="#6F6A5E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
+<!-- FLOOR 2: VENTURE HUB -->
+<text fill="#D8D0BF" font-family="Geist Mono" font-size="10" letter-spacing="2" x="75" y="65">SECOND FLOOR · LEVEL +02</text>
+<text fill="#CDC6B7" font-family="EB Garamond" font-size="16" font-style="italic" x="75" y="82">The Venture Hub</text>
+<rect fill="url(#warmWindow)" height="60" rx="2" stroke="#3A362E" stroke-width="0.8" width="240" x="220" y="65"></rect>
+<!-- Desks & Founder Silhouette indications -->
+<rect fill="#26231C" height="15" stroke="#6F6A5E" stroke-width="0.5" width="45" x="240" y="95"></rect>
+<circle cx="262" cy="85" fill="#D8D0BF" r="4"></circle>
+<rect fill="#26231C" height="15" stroke="#6F6A5E" stroke-width="0.5" width="45" x="310" y="95"></rect>
+<circle cx="332" cy="85" fill="#D8D0BF" r="4"></circle>
+<rect fill="#26231C" height="15" stroke="#6F6A5E" stroke-width="0.5" width="45" x="380" y="95"></rect>
+<circle cx="402" cy="85" fill="#D8D0BF" r="4"></circle>
+<!-- Prototype test bench -->
+<rect fill="url(#warmWindow)" height="45" stroke="#3A362E" stroke-width="0.8" width="220" x="540" y="80"></rect>
+<rect fill="#26231C" height="15" stroke="#6F6A5E" stroke-width="0.5" width="80" x="560" y="100"></rect>
+<line stroke="#D8D0BF" stroke-width="1" x1="570" x2="620" y1="92" y2="92"></line>
+<text fill="#CDC6B7" font-family="Geist Mono" font-size="9" letter-spacing="1" x="820" y="100">PROTOTYPES · EIR DESKS</text>
+<!-- FLOOR 1: KNOWLEDGE COMMONS -->
+<text fill="#D8D0BF" font-family="Geist Mono" font-size="10" letter-spacing="2" x="75" y="165">FIRST FLOOR · LEVEL +01</text>
+<text fill="#CDC6B7" font-family="EB Garamond" font-size="16" font-style="italic" x="75" y="182">The Knowledge Commons (Library)</text>
+<!-- Silent reading carrels & book stacks -->
+<rect fill="url(#warmWindow)" height="60" rx="2" stroke="#3A362E" stroke-width="0.8" width="240" x="220" y="165"></rect>
+<line stroke="#6F6A5E" stroke-width="1.5" x1="235" x2="235" y1="175" y2="215"></line>
+<line stroke="#6F6A5E" stroke-width="1.5" x1="245" x2="245" y1="175" y2="215"></line>
+<line stroke="#6F6A5E" stroke-width="1.5" x1="255" x2="255" y1="175" y2="215"></line>
+<circle cx="310" cy="190" fill="#D8D0BF" r="5"></circle>
+<rect fill="#26231C" height="12" stroke="#6F6A5E" stroke-width="0.5" width="40" x="290" y="200"></rect>
+<circle cx="410" cy="190" fill="#D8D0BF" r="5"></circle>
+<rect fill="#26231C" height="12" stroke="#6F6A5E" stroke-width="0.5" width="40" x="390" y="200"></rect>
+<!-- Atrium & Discussion Cell -->
+<rect fill="url(#warmWindow)" height="60" stroke="#3A362E" stroke-width="0.8" width="220" x="540" y="165"></rect>
+<circle cx="610" cy="195" fill="none" r="14" stroke="#6F6A5E" stroke-width="0.8"></circle>
+<circle cx="670" cy="195" fill="none" r="14" stroke="#6F6A5E" stroke-width="0.8"></circle>
+<text fill="#CDC6B7" font-family="Geist Mono" font-size="9" letter-spacing="1" x="820" y="200">SILENT STACKS · CITIZEN CARRELS</text>
+<!-- FLOOR G: LEARNING COMMONS -->
+<text fill="#D8D0BF" font-family="Geist Mono" font-size="10" letter-spacing="2" x="75" y="265">GROUND FLOOR · LEVEL ±00</text>
+<text fill="#CDC6B7" font-family="EB Garamond" font-size="16" font-style="italic" x="75" y="282">The Learning Commons</text>
+<!-- Pod Table Group with Guide -->
+<rect fill="url(#warmWindow)" height="60" rx="2" stroke="#3A362E" stroke-width="0.8" width="240" x="220" y="265"></rect>
+<!-- Pod Table Round -->
+<ellipse cx="320" cy="295" fill="#26231C" rx="36" ry="14" stroke="#6F6A5E" stroke-width="0.8"></ellipse>
+<!-- Guide + 4 learners seated -->
+<circle cx="320" cy="275" fill="#D9481F" r="5"></circle> <!-- Guide -->
+<circle cx="280" cy="295" fill="#D8D0BF" r="4"></circle>
+<circle cx="360" cy="295" fill="#D8D0BF" r="4"></circle>
+<circle cx="300" cy="312" fill="#D8D0BF" r="4"></circle>
+<circle cx="340" cy="312" fill="#D8D0BF" r="4"></circle>
+<text fill="#CDC6B7" font-family="Geist Mono" font-size="9" letter-spacing="1" x="820" y="300">STUDY PODS · GUIDED SOFTWARE SESSIONS</text>
+<!-- THE SPARK THREAD RISES THROUGH THE BUILDING -->
+<!-- From Ground Floor Pod Table, up staircase, to Floor 2 Desk -->
+<path d="M 320 275 C 390 275 480 300 500 240 C 515 195 490 170 510 140 C 525 115 450 95 332 85" fill="none" stroke="#D9481F" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Pulsing Thread Junction Nodes -->
+<circle cx="320" cy="275" fill="#D9481F" r="4" stroke="#F3EEE4" stroke-width="1.5"></circle>
+<circle cx="500" cy="240" fill="#D9481F" r="3"></circle>
+<circle cx="510" cy="140" fill="#D9481F" r="3"></circle>
+<circle cx="332" cy="85" fill="#D9481F" r="4" stroke="#F3EEE4" stroke-width="1.5"></circle>
+</svg>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 02: THE THESIS (PAPER #F3EEE4)
+       Editorial Monumental Serif Statement
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-28 lg:py-36 border-b border-[#D8D0BF] relative" id="section-thesis">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<!-- Section Thread Junction -->
+<div class="flex items-center gap-3 mb-12">
+<span class="w-2.5 h-2.5 rounded-full bg-[#D9481F]"></span>
+<div class="h-px bg-[#D8D0BF] w-16"></div>
+<span class="font-mono text-[10px] tracking-[0.24em] text-[#6F6A5E] uppercase">01 · FIRST PRINCIPLES</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Huge serif sentence centered across 8 columns -->
+<div class="lg:col-span-8">
+<p class="font-headline-lg text-3xl sm:text-5xl lg:text-[3.5rem] leading-[1.12] text-[#15130F] font-normal tracking-[-0.02em]">
+            AI is the encyclopaedia.<br/>
+            Synapse is the <span class="italic font-serif text-[#D9481F]">gym and the workshop.</span>
+</p>
+</div>
+<!-- Quiet 4-column contextual margin note -->
+<div class="lg:col-span-4 border-l border-[#D8D0BF] pl-8 lg:pl-10 space-y-4">
+<div class="font-mono text-[11px] tracking-[0.2em] text-[#6F6A5E] uppercase">THE HUMAN SCARCITY</div>
+<p class="font-body-md text-body-md text-[#15130F] leading-relaxed font-normal">
+            When explaining is free, what stays scarce is a human who knows you, makes you think, holds the standard and keeps you honest.
+          </p>
+<div class="pt-2 font-mono text-[11px] text-[#6F6A5E]">
+            — The Chamba Working Paper, ¶ 4
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 03: THREE WORLDS THAT NEVER MEET (PAPER)
+       Analytical Diagnostic Venn & Dilemma
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">01 / THE PROBLEM</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E] hidden sm:block">STRUCTURAL ISOLATION</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-center">
+<!-- 3 Hairline Columns -->
+<div class="lg:col-span-7 grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Circle 1: School -->
+<div class="p-8 border border-[#D8D0BF] rounded-[2px] bg-[#FAF6EE] flex flex-col justify-between h-72">
+<div class="space-y-2">
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E]">DOMAIN 01</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">School</h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+              “A syllabus and a certificate, but no attention per child.”
+            </p>
+<div class="font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">Passive consumption</div>
+</div>
+<!-- Circle 2: Coaching -->
+<div class="p-8 border border-[#D8D0BF] rounded-[2px] bg-[#FAF6EE] flex flex-col justify-between h-72">
+<div class="space-y-2">
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E]">DOMAIN 02</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Coaching</h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+              “Exam technique, rarely thinking or building.”
+            </p>
+<div class="font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">Narrow drill</div>
+</div>
+<!-- Circle 3: Innovation -->
+<div class="p-8 border border-[#D8D0BF] rounded-[2px] bg-[#FAF6EE] flex flex-col justify-between h-72">
+<div class="space-y-2">
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E]">DOMAIN 03</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Innovation</h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+              “Happens elsewhere, in big cities.”
+            </p>
+<div class="font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">Geographic exile</div>
+</div>
+</div>
+<!-- Overlapping Venn Diagram -->
+<div class="lg:col-span-5 flex flex-col items-center justify-center p-6 border border-[#D8D0BF] bg-[#F7F2E8] rounded-[2px]">
+<div class="relative w-72 h-72 flex items-center justify-center">
+<!-- Venn circles -->
+<div class="absolute top-4 left-16 w-36 h-36 rounded-full border border-[#D8D0BF] bg-transparent"></div>
+<div class="absolute top-4 right-4 w-36 h-36 rounded-full border border-[#D8D0BF] bg-transparent"></div>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-36 h-36 rounded-full border border-[#D8D0BF] bg-transparent"></div>
+<!-- Overlap Spark Center -->
+<div class="absolute z-10 w-24 h-24 rounded-full bg-[#D9481F] flex flex-col items-center justify-center text-[#F3EEE4] shadow-sm transform hover:scale-105 transition-transform">
+<span class="font-serif text-lg font-medium tracking-tight">Synapse</span>
+<span class="font-mono text-[8px] uppercase tracking-widest opacity-80 mt-0.5">THE OVERLAP</span>
+</div>
+</div>
+<div class="text-center pt-4">
+<p class="font-body-sm text-body-sm text-[#15130F] font-medium">
+              AI can explain anything, so your own thinking can weaken.
+            </p>
+<p class="font-mono text-[10px] text-[#6F6A5E] tracking-wider uppercase mt-1">Synapse binds all three under one roof</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 04: THE LOOP (PAPER #F3EEE4)
+       Circular 4-Part Pedagogy with Devanagari & Vermilion Thread
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">02 / THE LOOP</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">A COMPLETE PEDAGOGIC CYCLE</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-center">
+<!-- Circular Loop Diagram (Hairline + Nodes) -->
+<div class="lg:col-span-7 flex justify-center">
+<div class="relative w-[340px] h-[340px] sm:w-[440px] sm:h-[440px]">
+<!-- Circumference Line -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 440 440">
+<circle cx="220" cy="220" fill="none" r="160" stroke="#D8D0BF" stroke-width="1.5"></circle>
+<!-- Vermilion Active Flow Arc -->
+<circle cx="220" cy="220" fill="none" r="160" stroke="#D9481F" stroke-dasharray="250 800" stroke-linecap="round" stroke-width="2.5"></circle>
+</svg>
+<!-- 12 O'Clock: LEARN (सीखो) -->
+<div class="absolute top-2 left-1/2 -translate-x-1/2 flex flex-col items-center text-center w-48">
+<span class="w-4 h-4 rounded-full bg-[#D9481F] flex items-center justify-center mb-1 ring-4 ring-[#F3EEE4]">
+<span class="w-1.5 h-1.5 bg-[#F3EEE4] rounded-full"></span>
+</span>
+<div class="font-serif text-2xl font-normal text-[#15130F]">
+                LEARN <span class="text-[#D9481F] text-lg font-serif">सीखो</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-0.5">“Learn a thing.”</p>
+</div>
+<!-- 3 O'Clock: TEACH (सिखाओ) -->
+<div class="absolute top-1/2 right-0 -translate-y-1/2 flex flex-col items-start text-left w-40">
+<span class="w-3.5 h-3.5 rounded-full bg-[#15130F] flex items-center justify-center mb-1"></span>
+<div class="font-serif text-xl sm:text-2xl font-normal text-[#15130F]">
+                TEACH <span class="text-[#D9481F] text-lg font-serif">सिखाओ</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-0.5">“Teach it to someone.”</p>
+</div>
+<!-- 6 O'Clock: BUILD (बनाओ) -->
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center text-center w-48">
+<span class="w-3.5 h-3.5 rounded-full bg-[#15130F] flex items-center justify-center mb-1"></span>
+<div class="font-serif text-2xl font-normal text-[#15130F]">
+                BUILD <span class="text-[#D9481F] text-lg font-serif">बनाओ</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-0.5">“Build something with it.”</p>
+</div>
+<!-- 9 O'Clock: SHOW (दिखाओ) -->
+<div class="absolute top-1/2 left-0 -translate-y-1/2 flex flex-col items-end text-right w-40">
+<span class="w-3.5 h-3.5 rounded-full bg-[#15130F] flex items-center justify-center mb-1"></span>
+<div class="font-serif text-xl sm:text-2xl font-normal text-[#15130F]">
+                SHOW <span class="text-[#D9481F] text-lg font-serif">दिखाओ</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-0.5">“Show it in public.”</p>
+</div>
+<!-- Center Callout -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 rounded-full border border-[#D8D0BF] flex flex-col items-center justify-center bg-[#F3EEE4]">
+<span class="font-mono text-[9px] tracking-widest text-[#6F6A5E] uppercase">CONTINUOUS</span>
+<span class="font-serif italic text-base text-[#15130F]">Cadence</span>
+</div>
+</div>
+</div>
+<!-- Editorial Narrative Column -->
+<div class="lg:col-span-5 space-y-6 lg:border-l lg:border-[#D8D0BF] lg:pl-10">
+<div class="font-mono text-[10px] tracking-[0.24em] text-[#D9481F] uppercase font-semibold">THE OUTCOME METRIC</div>
+<h2 class="font-headline-md text-2xl sm:text-3xl font-serif font-normal text-[#15130F] leading-snug">
+            A child ends a term with marks and a body of work.
+          </h2>
+<p class="font-body-lg text-[#4A463F] leading-relaxed">
+            Marks stay important. They open the administrative gates of the republic. The portfolio is what’s different: tangible evidence that a student can isolate a problem, solve it in code or steel, write about it clearly, and explain it to a stranger without flinching.
+          </p>
+<div class="pt-4 border-t border-[#D8D0BF] flex items-center justify-between font-mono text-[11px] text-[#6F6A5E]">
+<span>VERIFIED ARTIFACTS</span>
+<span class="text-[#15130F] font-semibold">PORTFOLIO &gt; TEST PAPER</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 05: THE BUILDING (INK #15130F)
+       3 Floors Cross-Section & Functional Allocation
+       ========================================== -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-24 lg:py-32 border-b border-[#3A362E]" id="section-building">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#3A362E]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#CDC6B7]">03 / THREE FLOORS</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#CDC6B7]/60">PHYSICAL ARCHITECTURE</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16">
+<!-- Left 60%: Architectural Diagram -->
+<div class="lg:col-span-7 flex flex-col justify-between border border-[#3A362E] p-6 lg:p-8 rounded-[2px] bg-[#1A1813]">
+<div class="flex justify-between items-center pb-6 border-b border-[#3A362E] font-mono text-[10px] text-[#CDC6B7]/70 uppercase">
+<span>SCHEMATIC TRANSVERSE CUT</span>
+<span>CHAMBA HEADQUARTERS</span>
+</div>
+<div class="py-8 space-y-8">
+<!-- Floor 2 block -->
+<div class="p-4 border border-[#3A362E] hover:border-[#D9481F] transition-colors bg-[#201D17]">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#CDC6B7] mb-2">
+<span class="text-[#D9481F] font-semibold">LEVEL 2 — 320 SQ.M</span>
+<span>THE VENTURE HUB</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#CDC6B7]/80 leading-relaxed">
+                Founders, hardware lab, local problem workbenches. Spark thread reaches peak here.
+              </p>
+</div>
+<!-- Floor 1 block -->
+<div class="p-4 border border-[#3A362E] hover:border-[#D9481F] transition-colors bg-[#201D17]">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#CDC6B7] mb-2">
+<span class="text-[#CDC6B7] font-semibold">LEVEL 1 — 480 SQ.M</span>
+<span>THE KNOWLEDGE COMMONS</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#CDC6B7]/80 leading-relaxed">
+                Silent reading hall, citizen carrels, seminar nooks. Open from 06:00 to 23:00.
+              </p>
+</div>
+<!-- Floor G block -->
+<div class="p-4 border border-[#3A362E] hover:border-[#D9481F] transition-colors bg-[#201D17]">
+<div class="flex items-center justify-between font-mono text-[11px] text-[#CDC6B7] mb-2">
+<span class="text-[#CDC6B7] font-semibold">LEVEL G — 510 SQ.M</span>
+<span>THE LEARNING COMMONS</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#CDC6B7]/80 leading-relaxed">
+                Small-group circular pods, teacher podiums, terminal workstations, tea bar.
+              </p>
+</div>
+</div>
+<div class="pt-4 border-t border-[#3A362E] flex justify-between items-center font-mono text-[10px] text-[#CDC6B7]/50">
+<span>OCCUPANCY: 240 SCHOLARS</span>
+<span class="text-[#D9481F]">THREAD CONTINUITY VERIFIED</span>
+</div>
+</div>
+<!-- Right 40%: Three Detailed Text Blocks -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-8">
+<!-- G Block -->
+<div class="border-b border-[#3A362E] pb-8">
+<span class="font-mono text-[11px] tracking-widest text-[#D9481F] uppercase font-semibold block mb-2">G — THE LEARNING COMMONS</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#F3EEE4] mb-3">Small-group pods, not a hall of a hundred.</h3>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-4">
+              Software practice and human-guided discussion in every session. This floor comes first and pays for the rest.
+            </p>
+<a class="font-mono text-[11px] tracking-widest text-[#D9481F] uppercase hover:underline inline-flex items-center gap-1" href="#section-fellowship">
+              Step inside <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- 1 Block -->
+<div class="border-b border-[#3A362E] pb-8">
+<span class="font-mono text-[11px] tracking-widest text-[#CDC6B7] uppercase font-semibold block mb-2">1 — THE KNOWLEDGE COMMONS</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#F3EEE4] mb-3">(Library) Silence, light, and focus.</h3>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-4">
+              A silent hall, quiet commons, discussion rooms. One monthly card, open to anyone: a student, an exam aspirant, a retired engineer, someone who just wants to read.
+            </p>
+<a class="font-mono text-[11px] tracking-widest text-[#D9481F] uppercase hover:underline inline-flex items-center gap-1" href="#section-tutor">
+              Step inside <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<!-- 2 Block -->
+<div>
+<span class="font-mono text-[11px] tracking-widest text-[#CDC6B7] uppercase font-semibold block mb-2">2 — THE VENTURE HUB</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#F3EEE4] mb-3">Entrepreneurs-in-residence.</h3>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-4">
+              A few carefully chosen startups and builders. Desks and community in return for teaching children and working on the district’s real problems.
+            </p>
+<a class="font-mono text-[11px] tracking-widest text-[#D9481F] uppercase hover:underline inline-flex items-center gap-1" href="#section-doors">
+              Step inside <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 06: THE FELLOWSHIP (PAPER #F3EEE4)
+       The Human Engine & Pedagogical Career Ladder
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]" id="section-fellowship">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">04 / THE HUMAN ENGINE</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">FELLOWSHIP SYSTEM</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-start">
+<!-- Left Headline & Narrative -->
+<div class="lg:col-span-7 space-y-6">
+<h2 class="font-headline-lg text-3xl sm:text-5xl font-serif font-normal text-[#15130F] leading-[1.15]">
+            The years of waiting become the years of teaching.
+          </h2>
+<p class="font-body-lg text-[#4A463F] leading-relaxed max-w-xl">
+            Graduates preparing for any exam or job teach one class a day; in return a free library desk, certified teaching hours, an AI tutor for their own prep, and a place to stay on if they do well.
+          </p>
+<div class="pt-4">
+<a class="inline-flex items-center justify-center h-12 px-8 rounded-full bg-[#15130F] text-[#F3EEE4] font-mono text-[11px] font-semibold tracking-[0.16em] uppercase hover:bg-[#D9481F] transition-colors" href="#">
+              Teach with us
+            </a>
+</div>
+</div>
+<!-- Right: Vertical Ladder Climbed by Spark Thread -->
+<div class="lg:col-span-5 bg-[#FAF6EE] border border-[#D8D0BF] p-8 rounded-[2px] relative">
+<div class="font-mono text-[10px] tracking-widest text-[#6F6A5E] uppercase mb-8 pb-3 border-b border-[#D8D0BF]">
+            CAREER ASCENT LADDER
+          </div>
+<!-- Vertical Spark Line -->
+<div class="relative pl-8 space-y-12">
+<div class="absolute left-3 top-2 bottom-4 w-0.5 bg-[#D8D0BF]"></div>
+<div class="absolute left-3 top-2 h-2/3 w-0.5 bg-[#D9481F]"></div>
+<!-- Rung 1 -->
+<div class="relative">
+<span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-[#D9481F] ring-4 ring-[#FAF6EE]"></span>
+<span class="font-mono text-[10px] text-[#D9481F] tracking-widest block uppercase font-semibold">STAGE 01</span>
+<h4 class="font-headline-sm text-lg font-serif text-[#15130F]">Teaching Fellow</h4>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-1">1 class/day · Free library carrel · Daily AI prep coach</p>
+</div>
+<!-- Rung 2 -->
+<div class="relative">
+<span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-[#D9481F] ring-4 ring-[#FAF6EE]"></span>
+<span class="font-mono text-[10px] text-[#D9481F] tracking-widest block uppercase font-semibold">STAGE 02</span>
+<h4 class="font-headline-sm text-lg font-serif text-[#15130F]">Senior Pedagogical Fellow</h4>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-1">Curriculum audits · Mentoring new fellows · Stipend honorarium</p>
+</div>
+<!-- Rung 3 -->
+<div class="relative">
+<span class="absolute -left-[27px] top-1 w-3 h-3 rounded-full bg-[#6F6A5E] ring-4 ring-[#FAF6EE]"></span>
+<span class="font-mono text-[10px] text-[#6F6A5E] tracking-widest block uppercase">STAGE 03</span>
+<h4 class="font-headline-sm text-lg font-serif text-[#15130F]">Centre Lead or Master Faculty</h4>
+<p class="font-body-sm text-[13px] text-[#6F6A5E] mt-1">Full district tenure · Academic directorship · Equity in centre expansion</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 07: THE PASSPORT (INK #15130F)
+       A Record the World Can Trust
+       ========================================== -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-24 lg:py-32 border-b border-[#3A362E]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#3A362E]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#CDC6B7]">05 / A RECORD THE WORLD CAN TRUST</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#CDC6B7]/60">EVIDENTIARY PORTFOLIO</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-center">
+<!-- Left: Matte Physical Card Mockup -->
+<div class="lg:col-span-6 flex justify-center">
+<div class="w-full max-w-md bg-[#1C1A14] border border-[#3A362E] p-8 rounded-[4px] relative shadow-2xl">
+<!-- Embossed Header -->
+<div class="flex justify-between items-start border-b border-[#3A362E] pb-6">
+<div>
+<span class="font-mono text-[9px] tracking-[0.3em] uppercase text-[#CDC6B7]/50 block">REPUBLIC OF LEARNING</span>
+<span class="font-headline-sm text-2xl font-serif text-[#F3EEE4] tracking-tight">SYNAPSE PASSPORT</span>
+</div>
+<!-- Debossed Spark Node Emblem -->
+<div class="w-10 h-10 rounded-full border border-[#D9481F]/40 flex items-center justify-center bg-[#24211A]">
+<div class="w-4 h-4 rounded-full bg-[#D9481F]"></div>
+</div>
+</div>
+<!-- Card Body / Meta -->
+<div class="py-6 space-y-4 font-mono text-[11px]">
+<div class="flex justify-between border-b border-[#3A362E]/50 pb-2">
+<span class="text-[#CDC6B7]/60">FELLOW NO.</span>
+<span class="text-[#F3EEE4]">SYN-CHB-2024-0089</span>
+</div>
+<div class="flex justify-between border-b border-[#3A362E]/50 pb-2">
+<span class="text-[#CDC6B7]/60">HOLDER</span>
+<span class="text-[#F3EEE4]">A. VERMA</span>
+</div>
+<div class="flex justify-between border-b border-[#3A362E]/50 pb-2">
+<span class="text-[#CDC6B7]/60">DISCIPLINE</span>
+<span class="text-[#F3EEE4]">SYSTEMS · APPLIED LOGIC</span>
+</div>
+</div>
+<!-- Metric Badges Grid -->
+<div class="grid grid-cols-2 gap-3 pt-2 font-mono text-[10px]">
+<div class="p-3 bg-[#15130F] border border-[#3A362E] rounded-[2px]">
+<span class="text-[#CDC6B7]/50 block">TEACHING HOURS</span>
+<span class="text-[#D9481F] text-base font-semibold">142 HRS</span>
+</div>
+<div class="p-3 bg-[#15130F] border border-[#3A362E] rounded-[2px]">
+<span class="text-[#CDC6B7]/50 block">PROJECTS SHIPPED</span>
+<span class="text-[#F3EEE4] text-base font-semibold">04</span>
+</div>
+<div class="p-3 bg-[#15130F] border border-[#3A362E] rounded-[2px]">
+<span class="text-[#CDC6B7]/50 block">COURSES FINISHED</span>
+<span class="text-[#F3EEE4] text-base font-semibold">06</span>
+</div>
+<div class="p-3 bg-[#15130F] border border-[#3A362E] rounded-[2px]">
+<span class="text-[#CDC6B7]/50 block">VENTURE WORK</span>
+<span class="text-[#D9481F] text-base font-semibold">02 DEPLOYED</span>
+</div>
+</div>
+<!-- Footer Stamp -->
+<div class="pt-6 mt-4 border-t border-[#3A362E] flex justify-between items-center font-mono text-[9px] text-[#CDC6B7]/40 uppercase tracking-widest">
+<span>CRYPTO-ATTESTED · DISTRICT OF CHAMBA</span>
+<span class="text-[#D9481F]">[ILLUSTRATIVE]</span>
+</div>
+</div>
+</div>
+<!-- Right Editorial Copy -->
+<div class="lg:col-span-6 space-y-6">
+<h2 class="font-headline-lg text-3xl sm:text-5xl font-serif font-normal text-[#F3EEE4] leading-tight">
+            Certificates record attendance.<br/>
+<span class="text-[#D9481F] italic font-serif">The Passport proves capability.</span>
+</h2>
+<p class="font-body-lg text-[#CDC6B7] leading-relaxed">
+            Certificates say you sat through a course. The Passport says what you taught, built, finished and showed, verified by observed work, mentors and peers.
+          </p>
+<div class="pt-4 border-t border-[#3A362E] grid grid-cols-2 gap-6 font-mono text-[11px]">
+<div>
+<span class="text-[#D9481F] block mb-1">01 / IMMUTABLE</span>
+<span class="text-[#CDC6B7]/70">No self-attested claims. Every hour is cosigned by scholars.</span>
+</div>
+<div>
+<span class="text-[#D9481F] block mb-1">02 / EMPLOYER-READY</span>
+<span class="text-[#CDC6B7]/70">One link displays code, video teardowns, and classroom recordings.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 08: THE TUTOR (PAPER #F3EEE4)
+       AI That Builds Thinking (Socratic Machine Interface)
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]" id="section-tutor">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">06 / AI THAT BUILDS THINKING</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">SOCRATIC INTERFACE</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-start">
+<!-- Left: Interactive Style Mock UI -->
+<div class="lg:col-span-6 bg-[#FFFFFF] border border-[#D8D0BF] p-6 lg:p-8 rounded-[2px] shadow-sm">
+<div class="flex justify-between items-center pb-4 border-b border-[#D8D0BF] font-mono text-[10px] text-[#6F6A5E]">
+<span class="uppercase tracking-wider">SYNAPSE SOCRATIC AGENT · v2.4</span>
+<span class="text-[#D9481F]">[ILLUSTRATIVE]</span>
+</div>
+<!-- Prompt -->
+<div class="py-6 space-y-3">
+<span class="font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">PROBLEM 14.B — ALGORITHMIC PROOF</span>
+<p class="font-headline-sm text-lg font-serif text-[#15130F]">
+              “Prove why Dijkstra’s algorithm cannot guarantee correct paths when a directed graph contains negative edges.”
+            </p>
+</div>
+<!-- Hint State -->
+<div class="bg-[#FAF6EE] border border-[#D8D0BF] p-4 rounded-[2px] mb-6">
+<div class="flex items-center justify-between font-mono text-[10px] text-[#D9481F] font-semibold mb-2">
+<span>HINT 1 OF 3 (ACTIVE)</span>
+<span>CONFIDENCE CHECK</span>
+</div>
+<p class="font-body-sm text-[13px] text-[#15130F] leading-relaxed">
+              Consider what assumption the greedy choice makes when marking a vertex as ‘visited’. Can an edge traversed later ever reduce that distance?
+            </p>
+</div>
+<!-- Interactive Slider Range -->
+<div class="space-y-2 mb-6">
+<div class="flex justify-between font-mono text-[11px]">
+<span class="text-[#6F6A5E]">How sure are you?</span>
+<span class="text-[#D9481F] font-semibold">72%</span>
+</div>
+<div class="w-full bg-[#E7E2D8] h-1.5 rounded-full overflow-hidden">
+<div class="bg-[#D9481F] h-full w-[72%]"></div>
+</div>
+</div>
+<!-- Action Gate -->
+<div class="pt-4 border-t border-[#D8D0BF] flex flex-col gap-2">
+<button class="w-full h-10 border border-[#D8D0BF] text-[#6F6A5E] font-mono text-[10px] uppercase tracking-wider rounded-[2px] bg-[#FAF6EE] cursor-not-allowed" disabled="">
+              Show full solution (Locked)
+            </button>
+<span class="font-mono text-[9px] text-[#6F6A5E] text-center tracking-wide">
+              ∗ Unlocks only after you attempt a counter-example sketch
+            </span>
+</div>
+</div>
+<!-- Right Stacked Principles -->
+<div class="lg:col-span-6 space-y-8 lg:pl-6">
+<div class="space-y-6">
+<div class="border-b border-[#D8D0BF] pb-5">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold block mb-1">01 / SCAFFOLDING</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#15130F]">Hints before answers.</h3>
+<p class="font-body-md text-body-md text-[#4A463F] mt-2">
+                The machine refuses to surrender raw code or quick answers. It supplies micro-nudges that keep the cognitive burden on the learner.
+              </p>
+</div>
+<div class="border-b border-[#D8D0BF] pb-5">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold block mb-1">02 / CALIBRATION</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#15130F]">It asks how sure you are.</h3>
+<p class="font-body-md text-body-md text-[#4A463F] mt-2">
+                Knowledge without calibrated self-awareness is dangerous. Synapse measures whether you know what you know — and whether you know what you don’t.
+              </p>
+</div>
+<div>
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold block mb-1">03 / REALITY GROUNDING</span>
+<h3 class="font-headline-sm text-2xl font-serif text-[#15130F]">The no-device quiz always has the final word.</h3>
+<p class="font-body-md text-body-md text-[#4A463F] mt-2">
+                Paper, fountain pen, whiteboards, chalkboard sessions. You can fool a prompt; you cannot fool a blank notebook in front of peers.
+              </p>
+</div>
+</div>
+<div class="p-4 bg-[#FAF6EE] border-l-2 border-[#D9481F]">
+<p class="font-headline-sm text-lg font-serif italic text-[#15130F]">
+              “A good tutor leaves its learner more independent, not dependent on next generation prompts.”
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 09: TWO WORLDS, ONE WEEK (PAPER)
+       Cadence & The 6-Day Institutional Rhythm
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">07 / CADENCE</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">WEEKLY TEMPO</span>
+</div>
+<div class="pt-12 mb-10">
+<h2 class="font-headline-lg text-3xl sm:text-4xl font-serif font-normal text-[#15130F]">
+          A building that’s alive has a rhythm.
+        </h2>
+<p class="font-body-md text-[#6F6A5E] mt-2">
+          Fixed anchors eliminate decision fatigue. Scholars know exactly what happens on any given evening.
+        </p>
+</div>
+<!-- Horizontal Week Strip (Mon-Sat Hairline Cards) -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+<!-- MON -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#D9481F] uppercase font-bold">MON · 18:00</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Problem Board</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            Districts bring open engineering &amp; civic problems. Floor G claims them.
+          </p>
+</div>
+<!-- TUE -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] uppercase font-bold">TUE · 19:00</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Paper Club</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            Deconstructing one seminal foundational paper: Shannon, Turing, or Vaswani.
+          </p>
+</div>
+<!-- WED -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] uppercase font-bold">WED · 18:30</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Founder Teardown</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            Level 2 EIRs dissect a production system, outage, or P&amp;L model in public.
+          </p>
+</div>
+<!-- THU -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] uppercase font-bold">THU · 17:30</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Debate &amp; Open Mic</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            Oxford-style propositions on ethics, energy grids, and Himalayan economics.
+          </p>
+</div>
+<!-- FRI -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 border-t-2 border-t-[#D9481F] hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#D9481F] uppercase font-bold">FRI · 17:00</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Demo Day</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            The ‘Show It’ junction. 5 minutes to show working code to parents &amp; peers.
+          </p>
+</div>
+<!-- SAT -->
+<div class="p-6 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-56 hover:border-[#15130F] transition-colors">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] uppercase font-bold">SAT · 10:00</span>
+<h3 class="font-headline-sm text-lg font-serif text-[#15130F] mt-2">Community Day</h3>
+</div>
+<p class="font-body-sm text-[12px] text-[#6F6A5E] leading-relaxed">
+            Open library tours, tea salon, hardware repairs for local citizens.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 10: A CENTRE IN EVERY DISTRICT (INK #15130F)
+       Dot-Matrix India Map & Expansion Model
+       ========================================== -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-24 lg:py-32 border-b border-[#3A362E]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#3A362E]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#CDC6B7]">08 / EXPANSION</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#CDC6B7]/60">TERRITORIAL PRESENCE</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop pt-16 items-center">
+<!-- India Dot Matrix Schematic -->
+<div class="lg:col-span-6 border border-[#3A362E] p-8 rounded-[2px] bg-[#1A1813] flex flex-col items-center relative">
+<div class="w-full flex justify-between font-mono text-[10px] text-[#CDC6B7]/60 uppercase mb-4">
+<span>SUB-CONTINENT MATRIX</span>
+<span class="text-[#D9481F]">NODE 01: OPERATIONAL</span>
+</div>
+<!-- Abstract Dot Matrix Map of India -->
+<svg class="w-full max-w-[320px] h-auto my-4" fill="none" viewbox="0 0 400 480">
+<!-- Grid Dots for India Contour -->
+<g fill="#3A362E">
+<!-- Northern Crown -->
+<circle cx="180" cy="50" r="3"></circle><circle cx="195" cy="50" r="3"></circle><circle cx="210" cy="55" r="3"></circle>
+<circle cx="170" cy="65" r="3"></circle><circle cx="185" cy="65" r="3"></circle><circle cx="200" cy="65" r="3"></circle><circle cx="215" cy="70" r="3"></circle>
+<circle cx="155" cy="80" r="3"></circle><circle cx="170" cy="80" r="3"></circle><circle cx="230" cy="80" r="3"></circle>
+<!-- Chamba Region Node -->
+<circle cx="180" cy="95" r="3"></circle>
+<!-- Central/Western/Eastern -->
+<circle cx="120" cy="180" r="3"></circle><circle cx="140" cy="180" r="3"></circle><circle cx="160" cy="180" r="3"></circle><circle cx="180" cy="180" r="3"></circle><circle cx="200" cy="180" r="3"></circle><circle cx="220" cy="180" r="3"></circle><circle cx="240" cy="180" r="3"></circle>
+<circle cx="100" cy="205" r="3"></circle><circle cx="120" cy="205" r="3"></circle><circle cx="140" cy="205" r="3"></circle><circle cx="160" cy="205" r="3"></circle><circle cx="180" cy="205" r="3"></circle><circle cx="200" cy="205" r="3"></circle><circle cx="260" cy="205" r="3"></circle><circle cx="280" cy="205" r="3"></circle><circle cx="300" cy="205" r="3"></circle><circle cx="320" cy="205" r="3"></circle>
+<circle cx="110" cy="230" r="3"></circle><circle cx="130" cy="230" r="3"></circle><circle cx="150" cy="230" r="3"></circle><circle cx="170" cy="230" r="3"></circle><circle cx="190" cy="230" r="3"></circle><circle cx="210" cy="230" r="3"></circle><circle cx="230" cy="230" r="3"></circle><circle cx="270" cy="230" r="3"></circle>
+<!-- Deccan Peninsula -->
+<circle cx="130" cy="260" r="3"></circle><circle cx="150" cy="260" r="3"></circle><circle cx="170" cy="260" r="3"></circle><circle cx="190" cy="260" r="3"></circle><circle cx="210" cy="260" r="3"></circle>
+<circle cx="140" cy="290" r="3"></circle><circle cx="160" cy="290" r="3"></circle><circle cx="180" cy="290" r="3"></circle><circle cx="200" cy="290" r="3"></circle>
+<circle cx="150" cy="320" r="3"></circle><circle cx="170" cy="320" r="3"></circle><circle cx="190" cy="320" r="3"></circle>
+<circle cx="160" cy="350" r="3"></circle><circle cx="180" cy="350" r="3"></circle>
+<circle cx="170" cy="380" r="3"></circle>
+<circle cx="175" cy="410" r="3"></circle>
+</g>
+<!-- ACTIVE SPARK NODE: CHAMBA -->
+<circle class="animate-ping" cx="180" cy="85" fill="#D9481F" fill-opacity="0.3" r="7"></circle>
+<circle cx="180" cy="85" fill="#D9481F" r="4.5"></circle>
+<!-- FUTURE NODES IN PIPELINE -->
+<circle cx="140" cy="180" fill="#CDC6B7" r="3.5"></circle>
+<circle cx="170" cy="320" fill="#CDC6B7" r="3.5"></circle>
+<circle cx="280" cy="205" fill="#CDC6B7" r="3.5"></circle>
+<!-- Annotation -->
+<line stroke="#D9481F" stroke-width="1" x1="180" x2="260" y1="85" y2="60"></line>
+<text fill="#D9481F" font-family="Geist Mono" font-size="9" letter-spacing="1" x="265" y="63">CHAMBA, HP</text>
+</svg>
+<div class="w-full text-center pt-2 border-t border-[#3A362E]">
+<span class="font-mono text-[10px] text-[#CDC6B7] uppercase tracking-widest">
+              FIRST CENTRE: CHAMBA, HIMACHAL PRADESH
+            </span>
+</div>
+</div>
+<!-- Right: 3-Step Expansion Progression Model -->
+<div class="lg:col-span-6 space-y-8">
+<div>
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold tracking-widest uppercase block mb-2">
+              DISTRICT CODES
+            </span>
+<h2 class="font-headline-lg text-3xl sm:text-4xl font-serif font-normal text-[#F3EEE4] leading-tight">
+              One district, one specialisation.
+            </h2>
+<p class="font-body-md text-[#CDC6B7] mt-3 leading-relaxed">
+              We do not open identical steel-and-glass boxes. Every district possesses distinct ecological, agricultural, or manufacturing questions. The venture hub upstairs focuses on that exact frontier.
+            </p>
+</div>
+<!-- Progression Sequence -->
+<div class="space-y-4 pt-2">
+<div class="p-5 border border-[#3A362E] bg-[#201D17] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="font-mono text-[11px] text-[#D9481F] font-bold">01</span>
+<div>
+<h4 class="font-headline-sm text-base font-serif text-[#F3EEE4]">Circle</h4>
+<p class="font-body-sm text-[12px] text-[#CDC6B7]/70">12 fellows in a rented study hall teaching weekend pods.</p>
+</div>
+</div>
+<span class="font-mono text-[10px] text-[#CDC6B7]/50 uppercase tracking-widest">MONTHS 0-6</span>
+</div>
+<div class="p-5 border border-[#3A362E] bg-[#201D17] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="font-mono text-[11px] text-[#D9481F] font-bold">02</span>
+<div>
+<h4 class="font-headline-sm text-base font-serif text-[#F3EEE4]">Library</h4>
+<p class="font-body-sm text-[12px] text-[#CDC6B7]/70">Permanent knowledge commons with reading cards and exam desk.</p>
+</div>
+</div>
+<span class="font-mono text-[10px] text-[#CDC6B7]/50 uppercase tracking-widest">MONTHS 6-18</span>
+</div>
+<div class="p-5 border border-[#3A362E] bg-[#201D17] flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="font-mono text-[11px] text-[#D9481F] font-bold">03</span>
+<div>
+<h4 class="font-headline-sm text-base font-serif text-[#F3EEE4]">Campus</h4>
+<p class="font-body-sm text-[12px] text-[#CDC6B7]/70">Full 3-floor building with venture residency &amp; local lab.</p>
+</div>
+</div>
+<span class="font-mono text-[10px] text-[#D9481F] uppercase tracking-widest font-semibold">PERMANENT</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 11: WHAT WE STAND FOR (PAPER #F3EEE4)
+       8 Dogmas & The "What We Are Not" Boundary
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-32 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">09 / PRINCIPLES</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">FOUNDATIONAL CHARTER</span>
+</div>
+<div class="pt-12 pb-8">
+<h2 class="font-headline-lg text-3xl sm:text-5xl font-serif font-normal text-[#15130F]">
+          What we stand for.
+        </h2>
+</div>
+<!-- 8 Principles: 2-Column Monograph Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10 pt-4 pb-16 border-b border-[#D8D0BF]">
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">01.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Think first.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            The pencil and the clear sentence precede the code and the terminal prompt.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">02.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Marks and a body of work.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            We do not mock exam marks. We secure them, then build the real portfolio on top.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">03.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Honesty.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            No faked outcomes, no vanity certificates, no inflated hiring stats.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">04.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Safety and dignity.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            A quiet, respectful study environment for women, adolescents, and older citizens alike.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">05.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Everyone teaches.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            You do not truly understand a mathematical concept until you teach it to a 12-year-old.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">06.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Local first.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            District youth should not have to leave their family home to access elite mentorship.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">07.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">Open doors.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            A retired civil engineer reading history has equal right to the building as an AI fellow.
+          </p>
+</div>
+<div class="space-y-1">
+<span class="font-mono text-[11px] text-[#D9481F] font-semibold">08.</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F]">No hype.</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+            We build with stone, wood, books, and disciplined code. Not temporary digital fads.
+          </p>
+</div>
+</div>
+<!-- Hairline Boxed Boundary Statement -->
+<div class="mt-12 p-8 border border-[#15130F] bg-[#FAF6EE] flex flex-col md:flex-row items-baseline justify-between gap-6">
+<div class="font-mono text-[11px] tracking-widest text-[#D9481F] uppercase font-bold shrink-0">
+          NEGATIVE SPACE · WHAT SYNAPSE IS NOT
+        </div>
+<p class="font-serif text-lg sm:text-xl text-[#15130F] leading-relaxed">
+          “Not a coaching mill, not a software app with a classroom attached, and not an accelerator that sells equity to speculators.”
+        </p>
+</div>
+</div>
+</section>
+<!-- ==========================================
+       SECTION 12: CHOOSE YOUR DOOR (PAPER #F3EEE4)
+       5 Tall Hairline Interactive Inversion Portals
+       ========================================== -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-24 lg:py-36" id="section-doors">
+<div class="max-w-[1440px] mx-auto px-6 md:px-margin-desktop">
+<div class="flex items-center justify-between pb-10 border-b border-[#D8D0BF]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="font-mono text-[11px] tracking-[0.2em] uppercase text-[#6F6A5E]">10 / ENTRYWAYS</span>
+</div>
+<span class="font-mono text-[10px] tracking-[0.16em] uppercase text-[#6F6A5E]">PORTALS OF ACCESS</span>
+</div>
+<div class="pt-12 pb-10 text-center max-w-2xl mx-auto">
+<h2 class="font-headline-lg text-4xl sm:text-5xl font-serif font-normal text-[#15130F]">
+          Choose your door.
+        </h2>
+<p class="font-body-md text-[#6F6A5E] mt-3">
+          The building welcomes scholars at every juncture of life. Select your portal to proceed.
+        </p>
+</div>
+<!-- Five Tall Hairline Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 pt-6">
+<!-- Door 1 -->
+<a class="group p-8 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-[380px] hover:bg-[#15130F] hover:text-[#F3EEE4] hover:border-[#15130F] transition-all duration-300" href="#">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] group-hover:text-[#D9481F] block uppercase mb-4">PORTAL 01</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F] group-hover:text-[#F3EEE4] leading-snug">
+              A parent or student
+            </h3>
+</div>
+<div>
+<p class="font-mono text-[11px] text-[#6F6A5E] group-hover:text-[#CDC6B7] leading-relaxed mb-6">
+              Small-group pods, foundational maths, logic, and weekly demo days.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#D8D0BF] group-hover:border-[#3A362E] font-mono text-[11px] text-[#15130F] group-hover:text-[#D9481F]">
+<span>Enter</span>
+<span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Door 2 -->
+<a class="group p-8 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-[380px] hover:bg-[#15130F] hover:text-[#F3EEE4] hover:border-[#15130F] transition-all duration-300" href="#">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] group-hover:text-[#D9481F] block uppercase mb-4">PORTAL 02</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F] group-hover:text-[#F3EEE4] leading-snug">
+              A graduate who wants to teach
+            </h3>
+</div>
+<div>
+<p class="font-mono text-[11px] text-[#6F6A5E] group-hover:text-[#CDC6B7] leading-relaxed mb-6">
+              Teach 1 hr/day, receive free library access, AI coaching, and certified hours.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#D8D0BF] group-hover:border-[#3A362E] font-mono text-[11px] text-[#15130F] group-hover:text-[#D9481F]">
+<span>Enter</span>
+<span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Door 3 -->
+<a class="group p-8 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-[380px] hover:bg-[#15130F] hover:text-[#F3EEE4] hover:border-[#15130F] transition-all duration-300" href="#">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] group-hover:text-[#D9481F] block uppercase mb-4">PORTAL 03</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F] group-hover:text-[#F3EEE4] leading-snug">
+              A reader
+            </h3>
+</div>
+<div>
+<p class="font-mono text-[11px] text-[#6F6A5E] group-hover:text-[#CDC6B7] leading-relaxed mb-6">
+              Silent library commons, high-speed network, coffee, and serious quiet.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#D8D0BF] group-hover:border-[#3A362E] font-mono text-[11px] text-[#15130F] group-hover:text-[#D9481F]">
+<span>Enter</span>
+<span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Door 4 -->
+<a class="group p-8 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-[380px] hover:bg-[#15130F] hover:text-[#F3EEE4] hover:border-[#15130F] transition-all duration-300" href="#">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] group-hover:text-[#D9481F] block uppercase mb-4">PORTAL 04</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F] group-hover:text-[#F3EEE4] leading-snug">
+              A founder or builder
+            </h3>
+</div>
+<div>
+<p class="font-mono text-[11px] text-[#6F6A5E] group-hover:text-[#CDC6B7] leading-relaxed mb-6">
+              Residency on Level 2, work on local problems, and mentor young talent.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#D8D0BF] group-hover:border-[#3A362E] font-mono text-[11px] text-[#15130F] group-hover:text-[#D9481F]">
+<span>Enter</span>
+<span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</a>
+<!-- Door 5 -->
+<a class="group p-8 border border-[#D8D0BF] bg-[#FAF6EE] rounded-[2px] flex flex-col justify-between h-[380px] hover:bg-[#15130F] hover:text-[#F3EEE4] hover:border-[#15130F] transition-all duration-300" href="#">
+<div>
+<span class="font-mono text-[10px] tracking-widest text-[#6F6A5E] group-hover:text-[#D9481F] block uppercase mb-4">PORTAL 05</span>
+<h3 class="font-headline-sm text-xl font-serif text-[#15130F] group-hover:text-[#F3EEE4] leading-snug">
+              A district partner
+            </h3>
+</div>
+<div>
+<p class="font-mono text-[11px] text-[#6F6A5E] group-hover:text-[#CDC6B7] leading-relaxed mb-6">
+              Bring a Synapse Gurukul to your district with local patrons &amp; civic land.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-[#D8D0BF] group-hover:border-[#3A362E] font-mono text-[11px] text-[#15130F] group-hover:text-[#D9481F]">
+<span>Enter</span>
+<span class="material-symbols-outlined text-[16px] transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-[#15130F] text-[#F3EEE4] border-t border-[#3A362E]"><div class="max-w-[1440px] mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline pb-16 border-b border-[#3A362E]/70"><div class="md:col-span-5"><span class="font-headline-lg text-headline-lg tracking-tight font-normal text-[#F3EEE4] block">Synapse</span><p class="mt-4 font-headline-sm text-headline-sm italic text-[#CDC6B7] font-normal leading-relaxed">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col md:items-end justify-between self-stretch"><div class="font-mono text-label-sm text-[#CDC6B7]/60 tracking-[0.16em] uppercase">An autonomous sanctuary of learning</div><div class="text-[#CDC6B7] font-body-sm text-body-sm tracking-wide mt-6 md:mt-0">Bootstrapped. Grown only from what it earns.</div></div></div><div class="grid grid-cols-2 md:grid-cols-7 gap-gutter-desktop py-12 border-b border-[#3A362E]/70 font-mono text-[11px] tracking-[0.16em] uppercase"><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-idea" href="#">The Idea</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-building" href="#">The Building</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="fellowship" href="#">Fellowship</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="passport" href="#">Passport</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="centres" href="#">Centres</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="principles" href="#">Principles</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="contact" href="#">Contact</a></div></div><div class="pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 font-body-sm text-body-sm text-[#CDC6B7]/70"><div>Behind the Post Office, Chamba, Himachal Pradesh · 8287248119 · WhatsApp</div><div class="font-mono text-[11px] tracking-widest text-[#CDC6B7]/50 uppercase">© MMXXIV SYNAPSE. ALL RIGHTS PRESERVED.</div></div></div></footer></body></html>

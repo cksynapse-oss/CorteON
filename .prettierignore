@@ -1,0 +1,13 @@
+dist/
+node_modules/
+.astro/
+legacy/
+synapse web/
+reference/
+docs/
+tools/
+google-apps-script/
+AGENTS.md
+README.md
+CNAME
+package-lock.json

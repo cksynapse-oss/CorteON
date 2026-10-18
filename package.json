@@ -1,0 +1,38 @@
+{
+  "name": "synapse-website",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
+    "content-lint": "node scripts/stub-check.js content-lint",
+    "link-check": "node scripts/stub-check.js link-check",
+    "axe": "node scripts/stub-check.js axe",
+    "lighthouse-ci": "node scripts/stub-check.js lighthouse-ci",
+    "check": "astro check && eslint . && prettier --check . && npm run content-lint && npm run build && npm run link-check && npm run axe && npm run lighthouse-ci"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "@fontsource-variable/geist": "^5.1.1",
+    "@fontsource-variable/geist-mono": "^5.1.1",
+    "@fontsource/eb-garamond": "^5.1.1",
+    "astro": "^5.4.1",
+    "autoprefixer": "^10.4.20",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "prettier": "^3.5.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.25.0"
+  }
+}

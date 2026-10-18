@@ -1,1 +1,18 @@
+# Build & dependencies
+dist/
+node_modules/
+.astro/
+
+# Environment & caches
+.env
+.env.*
+!.env.example
+.turbo
+.parcel-cache
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Raw downloaded pack archive
+synapse web/

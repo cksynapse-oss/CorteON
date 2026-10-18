@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Synapse — Gurukul for the Age of AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-container-highest": "#e7e2d8",
+        "inverse-on-surface": "#f5f0e6",
+        "secondary-container": "#ff6338",
+        "tertiary": "#000000",
+        "primary-fixed-dim": "#cbc6bf",
+        "inverse-primary": "#cbc6bf",
+        "surface-tint": "#625e58",
+        "outline": "#7b766e",
+        "on-error": "#ffffff",
+        "surface": "#fef9ef",
+        "on-secondary-container": "#5d1200",
+        "surface-container-high": "#ede8de",
+        "error-container": "#ffdad6",
+        "tertiary-fixed-dim": "#cdc6b7",
+        "on-primary": "#ffffff",
+        "on-secondary-fixed-variant": "#881f00",
+        "surface-bright": "#fef9ef",
+        "secondary": "#b22c01",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#898377",
+        "on-primary-fixed": "#1d1b17",
+        "on-tertiary-fixed-variant": "#4b463c",
+        "on-surface-variant": "#4a463f",
+        "on-background": "#1d1c16",
+        "on-error-container": "#93000a",
+        "on-primary-fixed-variant": "#494641",
+        "on-surface": "#1d1c16",
+        "on-secondary": "#ffffff",
+        "surface-variant": "#e7e2d8",
+        "error": "#ba1a1a",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#88837d",
+        "surface-container": "#f2ede3",
+        "outline-variant": "#ccc6bc",
+        "on-secondary-fixed": "#3b0800",
+        "primary-fixed": "#e8e1da",
+        "inverse-surface": "#32302a",
+        "secondary-fixed": "#ffdbd1",
+        "tertiary-container": "#1e1b12",
+        "surface-container-low": "#f8f3e9",
+        "surface-dim": "#dedad0",
+        "tertiary-fixed": "#e9e2d3",
+        "background": "#fef9ef",
+        "on-tertiary-fixed": "#1e1b12",
+        "secondary-fixed-dim": "#ffb5a1",
+        "primary": "#000000",
+        "primary-container": "#1d1b17"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "space-md": "1.5rem",
+        "margin": "1.25rem",
+        "space-sm": "1rem",
+        "margin-desktop": "3rem",
+        "space-xl": "4rem",
+        "space-lg": "2.5rem",
+        "space-xs": "0.5rem",
+        "gutter-desktop": "2.5rem",
+        "gutter": "1.5rem",
+        "space-2xl": "8rem"
+      },
+      "fontFamily": {
+        "headline-lg": ["EB Garamond"],
+        "display-lg": ["EB Garamond"],
+        "body-sm": ["Geist"],
+        "headline-md": ["EB Garamond"],
+        "display-lg-mobile": ["EB Garamond"],
+        "display-xl": ["EB Garamond"],
+        "label-sm": ["Geist"],
+        "body-md": ["Geist"],
+        "display-xl-mobile": ["EB Garamond"],
+        "headline-sm": ["EB Garamond"],
+        "body-lg": ["Geist"],
+        "label-md": ["Geist"],
+        "mono": ["Geist Mono", "monospace"]
+      },
+      "fontSize": {
+        "headline-lg": ["2.75rem", {"lineHeight": "1.15", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg": ["4rem", {"lineHeight": "1.05", "letterSpacing": "-0.025em", "fontWeight": "400"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.55", "fontWeight": "400"}],
+        "headline-md": ["2rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "display-lg-mobile": ["2.5rem", {"lineHeight": "1.12", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-xl": ["5.5rem", {"lineHeight": "1.02", "letterSpacing": "-0.03em", "fontWeight": "400"}],
+        "label-sm": ["0.6875rem", {"lineHeight": "1.3", "letterSpacing": "0.14em", "fontWeight": "500"}],
+        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+        "display-xl-mobile": ["3.25rem", {"lineHeight": "1.08", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+        "headline-sm": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "500"}],
+        "body-lg": ["1.125rem", {"lineHeight": "1.65", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "label-md": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "500"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEE4] border-b border-[#D8D0BF]"><div class="h-20 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-2.5 group" data-path="the-idea" href="#"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-normal">Synapse</span><span aria-hidden="true" class="flex items-center text-secondary"><svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1.2" x1="2" x2="12" y1="7" y2="7"></line><circle cx="7" cy="7" fill="currentColor" r="2.5"></circle></svg></span></a></div><nav class="hidden xl:flex items-center gap-8 font-mono text-[11px] tracking-[0.2em] uppercase" data-active-classes="text-secondary font-medium"><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-idea" href="#">THE IDEA</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-building" href="#">THE BUILDING</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="fellowship" href="#">FELLOWSHIP</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="passport" href="#">PASSPORT</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="centres" href="#">CENTRES</a></nav><div class="flex items-center gap-4"><a class="hidden sm:inline-flex items-center h-10 px-5 rounded-[9999px] border border-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-on-surface hover:bg-[#D8D0BF]/30 hover:text-on-surface transition-colors" data-path="teach-with-us" href="#">Teach with us</a><a class="inline-flex items-center h-10 px-6 rounded-[9999px] bg-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-[#F3EEE4] hover:bg-secondary transition-colors" data-path="visit-or-enquire" href="#">Visit or enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 select-none font-mono text-[11px] text-on-surface-variant/70"><div class="w-px h-8 bg-[#D8D0BF]"></div><div class="flex flex-col items-center gap-3"><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="text-secondary font-semibold">2</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">1</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">G</span></div></div><div class="w-px h-8 bg-[#D8D0BF]"></div><span class="[writing-mode:vertical-rl] font-mono text-[9px] tracking-[0.25em] text-on-surface-variant/50 uppercase mt-1">FLOOR GAUGE</span></aside><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP HEADER & INTRO -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-desktop pt-16 pb-12">
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8">
+<div class="max-w-3xl">
+<div class="flex items-center gap-3 mb-4">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-on-surface-variant">ARCHITECTURAL WALKTHROUGH · PLATE NO. 02 / THREE FLOORS</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg lg:text-display-xl tracking-tight text-on-surface leading-[1.05]">
+          Walk through the <span class="italic text-secondary">building.</span>
+</h1>
+<p class="font-mono text-label-md uppercase tracking-[0.2em] text-on-surface-variant mt-4">
+          THREE FLOORS · ONE LOOP · NOBODY IS ONLY A VISITOR
+        </p>
+</div>
+<div class="flex flex-col items-start lg:items-end font-mono text-label-sm text-on-surface-variant/80 gap-1.5 pb-2">
+<span class="text-secondary font-medium tracking-widest">DATUM +0.00m</span>
+<span>CHAMBA CENTRECAMPUS · HIMACHAL PRADESH</span>
+<span>SECTION A-A' · ELEVATION VIEW · LAT 32.5534° N</span>
+</div>
+</div>
+</section>
+<!-- INTERACTIVE ELEVATION SECTION & DETAILED CALLOUT -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-desktop py-8">
+<!-- Level Selector Bar -->
+<div class="flex flex-wrap items-center justify-between gap-4 py-4 px-6 bg-surface-container-low rounded-lg mb-8">
+<div class="flex items-center gap-2">
+<span class="font-mono text-label-sm uppercase tracking-[0.16em] text-on-surface-variant">Active Datum:</span>
+<span class="font-mono text-label-sm font-semibold text-secondary tracking-wider" id="datum-readout">+4.20m LEVEL 1</span>
+</div>
+<div class="inline-flex p-1 bg-surface-container rounded-full gap-1">
+<button class="px-5 py-1.5 rounded-full font-mono text-label-sm tracking-wider uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="btn-floor-g" onclick="switchFloor('g')">
+          Level G · Commons
+        </button>
+<button class="px-5 py-1.5 rounded-full font-mono text-label-sm tracking-wider uppercase transition-all duration-200 bg-primary text-on-primary" id="btn-floor-1" onclick="switchFloor('1')">
+          Level 1 · Knowledge
+        </button>
+<button class="px-5 py-1.5 rounded-full font-mono text-label-sm tracking-wider uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface" id="btn-floor-2" onclick="switchFloor('2')">
+          Level 2 · Venture
+        </button>
+</div>
+<div class="hidden md:flex items-center gap-4 font-mono text-label-sm text-on-surface-variant">
+<span>SCALE: 1:120</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="italic font-headline-sm text-label-md">सीखो · सिखाओ · बनाओ · दिखाओ</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- ELEVATION CUTAWAY BLUEPRINT (7 COLS) -->
+<div class="lg:col-span-7 flex flex-col gap-4 bg-surface-container-low p-6 lg:p-8 rounded-lg relative overflow-hidden">
+<div class="flex items-center justify-between pb-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">apartment</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-on-surface">Transverse Cross-Sectional View</span>
+</div>
+<span class="font-mono text-label-sm text-on-surface-variant tracking-wider">SEC: A-A′ (NORTH FACING)</span>
+</div>
+<!-- SVG Architectural Cutaway -->
+<div class="relative w-full aspect-[4/3] bg-surface rounded-lg p-2 flex items-center justify-center overflow-hidden">
+<svg class="w-full h-full select-none" fill="none" viewbox="0 0 760 560" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="20" id="archGrid" patternunits="userSpaceOnUse" width="20">
+<path d="M 20 0 L 0 0 0 20" fill="none" opacity="0.4" stroke="#D8D0BF" stroke-width="0.5"></path>
+</pattern>
+<lineargradient id="glowActive" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#ffdbd1" stop-opacity="0.35"></stop>
+<stop offset="60%" stop-color="#ede8de" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#ffdbd1" stop-opacity="0.35"></stop>
+</lineargradient>
+</defs>
+<!-- Background subtle drafting grid -->
+<rect fill="url(#archGrid)" height="560" width="760"></rect>
+<!-- Foundation & Terrain lines -->
+<path d="M 40 500 L 720 500" stroke="#7b766e" stroke-width="2"></path>
+<path d="M 40 506 L 720 506" stroke="#7b766e" stroke-dasharray="4 4" stroke-width="0.8"></path>
+<text fill="#7b766e" font-family="Geist Mono" font-size="10" letter-spacing="1" x="50" y="525">GROUND LINE / GL ±0.000m</text>
+<!-- Outer Structural Frame (Brutalist envelope) -->
+<rect fill="none" height="450" stroke="#1d1c16" stroke-width="2.5" width="580" x="90" y="50"></rect>
+<!-- Structural Columns -->
+<line stroke="#ccc6bc" stroke-dasharray="2 3" stroke-width="1.2" x1="220" x2="220" y1="50" y2="500"></line>
+<line stroke="#ccc6bc" stroke-dasharray="2 3" stroke-width="1.2" x1="390" x2="390" y1="50" y2="500"></line>
+<line stroke="#ccc6bc" stroke-dasharray="2 3" stroke-width="1.2" x1="560" x2="560" y1="50" y2="500"></line>
+<!-- Roof structure -->
+<line stroke="#1d1c16" stroke-width="3" x1="70" x2="690" y1="50" y2="50"></line>
+<path d="M 90 50 L 130 20 L 650 20 L 670 50" stroke="#7b766e" stroke-width="1"></path>
+<text fill="#7b766e" font-family="Geist Mono" font-size="9" text-anchor="middle" x="350" y="38">SKYLIGHT LANTERN &amp; RIDGE VENT</text>
+<!-- ================= LEVEL 2 (Top) ================= -->
+<g class="transition-opacity duration-300 opacity-35" id="svg-floor-2">
+<rect fill="#f8f3e9" height="138" opacity="0.5" width="576" x="92" y="52"></rect>
+<line stroke="#1d1c16" stroke-width="2" x1="90" x2="670" y1="190" y2="190"></line>
+<text fill="#4a463f" font-family="Geist Mono" font-size="11" font-weight="600" x="105" y="75">LEVEL 2 · VENTURE HUB (+8.40m)</text>
+<!-- Desks & screens sketch -->
+<rect fill="#ede8de" height="28" stroke="#7b766e" stroke-width="1" width="60" x="130" y="145"></rect>
+<rect fill="#ede8de" height="28" stroke="#7b766e" stroke-width="1" width="80" x="240" y="145"></rect>
+<circle cx="370" cy="155" r="14" stroke="#7b766e" stroke-width="1"></circle>
+<rect fill="#ede8de" height="45" stroke="#7b766e" stroke-width="1" width="90" x="440" y="130"></rect>
+<line stroke="#7b766e" stroke-dasharray="2 2" stroke-width="1" x1="580" x2="640" y1="100" y2="160"></line>
+<text fill="#7b766e" font-family="Geist Mono" font-size="9" x="615" y="175">INCUBATION CELLS</text>
+</g>
+<!-- ================= LEVEL 1 (Middle) ACTIVE ================= -->
+<g class="transition-opacity duration-300 opacity-100" id="svg-floor-1">
+<rect fill="url(#glowActive)" height="148" width="576" x="92" y="192"></rect>
+<line stroke="#1d1c16" stroke-width="2" x1="90" x2="670" y1="340" y2="340"></line>
+<!-- Hotspot 1: Silent Hall & Bookshelves -->
+<g class="cursor-pointer" onclick="highlightHotspot(1)">
+<rect fill="#ede8de" height="100" stroke="#b22c01" stroke-width="1" width="85" x="110" y="220"></rect>
+<line stroke="#7b766e" stroke-width="1" x1="120" x2="185" y1="235" y2="235"></line>
+<line stroke="#7b766e" stroke-width="1" x1="120" x2="185" y1="250" y2="250"></line>
+<line stroke="#7b766e" stroke-width="1" x1="120" x2="185" y1="265" y2="265"></line>
+<line stroke="#7b766e" stroke-width="1" x1="120" x2="185" y1="280" y2="280"></line>
+<circle cx="152" cy="275" fill="#b22c01" r="11"></circle>
+<text fill="#ffffff" font-family="Geist Mono" font-size="10" font-weight="600" text-anchor="middle" x="152" y="279">1</text>
+</g>
+<!-- Hotspot 2: Reserved Fellow Desks -->
+<g class="cursor-pointer" onclick="highlightHotspot(2)">
+<rect fill="#f8f3e9" height="45" stroke="#b22c01" stroke-width="1" width="70" x="230" y="270"></rect>
+<rect fill="#1d1b17" height="15" width="20" x="240" y="280"></rect>
+<rect fill="#1d1b17" height="15" width="20" x="270" y="280"></rect>
+<circle cx="265" cy="255" fill="#b22c01" r="11"></circle>
+<text fill="#ffffff" font-family="Geist Mono" font-size="10" font-weight="600" text-anchor="middle" x="265" y="259">2</text>
+</g>
+<!-- Hotspot 3: Question Board Wall -->
+<g class="cursor-pointer" onclick="highlightHotspot(3)">
+<rect fill="#ffffff" height="95" stroke="#b22c01" stroke-width="1.2" width="60" x="340" y="220"></rect>
+<line stroke="#ff6338" stroke-width="0.8" x1="345" x2="395" y1="235" y2="235"></line>
+<line stroke="#ff6338" stroke-width="0.8" x1="345" x2="395" y1="245" y2="245"></line>
+<line stroke="#ff6338" stroke-width="0.8" x1="345" x2="395" y1="255" y2="255"></line>
+<circle cx="370" cy="210" fill="#b22c01" r="11"></circle>
+<text fill="#ffffff" font-family="Geist Mono" font-size="10" font-weight="600" text-anchor="middle" x="370" y="214">3</text>
+</g>
+<!-- Hotspot 4: Discussion Pods -->
+<g class="cursor-pointer" onclick="highlightHotspot(4)">
+<rect fill="#ede8de" height="75" rx="3" stroke="#b22c01" stroke-width="1" width="90" x="435" y="240"></rect>
+<circle cx="480" cy="275" r="18" stroke="#7b766e" stroke-width="1"></circle>
+<circle cx="480" cy="230" fill="#b22c01" r="11"></circle>
+<text fill="#ffffff" font-family="Geist Mono" font-size="10" font-weight="600" text-anchor="middle" x="480" y="234">4</text>
+</g>
+<!-- Hotspot 5: Atrium & Stairway Café -->
+<g class="cursor-pointer" onclick="highlightHotspot(5)">
+<path d="M 550 340 L 640 220 L 660 220 L 660 340 Z" fill="#ffdbd1" opacity="0.3"></path>
+<path d="M 565 340 L 635 250" stroke="#7b766e" stroke-width="1.5"></path>
+<circle cx="610" cy="280" fill="#1d1b17" r="14"></circle>
+<circle cx="610" cy="280" fill="#b22c01" r="11"></circle>
+<text fill="#ffffff" font-family="Geist Mono" font-size="10" font-weight="600" text-anchor="middle" x="610" y="284">5</text>
+</g>
+<!-- Level 1 Label overlay -->
+<rect fill="#1d1b17" height="18" width="220" x="100" y="196"></rect>
+<text fill="#fef9ef" font-family="Geist Mono" font-size="10" font-weight="500" x="106" y="209">LEVEL 1 · THE KNOWLEDGE COMMONS (+4.20m)</text>
+</g>
+<!-- ================= LEVEL G (Ground) ================= -->
+<g class="transition-opacity duration-300 opacity-35" id="svg-floor-g">
+<rect fill="#ede8de" height="156" opacity="0.4" width="576" x="92" y="342"></rect>
+<text fill="#4a463f" font-family="Geist Mono" font-size="11" font-weight="600" x="105" y="365">LEVEL G · LEARNING COMMONS (±0.00m)</text>
+<!-- Pod classrooms -->
+<rect height="80" stroke="#7b766e" stroke-dasharray="3 3" stroke-width="1" width="110" x="120" y="390"></rect>
+<rect height="80" stroke="#7b766e" stroke-dasharray="3 3" stroke-width="1" width="110" x="250" y="390"></rect>
+<rect height="80" stroke="#7b766e" stroke-dasharray="3 3" stroke-width="1" width="110" x="380" y="390"></rect>
+<path d="M 540 470 L 640 470 L 640 400" stroke="#7b766e" stroke-width="1.5"></path>
+<text fill="#7b766e" font-family="Geist Mono" font-size="9" x="560" y="445">PUBLIC VESTIBULE</text>
+</g>
+<!-- Exterior Vertical Gauge leader line -->
+<line stroke="#7b766e" stroke-width="1" x1="685" x2="685" y1="50" y2="500"></line>
+<line stroke="#7b766e" stroke-width="1" x1="680" x2="690" y1="50" y2="50"></line>
+<line stroke="#7b766e" stroke-width="1" x1="680" x2="690" y1="190" y2="190"></line>
+<line stroke="#7b766e" stroke-width="1" x1="680" x2="690" y1="340" y2="340"></line>
+<line stroke="#7b766e" stroke-width="1" x1="680" x2="690" y1="500" y2="500"></line>
+<text fill="#7b766e" font-family="Geist Mono" font-size="10" x="700" y="125">+8.40m</text>
+<text fill="#b22c01" font-family="Geist Mono" font-size="10" font-weight="600" x="700" y="270">+4.20m</text>
+<text fill="#7b766e" font-family="Geist Mono" font-size="10" x="700" y="425">±0.00m</text>
+</svg>
+</div>
+<!-- Cutaway Footer Specs -->
+<div class="flex flex-wrap items-center justify-between text-on-surface-variant font-mono text-label-sm pt-2">
+<span>STRUCTURAL ENVELOPE: LOCAL TIMBER &amp; RAMMED SLATE</span>
+<span class="text-secondary">TAP HOTSPOTS 1–5 FOR SPATIAL NOTES</span>
+</div>
+</div>
+<!-- SIDE PANEL: ACTIVE FLOOR DOSSIER (5 COLS) -->
+<div class="lg:col-span-5 flex flex-col gap-6 bg-surface-container-low p-6 lg:p-8 rounded-lg" id="floor-dossier">
+<!-- Header -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold" id="dossier-level">FLOOR 1 / SECTION 02</span>
+<span class="px-2 py-0.5 bg-secondary/10 text-secondary rounded font-mono text-label-sm">PRIMARY STUDY DECK</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-normal" id="dossier-title">
+            The Knowledge Commons
+          </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="dossier-desc">
+            A quiet sanctuary balancing deep asynchronous study with curated dialogue. Open to all students holding the Monthly Reading Pass.
+          </p>
+</div>
+<!-- Acoustic Gradient Bar -->
+<div class="flex flex-col gap-2.5 pt-2">
+<div class="flex items-center justify-between font-mono text-label-sm">
+<span class="uppercase tracking-widest text-on-surface">Acoustic Gradient</span>
+<span class="text-on-surface-variant">0 dB — 60 dB SPECTRUM</span>
+</div>
+<div class="h-3 w-full rounded-full bg-surface-container-high overflow-hidden flex">
+<div class="h-full w-1/4 bg-primary" title="Silent Hall 0-15dB"></div>
+<div class="h-full w-1/4 bg-outline" title="Quiet Commons 25-35dB"></div>
+<div class="h-full w-1/4 bg-outline-variant" title="Discussion Rooms 45dB"></div>
+<div class="h-full w-1/4 bg-secondary" title="Atrium &amp; Café 60dB"></div>
+</div>
+<div class="grid grid-cols-4 font-mono text-[9px] tracking-tight uppercase text-on-surface-variant pt-1">
+<span>Silent (15dB)</span>
+<span>Quiet (30dB)</span>
+<span>Discuss (45dB)</span>
+<span class="text-right text-secondary font-medium">Café (60dB)</span>
+</div>
+</div>
+<!-- Curated Quote Block -->
+<div class="p-4 bg-surface rounded-lg">
+<p class="font-headline-sm text-label-md italic text-on-surface leading-relaxed">
+            "The café near the stairs is the glue, not a side business: it's where people from different floors bump into each other."
+          </p>
+<span class="block mt-2 font-mono text-[10px] tracking-widest text-on-surface-variant uppercase">
+            — ARCHITECTURAL PROGRAMME NOTES · FOLIO 04
+          </span>
+</div>
+<!-- 5 Numbered Hotspots Breakdown -->
+<div class="flex flex-col gap-2.5">
+<span class="font-mono text-label-sm uppercase tracking-widest text-on-surface font-semibold">Hotspot Register:</span>
+<div class="p-3 bg-surface hover:bg-surface-container rounded cursor-pointer transition-colors flex items-start gap-3" id="hotspot-1" onclick="highlightHotspot(1)">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-mono text-xs flex-shrink-0">1</span>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-medium">Silent Hall &amp; Carrels</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5">Absolute silence. 32 partitioned reading desks with warm desk-lamps, no notifications, and direct Himalayan light from north windows.</p>
+</div>
+</div>
+<div class="p-3 bg-surface hover:bg-surface-container rounded cursor-pointer transition-colors flex items-start gap-3" id="hotspot-2" onclick="highlightHotspot(2)">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-mono text-xs flex-shrink-0">2</span>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-medium">Reserved Fellow Desks</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5">Dedicated bays for year-long residential research fellows writing papers, monographs, and systems code.</p>
+</div>
+</div>
+<div class="p-3 bg-surface hover:bg-surface-container rounded cursor-pointer transition-colors flex items-start gap-3" id="hotspot-3" onclick="highlightHotspot(3)">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-mono text-xs flex-shrink-0">3</span>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-medium">The Question Board Wall</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5">Physical card lattice. Anyone pins a question they cannot answer; scholars from higher levels write responses or cite literature.</p>
+</div>
+</div>
+<div class="p-3 bg-surface hover:bg-surface-container rounded cursor-pointer transition-colors flex items-start gap-3" id="hotspot-4" onclick="highlightHotspot(4)">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-mono text-xs flex-shrink-0">4</span>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-medium">Acoustic Discussion Rooms</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5">Double-glazed pine cells for 3–5 scholars. Whiteboards, microphone arrays for remote collaborators, and tea flasks.</p>
+</div>
+</div>
+<div class="p-3 bg-surface hover:bg-surface-container rounded cursor-pointer transition-colors flex items-start gap-3" id="hotspot-5" onclick="highlightHotspot(5)">
+<span class="w-5 h-5 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-mono text-xs flex-shrink-0">5</span>
+<div>
+<h4 class="font-headline-sm text-sm text-on-surface font-medium">Stairway Atrium &amp; Espresso Bar</h4>
+<p class="font-body-sm text-xs text-on-surface-variant mt-0.5">The intersection of all three levels. High tables, local herbal teas, fresh pour-overs, and deliberate serendipity.</p>
+</div>
+</div>
+</div>
+<!-- Metric strip -->
+<div class="grid grid-cols-3 gap-2 pt-2 border-t border-outline-variant font-mono text-center">
+<div class="p-2 bg-surface rounded">
+<span class="block text-[9px] uppercase text-on-surface-variant">Floor Area</span>
+<span class="text-xs font-semibold text-on-surface">480 sq.m</span>
+</div>
+<div class="p-2 bg-surface rounded">
+<span class="block text-[9px] uppercase text-on-surface-variant">Max Capacity</span>
+<span class="text-xs font-semibold text-on-surface">120 Scholars</span>
+</div>
+<div class="p-2 bg-surface rounded">
+<span class="block text-[9px] uppercase text-on-surface-variant">Access Scheme</span>
+<span class="text-xs font-semibold text-secondary">Open Pass</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: THREE PATHS THROUGH ONE BUILDING (Swimlane Chronogram) -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-desktop py-24">
+<div class="flex flex-col gap-3 mb-12">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-on-surface-variant">04 / CHRONOGRAM &amp; USAGE · COMPOSITES, NOT REAL PEOPLE</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
+        Three paths through one building.
+      </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+        How different minds trace the floors across a single fourteen-hour day. The structure prevents isolation: every discipline intersects in common zones.
+      </p>
+</div>
+<!-- Timeline Chronogram Container -->
+<div class="w-full bg-surface-container-low p-6 lg:p-10 rounded-lg overflow-x-auto">
+<div class="min-w-[900px] flex flex-col gap-8">
+<!-- Time Markers Header -->
+<div class="grid grid-cols-8 gap-4 pb-4 font-mono text-label-sm tracking-widest text-on-surface-variant border-b border-outline-variant/60">
+<div>07:00</div>
+<div>09:00</div>
+<div>11:00</div>
+<div>13:00</div>
+<div>15:00</div>
+<div>17:00</div>
+<div>19:00</div>
+<div>21:00</div>
+</div>
+<!-- Swimlane 1: The Graduate -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="font-mono text-label-sm font-semibold px-2.5 py-1 bg-surface rounded text-on-surface uppercase">PATH 01</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">A Graduate Fellow</span>
+</div>
+<span class="font-mono text-label-sm text-secondary">PASSPORT RECORD: #FLW-881</span>
+</div>
+<div class="relative grid grid-cols-8 gap-4 bg-surface p-4 rounded-lg items-center">
+<!-- Vermilion dynamic path indicator spanning 7AM to 8PM -->
+<div class="col-span-3 bg-secondary/10 p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL 1 · SILENT HALL</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Morning paper review &amp; mathematical proof parsing in north carrels.</span>
+</div>
+<div class="col-span-2 bg-surface-container p-3 rounded flex flex-col">
+<span class="font-mono text-[10px] text-on-surface-variant">LVL 1 · ATRIUM CAFÉ</span>
+<span class="font-body-sm text-xs text-on-surface mt-1">Lunch table with visiting materials scientist.</span>
+</div>
+<div class="col-span-2 bg-secondary/15 p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL G · POD 2</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Teaches linear algebra pod to 6 local students.</span>
+</div>
+<div class="col-span-1 bg-surface-container-high p-3 rounded flex flex-col">
+<span class="font-mono text-[10px] text-on-surface">LVL 2</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-1">Lab compute wrap-up.</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono text-[11px] text-on-surface-variant px-2">
+<span>Trace: Level 1 ➔ Level G ➔ Level 2</span>
+<span class="italic font-headline-sm text-xs text-secondary">"His Passport tracks both what he masters and what he teaches."</span>
+</div>
+</div>
+<!-- Swimlane 2: The 17-Year-Old Local Student -->
+<div class="flex flex-col gap-3 pt-4 border-t border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="font-mono text-label-sm font-semibold px-2.5 py-1 bg-surface rounded text-on-surface uppercase">PATH 02</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">A 17-Year-Old Scholar</span>
+</div>
+<span class="font-mono text-label-sm text-on-surface-variant">GOVT HIGH SCHOOL · EVENING SCHOLAR</span>
+</div>
+<div class="relative grid grid-cols-8 gap-4 bg-surface p-4 rounded-lg items-center">
+<div class="col-span-2 opacity-40 font-mono text-xs text-center flex items-center justify-center">
+<span>(Morning at State School)</span>
+</div>
+<div class="col-span-2 bg-secondary/10 p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL 1 · QUESTION BOARD</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Pins question on Ravi river runoff sensor calibration.</span>
+</div>
+<div class="col-span-2 bg-surface-container p-3 rounded flex flex-col">
+<span class="font-mono text-[10px] text-on-surface">LVL 1 · ROOM D</span>
+<span class="font-body-sm text-xs text-on-surface mt-1">Joins 5 PM discussion led by retired hydrologist.</span>
+</div>
+<div class="col-span-2 bg-secondary/15 p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL 2 · INCUBATOR</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Tests firmware sensor telemetry on Level 2 startup prototype.</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono text-[11px] text-on-surface-variant px-2">
+<span>Trace: Question Board ➔ Discussion Pod ➔ Hardware Testing Deck</span>
+<span class="text-on-surface font-medium">Earned 12 Passport skill verifications in 4 months.</span>
+</div>
+</div>
+<!-- Swimlane 3: The Venture Builder -->
+<div class="flex flex-col gap-3 pt-4 border-t border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="font-mono text-label-sm font-semibold px-2.5 py-1 bg-surface rounded text-on-surface uppercase">PATH 03</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">A Resident Founder</span>
+</div>
+<span class="font-mono text-label-sm text-secondary">LVL 2 RESIDENT · SOLAR METRICS</span>
+</div>
+<div class="relative grid grid-cols-8 gap-4 bg-surface p-4 rounded-lg items-center">
+<div class="col-span-1 opacity-30 font-mono text-xs text-center flex items-center justify-center">
+<span>(Arrival)</span>
+</div>
+<div class="col-span-3 bg-secondary/15 p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL 2 · HARDWARE BENCH</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Assembles low-cost micro-inverter circuit board prototypes.</span>
+</div>
+<div class="col-span-2 bg-surface-container p-3 rounded flex flex-col">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-[10px] text-secondary font-bold">LVL G · TEACHING DUTY</span>
+</div>
+<span class="font-body-sm text-xs text-on-surface mt-1">Fulfils residency clause: 90 mins embedded C tutoring.</span>
+</div>
+<div class="col-span-2 bg-surface-container-high p-3 rounded flex flex-col">
+<span class="font-mono text-[10px] text-on-surface">LVL 1 · RECRUITMENT</span>
+<span class="font-body-sm text-xs text-on-surface mt-1">Interviews Level 1 scholar for paid data engineering apprenticeship.</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-mono text-[11px] text-on-surface-variant px-2">
+<span>Trace: Venture Deck ➔ Community Teaching Pod ➔ Library Hiring</span>
+<span class="font-mono text-secondary">Reciprocity: Mentorship pays for the workspace.</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: THE FLOORS ARE BUILT IN ORDER (Ink nocturnal band) -->
+<section class="w-full bg-primary-container text-inverse-on-surface py-24 my-8">
+<div class="max-w-[1440px] mx-auto px-margin-desktop">
+<div class="flex flex-col gap-3 mb-16">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-tertiary-fixed-dim">05 / SEQUENTIAL ECONOMICS &amp; INSTITUTIONAL DISCIPLINE</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-surface tracking-tight">
+          The floors are built in order.
+        </h2>
+<p class="font-headline-sm text-body-lg text-tertiary-fixed-dim max-w-3xl italic">
+          A gurukul does not rely on venture debt. Each level earns the right to construct the next through verifiable local utility and earned cash flow.
+        </p>
+</div>
+<!-- Sequential Economic Gates -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Gate 1 -->
+<div class="flex flex-col gap-4 p-8 bg-tertiary-container/60 rounded-lg relative">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm tracking-widest text-secondary font-semibold uppercase">MILESTONE GATE 01</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<h3 class="font-headline-md text-headline-md text-surface font-normal">
+            Ground Floor First
+          </h3>
+<p class="font-body-md text-body-sm text-tertiary-fixed-dim leading-relaxed">
+            It pays for the rest. Pod classes, computer literacy, and foundational tutoring generate immediate operating cash flow and community trust from day one.
+          </p>
+<div class="pt-6 mt-auto border-t border-outline/30 font-mono text-label-sm text-tertiary-fixed-dim">
+<span class="block text-[10px] uppercase text-outline-variant">Economic Condition</span>
+<span class="text-surface font-medium">Break-even at 80 local enrollees</span>
+</div>
+</div>
+<!-- Gate 2 -->
+<div class="flex flex-col gap-4 p-8 bg-tertiary-container/60 rounded-lg relative">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm tracking-widest text-secondary font-semibold uppercase">MILESTONE GATE 02</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<h3 class="font-headline-md text-headline-md text-surface font-normal">
+            The Library Follows Demand
+          </h3>
+<p class="font-body-md text-body-sm text-tertiary-fixed-dim leading-relaxed">
+            The Knowledge Commons opens once 250 local scholars subscribe to the monthly quiet study card. Sustains silent reading carrels, book acquisitions, and fellow desks without municipal grants.
+          </p>
+<div class="pt-6 mt-auto border-t border-outline/30 font-mono text-label-sm text-tertiary-fixed-dim">
+<span class="block text-[10px] uppercase text-outline-variant">Economic Condition</span>
+<span class="text-surface font-medium">250 Monthly Reading Cards committed</span>
+</div>
+</div>
+<!-- Gate 3 -->
+<div class="flex flex-col gap-4 p-8 bg-tertiary-container/60 rounded-lg relative">
+<div class="flex items-center justify-between">
+<span class="font-mono text-label-sm tracking-widest text-secondary font-semibold uppercase">MILESTONE GATE 03</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<h3 class="font-headline-md text-headline-md text-surface font-normal">
+            Venture Level When Builders Arrive
+          </h3>
+<p class="font-body-md text-body-sm text-tertiary-fixed-dim leading-relaxed">
+            The top floor is unlocked only when local builders and startups commit to residency in exchange for mentoring younger scholars. No empty incubator real estate.
+          </p>
+<div class="pt-6 mt-auto border-t border-outline/30 font-mono text-label-sm text-tertiary-fixed-dim">
+<span class="block text-[10px] uppercase text-outline-variant">Economic Condition</span>
+<span class="text-surface font-medium">4 Committed teams + 10 hrs/wk teaching</span>
+</div>
+</div>
+</div>
+<!-- Reciprocity formula note -->
+<div class="mt-12 p-6 rounded-lg bg-surface/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-mono text-label-sm text-tertiary-fixed-dim">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">balance</span>
+<span>THE RECIPROCITY FORMULA: (FUNDS EARNED LOCALLY) = (BUILDING EXPANSION BUDGET). NO PHILANTHROPIC DEBT.</span>
+</div>
+<span class="text-secondary font-semibold uppercase tracking-widest">CHAPTER 04 · ARTICLE 9</span>
+</div>
+</div>
+</section>
+<!-- CLOSING CALLOUT & STRIP CTA (Paper) -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-desktop py-20">
+<div class="p-8 lg:p-12 bg-surface-container-low rounded-lg flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+<div class="flex flex-col gap-2 max-w-xl">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary">ARCHIVAL RECORD SY-BLD-01</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">
+          Visit the first centre in Chamba, Himachal Pradesh.
+        </h3>
+<p class="font-body-md text-body-sm text-on-surface-variant">
+          Doors open 06:00 to 22:00 daily. Walk through the three levels, examine the Question Board, or reserve an orientation card with the warden.
+        </p>
+</div>
+<div class="flex flex-wrap items-center gap-4">
+<a class="h-12 px-8 rounded-full bg-primary text-on-primary font-mono text-label-sm uppercase tracking-widest hover:bg-secondary transition-colors inline-flex items-center justify-center" href="#">
+          Visit or enquire
+        </a>
+<a class="h-12 px-8 rounded-full bg-transparent text-on-surface font-mono text-label-sm uppercase tracking-widest hover:bg-surface-container transition-colors inline-flex items-center justify-center" href="#">
+          Teach with us
+        </a>
+</div>
+</div>
+</section>
+</div>
+<script>
+  // Interactive Floor Switching
+  const floorData = {
+    'g': {
+      datum: '±0.00m LEVEL G',
+      levelTag: 'FLOOR G / SECTION 01',
+      badge: 'FOUNDATION & TUITION',
+      title: 'The Learning Commons',
+      desc: 'High-energy pod classrooms, communal tables, and introductory hardware benches. The economic engine that pays for the entire facility.',
+      quote: '"Education begins with direct human voice: pod tuition creates the living pulse that sustains silent scholarship above."',
+      quoteNote: '— PEDAGOGY OF THE GROUND DECK · CH. 01',
+      hotspots: [
+        { num: '1', title: 'Pod Classrooms (A–D)', desc: 'Modular classrooms partitioned by acoustic timber screens for groups of 8 to 12 scholars.' },
+        { num: '2', title: 'Tuition Registry & Desk', desc: 'Where local families book afternoon sessions and pick up printed learning folios.' },
+        { num: '3', title: 'Hardware Repair Bay', desc: 'Soldering irons, test meters, and refurbished laptop drives for digital literacy.' },
+        { num: '4', title: 'Community Hallway Bench', desc: 'Open bench seating facing the central courtyard for parents and visitors.' },
+        { num: '5', title: 'Entrance Vestibule', desc: 'Shoe racks, coat pegs, and daily district weather and river level noticeboard.' }
+      ],
+      area: '520 sq.m',
+      cap: '180 Scholars',
+      access: 'Free & Subsidised'
+    },
+    '1': {
+      datum: '+4.20m LEVEL 1',
+      levelTag: 'FLOOR 1 / SECTION 02',
+      badge: 'PRIMARY STUDY DECK',
+      title: 'The Knowledge Commons',
+      desc: 'A quiet sanctuary balancing deep asynchronous study with curated dialogue. Open to all students holding the Monthly Reading Pass.',
+      quote: '"The café near the stairs is the glue, not a side business: it\'s where people from different floors bump into each other."',
+      quoteNote: '— ARCHITECTURAL PROGRAMME NOTES · FOLIO 04',
+      hotspots: [
+        { num: '1', title: 'Silent Hall & Carrels', desc: 'Absolute silence. 32 partitioned reading desks with warm desk-lamps, no notifications, and direct Himalayan light.' },
+        { num: '2', title: 'Reserved Fellow Desks', desc: 'Dedicated bays for year-long residential research fellows writing papers, monographs, and systems code.' },
+        { num: '3', title: 'The Question Board Wall', desc: 'Physical card lattice. Anyone pins a question they cannot answer; scholars from higher levels write responses.' },
+        { num: '4', title: 'Acoustic Discussion Rooms', desc: 'Double-glazed pine cells for 3–5 scholars. Whiteboards, microphone arrays for remote collaborators.' },
+        { num: '5', title: 'Stairway Atrium & Espresso Bar', desc: 'The intersection of all three levels. High tables, local herbal teas, fresh pour-overs, and deliberate serendipity.' }
+      ],
+      area: '480 sq.m',
+      cap: '120 Scholars',
+      access: 'Open Pass'
+    },
+    '2': {
+      datum: '+8.40m LEVEL 2',
+      levelTag: 'FLOOR 2 / SECTION 03',
+      badge: 'INCUBATION & VENTURE',
+      title: 'The Venture Hub',
+      desc: 'Workbenches, high-speed regional node servers, and incubator desks for hardware builders and software engineers solving Himalayan problems.',
+      quote: '"Founders do not hide behind closed offices: residency demands ten hours of teaching each week in the floors below."',
+      quoteNote: '— THE RECIPROCITY STATUTE · RULE 08',
+      hotspots: [
+        { num: '1', title: 'Rapid Prototyping Workshop', desc: '3D printers, laser cutters, and electronics benches for embedded hardware prototyping.' },
+        { num: '2', title: 'Resident Startup Pods', desc: 'Dedicated studio spaces for teams working on agriculture, energy, and localized AI models.' },
+        { num: '3', title: 'Compute Cluster Rack', desc: 'On-premise small language model training servers powered by rooftop hydro-solar battery storage.' },
+        { num: '4', title: 'Quiet Presentation Room', desc: 'Projection space for architectural walkthroughs, seed demos, and code reviews.' },
+        { num: '5', title: 'The Terrace Overlook', desc: 'Roof deck overlooking the Chamba valley for sunset discussions and founder debriefs.' }
+      ],
+      area: '420 sq.m',
+      cap: '60 Builders',
+      access: 'By Residency'
+    }
+  };
+
+  function switchFloor(floor) {
+    const data = floorData[floor];
+    if (!data) return;
+
+    // Update datum readout
+    document.getElementById('datum-readout').textContent = data.datum;
+
+    // Update buttons
+    ['g', '1', '2'].forEach(f => {
+      const btn = document.getElementById('btn-floor-' + f);
+      if (f === floor) {
+        btn.className = 'px-5 py-1.5 rounded-full font-mono text-label-sm tracking-wider uppercase transition-all duration-200 bg-primary text-on-primary';
+      } else {
+        btn.className = 'px-5 py-1.5 rounded-full font-mono text-label-sm tracking-wider uppercase transition-all duration-200 text-on-surface-variant hover:text-on-surface';
+      }
+    });
+
+    // Update Cutaway SVG dimming
+    ['g', '1', '2'].forEach(f => {
+      const gEl = document.getElementById('svg-floor-' + f);
+      if (gEl) {
+        if (f === floor) {
+          gEl.setAttribute('class', 'transition-opacity duration-300 opacity-100');
+        } else {
+          gEl.setAttribute('class', 'transition-opacity duration-300 opacity-35');
+        }
+      }
+    });
+
+    // Update Dossier Side Panel
+    document.getElementById('dossier-level').textContent = data.levelTag;
+    document.getElementById('dossier-title').textContent = data.title;
+    document.getElementById('dossier-desc').textContent = data.desc;
+  }
+
+  function highlightHotspot(index) {
+    for (let i = 1; i <= 5; i++) {
+      const el = document.getElementById('hotspot-' + i);
+      if (el) {
+        if (i === index) {
+          el.classList.add('bg-surface-container-high', 'scale-[1.02]');
+          el.classList.remove('bg-surface');
+        } else {
+          el.classList.remove('bg-surface-container-high', 'scale-[1.02]');
+          el.classList.add('bg-surface');
+        }
+      }
+    }
+  }
+</script></main><footer class="w-full bg-[#15130F] text-[#F3EEE4] border-t border-[#3A362E]"><div class="max-w-[1440px] mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline pb-16 border-b border-[#3A362E]/70"><div class="md:col-span-5"><span class="font-headline-lg text-headline-lg tracking-tight font-normal text-[#F3EEE4] block">Synapse</span><p class="mt-4 font-headline-sm text-headline-sm italic text-[#CDC6B7] font-normal leading-relaxed">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col md:items-end justify-between self-stretch"><div class="font-mono text-label-sm text-[#CDC6B7]/60 tracking-[0.16em] uppercase">An autonomous sanctuary of learning</div><div class="text-[#CDC6B7] font-body-sm text-body-sm tracking-wide mt-6 md:mt-0">Bootstrapped. Grown only from what it earns.</div></div></div><div class="grid grid-cols-2 md:grid-cols-7 gap-gutter-desktop py-12 border-b border-[#3A362E]/70 font-mono text-[11px] tracking-[0.16em] uppercase"><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-idea" href="#">The Idea</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-building" href="#">The Building</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="fellowship" href="#">Fellowship</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="passport" href="#">Passport</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="centres" href="#">Centres</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="principles" href="#">Principles</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="contact" href="#">Contact</a></div></div><div class="pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 font-body-sm text-body-sm text-[#CDC6B7]/70"><div>Behind the Post Office, Chamba, Himachal Pradesh · 8287248119 · WhatsApp</div><div class="font-mono text-[11px] tracking-widest text-[#CDC6B7]/50 uppercase">© MMXXIV SYNAPSE. ALL RIGHTS PRESERVED.</div></div></div></footer></body></html>

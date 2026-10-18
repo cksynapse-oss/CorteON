@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Synapse — Gurukul for the Age of AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-container-highest": "#e7e2d8",
+        "inverse-on-surface": "#f5f0e6",
+        "secondary-container": "#ff6338",
+        "tertiary": "#000000",
+        "primary-fixed-dim": "#cbc6bf",
+        "inverse-primary": "#cbc6bf",
+        "surface-tint": "#625e58",
+        "outline": "#7b766e",
+        "on-error": "#ffffff",
+        "surface": "#fef9ef",
+        "on-secondary-container": "#5d1200",
+        "surface-container-high": "#ede8de",
+        "error-container": "#ffdad6",
+        "tertiary-fixed-dim": "#cdc6b7",
+        "on-primary": "#ffffff",
+        "on-secondary-fixed-variant": "#881f00",
+        "surface-bright": "#fef9ef",
+        "secondary": "#b22c01",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#898377",
+        "on-primary-fixed": "#1d1b17",
+        "on-tertiary-fixed-variant": "#4b463c",
+        "on-surface-variant": "#4a463f",
+        "on-background": "#1d1c16",
+        "on-error-container": "#93000a",
+        "on-primary-fixed-variant": "#494641",
+        "on-surface": "#1d1c16",
+        "on-secondary": "#ffffff",
+        "surface-variant": "#e7e2d8",
+        "error": "#ba1a1a",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#88837d",
+        "surface-container": "#f2ede3",
+        "outline-variant": "#ccc6bc",
+        "on-secondary-fixed": "#3b0800",
+        "primary-fixed": "#e8e1da",
+        "inverse-surface": "#32302a",
+        "secondary-fixed": "#ffdbd1",
+        "tertiary-container": "#1e1b12",
+        "surface-container-low": "#f8f3e9",
+        "surface-dim": "#dedad0",
+        "tertiary-fixed": "#e9e2d3",
+        "background": "#fef9ef",
+        "on-tertiary-fixed": "#1e1b12",
+        "secondary-fixed-dim": "#ffb5a1",
+        "primary": "#000000",
+        "primary-container": "#1d1b17"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "space-md": "1.5rem",
+        "margin": "1.25rem",
+        "space-sm": "1rem",
+        "margin-desktop": "3rem",
+        "space-xl": "4rem",
+        "space-lg": "2.5rem",
+        "space-xs": "0.5rem",
+        "gutter-desktop": "2.5rem",
+        "gutter": "1.5rem",
+        "space-2xl": "8rem"
+      },
+      "fontFamily": {
+        "headline-lg": ["EB Garamond"],
+        "display-lg": ["EB Garamond"],
+        "body-sm": ["Geist"],
+        "headline-md": ["EB Garamond"],
+        "display-lg-mobile": ["EB Garamond"],
+        "display-xl": ["EB Garamond"],
+        "label-sm": ["Geist"],
+        "body-md": ["Geist"],
+        "display-xl-mobile": ["EB Garamond"],
+        "headline-sm": ["EB Garamond"],
+        "body-lg": ["Geist"],
+        "label-md": ["Geist"],
+        "mono": ["Geist Mono", "monospace"]
+      },
+      "fontSize": {
+        "headline-lg": ["2.75rem", {"lineHeight": "1.15", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg": ["4rem", {"lineHeight": "1.05", "letterSpacing": "-0.025em", "fontWeight": "400"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.55", "fontWeight": "400"}],
+        "headline-md": ["2rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "display-lg-mobile": ["2.5rem", {"lineHeight": "1.12", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-xl": ["5.5rem", {"lineHeight": "1.02", "letterSpacing": "-0.03em", "fontWeight": "400"}],
+        "label-sm": ["0.6875rem", {"lineHeight": "1.3", "letterSpacing": "0.14em", "fontWeight": "500"}],
+        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+        "display-xl-mobile": ["3.25rem", {"lineHeight": "1.08", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+        "headline-sm": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "500"}],
+        "body-lg": ["1.125rem", {"lineHeight": "1.65", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "label-md": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "500"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEE4] border-b border-[#D8D0BF]"><div class="h-20 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-2.5 group" data-path="the-idea" href="#"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-normal">Synapse</span><span aria-hidden="true" class="flex items-center text-secondary"><svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1.2" x1="2" x2="12" y1="7" y2="7"></line><circle cx="7" cy="7" fill="currentColor" r="2.5"></circle></svg></span></a></div><nav class="hidden xl:flex items-center gap-8 font-mono text-[11px] tracking-[0.2em] uppercase" data-active-classes="text-secondary font-medium"><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-idea" href="#">THE IDEA</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-building" href="#">THE BUILDING</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="fellowship" href="#">FELLOWSHIP</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="passport" href="#">PASSPORT</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="centres" href="#">CENTRES</a></nav><div class="flex items-center gap-4"><a class="hidden sm:inline-flex items-center h-10 px-5 rounded-[9999px] border border-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-on-surface hover:bg-[#D8D0BF]/30 hover:text-on-surface transition-colors" data-path="teach-with-us" href="#">Teach with us</a><a class="inline-flex items-center h-10 px-6 rounded-[9999px] bg-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-[#F3EEE4] hover:bg-secondary transition-colors" data-path="visit-or-enquire" href="#">Visit or enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 select-none font-mono text-[11px] text-on-surface-variant/70"><div class="w-px h-8 bg-[#D8D0BF]"></div><div class="flex flex-col items-center gap-3"><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="text-secondary font-semibold">2</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">1</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">G</span></div></div><div class="w-px h-8 bg-[#D8D0BF]"></div><span class="[writing-mode:vertical-rl] font-mono text-[9px] tracking-[0.25em] text-on-surface-variant/50 uppercase mt-1">FLOOR GAUGE</span></aside><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full text-on-surface">
+<!-- ========================================================================= -->
+<!-- 00. ARCHITECTURAL METADATA & DATUM CONTROL STRIP                         -->
+<!-- ========================================================================= -->
+<section class="w-full border-b border-[#D8D0BF] bg-[#F3EEE4]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.16em]">
+<div class="flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block animate-pulse"></span>
+<span class="text-on-surface font-semibold">Architectural Programme · Plate No. 03 / Ground Floor</span>
+<span class="text-[#D8D0BF]">|</span>
+<span class="text-on-surface-variant font-mono">Scale 1:100</span>
+</div>
+<div class="flex items-center gap-4 flex-wrap">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full text-secondary font-mono text-[11px] font-semibold border border-[#D8D0BF]">
+<span>LEVEL G — COMMONS</span>
+<span class="text-[9px] text-on-surface-variant">(0.00m)</span>
+</div>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" href="#">Level 1 — Knowledge (+4.20m)</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" href="#">Level 2 — Venture (+8.40m)</a>
+<span class="text-[#D8D0BF] hidden md:inline">|</span>
+<span class="font-serif italic normal-case tracking-normal text-on-surface-variant font-normal text-sm hidden lg:inline">सीखो · सिखाओ · बनाओ · दिखाओ</span>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- HERO / SECTION 01: PEDAGOGICAL ARCHITECTURE                              -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] pt-16 pb-24 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Section Tag -->
+<div class="flex items-center gap-3 mb-8">
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold">Floor G · Section 01</span>
+<span class="w-12 h-px bg-[#D8D0BF]"></span>
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-on-surface-variant">Pedagogical Architecture</span>
+</div>
+<!-- Main Hero Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-gutter-desktop items-start">
+<!-- Left: Editorial Headline & Narrative -->
+<div class="lg:col-span-6 flex flex-col justify-between">
+<div>
+<h1 class="font-display-xl text-display-xl tracking-tight text-on-surface">
+              Small groups. A guide who <em class="italic text-secondary font-normal font-display-xl">knows every child.</em>
+</h1>
+<p class="mt-8 font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+              Pods of four to six, not an anonymous lecture hall of a hundred. Every table has a human face, a shared problem, and software that strictly refuses to do the thinking for them.
+            </p>
+</div>
+<!-- Ground Floor Micro-Inventory Card -->
+<div class="mt-12 pt-8 border-t border-[#D8D0BF] grid grid-cols-3 gap-6 font-mono text-[11px] uppercase tracking-wider text-on-surface-variant">
+<div>
+<span class="block text-secondary font-semibold text-sm mb-1">06 PODS</span>
+<span class="text-on-surface/80">Max 6 Scholars Each</span>
+</div>
+<div>
+<span class="block text-secondary font-semibold text-sm mb-1">1:6 RATIO</span>
+<span class="text-on-surface/80">Continuous Human Loop</span>
+</div>
+<div>
+<span class="block text-secondary font-semibold text-sm mb-1">45 MIN</span>
+<span class="text-on-surface/80">Circuit Dwell Cadence</span>
+</div>
+</div>
+</div>
+<!-- Right: Technical Ink Architectural Floor Plan (Ground Floor Commons) -->
+<div class="lg:col-span-6 bg-surface-container-low p-6 sm:p-8 rounded-lg border border-[#D8D0BF] flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between pb-4 border-b border-[#D8D0BF] font-mono text-[10px] uppercase tracking-[0.2em] text-on-surface-variant">
+<span>FIGURE 01.A — PLAN METRIC G.00</span>
+<span class="text-secondary font-semibold">Active Guide Trajectory (Live)</span>
+</div>
+<!-- Architectural Blueprint Graphic (SVG Vector Plan) -->
+<div class="my-6 relative w-full aspect-[4/3] bg-surface rounded border border-[#D8D0BF]/80 p-4 select-none">
+<!-- Grid Background Lines -->
+<svg class="absolute inset-0 w-full h-full stroke-[#D8D0BF]/40" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="32" id="arch-grid" patternunits="userSpaceOnUse" width="32">
+<path d="M 32 0 L 0 0 0 32" fill="none" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#arch-grid)" height="100%" width="100%"></rect>
+</svg>
+<!-- Interactive Floor Layout Diagram -->
+<svg class="w-full h-full relative z-10" fill="none" viewbox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+<!-- Outer Wall Perimeter -->
+<rect height="410" stroke="#15130F" stroke-dasharray="4 2" stroke-width="2" width="560" x="20" y="20"></rect>
+<rect height="398" stroke="#D8D0BF" stroke-width="1" width="548" x="26" y="26"></rect>
+<!-- Garden Walkout threshold -->
+<line stroke="#F3EEE4" stroke-width="4" x1="20" x2="20" y1="180" y2="280"></line>
+<text fill="#7b766e" font-family="Geist Mono" font-size="8" letter-spacing="2" transform="rotate(-90 28 235)" x="28" y="235">GARDEN WALKOUT</text>
+<!-- Central Communal Blackboard / Hearth -->
+<rect fill="#15130F" height="12" width="100" x="250" y="32"></rect>
+<text fill="#F3EEE4" font-family="Geist Mono" font-size="7" letter-spacing="1" x="265" y="41">CENTRAL BOARD</text>
+<!-- Diagnostic Nook -->
+<rect fill="#EDE8DE" fill-opacity="0.4" height="80" stroke="#7b766e" stroke-dasharray="2 2" stroke-width="1" width="130" x="440" y="30"></rect>
+<text fill="#15130F" font-family="Geist Mono" font-size="7" font-weight="600" x="450" y="50">DIAGNOSTIC NOOK</text>
+<circle cx="505" cy="75" r="14" stroke="#15130F" stroke-dasharray="2 2" stroke-width="1"></circle>
+<circle cx="505" cy="75" fill="#15130F" r="3"></circle>
+<!-- POD 01: Algebra & Reasoning -->
+<g transform="translate(100, 100)">
+<circle cx="45" cy="45" fill="#F3EEE4" r="36" stroke="#15130F" stroke-width="1.5"></circle>
+<circle cx="45" cy="45" fill="#EDE8DE" r="18" stroke="#D8D0BF"></circle>
+<!-- 5 seated scholar nodes -->
+<circle cx="45" cy="3" fill="#15130F" r="5"></circle>
+<circle cx="85" cy="30" fill="#15130F" r="5"></circle>
+<circle cx="72" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="18" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="5" cy="30" fill="#15130F" r="5"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="8" font-weight="600" x="0" y="-12">POD 01 (ALGEBRA)</text>
+</g>
+<!-- POD 02: Physics Foundations -->
+<g transform="translate(290, 110)">
+<circle cx="45" cy="45" fill="#F3EEE4" r="36" stroke="#15130F" stroke-width="1.5"></circle>
+<circle cx="45" cy="45" fill="#EDE8DE" r="18" stroke="#D8D0BF"></circle>
+<circle cx="45" cy="3" fill="#15130F" r="5"></circle>
+<circle cx="85" cy="30" fill="#15130F" r="5"></circle>
+<circle cx="72" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="18" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="5" cy="30" fill="#15130F" r="5"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="8" font-weight="600" x="-5" y="-12">POD 02 (PHYSICS)</text>
+</g>
+<!-- POD 03: Vernacular Grammar & Logic -->
+<g transform="translate(90, 270)">
+<circle cx="45" cy="45" fill="#F3EEE4" r="36" stroke="#15130F" stroke-width="1.5"></circle>
+<circle cx="45" cy="45" fill="#EDE8DE" r="18" stroke="#D8D0BF"></circle>
+<circle cx="45" cy="3" fill="#15130F" r="5"></circle>
+<circle cx="85" cy="30" fill="#15130F" r="5"></circle>
+<circle cx="72" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="18" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="5" cy="30" fill="#15130F" r="5"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="8" font-weight="600" x="-5" y="105">POD 03 (VERNACULAR)</text>
+</g>
+<!-- POD 04: Applied Natural Sciences -->
+<g transform="translate(280, 275)">
+<circle cx="45" cy="45" fill="#F3EEE4" r="36" stroke="#15130F" stroke-width="1.5"></circle>
+<circle cx="45" cy="45" fill="#EDE8DE" r="18" stroke="#D8D0BF"></circle>
+<circle cx="45" cy="3" fill="#15130F" r="5"></circle>
+<circle cx="85" cy="30" fill="#15130F" r="5"></circle>
+<circle cx="72" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="18" cy="76" fill="#15130F" r="5"></circle>
+<circle cx="5" cy="30" fill="#15130F" r="5"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="8" font-weight="600" x="0" y="105">POD 04 (SCIENCES)</text>
+</g>
+<!-- POD 05 & 06 (Quiet Study Cells / Research Nodes) -->
+<g transform="translate(450, 180)">
+<rect fill="#F8F3E9" height="60" stroke="#15130F" stroke-width="1" width="85" x="0" y="0"></rect>
+<circle cx="42" cy="30" r="12" stroke="#D8D0BF" stroke-width="1"></circle>
+<circle cx="42" cy="10" fill="#15130F" r="4"></circle>
+<circle cx="42" cy="50" fill="#15130F" r="4"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="7" x="6" y="-6">POD 05 (PAIRS)</text>
+</g>
+<g transform="translate(450, 280)">
+<rect fill="#F8F3E9" height="60" stroke="#15130F" stroke-width="1" width="85" x="0" y="0"></rect>
+<circle cx="42" cy="30" r="12" stroke="#D8D0BF" stroke-width="1"></circle>
+<circle cx="42" cy="10" fill="#15130F" r="4"></circle>
+<circle cx="42" cy="50" fill="#15130F" r="4"></circle>
+<text fill="#15130F" font-family="Geist Mono" font-size="7" x="6" y="-6">POD 06 (LOGIC)</text>
+</g>
+<!-- Spark Continuous Thread: The Guide's Reasoning Circuit -->
+<path d="M 505 75 C 400 60, 370 140, 335 155 C 290 170, 200 130, 145 145 C 100 160, 110 250, 135 315 C 160 380, 260 360, 325 320 C 370 290, 420 220, 450 210" fill="none" stroke="#D9481F" stroke-dasharray="6 3" stroke-width="2.5"></path>
+<!-- Pulsing Live Guide Marker at Pod 02 -->
+<circle cx="335" cy="155" fill="#D9481F" fill-opacity="0.25" r="9">
+<animate attributename="r" dur="3s" repeatcount="indefinite" values="8;16;8"></animate>
+<animate attributename="opacity" dur="3s" repeatcount="indefinite" values="0.8;0;0.8"></animate>
+</circle>
+<circle cx="335" cy="155" fill="#D9481F" r="5" stroke="#F3EEE4" stroke-width="1.5"></circle>
+<text fill="#D9481F" font-family="Geist Mono" font-size="8" font-weight="700" x="350" y="158">GUIDE: AT POD 02</text>
+</svg>
+</div>
+<!-- Caption underneath the plan -->
+<div class="flex items-center justify-between text-on-surface-variant font-mono text-[10px] uppercase tracking-[0.14em] pt-3 border-t border-[#D8D0BF]">
+<span>Pods, not a hall of a hundred</span>
+<span class="text-on-surface font-semibold">Max 6 Scholars per Guide</span>
+<span>Reasoning Circuit v2.4</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 01 — THE HUMAN STANDARD (Two-Column Editorial)                    -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] py-28 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Eyebrow -->
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-6">
+        01 / The Human Standard
+      </div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-gutter-desktop items-start">
+<!-- Left: Statement -->
+<div class="lg:col-span-5">
+<h2 class="font-display-lg text-display-lg tracking-tight text-on-surface leading-tight">
+            The guide asks. The guide <em class="italic text-secondary font-normal font-display-lg">doesn’t tell.</em>
+</h2>
+<div class="mt-12 p-6 bg-surface-container rounded border-l-2 border-secondary font-headline-sm text-headline-sm italic text-on-surface/90">
+            “A guide’s job is to be needed less, over time.”
+          </div>
+<p class="mt-6 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            Every teacher at Synapse has undergone rigorous training in socratic deconstruction. Their mandate is not theatrical performance on a raised dais, but precise diagnosis at eye level.
+          </p>
+</div>
+<!-- Right: 4 Deliberate Principles with Hairlines -->
+<div class="lg:col-span-7 flex flex-col">
+<!-- Principle 1 -->
+<div class="py-8 border-t border-[#D8D0BF] flex gap-6 items-start">
+<span class="font-mono text-secondary font-semibold text-lg leading-none pt-1">01</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-normal">
+                Asks questions instead of giving answers.
+              </h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant">
+                When a student falters, the guide does not write the next line. They offer a constraint, a counterexample, or a framing question that forces the student’s internal cognitive loop to re-engage.
+              </p>
+</div>
+</div>
+<!-- Principle 2 -->
+<div class="py-8 border-t border-[#D8D0BF] flex gap-6 items-start">
+<span class="font-mono text-secondary font-semibold text-lg leading-none pt-1">02</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-normal">
+                Notices exactly where a child is stuck.
+              </h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant">
+                We diagnose cognitive resistance with clinical specificity: is the barrier linguistic vocabulary, symbolic notation, or conceptual conviction? A student struggling with vectors is rarely failing at math; they are failing at spatial translation.
+              </p>
+</div>
+</div>
+<!-- Principle 3 -->
+<div class="py-8 border-t border-[#D8D0BF] flex gap-6 items-start">
+<span class="font-mono text-secondary font-semibold text-lg leading-none pt-1">03</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-normal">
+                Explains first principles when needed.
+              </h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant">
+                Coaching mills drill rote shortcuts and formula checklists that crumble under unfamiliar problem geometries. Synapse guides steer continuously back to foundational axioms until reasoning becomes intuitive.
+              </p>
+</div>
+</div>
+<!-- Principle 4 -->
+<div class="py-8 border-t border-b border-[#D8D0BF] flex gap-6 items-start">
+<span class="font-mono text-secondary font-semibold text-lg leading-none pt-1">04</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-normal">
+                Holds a high standard, kindly.
+              </h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant">
+                Refuses sloppy working, celebrates structural elegance, and never shames struggle. The pod is a sanctuary where making an error is treated as raw data for architectural reconstruction.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 02 — MARKS AND A BODY OF WORK (Dual Verification)                 -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] py-28 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Eyebrow & Intro -->
+<div class="max-w-3xl mb-16">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-3">
+          02 / Dual Verification
+        </div>
+<h2 class="font-display-lg text-display-lg tracking-tight text-on-surface">
+          Marks stay important. The <em class="italic text-secondary font-normal font-display-lg">portfolio</em> is what is different.
+        </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant">
+          Exams matter for children’s futures, so we prepare seriously and rigorously. But an exam score only measures speed on fixed patterns; a portfolio proves you can build when there is no answer key.
+        </p>
+</div>
+<!-- Split Card Container -->
+<div class="grid grid-cols-1 lg:grid-cols-12 bg-surface-container rounded-lg border border-[#D8D0BF] overflow-hidden">
+<!-- Left Half: Marks (Academic Mastery) -->
+<div class="lg:col-span-6 p-8 sm:p-10 border-b lg:border-b-0 lg:border-r border-[#D8D0BF] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-6 border-b border-[#D8D0BF]">
+<div>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-semibold block">METRIC DOMAIN I</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Marks &amp; Academic Rigour</h3>
+</div>
+<span class="material-symbols-outlined text-secondary text-2xl">verified</span>
+</div>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant">
+              Systematic diagnostic checkpoints calibrated to CBSE, ICSE, JEE, and Olympiad standards. No cramming overnight; daily mastery thresholds.
+            </p>
+<!-- Academic Progression Curves & Data -->
+<div class="mt-8 space-y-6">
+<!-- Subject 1: Discrete & Pure Math -->
+<div>
+<div class="flex justify-between font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-on-surface font-medium">Applied &amp; Pure Mathematics</span>
+<span class="text-secondary font-semibold">96th Percentile Target</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[88%]"></div>
+<div class="bg-secondary h-full w-[8%]"></div>
+</div>
+<span class="block mt-1 font-mono text-[10px] text-on-surface-variant">Proof deconstruction · Calculus · Modular arithmetic</span>
+</div>
+<!-- Subject 2: Natural Sciences -->
+<div>
+<div class="flex justify-between font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-on-surface font-medium">Physical Sciences &amp; Computation</span>
+<span class="text-secondary font-semibold">94th Percentile Target</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[82%]"></div>
+<div class="bg-secondary h-full w-[10%]"></div>
+</div>
+<span class="block mt-1 font-mono text-[10px] text-on-surface-variant">Thermodynamics · Circuit schematics · Python mechanics</span>
+</div>
+<!-- Subject 3: Vernacular Grammar & Rhetoric -->
+<div>
+<div class="flex justify-between font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-on-surface font-medium">Bilingual Rhetoric &amp; Reasoning</span>
+<span class="text-secondary font-semibold">98th Percentile Target</span>
+</div>
+<div class="w-full h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[92%]"></div>
+<div class="bg-secondary h-full w-[6%]"></div>
+</div>
+<span class="block mt-1 font-mono text-[10px] text-on-surface-variant">Hindi expository essay · Formal English debate synthesis</span>
+</div>
+</div>
+</div>
+<!-- Foundation Stats Strip -->
+<div class="mt-10 pt-6 border-t border-[#D8D0BF] grid grid-cols-2 gap-4 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+<div>
+<span class="text-on-surface font-bold block text-sm">ZERO HEURISTICS</span>
+<span>All claims proven from axioms</span>
+</div>
+<div>
+<span class="text-on-surface font-bold block text-sm">WEEKLY DIAGNOSTIC</span>
+<span>Granular error-taxonomy audit</span>
+</div>
+</div>
+</div>
+<!-- Right Half: Portfolio (Public Work) -->
+<div class="lg:col-span-6 p-8 sm:p-10 flex flex-col justify-between bg-surface-container-low">
+<div>
+<div class="flex items-center justify-between pb-6 border-b border-[#D8D0BF]">
+<div>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-semibold block">METRIC DOMAIN II</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Portfolio (Public Artifacts)</h3>
+</div>
+<span class="px-2.5 py-1 rounded bg-[#15130F] text-[#F3EEE4] font-mono text-[9px] uppercase tracking-widest font-medium">Synapse Passport Verified</span>
+</div>
+<p class="mt-6 font-body-md text-body-md text-on-surface-variant">
+              Every student creates public artifacts anchored in the geography of Himachal Pradesh. Proof that knowledge has escaped the textbook.
+            </p>
+<!-- Stack of 3 Crisp Project Artifacts -->
+<div class="mt-6 space-y-4">
+<!-- Artifact 1 -->
+<div class="p-4 bg-surface rounded border border-[#D8D0BF] hover:border-secondary transition-colors group">
+<div class="flex items-start justify-between">
+<span class="font-mono text-[10px] uppercase tracking-widest text-secondary font-semibold">Artifact 01 · Hydrology</span>
+<span class="font-mono text-[10px] text-on-surface-variant">TERM 2 · 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-secondary transition-colors mt-1">
+                  Ravi River Seasonal Runoff Micro-Analysis
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  12-page open dataset, hydrological sensor code, and topological flood risk map presented to the local administration.
+                </p>
+<div class="mt-3 flex items-center gap-2 font-mono text-[9px] uppercase text-on-surface-variant/80 tracking-widest">
+<span class="px-2 py-0.5 bg-surface-container rounded">PYTHON</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">GIS METRICS</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">PUBLIC DEMO</span>
+</div>
+</div>
+<!-- Artifact 2 -->
+<div class="p-4 bg-surface rounded border border-[#D8D0BF] hover:border-secondary transition-colors group">
+<div class="flex items-start justify-between">
+<span class="font-mono text-[10px] uppercase tracking-widest text-secondary font-semibold">Artifact 02 · Electrical Hardware</span>
+<span class="font-mono text-[10px] text-on-surface-variant">TERM 3 · 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-secondary transition-colors mt-1">
+                  Low-Cost Solar Inverter Telemetry Rig
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Fabricated telemetry bench testing voltage drops across cold alpine nights using repurposed microcontrollers.
+                </p>
+<div class="mt-3 flex items-center gap-2 font-mono text-[9px] uppercase text-on-surface-variant/80 tracking-widest">
+<span class="px-2 py-0.5 bg-surface-container rounded">EMBEDDED C</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">PCB BENCH</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">LEVEL 2 LAB</span>
+</div>
+</div>
+<!-- Artifact 3 -->
+<div class="p-4 bg-surface rounded border border-[#D8D0BF] hover:border-secondary transition-colors group">
+<div class="flex items-start justify-between">
+<span class="font-mono text-[10px] uppercase tracking-widest text-secondary font-semibold">Artifact 03 · Archival Audio</span>
+<span class="font-mono text-[10px] text-on-surface-variant">TERM 1 · 2024</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-normal group-hover:text-secondary transition-colors mt-1">
+                  Oral History of Chamba Wood &amp; Metal Guilds
+                </h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+                  Bilingual field recordings, architectural sketches of traditional joinery, and published web monograph.
+                </p>
+<div class="mt-3 flex items-center gap-2 font-mono text-[9px] uppercase text-on-surface-variant/80 tracking-widest">
+<span class="px-2 py-0.5 bg-surface-container rounded">ETHNOGRAPHY</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">AUDIO ESSAY</span>
+<span class="px-2 py-0.5 bg-surface-container rounded">ARCHIVED</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#D8D0BF] flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-on-surface-variant">
+<span>PASSPORT SPEC: V3.2</span>
+<span class="text-on-surface font-semibold">ALL ARTIFACTS IMMUTABLY SIGNED</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 03 — THE STUDENT JOURNEY (Continuous Thread Stepper)              -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] py-28 border-b border-[#D8D0BF] overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Eyebrow -->
+<div class="max-w-3xl mb-16">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-3">
+          03 / The Progression
+        </div>
+<h2 class="font-display-lg text-display-lg tracking-tight text-on-surface">
+          From diagnostic baseline to district <em class="italic text-secondary font-normal font-display-lg">mentor.</em>
+</h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant">
+          No child stays an audience member forever. The journey is structured as an apprenticeship of increasing responsibility, culminating in teaching others.
+        </p>
+</div>
+<!-- Horizontal Stepper Track with 2px Continuous Spark Thread -->
+<div class="relative mt-12 pt-8">
+<!-- The Continuous Thread Line -->
+<div class="hidden lg:block absolute top-[52px] left-4 right-4 h-[2px] bg-[#D8D0BF] z-0">
+<div class="h-full bg-secondary w-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 relative z-10">
+<!-- Station 01: Baseline -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-[#15130F] text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">01</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Baseline</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Diagnostic</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  A short, pressure-free diagnostic on reasoning, reading, and arithmetic. It places learners precisely; it never excludes them.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">DAY 01 · NO GRADES</span>
+</div>
+</div>
+<!-- Station 02: Foundation -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-[#15130F] text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">02</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Foundation</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Axiomatic Pod</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Core mathematical logic, clear sentence construction, and disciplined problem deconstruction in small groups.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">MONTHS 01–03 · POD WORK</span>
+</div>
+</div>
+<!-- Station 03: Studio -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-[#15130F] text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">03</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Studio</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">District Problem</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  A builder, two fellows, and four students tackle one genuine valley challenge, ending in a public exhibition.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">MONTHS 04–06 · PUBLIC WORK</span>
+</div>
+</div>
+<!-- Station 04: Apprentice -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-[#15130F] text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">04</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Apprentice</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Level 1 &amp; 2 Labs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Shadowing research fellows on Floor 1 and testing hardware benches on Floor 2. Theoretical rigor meets physical tooling.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">MONTHS 07–12 · BENCH CRAFT</span>
+</div>
+</div>
+<!-- Station 05: Fellow -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-[#15130F] text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">05</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Fellow</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Teaching Reciprocity</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Mastered scholars spend one mandatory hour daily guiding younger pods. You never understand an idea until you can explain it.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">YEAR 02 · GIVING BACK</span>
+</div>
+</div>
+<!-- Station 06: Mentor -->
+<div class="flex flex-col">
+<div class="flex items-center gap-3 mb-4">
+<span class="w-7 h-7 rounded-full bg-secondary text-[#F3EEE4] flex items-center justify-center font-mono text-xs font-semibold ring-4 ring-[#F3EEE4]">06</span>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-bold">Mentor</span>
+</div>
+<div class="p-5 bg-surface-container rounded border border-[#D8D0BF] flex-1 flex flex-col justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Autonomous Scholar</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                  Leading open communal inquiry boards, mentoring local enterprise founders, and publishing district white papers.
+                </p>
+</div>
+<span class="font-mono text-[9px] uppercase tracking-widest text-on-surface-variant/70 mt-4 block pt-2 border-t border-[#D8D0BF]/60">PERMANENT ALUMNI GUILD</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 04 — WHAT IS TAUGHT: CURRICULAR ARCHITECTURE                      -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] py-28 border-b border-[#D8D0BF]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Eyebrow -->
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-3">
+        04 / Curricular Architecture
+      </div>
+<h2 class="font-display-lg text-display-lg tracking-tight text-on-surface max-w-3xl">
+        Curriculum built in five deliberate <em class="italic text-secondary font-normal font-display-lg">layers.</em>
+</h2>
+<!-- Tab Navigation Strip -->
+<div class="mt-12 flex flex-wrap gap-2 border-b border-[#D8D0BF] pb-4 font-mono text-[11px] uppercase tracking-[0.16em]">
+<button class="px-5 py-2.5 rounded-full border border-[#D8D0BF] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+          School Subjects
+        </button>
+<button class="px-5 py-2.5 rounded-full bg-[#15130F] text-[#F3EEE4] font-semibold flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Exam Preparation (Active)
+        </button>
+<button class="px-5 py-2.5 rounded-full border border-[#D8D0BF] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+          Common Core
+        </button>
+<button class="px-5 py-2.5 rounded-full border border-[#D8D0BF] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+          Certificates &amp; Skills
+        </button>
+<button class="px-5 py-2.5 rounded-full border border-[#D8D0BF] text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+          The Local Layer
+        </button>
+</div>
+<!-- Active Tab Pane: Exam Preparation Detailed Architecture -->
+<div class="mt-10 p-8 sm:p-12 bg-surface-container rounded-lg border border-[#D8D0BF]">
+<!-- Target Exam Chips -->
+<div class="flex flex-wrap items-center gap-3 pb-8 border-b border-[#D8D0BF]">
+<span class="font-mono text-[11px] uppercase tracking-widest text-on-surface-variant mr-2">Target Gates:</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">JEE ADVANCED</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">NEET</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">CUET</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">NDA</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">IAT (IISER)</span>
+<span class="px-3 py-1 bg-surface rounded border border-[#D8D0BF] font-mono text-[11px] text-on-surface font-semibold">NEST</span>
+</div>
+<!-- Two Column Content Breakdown -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">01 / The Unified Foundation</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">
+              A single core of reasoning and quantitative grounding powers every entrance exam.
+            </h3>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Standard commercial coaching treats every test as a completely disparate syllabus, forcing children into duplicative, frantic preparation loops. At Synapse, we strip testing down to its mathematical and logical bones. Once a scholar understands invariant conservation laws and symbolic logic, adapting to CUET, NDA or JEE Advanced is simply a question of formatting.
+            </p>
+</div>
+<div>
+<span class="font-mono text-label-sm uppercase tracking-widest text-secondary font-semibold block mb-2">02 / Methodical Calibration</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">
+              Timed paper teardowns without the hysterical panic of coaching mills.
+            </h3>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Every Saturday morning on Floor G features a calibrated full-condition exam block, followed immediately by a two-hour error taxonomy session. Scholars do not just look at scores; they classify errors into three specific bins: reading failure, calculation haste, or foundational void. We address the root cause, never the symptom.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 05 — THE AI TUTOR (Full-Width Ink Dark Section)                   -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-28 border-b border-[#3A362E]">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Eyebrow & Intro -->
+<div class="max-w-3xl mb-16">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-3">
+          05 / AI That Builds Thinking
+        </div>
+<h2 class="font-display-lg text-display-lg tracking-tight text-[#F3EEE4]">
+          Hints before answers. The software that <em class="italic text-secondary font-normal font-display-lg">refuses to spoon-feed.</em>
+</h2>
+<p class="mt-4 font-body-lg text-body-lg text-[#CDC6B7] leading-relaxed">
+          AI carries content, drill permutations, and instant diagnosis. Humans carry attention, moral judgement, and genuine intellectual accountability.
+        </p>
+</div>
+<!-- Rich UI Mockup: The Synapse AI Study Terminal -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+<!-- Left: Interactive Terminal Mockup -->
+<div class="lg:col-span-8 bg-[#1E1B15] rounded-lg border border-[#3A362E] p-6 sm:p-8">
+<!-- Terminal Header -->
+<div class="flex items-center justify-between pb-4 border-b border-[#3A362E] font-mono text-[11px] text-[#CDC6B7]/70 uppercase tracking-widest">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="text-[#F3EEE4] font-medium">SYNAPSE DIALOGUE ENGINE · PROTOCOL 4.2</span>
+</div>
+<span>STATION: POD 02 / BENCH 04</span>
+</div>
+<!-- Problem Card -->
+<div class="mt-6 p-6 bg-[#15130F] rounded border border-[#3A362E]">
+<div class="flex items-center justify-between font-mono text-[10px] uppercase text-secondary tracking-widest mb-2">
+<span>PROBLEM 14.8 · GRAPH ALGORITHMS</span>
+<span class="text-[#CDC6B7]/60">FOUNDATIONAL PROOF</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-[#F3EEE4] font-normal leading-snug">
+              Prove why Dijkstra’s algorithm cannot guarantee minimum-cost shortest paths when a directed graph contains negative edge weights.
+            </p>
+</div>
+<!-- The Hint Ladder (Progressive Disclosure) -->
+<div class="mt-6 space-y-3">
+<span class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7]/60 mb-2">Socratic Hint Ladder (Step 1 of 3)</span>
+<!-- Hint 1: Revealed -->
+<div class="p-4 bg-[#26221B] rounded border-l-2 border-secondary font-body-sm text-body-sm text-[#F3EEE4]">
+<div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-secondary mb-1">
+<span>HINT 1 / CONSTRAINT INVERSION</span>
+<span class="text-[#CDC6B7]/60">REVEALED</span>
+</div>
+              Consider what structural assumption the greedy choice makes the moment a vertex is marked 'visited'. Can an edge traversed later ever reduce that distance if weights are non-negative? What happens when a negative value enters?
+            </div>
+<!-- Hint 2: Locked -->
+<div class="p-4 bg-[#181612] rounded border border-[#3A362E]/60 flex items-center justify-between text-[#CDC6B7]/40 font-mono text-xs">
+<span class="tracking-wide">HINT 2 / COUNTEREXAMPLE GEOMETRY</span>
+<div class="flex items-center gap-1.5 text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Unlocks after formulation attempt</span>
+</div>
+</div>
+<!-- Hint 3: Locked -->
+<div class="p-4 bg-[#181612] rounded border border-[#3A362E]/60 flex items-center justify-between text-[#CDC6B7]/40 font-mono text-xs">
+<span class="tracking-wide">HINT 3 / FORMAL INDUCTIVE STEP</span>
+<div class="flex items-center gap-1.5 text-[10px] uppercase tracking-widest">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+<span>Unlocks after hint 2 analysis</span>
+</div>
+</div>
+</div>
+<!-- Confidence Calibration Slider -->
+<div class="mt-8 pt-6 border-t border-[#3A362E]">
+<div class="flex justify-between font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-[#CDC6B7]">Pre-Submission Confidence Estimation</span>
+<span class="text-secondary font-semibold">72% Confident</span>
+</div>
+<div class="relative w-full h-1.5 bg-[#2E2A23] rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[72%]"></div>
+</div>
+<span class="block mt-2 font-mono text-[10px] text-[#CDC6B7]/60">
+              We track the delta between how sure you feel and your mathematical correctness.
+            </span>
+</div>
+<!-- Actions -->
+<div class="mt-8 pt-6 border-t border-[#3A362E] flex flex-col sm:flex-row items-center justify-between gap-4">
+<button class="w-full sm:w-auto h-11 px-6 rounded-full bg-secondary text-[#F3EEE4] font-label-sm text-label-sm uppercase tracking-widest hover:bg-secondary/90 transition-colors">
+              Submit Working for Synthesis
+            </button>
+<button class="w-full sm:w-auto h-11 px-6 rounded-full border border-[#3A362E] text-[#CDC6B7]/40 font-mono text-[11px] uppercase tracking-widest cursor-not-allowed" disabled="">
+              Show Full Solution (Locked)
+            </button>
+</div>
+</div>
+<!-- Right: 3 Institutional Software Principles & Calibration Diagram -->
+<div class="lg:col-span-4 flex flex-col justify-between space-y-8">
+<div class="space-y-6">
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold block">System Laws</span>
+<div class="p-6 bg-[#1E1B15] rounded border border-[#3A362E]">
+<span class="font-mono text-secondary font-bold text-sm block mb-1">LAW 01</span>
+<h4 class="font-headline-sm text-headline-sm text-[#F3EEE4] font-normal">Think first, then get help.</h4>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] mt-2 leading-relaxed">
+                The software will literally not respond to questions until the student has entered an initial hypothesis or problem breakdown.
+              </p>
+</div>
+<div class="p-6 bg-[#1E1B15] rounded border border-[#3A362E]">
+<span class="font-mono text-secondary font-bold text-sm block mb-1">LAW 02</span>
+<h4 class="font-headline-sm text-headline-sm text-[#F3EEE4] font-normal">Confidence is a skill we calibrate.</h4>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] mt-2 leading-relaxed">
+                Overconfidence leads to careless exam failure; imposter syndrome leads to hesitation. Our calibration graph trains students to know what they know.
+              </p>
+</div>
+<div class="p-6 bg-[#1E1B15] rounded border border-[#3A362E]">
+<span class="font-mono text-secondary font-bold text-sm block mb-1">LAW 03</span>
+<h4 class="font-headline-sm text-headline-sm text-[#F3EEE4] font-normal">The physical paper quiz always wins.</h4>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] mt-2 leading-relaxed">
+                No screen assessment is final. Every digital badge must be defended in person on a wooden desk with a black ink pen before a human guide.
+              </p>
+</div>
+</div>
+<!-- Calibration Metric Sparkline SVG -->
+<div class="p-6 bg-[#1E1B15] rounded border border-[#3A362E] font-mono text-[10px] text-[#CDC6B7]">
+<div class="flex items-center justify-between pb-3 border-b border-[#3A362E]">
+<span>CALIBRATION TRUTH LINE</span>
+<span class="text-secondary font-semibold">Variance: ±4.2%</span>
+</div>
+<div class="py-4">
+<svg class="w-full h-16" fill="none" viewbox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+<!-- 45 Degree Truth Line -->
+<line stroke="#3A362E" stroke-dasharray="3 3" stroke-width="1.5" x1="10" x2="190" y1="50" y2="10"></line>
+<!-- Student Track Curve -->
+<path d="M 10 52 Q 60 48, 100 32 T 190 12" fill="none" stroke="#D9481F" stroke-width="2"></path>
+<circle cx="100" cy="32" fill="#D9481F" r="3"></circle>
+<circle cx="190" cy="12" fill="#D9481F" r="3"></circle>
+</svg>
+</div>
+<div class="flex justify-between text-[9px] uppercase tracking-wider text-[#CDC6B7]/60">
+<span>Under-Confident</span>
+<span>Calibrated Truth</span>
+<span>Over-Confident</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- SECTION 06 — INSTITUTIONAL PACT WITH PARENTS & INVITATION                  -->
+<!-- ========================================================================= -->
+<section class="w-full bg-[#F3EEE4] py-28">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-margin-desktop">
+<!-- Boxed Architectural Pact -->
+<div class="p-8 sm:p-14 bg-surface rounded-lg border border-[#D8D0BF] max-w-4xl mx-auto text-center">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary font-semibold mb-4">
+          06 / Institutional Pact
+        </div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-normal">
+          What we promise parents.
+        </h2>
+<p class="mt-6 font-display-lg text-2xl sm:text-3xl font-serif italic text-on-surface leading-snug">
+          “No rank promises. No inflated billboard claims. Open doors, parents always welcome. Your child will learn to sit with hard problems, write clearly, and build things that outlast an exam.”
+        </p>
+<div class="mt-8 pt-8 border-t border-[#D8D0BF] flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="inline-flex items-center justify-center h-12 px-8 rounded-full bg-secondary text-[#F3EEE4] font-label-sm text-label-sm uppercase tracking-widest hover:bg-[#15130F] transition-colors" href="#">
+            Book a visit to Floor G
+          </a>
+<a class="inline-flex items-center justify-center h-12 px-8 rounded-full border border-[#15130F] text-on-surface font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-container transition-colors" href="#">
+            Talk with a teaching fellow
+          </a>
+</div>
+<div class="mt-8 font-mono text-[11px] uppercase tracking-widest text-on-surface-variant">
+          Visiting Hours: 07:00 – 19:00 Daily · Behind the Post Office, Chamba, Himachal Pradesh
+        </div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-[#15130F] text-[#F3EEE4] border-t border-[#3A362E]"><div class="max-w-[1440px] mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline pb-16 border-b border-[#3A362E]/70"><div class="md:col-span-5"><span class="font-headline-lg text-headline-lg tracking-tight font-normal text-[#F3EEE4] block">Synapse</span><p class="mt-4 font-headline-sm text-headline-sm italic text-[#CDC6B7] font-normal leading-relaxed">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col md:items-end justify-between self-stretch"><div class="font-mono text-label-sm text-[#CDC6B7]/60 tracking-[0.16em] uppercase">An autonomous sanctuary of learning</div><div class="text-[#CDC6B7] font-body-sm text-body-sm tracking-wide mt-6 md:mt-0">Bootstrapped. Grown only from what it earns.</div></div></div><div class="grid grid-cols-2 md:grid-cols-7 gap-gutter-desktop py-12 border-b border-[#3A362E]/70 font-mono text-[11px] tracking-[0.16em] uppercase"><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-idea" href="#">The Idea</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-building" href="#">The Building</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="fellowship" href="#">Fellowship</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="passport" href="#">Passport</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="centres" href="#">Centres</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="principles" href="#">Principles</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="contact" href="#">Contact</a></div></div><div class="pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 font-body-sm text-body-sm text-[#CDC6B7]/70"><div>Behind the Post Office, Chamba, Himachal Pradesh · 8287248119 · WhatsApp</div><div class="font-mono text-[11px] tracking-widest text-[#CDC6B7]/50 uppercase">© MMXXIV SYNAPSE. ALL RIGHTS PRESERVED.</div></div></div></footer></body></html>

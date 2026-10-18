@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Synapse — Gurukul for the Age of AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-variant": "#e7e2d8",
+        "on-primary-container": "#88837d",
+        "surface-container-highest": "#e7e2d8",
+        "tertiary": "#000000",
+        "surface-container-lowest": "#ffffff",
+        "background": "#fef9ef",
+        "primary-fixed-dim": "#cbc6bf",
+        "inverse-on-surface": "#f5f0e6",
+        "secondary": "#b22c01",
+        "outline-variant": "#ccc6bc",
+        "on-surface": "#1d1c16",
+        "error": "#ba1a1a",
+        "secondary-fixed": "#ffdbd1",
+        "surface-container": "#f2ede3",
+        "primary": "#000000",
+        "inverse-surface": "#32302a",
+        "on-tertiary-container": "#898377",
+        "on-surface-variant": "#4a463f",
+        "outline": "#7b766e",
+        "on-primary": "#ffffff",
+        "surface-dim": "#dedad0",
+        "primary-fixed": "#e8e1da",
+        "on-secondary-container": "#5d1200",
+        "on-secondary": "#ffffff",
+        "on-tertiary-fixed": "#1e1b12",
+        "on-tertiary": "#ffffff",
+        "on-error-container": "#93000a",
+        "on-secondary-fixed-variant": "#881f00",
+        "primary-container": "#1d1b17",
+        "secondary-fixed-dim": "#ffb5a1",
+        "on-primary-fixed": "#1d1b17",
+        "error-container": "#ffdad6",
+        "on-secondary-fixed": "#3b0800",
+        "surface-container-high": "#ede8de",
+        "on-background": "#1d1c16",
+        "surface-container-low": "#f8f3e9",
+        "tertiary-container": "#1e1b12",
+        "on-tertiary-fixed-variant": "#4b463c",
+        "inverse-primary": "#cbc6bf",
+        "on-primary-fixed-variant": "#494641",
+        "on-error": "#ffffff",
+        "surface": "#fef9ef",
+        "surface-tint": "#625e58",
+        "surface-bright": "#fef9ef",
+        "tertiary-fixed-dim": "#cdc6b7",
+        "tertiary-fixed": "#e9e2d3",
+        "secondary-container": "#ff6338"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "margin-desktop": "3rem",
+        "space-xl": "4rem",
+        "space-lg": "2.5rem",
+        "margin": "1.25rem",
+        "space-2xl": "8rem",
+        "gutter": "1.5rem",
+        "space-sm": "1rem",
+        "space-md": "1.5rem",
+        "gutter-desktop": "2.5rem",
+        "space-xs": "0.5rem"
+      },
+      "fontFamily": {
+        "label-md": ["Geist"],
+        "body-md": ["Geist"],
+        "display-xl-mobile": ["EB Garamond"],
+        "body-sm": ["Geist"],
+        "label-sm": ["Geist"],
+        "body-lg": ["Geist"],
+        "display-xl": ["EB Garamond"],
+        "headline-lg": ["EB Garamond"],
+        "display-lg-mobile": ["EB Garamond"],
+        "display-lg": ["EB Garamond"],
+        "headline-md": ["EB Garamond"],
+        "headline-sm": ["EB Garamond"],
+        "mono": ["Geist Mono", "monospace"]
+      },
+      "fontSize": {
+        "label-md": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "500"}],
+        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+        "display-xl-mobile": ["3.25rem", {"lineHeight": "1.08", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.55", "fontWeight": "400"}],
+        "label-sm": ["0.6875rem", {"lineHeight": "1.3", "letterSpacing": "0.14em", "fontWeight": "500"}],
+        "body-lg": ["1.125rem", {"lineHeight": "1.65", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "display-xl": ["5.5rem", {"lineHeight": "1.02", "letterSpacing": "-0.03em", "fontWeight": "400"}],
+        "headline-lg": ["2.75rem", {"lineHeight": "1.15", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg-mobile": ["2.5rem", {"lineHeight": "1.12", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg": ["4rem", {"lineHeight": "1.05", "letterSpacing": "-0.025em", "fontWeight": "400"}],
+        "headline-md": ["2rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "headline-sm": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "500"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEE4] border-b border-[#D8D0BF]"><div class="h-20 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between gap-4"><div class="flex items-center gap-3 shrink-0"><a class="flex items-center gap-2.5 group" data-path="the-idea" href="#"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-normal">Synapse</span><span aria-hidden="true" class="flex items-center text-secondary"><svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1.2" x1="2" x2="12" y1="7" y2="7"></line><circle cx="7" cy="7" fill="currentColor" r="2.5"></circle></svg></span></a></div><nav class="hidden 2xl:flex items-center gap-6 font-mono text-[11px] tracking-[0.16em] uppercase shrink-0" data-active-classes="text-secondary font-medium"><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-idea" href="#">THE IDEA</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-building" href="#">THE BUILDING</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-learning-commons" href="#">THE LEARNING COMMONS</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-knowledge-commons" href="#">THE KNOWLEDGE COMMONS</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-venture-hub" href="#">THE VENTURE HUB</a><a aria-current="page" class="transition-colors py-1 text-secondary font-medium" data-path="the-fellowship" href="#">FELLOWSHIP</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="passport" href="#">PASSPORT</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="centres" href="#">CENTRES</a></nav><div class="flex items-center gap-3 shrink-0"><a class="hidden sm:inline-flex items-center h-10 px-4 rounded-[9999px] border border-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-on-surface hover:bg-[#D8D0BF]/30 hover:text-on-surface transition-colors" data-path="teach-with-us" href="#">Teach with us</a><a class="inline-flex items-center h-10 px-5 rounded-[9999px] bg-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-[#F3EEE4] hover:bg-secondary transition-colors" data-path="visit-or-enquire" href="#">Visit or enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 select-none font-mono text-[11px] text-on-surface-variant/70"><div class="w-px h-8 bg-[#D8D0BF]"></div><div class="flex flex-col items-center gap-3"><a class="flex items-center gap-2 relative group cursor-pointer" data-path="the-venture-hub" href="#"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="text-secondary font-semibold">2</span></a><a class="flex items-center gap-2 relative group cursor-pointer" data-path="the-knowledge-commons" href="#"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">1</span></a><a class="flex items-center gap-2 relative group cursor-pointer" data-path="the-learning-commons" href="#"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">G</span></a></div><div class="w-px h-8 bg-[#D8D0BF]"></div><span class="[writing-mode:vertical-rl] font-mono text-[9px] tracking-[0.25em] text-on-surface-variant/50 uppercase mt-1">FLOOR GAUGE</span></aside><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP RUNNING HEAD PLATE / ARCHITECTURAL MONOGRAPH METADATA -->
+<div class="w-full bg-surface-container-low border-b border-outline-variant/60">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop py-3 flex flex-wrap items-center justify-between gap-y-2 text-on-surface-variant font-mono text-[11px] tracking-[0.16em] uppercase">
+<div class="flex items-center gap-3">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-semibold">ARCHITECTURAL PROGRAMME · PLATE NO. 06</span>
+<span class="text-outline-variant">/</span>
+<span>HUMAN ENGINE · FELLOWSHIP CADRE</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden sm:inline text-on-surface-variant/70">DATUM: THE HUMAN SPINE · CROSS-FLOOR LINKAGE</span>
+<span class="text-secondary font-medium tracking-widest text-xs">सीखो · सिखाओ · बनाओ · दिखाओ</span>
+</div>
+</div>
+</div>
+<!-- HERO SECTION: THE HUMAN ENGINE -->
+<section class="relative w-full max-w-[1280px] mx-auto px-margin md:px-margin-desktop pt-16 md:pt-24 pb-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Left Column: Manifesto & Thesis (7 cols) -->
+<div class="lg:col-span-7 flex flex-col justify-between">
+<div>
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-6">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>00 / THE HUMAN ENGINE · GRADUATE TEACHING FELLOWSHIP</span>
+</div>
+<h1 class="font-headline-lg md:font-display-xl text-headline-lg md:text-display-xl text-on-surface font-normal tracking-tight leading-[1.04]">
+            Your hardest years should count, <span class="text-secondary italic">whatever the result.</span>
+</h1>
+<p class="mt-8 font-headline-sm text-headline-sm text-on-surface-variant font-normal leading-relaxed max-w-2xl">
+            Graduates preparing for any government or private career teach one class a day, and leave with verifiable experience, a formal scholarly record, and a dignified way forward.
+          </p>
+<div class="mt-10 flex flex-wrap items-center gap-4 pt-4 border-t border-outline-variant/60">
+<a class="inline-flex items-center h-12 px-7 rounded-full bg-primary font-label-sm text-label-sm uppercase tracking-[0.16em] text-on-primary hover:bg-secondary transition-colors" href="#apply">
+              Apply for Fellowship · Autumn Cycle
+            </a>
+<a class="inline-flex items-center h-12 px-6 rounded-full border border-primary font-label-sm text-label-sm uppercase tracking-[0.16em] text-on-surface hover:bg-surface-variant transition-colors" href="#deal">
+              Examine the Covenant
+            </a>
+</div>
+</div>
+<!-- Metric Anchors -->
+<div class="grid grid-cols-3 gap-6 pt-16 mt-12 border-t border-outline-variant/60">
+<div>
+<div class="font-headline-md text-headline-md font-normal text-on-surface tracking-tight">90 <span class="font-mono text-body-sm text-on-surface-variant">MIN</span></div>
+<div class="font-mono text-[10px] tracking-[0.18em] uppercase text-on-surface-variant mt-1">Daily Teaching Pod</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-normal text-on-surface tracking-tight">1 : 6</div>
+<div class="font-mono text-[10px] tracking-[0.18em] uppercase text-on-surface-variant mt-1">Scholar to Youth Ratio</div>
+</div>
+<div>
+<div class="font-headline-md text-headline-md font-normal text-secondary tracking-tight">100%</div>
+<div class="font-mono text-[10px] tracking-[0.18em] uppercase text-on-surface-variant mt-1">Tuition &amp; Desk Subsidised</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Architectural Schematic Figure 6.1 (5 cols) -->
+<div class="lg:col-span-5 relative mt-8 lg:mt-0">
+<div class="bg-surface-container-low border border-outline-variant/80 p-6 md:p-8 rounded-[4px] relative">
+<!-- Monograph Diagram Header -->
+<div class="flex items-center justify-between pb-4 mb-4 border-b border-outline-variant/60 font-mono text-[10px] tracking-[0.16em] uppercase text-on-surface-variant">
+<span>SECTION CUT · AXONOMETRIC 06.1</span>
+<span class="text-secondary font-semibold">VERMILION CONDUIT ACTIVE</span>
+</div>
+<!-- Vector Diagram: Cross-floor Reciprocal Circuit -->
+<div class="w-full h-80 bg-surface border border-outline-variant/40 rounded-[2px] p-4 relative overflow-hidden flex flex-col justify-between select-none">
+<!-- Floor 1 / Quiet Library Level -->
+<div class="relative z-10 p-3 bg-surface-container/60 border border-outline-variant/60 rounded-[2px]">
+<div class="flex items-center justify-between font-mono text-[9px] tracking-wider text-on-surface-variant uppercase">
+<span class="font-semibold text-on-surface">LEVEL 1 · SILENT STUDY CARREL</span>
+<span class="text-secondary">ELEVATION +4.2M</span>
+</div>
+<div class="mt-2 flex items-center gap-3">
+<div class="w-7 h-7 rounded-full border border-on-surface flex items-center justify-center font-mono text-[10px] text-on-surface">FL</div>
+<div class="flex-1">
+<div class="text-[12px] font-mono text-on-surface font-medium">FELLOW #24 · UPSC / ADVANCED MECHANICS</div>
+<div class="text-[10px] text-on-surface-variant font-mono">Deep prep, thesis synthesis &amp; research carrel 14B</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+</div>
+</div>
+<!-- Inter-Floor Core / Stair Spine with 2px Vermilion Conduit -->
+<div class="relative h-24 my-1 flex items-center justify-center">
+<div class="absolute inset-x-8 top-0 bottom-0 border-x border-dashed border-outline-variant/60 pointer-events-none"></div>
+<!-- Vermilion Thread: The Reciprocal Conduit -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 200 100">
+<line stroke="#b22c01" stroke-linecap="round" stroke-width="2" x1="100" x2="100" y1="0" y2="100"></line>
+<circle cx="100" cy="50" fill="#b22c01" r="3"></circle>
+</svg>
+<div class="relative z-10 px-3 py-1 bg-surface border border-secondary text-secondary font-mono text-[9px] tracking-[0.2em] uppercase rounded-full">
+                TRANSMISSION OF RIGOUR · 17:30 HRS
+              </div>
+</div>
+<!-- Floor G / Pod Classroom Level -->
+<div class="relative z-10 p-3 bg-surface-container/60 border border-outline-variant/60 rounded-[2px]">
+<div class="flex items-center justify-between font-mono text-[9px] tracking-wider text-on-surface-variant uppercase">
+<span class="font-semibold text-on-surface">LEVEL G · POD CLASSROOM 03</span>
+<span class="text-on-surface-variant">ELEVATION ±0.0M</span>
+</div>
+<div class="mt-2 flex items-center justify-between">
+<div class="flex -space-x-1.5 overflow-hidden">
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-[9px] font-mono">S1</div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-[9px] font-mono">S2</div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-[9px] font-mono">S3</div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-[9px] font-mono">S4</div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline-variant flex items-center justify-center text-[9px] font-mono">S5</div>
+<div class="w-6 h-6 rounded-full bg-secondary-fixed text-on-secondary-fixed border border-secondary flex items-center justify-center text-[9px] font-mono">S6</div>
+</div>
+<div class="text-right font-mono text-[10px] text-on-surface">
+<span class="text-secondary font-semibold">6 LEARNERS</span> · FOUNDATIONAL CALCULUS
+                </div>
+</div>
+</div>
+</div>
+<!-- Architectural Diagram Caption -->
+<div class="mt-4 pt-3 border-t border-outline-variant/60 flex items-start gap-3">
+<span class="font-mono text-secondary text-xs font-semibold">FIG. 6.1</span>
+<p class="font-mono text-[10px] leading-relaxed uppercase tracking-[0.14em] text-on-surface-variant">
+              The Reciprocal Circuit: Contemplative isolation on Level 1 directly powers civic instruction on Floor G. No cognitive leakage; no unreciprocated study hours.
+            </p>
+</div>
+</div>
+<div class="mt-4 px-2 flex items-center justify-between font-mono text-[10px] text-on-surface-variant/70 tracking-widest uppercase">
+<span>CHAMBA DISTRICT HEADQUARTERS</span>
+<span>LONGITUDE 76.1258° E · LATITUDE 32.5534° N</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 01 — THE DEAL / RECIPROCAL COVENANT -->
+<section class="w-full border-t border-outline-variant/60 bg-surface-container-low py-20 md:py-28" id="deal">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop">
+<div class="max-w-3xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>01 / RECIPROCAL COVENANT · THE FELLOWSHIP COMPACT</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+          Fellows are <span class="text-secondary italic">colleagues</span>, not cheap labour.
+        </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          Traditional EdTech treats teachers as hourly subcontractors, and coaching institutes treat aspirants as cash cows. Synapse operates on an ancient covenant: balanced reciprocity between scholar and sanctuary.
+        </p>
+</div>
+<!-- Two-Column Balance Table -->
+<div class="mt-14 grid grid-cols-1 md:grid-cols-2 border border-outline-variant/80 rounded-[4px] overflow-hidden bg-surface">
+<!-- Column 1: YOU GIVE -->
+<div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-outline-variant/80 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-6 mb-8 border-b border-outline-variant/60">
+<span class="font-mono text-label-md uppercase tracking-[0.2em] text-secondary font-semibold">PART I · YOU GIVE</span>
+<span class="font-mono text-[11px] text-on-surface-variant/60 uppercase">OBLIGATION OF DEVOTION</span>
+</div>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="font-mono text-secondary text-sm font-semibold mt-0.5">01</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">One class a day</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">90 minutes of small-pod instruction on Floor G. No more, no less. Your personal exam preparation is never derailed by institutional overload.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-secondary text-sm font-semibold mt-0.5">02</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Axiomatic lesson construction</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Shared curriculum built from absolute first principles, made transparent and open to peer critique on the Synapse pedagogical repository.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-secondary text-sm font-semibold mt-0.5">03</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Pedagogical patience</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Complete conversational restraint and psychological safety for district learners wrestling with basic numeracy and conceptual hurdles.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-secondary text-sm font-semibold mt-0.5">04</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Evening Problem Board attendance</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Availability at 17:30 to clarify doubts, debate proofs, and participate in district inquiry seminars alongside fellow scholars.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="mt-10 pt-6 border-t border-outline-variant/60 font-mono text-[11px] text-on-surface-variant/70 uppercase tracking-widest">
+            COMMITMENT: 90 MIN TEACHING + 45 MIN COLLABORATION
+          </div>
+</div>
+<!-- Column 2: YOU GET -->
+<div class="p-8 md:p-12 bg-surface-container/30 flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-6 mb-8 border-b border-outline-variant/60">
+<span class="font-mono text-label-md uppercase tracking-[0.2em] text-on-surface font-semibold">PART II · YOU RECEIVE</span>
+<span class="font-mono text-[11px] text-secondary uppercase font-semibold">INSTITUTIONAL SANCTUARY</span>
+</div>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="font-mono text-on-surface text-sm font-semibold mt-0.5">A</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Reserved Level 1 library carrel</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Your permanent personal desk with lockbox, power, high-speed fibre link, and absolute silence across all daylight and evening hours.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-on-surface text-sm font-semibold mt-0.5">B</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Immutable Synapse Passport</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Every teaching hour and student outcome is certified and recorded cryptographically on your permanent professional passport.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-on-surface text-sm font-semibold mt-0.5">C</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Full AI tutor &amp; question vaults</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Unrestricted internal access to our deep question archival engines, synthesised mock evaluations, and LLM pedagogical assistants for your own exam.</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="font-mono text-on-surface text-sm font-semibold mt-0.5">D</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">The Protégé Dividend</h3>
+<p class="mt-1 font-body-sm text-body-sm text-on-surface-variant">Permanent mastery of your discipline achieved through the rigor of daily explanation, plus an open door to stay on as full Master Faculty.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="mt-10 pt-6 border-t border-outline-variant/60 font-mono text-[11px] text-secondary uppercase tracking-widest font-semibold">
+            VALUE EXCHANGE: VALUE OF CARREL &amp; TOOLS EXCEEDS ₹18,000/MO
+          </div>
+</div>
+</div>
+<!-- Hairline Covenant Callout Box -->
+<div class="mt-8 p-6 md:p-8 border border-secondary bg-surface rounded-[4px] flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary text-2xl shrink-0 mt-0.5">verified</span>
+<div>
+<div class="font-mono text-label-sm uppercase tracking-[0.16em] text-secondary font-semibold">THE SYNAPSE COVENANT PLEDGE</div>
+<p class="mt-1 font-headline-sm text-headline-sm text-on-surface font-normal leading-snug">
+              Zero teaching fees charged. Zero tuition extracted. We trade pedagogical devotion for deep work sanctuary.
+            </p>
+</div>
+</div>
+<div class="shrink-0 font-mono text-[11px] tracking-widest uppercase px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant">
+          GUARANTEED BY BOARD CHARTER
+        </div>
+</div>
+</div>
+</section>
+<!-- SECTION 02 — THE LADDER (PEDAGOGICAL PROGRESSION) -->
+<section class="relative w-full max-w-[1280px] mx-auto px-margin md:px-margin-desktop py-20 md:py-28">
+<div class="max-w-3xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>02 / TRAJECTORY · THREE RUNGS AND A MENTOR BRANCH</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+        A career ladder built on <span class="text-secondary italic">pedagogical mastery</span>, not academic politics.
+      </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+        Progression is not based on tenure or bureaucratic patronage. It is unlocked strictly by student outcomes, transparency of lesson logs, and clarity of axiomatic delivery.
+      </p>
+</div>
+<!-- Architectural Progression Ladder with Spark Vermilion Spine -->
+<div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
+<!-- Left 8 Columns: The 3 Primary Rungs with Vermilion Thread Line -->
+<div class="lg:col-span-8 relative">
+<!-- The 2px Spark vermilion vertical thread line -->
+<div class="absolute left-6 md:left-8 top-8 bottom-8 w-[2px] bg-secondary pointer-events-none"></div>
+<div class="space-y-8">
+<!-- Rung 01 -->
+<div class="relative pl-14 md:pl-20">
+<div class="absolute left-4 md:left-6 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-surface border-2 border-secondary flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="p-6 md:p-8 bg-surface-container-low border border-outline-variant/80 rounded-[4px] hover:border-secondary transition-colors">
+<div class="flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-secondary font-semibold">RUNG 01 · FOUNDATIONAL CADRE</span>
+<span class="text-on-surface-variant">TENURE: 6 TO 12 MONTHS</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Teaching Fellow</h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Conducts one pod session per day (6 students maximum). Holds reserved carrel on Level 1, full passport credentials, and access to internal AI synthesis tools.
+              </p>
+<div class="mt-6 pt-4 border-t border-outline-variant/60 grid grid-cols-2 sm:grid-cols-3 gap-4 font-mono text-[11px]">
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">LOAD</span>
+<span class="text-on-surface font-medium">1 Class / 90 Mins</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">SANCTUARY</span>
+<span class="text-on-surface font-medium">Floor 1 Carrel</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">COMPENSATION</span>
+<span class="text-on-surface font-medium">Free Study Sanctuary</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rung 02 -->
+<div class="relative pl-14 md:pl-20">
+<div class="absolute left-4 md:left-6 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-surface border-2 border-secondary flex items-center justify-center">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<div class="p-6 md:p-8 bg-surface border border-outline-variant/80 rounded-[4px] hover:border-secondary transition-colors">
+<div class="flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-secondary font-semibold">RUNG 02 · PEDAGOGICAL LEADERSHIP</span>
+<span class="text-on-surface-variant">QUALIFICATION: CERTIFIED PASSPORT RECORD</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Senior Pedagogical Fellow</h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Mentors 4 junior teaching fellows, conducts peer lesson audits, and records canonical axiomatic lecture briefs for district digital archives. Receives living stipend and revenue-share on curated educational monographs.
+              </p>
+<div class="mt-6 pt-4 border-t border-outline-variant/60 grid grid-cols-2 sm:grid-cols-3 gap-4 font-mono text-[11px]">
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">LOAD</span>
+<span class="text-on-surface font-medium">1 Class + 2 Audits/Wk</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">ALLOWANCE</span>
+<span class="text-secondary font-medium">₹22,000 / Month</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">ROLE</span>
+<span class="text-on-surface font-medium">Tier Coordination</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Rung 03 -->
+<div class="relative pl-14 md:pl-20">
+<div class="absolute left-4 md:left-6 top-6 -translate-x-1/2 w-4 h-4 rounded-full bg-surface border-2 border-secondary flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="p-6 md:p-8 bg-surface-container-high border border-outline-variant/80 rounded-[4px] hover:border-secondary transition-colors">
+<div class="flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-wider mb-2">
+<span class="text-secondary font-semibold">RUNG 03 · INSTITUTIONAL PILLAR</span>
+<span class="text-on-surface-variant">TENURED / LIFELONG TRACK</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Centre Lead &amp; Master Faculty</h3>
+<p class="mt-2 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Directs district learning commons syllabus, oversees admissions of new cohorts, chairs the evening problem boards, and oversees academic standard compliance across regional centres.
+              </p>
+<div class="mt-6 pt-4 border-t border-outline-variant/60 grid grid-cols-2 sm:grid-cols-3 gap-4 font-mono text-[11px]">
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">RESPONSIBILITY</span>
+<span class="text-on-surface font-medium">Academic Direction</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">TENURE</span>
+<span class="text-on-surface font-medium">Permanent Senior Post</span>
+</div>
+<div>
+<span class="text-on-surface-variant/70 block uppercase text-[9px]">FACILITY</span>
+<span class="text-on-surface font-medium">Floor 2 Venture Suite</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right 4 Columns: The Distinct Alumnus Mentor Branch -->
+<div class="lg:col-span-4 flex flex-col justify-start">
+<div class="p-6 md:p-8 border border-secondary bg-surface rounded-[4px] relative sticky top-28">
+<div class="absolute -top-3 left-6 px-3 bg-secondary text-on-secondary font-mono text-[9px] uppercase tracking-[0.2em] font-semibold">
+            THE ALUMNUS FORK
+          </div>
+<div class="font-mono text-secondary text-xs uppercase tracking-widest mt-2">EXIT PATH 01 · SUCCESSFUL CANDIDATE</div>
+<h4 class="font-headline-md text-headline-md text-on-surface font-normal mt-2 leading-tight">Cracked your exam? Become an Alumnus Mentor.</h4>
+<p class="mt-4 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+            You are the empirical proof that the model holds. When you crack the Civil Services, State Commission, GATE, or enter an elite institute, your connection does not terminate.
+          </p>
+<div class="my-6 py-4 border-y border-outline-variant/60 space-y-3 font-mono text-[11px] text-on-surface">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span>Weekend advisory for active fellows</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span>Named sponsor for 1 study carrel</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-secondary rounded-full"></span>
+<span>Lifetime Synapse Global Access Pass</span>
+</div>
+</div>
+<p class="font-mono text-[10px] text-on-surface-variant uppercase tracking-widest leading-relaxed">
+            "Once a Fellow of the Commons, always a keeper of the district flame."
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 03 — HOW WE SELECT (THE ADMISSIONS PROTOCOL) -->
+<section class="w-full border-t border-outline-variant/60 bg-surface-container-low py-20 md:py-28">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop">
+<div class="max-w-3xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>03 / SELECTION GATES · INSTITUTIONAL SELECTIVITY</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+          Children deserve good teachers, so we’re <span class="text-secondary italic">selective</span>.
+        </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          We reject 82% of fellowship applicants. We do not test memorisation speed or prestige of your alma mater. We evaluate axiomatic mastery, clarity of moral stamina, and conversational patience.
+        </p>
+</div>
+<!-- 3-Step Horizontal Flow in Monospace Numbers -->
+<div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Step 01 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] relative flex flex-col justify-between hover:border-secondary transition-colors">
+<div>
+<div class="flex items-center justify-between pb-4 mb-6 border-b border-outline-variant/60 font-mono text-[11px] text-on-surface-variant">
+<span class="text-secondary font-semibold">STAGE 01 / THREE</span>
+<span>40 MINUTES</span>
+</div>
+<div class="font-mono text-2xl text-on-surface font-semibold tracking-tight">01</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium mt-3">Personal Interview</h3>
+<p class="mt-3 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              A deep, unhurried dialogue with the Centre Master. We interrogate your intellectual appetite, moral stamina, reasons for competitive preparation, and intrinsic view on public education.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">
+            PRIMARY VECTOR: CHARACTER &amp; DILIGENCE
+          </div>
+</div>
+<!-- Step 02 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] relative flex flex-col justify-between hover:border-secondary transition-colors">
+<div>
+<div class="flex items-center justify-between pb-4 mb-6 border-b border-outline-variant/60 font-mono text-[11px] text-on-surface-variant">
+<span class="text-secondary font-semibold">STAGE 02 / THREE</span>
+<span>60 MINUTES</span>
+</div>
+<div class="font-mono text-2xl text-on-surface font-semibold tracking-tight">02</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium mt-3">Axiomatic Diagnostic</h3>
+<p class="mt-3 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              A short written examination in your chosen subject domain. Zero trick questions, zero multiple-choice guessing. You are tasked with deriving concepts from first principles and deconstructing complex errors.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">
+            PRIMARY VECTOR: CONCEPTUAL DEPTH
+          </div>
+</div>
+<!-- Step 03 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] relative flex flex-col justify-between hover:border-secondary transition-colors">
+<div>
+<div class="flex items-center justify-between pb-4 mb-6 border-b border-outline-variant/60 font-mono text-[11px] text-on-surface-variant">
+<span class="text-secondary font-semibold">STAGE 03 / THREE</span>
+<span>20 MINUTES LIVE</span>
+</div>
+<div class="font-mono text-2xl text-on-surface font-semibold tracking-tight">03</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium mt-3">Mock Pod Simulation</h3>
+<p class="mt-3 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              You lead a 20-minute live session with 4 young learners. You are scored strictly on how you handle student confusion, conversational restraint, and the refusal to offer shallow shortcuts.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] text-on-surface-variant uppercase tracking-wider">
+            PRIMARY VECTOR: PEDAGOGICAL PATIENCE
+          </div>
+</div>
+</div>
+<!-- Protocol Summary Monospace Line -->
+<div class="mt-8 py-3 px-4 bg-surface-container border border-outline-variant text-center font-mono text-[11px] uppercase tracking-widest text-on-surface-variant">
+        ACCEPTANCE NOTIFICATION ISSUED WITHIN 72 HOURS OF STAGE 03 EVALUATION
+      </div>
+</div>
+</section>
+<!-- SECTION 04 — A DAY IN A FELLOW'S LIFE (HORIZONTAL CHRONOGRAM) -->
+<section class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-desktop py-20 md:py-28">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-12 border-b border-outline-variant/60">
+<div class="max-w-2xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>04 / CHRONOGRAM · COMPOSITE SCHEDULE (NOT FICTIONAL)</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+          A balanced 14-hour cycle of contemplation and service.
+        </h2>
+</div>
+<div class="font-mono text-right text-xs text-on-surface-variant uppercase tracking-widest">
+<span>SUMMER/AUTUMN CYCLE</span><br/>
+<span class="text-on-surface font-medium">TOTAL FOCUS TIME: 8.5 HRS</span>
+</div>
+</div>
+<!-- Chronogram Table / Timeline Strip -->
+<div class="mt-12 space-y-4">
+<!-- Hour Item 1 -->
+<div class="p-6 bg-surface-container-low border border-outline-variant/80 rounded-[4px] grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-variant transition-colors">
+<div class="md:col-span-2 font-mono text-headline-sm text-secondary font-semibold">09:00</div>
+<div class="md:col-span-3">
+<span class="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant block">SPATIAL LOCUS</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">FLOOR 1 · SILENT HALL CARREL</span>
+</div>
+<div class="md:col-span-5">
+<span class="font-body-md text-on-surface font-medium">Uninterrupted Personal Exam Mastery</span>
+<p class="font-body-sm text-on-surface-variant text-sm mt-0.5">Four hours of deep study, syllabus parsing, answer writing practice, and thesis notes without phones or staff intrusion.</p>
+</div>
+<div class="md:col-span-2 md:text-right">
+<span class="px-2.5 py-1 bg-surface border border-outline-variant rounded-full font-mono text-[9px] uppercase tracking-wider text-on-surface-variant">SOLITARY DEEP WORK</span>
+</div>
+</div>
+<!-- Hour Item 2 -->
+<div class="p-6 bg-surface border border-outline-variant/80 rounded-[4px] grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-variant transition-colors">
+<div class="md:col-span-2 font-mono text-headline-sm text-on-surface font-semibold">13:00</div>
+<div class="md:col-span-3">
+<span class="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant block">SPATIAL LOCUS</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">FLOOR 1 · COMMONS CAFÉ &amp; ATRIUM</span>
+</div>
+<div class="md:col-span-5">
+<span class="font-body-md text-on-surface font-medium">Shared Dining &amp; Peer Cross-Examination</span>
+<p class="font-body-sm text-on-surface-variant text-sm mt-0.5">Lunch with visiting district researchers, engineering founders from Floor 2, and senior resident fellows.</p>
+</div>
+<div class="md:col-span-2 md:text-right">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant rounded-full font-mono text-[9px] uppercase tracking-wider text-on-surface-variant">NUTRITION &amp; DIALOGUE</span>
+</div>
+</div>
+<!-- Hour Item 3 -->
+<div class="p-6 bg-surface-container-low border border-secondary rounded-[4px] grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-variant transition-colors">
+<div class="md:col-span-2 font-mono text-headline-sm text-secondary font-semibold">16:00</div>
+<div class="md:col-span-3">
+<span class="font-mono text-[10px] uppercase tracking-widest text-secondary block">PRIMARY COVENANT OBLIGATION</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">FLOOR G · LEARNING POD 04</span>
+</div>
+<div class="md:col-span-5">
+<span class="font-body-md text-on-surface font-medium">90-Minute Teaching Pod: Mechanics &amp; Algebra</span>
+<p class="font-body-sm text-on-surface-variant text-sm mt-0.5">Leading 6 district high-schoolers through vector decomposition. Recording conceptual choke points on the tablet archive.</p>
+</div>
+<div class="md:col-span-2 md:text-right">
+<span class="px-2.5 py-1 bg-secondary text-on-secondary rounded-full font-mono text-[9px] uppercase tracking-wider font-semibold">CIVIC SERVICE</span>
+</div>
+</div>
+<!-- Hour Item 4 -->
+<div class="p-6 bg-surface border border-outline-variant/80 rounded-[4px] grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-variant transition-colors">
+<div class="md:col-span-2 font-mono text-headline-sm text-on-surface font-semibold">18:00</div>
+<div class="md:col-span-3">
+<span class="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant block">SPATIAL LOCUS</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">FLOOR G · CARREL CORRIDOR</span>
+</div>
+<div class="md:col-span-5">
+<span class="font-body-md text-on-surface font-medium">Pedagogical Debrief &amp; Peer Lesson Audit</span>
+<p class="font-body-sm text-on-surface-variant text-sm mt-0.5">Reviewing session recording with Senior Fellow. Fine-tuning the next day's axiomatic lesson card based on student hesitation logs.</p>
+</div>
+<div class="md:col-span-2 md:text-right">
+<span class="px-2.5 py-1 bg-surface-container border border-outline-variant rounded-full font-mono text-[9px] uppercase tracking-wider text-on-surface-variant">PEDAGOGICAL CALIBRATION</span>
+</div>
+</div>
+<!-- Hour Item 5 -->
+<div class="p-6 bg-surface-container-low border border-outline-variant/80 rounded-[4px] grid grid-cols-1 md:grid-cols-12 gap-4 items-center hover:bg-surface-variant transition-colors">
+<div class="md:col-span-2 font-mono text-headline-sm text-on-surface font-semibold">19:30</div>
+<div class="md:col-span-3">
+<span class="font-mono text-[10px] uppercase tracking-widest text-on-surface-variant block">SPATIAL LOCUS</span>
+<span class="font-mono text-body-sm font-semibold text-on-surface">FLOOR 1 · SEMINAR CHAMBER</span>
+</div>
+<div class="md:col-span-5">
+<span class="font-body-md text-on-surface font-medium">District Question Board &amp; Open Colloquium</span>
+<p class="font-body-sm text-on-surface-variant text-sm mt-0.5">Hosting the evening problem board on regional groundwater hydrology, followed by tea with local engineers.</p>
+</div>
+<div class="md:col-span-2 md:text-right">
+<span class="px-2.5 py-1 bg-surface border border-outline-variant rounded-full font-mono text-[9px] uppercase tracking-wider text-on-surface-variant">INTELLECTUAL EXCHANGE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 05 — WHY IT WORKS (EVIDENCE-BASED PEDAGOGY) -->
+<section class="w-full border-t border-outline-variant/60 bg-surface-container py-20 md:py-28">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop">
+<div class="max-w-3xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>05 / EMPIRICAL FOUNDATIONS · WHY THE MODEL HOLDS</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+          Grounded in the science of cognitive retention.
+        </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          The Fellowship is not philanthropy; it is an optimized cognitive loop backed by pedagogical psychology and learning science.
+        </p>
+</div>
+<!-- 3 Evidence-Style Editorial Cards -->
+<div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] flex flex-col justify-between">
+<div>
+<div class="font-mono text-xs uppercase tracking-widest text-secondary font-semibold pb-4 mb-4 border-b border-outline-variant/60">
+              PRINCIPIUM 01
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">The Protégé Effect &amp; Deep Axiomatic Mastery</h3>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              When a candidate must break down an idea for an inquisitive 15-year-old, all memorised jargon evaporates. You discover whether you truly understand Newton's laws or merely remember the test patterns.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+            RETENTION RATE: 90% VS 10% PASSIVE LECTURE
+          </div>
+</div>
+<!-- Card 2 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] flex flex-col justify-between">
+<div>
+<div class="font-mono text-xs uppercase tracking-widest text-secondary font-semibold pb-4 mb-4 border-b border-outline-variant/60">
+              PRINCIPIUM 02
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Solitude Broken With Everyday Civic Dignity</h3>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Preparation for major Indian competitive exams produces destructive psychological isolation in rented rooms. Daily civic responsibility preserves sanity, self-respect, and grounding in physical reality.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+            COUNTERACTING CANDIDATE BURNOUT &amp; ANOMIE
+          </div>
+</div>
+<!-- Card 3 -->
+<div class="p-8 bg-surface border border-outline-variant/80 rounded-[4px] flex flex-col justify-between">
+<div>
+<div class="font-mono text-xs uppercase tracking-widest text-secondary font-semibold pb-4 mb-4 border-b border-outline-variant/60">
+              PRINCIPIUM 03
+            </div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-normal">Near-Peer Relatability For Small-Town Youth</h3>
+<p class="mt-4 font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              School children in Chamba do not respond to remote video instructors or sixty-year-old tenured professors. They respond to energetic graduates who share their geography, understand their struggles, and demystify the road ahead.
+            </p>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/60 font-mono text-[10px] uppercase tracking-wider text-on-surface-variant">
+            BRIDGING THE REGIONAL ASPIRATION CHASM
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 06 — STAGGERED CALENDARS (INSTITUTIONAL CONTINUITY) -->
+<section class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-desktop py-20 md:py-28">
+<div class="max-w-3xl">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-secondary flex items-center gap-2 mb-4">
+<span class="w-2.5 h-[1.5px] bg-secondary inline-block"></span>
+<span>06 / OPERATIONAL RESILIENCE · ANTI-CRUNCH ROTATION</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-on-surface font-normal tracking-tight leading-[1.08]">
+        Staggered cohorts so no single exam crunch empties the building.
+      </h2>
+<p class="mt-4 font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+        We recruit across five complementary exam and professional cycles. When UPSC fellows enter their intensive pre-exam study retreat, GATE and State PSC fellows pick up the teaching load. Continuous, uninterrupted instruction for district children.
+      </p>
+</div>
+<!-- Technical Rotation Matrix Graphic -->
+<div class="mt-14 border border-outline-variant/80 rounded-[4px] bg-surface p-6 md:p-8 overflow-x-auto">
+<div class="min-w-[700px]">
+<!-- Months Header -->
+<div class="grid grid-cols-12 gap-1 pb-4 border-b border-outline-variant/60 font-mono text-[10px] text-on-surface-variant uppercase text-center tracking-wider">
+<div>JAN</div><div>FEB</div><div>MAR</div><div>APR</div><div>MAY</div><div>JUN</div>
+<div>JUL</div><div>AUG</div><div>SEP</div><div>OCT</div><div>NOV</div><div>DEC</div>
+</div>
+<!-- Cadre Row 1: UPSC CSE Track -->
+<div class="py-4 border-b border-outline-variant/40 grid grid-cols-12 gap-1 items-center font-mono text-xs">
+<div class="col-span-12 mb-1 flex items-center justify-between text-[11px]">
+<span class="font-semibold text-on-surface uppercase">CADRE A · UPSC CIVIL SERVICES TRACK</span>
+<span class="text-secondary text-[10px] tracking-wider uppercase">MAY PRELIMS LEAVE OF ABSENCE PROTECTED</span>
+</div>
+<div class="col-span-4 bg-secondary/15 text-secondary p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-secondary/30">
+            POD TEACHING (90 MIN)
+          </div>
+<div class="col-span-2 bg-primary text-on-primary p-1.5 rounded-[2px] text-center text-[10px] font-medium">
+            EXAM RETREAT
+          </div>
+<div class="col-span-6 bg-secondary/15 text-secondary p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-secondary/30">
+            POD TEACHING &amp; ADVANCED REVISION SEMINARS
+          </div>
+</div>
+<!-- Cadre Row 2: GATE & CSIR-NET Track -->
+<div class="py-4 border-b border-outline-variant/40 grid grid-cols-12 gap-1 items-center font-mono text-xs">
+<div class="col-span-12 mb-1 flex items-center justify-between text-[11px]">
+<span class="font-semibold text-on-surface uppercase">CADRE B · GATE / CSIR-NET STEM CADRE</span>
+<span class="text-on-surface-variant text-[10px] tracking-wider uppercase">FEB RETREAT BALANCED BY CADRE A</span>
+</div>
+<div class="col-span-2 bg-primary text-on-primary p-1.5 rounded-[2px] text-center text-[10px] font-medium">
+            EXAM RETREAT
+          </div>
+<div class="col-span-6 bg-surface-container text-on-surface p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-outline-variant">
+            POD TEACHING (HEAVY COVERAGE DURING MAY CRUNCH)
+          </div>
+<div class="col-span-4 bg-secondary/15 text-secondary p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-secondary/30">
+            TEACHING + MENTOR LABS
+          </div>
+</div>
+<!-- Cadre Row 3: State Commission (HPAS) & Banking -->
+<div class="py-4 border-b border-outline-variant/40 grid grid-cols-12 gap-1 items-center font-mono text-xs">
+<div class="col-span-12 mb-1 flex items-center justify-between text-[11px]">
+<span class="font-semibold text-on-surface uppercase">CADRE C · HP PSC &amp; STATE SERVICES TRACK</span>
+<span class="text-on-surface-variant text-[10px] tracking-wider uppercase">AUTUMN PEAK FOCUS</span>
+</div>
+<div class="col-span-8 bg-surface-container text-on-surface p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-outline-variant">
+            CONTINUOUS GROUND-LEVEL POD LECTURING
+          </div>
+<div class="col-span-2 bg-primary text-on-primary p-1.5 rounded-[2px] text-center text-[10px] font-medium">
+            EXAM RETREAT
+          </div>
+<div class="col-span-2 bg-secondary/15 text-secondary p-1.5 rounded-[2px] text-center text-[10px] font-medium border border-secondary/30">
+            ACTIVE PODS
+          </div>
+</div>
+<!-- District Pod Availability Continuity Indicator -->
+<div class="pt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-wider text-secondary">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>RESULT: POD CAPACITY MAINTAINED AT CONSTANT 100% ACROSS ALL 52 WEEKS</span>
+</div>
+<span class="text-on-surface-variant">ZERO SERVICE INTERRUPTIONS IN 2024</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA BAND / ADMISSIONS PORTAL (INK BACKGROUND #15130F) -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-24 md:py-32 border-t border-[#3A362E]" id="apply">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Manifesto Left (5 cols) -->
+<div class="lg:col-span-5">
+<div class="font-mono text-label-sm uppercase tracking-[0.2em] text-[#CDC6B7]/60 flex items-center gap-2 mb-6">
+<span class="w-2.5 h-[1.5px] bg-[#CDC6B7]/60 inline-block"></span>
+<span>AUTUMN FELLOWSHIP ADMISSIONS OPEN</span>
+</div>
+<h2 class="font-headline-lg md:font-display-lg text-headline-lg md:text-display-lg text-[#F3EEE4] font-normal tracking-tight leading-[1.05]">
+            Step up to the <span class="text-secondary italic">pod bench.</span>
+</h2>
+<p class="mt-6 font-body-lg text-body-lg text-[#CDC6B7] leading-relaxed">
+            Whether you are beginning your preparation or seeking a grounded, purposeful year, teach with us in Chamba. Make your hardest years build something enduring.
+          </p>
+<div class="mt-12 space-y-4 border-t border-[#3A362E] pt-8 font-mono text-[11px] text-[#CDC6B7]">
+<div class="flex items-center justify-between">
+<span class="text-[#CDC6B7]/60 uppercase">CENTRE LOCATION</span>
+<span class="text-[#F3EEE4]">Behind Post Office, Chamba, HP</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#CDC6B7]/60 uppercase">CARREL DESKS OPEN</span>
+<span class="text-secondary font-semibold">12 Available Seats for Autumn</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[#CDC6B7]/60 uppercase">ROLLING REVIEW</span>
+<span class="text-[#F3EEE4]">Every 1st and 15th of the Month</span>
+</div>
+</div>
+</div>
+<!-- Application Form Right (7 cols) -->
+<div class="lg:col-span-7 bg-[#1E1B17] border border-[#3A362E] p-8 md:p-12 rounded-[4px]">
+<div class="pb-6 mb-8 border-b border-[#3A362E] flex items-center justify-between font-mono text-[11px] uppercase tracking-wider">
+<span class="text-[#F3EEE4] font-medium">FELLOWSHIP APPLICATION PROTOCOL</span>
+<span class="text-secondary">FORM 06-A</span>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault(); alert('Application submitted to the Centre Academic Council. We will review your dossier within 72 hours.');">
+<!-- Full Name Field -->
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">01 / Full Candidate Name</label>
+<input class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm placeholder-[#CDC6B7]/30 transition-colors" placeholder="e.g. Vikramaditya Sharma" required="" type="text"/>
+</div>
+<!-- Subject & Target Exam Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">02 / Primary Teaching Subject</label>
+<select class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm transition-colors cursor-pointer">
+<option class="bg-[#15130F]">Mathematics &amp; Calculus</option>
+<option class="bg-[#15130F]">Physics &amp; Mechanics</option>
+<option class="bg-[#15130F]">Modern &amp; Ancient History</option>
+<option class="bg-[#15130F]">Formal Logic &amp; Reasoning</option>
+<option class="bg-[#15130F]">English Syntax &amp; Rhetoric</option>
+<option class="bg-[#15130F]">Computer Science &amp; Systems</option>
+</select>
+</div>
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">03 / Target Exam or Goal</label>
+<select class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm transition-colors cursor-pointer">
+<option class="bg-[#15130F]">UPSC Civil Services</option>
+<option class="bg-[#15130F]">HPAS / State PSC</option>
+<option class="bg-[#15130F]">GATE / CSIR-NET</option>
+<option class="bg-[#15130F]">Bank PO / SSC CGL</option>
+<option class="bg-[#15130F]">Independent Research / Academia</option>
+<option class="bg-[#15130F]">Technology / Engineering Transition</option>
+</select>
+</div>
+</div>
+<!-- Contact & District Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">04 / Phone &amp; WhatsApp</label>
+<input class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm placeholder-[#CDC6B7]/30 transition-colors" placeholder="+91 98000 00000" required="" type="tel"/>
+</div>
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">05 / Home District &amp; State</label>
+<input class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm placeholder-[#CDC6B7]/30 transition-colors" placeholder="e.g. Chamba, Himachal Pradesh" required="" type="text"/>
+</div>
+</div>
+<!-- Axiomatic Motivation Brief -->
+<div>
+<label class="block font-mono text-[10px] uppercase tracking-widest text-[#CDC6B7] mb-2">06 / Pedagogical Axiom (1-2 Sentences)</label>
+<textarea class="w-full bg-[#15130F] border border-[#3A362E] focus:border-secondary outline-none rounded-[4px] px-4 py-3 text-[#F3EEE4] font-body-md text-sm placeholder-[#CDC6B7]/30 transition-colors" placeholder="State one core concept in your subject and how you would convey it to a beginner without using technical jargon." rows="2"></textarea>
+</div>
+<!-- Submit Button (Pill, Spark Vermilion) -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<button class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-8 rounded-full bg-secondary font-label-sm text-label-sm uppercase tracking-[0.16em] text-on-secondary hover:bg-secondary/90 transition-colors" type="submit">
+                Apply to Teach as a Fellow
+              </button>
+<span class="font-mono text-[10px] text-[#CDC6B7]/50 uppercase tracking-widest text-center sm:text-right">
+                Zero application fees · Direct faculty interview
+              </span>
+</div>
+</form>
+<div class="mt-8 pt-6 border-t border-[#3A362E]/70 flex items-center justify-between font-mono text-[10px] text-[#CDC6B7]/60 tracking-widest uppercase">
+<span>RESIDENCY COMMENCES 1ST OF EACH MONTH</span>
+<span>CHAMBA SANCTUARY</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-[#15130F] text-[#F3EEE4] border-t border-[#3A362E]"><div class="max-w-[1440px] mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline pb-16 border-b border-[#3A362E]/70"><div class="md:col-span-5"><span class="font-headline-lg text-headline-lg tracking-tight font-normal text-[#F3EEE4] block">Synapse</span><p class="mt-4 font-headline-sm text-headline-sm italic text-[#CDC6B7] font-normal leading-relaxed">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col md:items-end justify-between self-stretch"><div class="font-mono text-label-sm text-[#CDC6B7]/60 tracking-[0.16em] uppercase">An autonomous sanctuary of learning</div><div class="text-[#CDC6B7] font-body-sm text-body-sm tracking-wide mt-6 md:mt-0">Bootstrapped. Grown only from what it earns.</div></div></div><div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-gutter-desktop py-12 border-b border-[#3A362E]/70 font-mono text-[11px] tracking-[0.16em] uppercase"><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-idea" href="#">The Idea</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-building" href="#">The Building</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-fellowship" href="#">The Fellowship</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="passport" href="#">Passport</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="centres" href="#">Centres</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="principles" href="#">Principles</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="teach-with-us" href="#">Teach with us</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="visit-or-enquire" href="#">Contact</a></div></div><div class="pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 font-body-sm text-body-sm text-[#CDC6B7]/70"><div>Behind the Post Office, Chamba, Himachal Pradesh · 8287248119 · WhatsApp</div><div class="font-mono text-[11px] tracking-widest text-[#CDC6B7]/50 uppercase">© MMXXIV SYNAPSE. ALL RIGHTS PRESERVED.</div></div></div></footer></body></html>

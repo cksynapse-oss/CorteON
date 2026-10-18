@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#1e1b12","outline-variant":"#ccc6bc","surface-tint":"#625e58","on-error-container":"#93000a","secondary-fixed":"#ffdbd1","on-surface":"#1d1c16","surface-container":"#f2ede3","inverse-primary":"#cbc6bf","on-tertiary":"#ffffff","error-container":"#ffdad6","on-primary-fixed":"#1d1b17","on-secondary":"#ffffff","on-secondary-fixed":"#3b0800","surface-bright":"#fef9ef","tertiary-fixed-dim":"#cdc6b7","on-primary-fixed-variant":"#494641","primary":"#000000","surface-dim":"#dedad0","on-primary":"#ffffff","primary-fixed":"#e8e1da","primary-container":"#1d1b17","tertiary":"#000000","on-error":"#ffffff","on-primary-container":"#88837d","surface-variant":"#e7e2d8","surface-container-low":"#f8f3e9","secondary-container":"#ff6338","error":"#ba1a1a","on-tertiary-fixed-variant":"#4b463c","surface":"#fef9ef","tertiary-fixed":"#e9e2d3","surface-container-lowest":"#ffffff","on-background":"#1d1c16","background":"#fef9ef","tertiary-container":"#1e1b12","surface-container-high":"#ede8de","on-surface-variant":"#4a463f","secondary-fixed-dim":"#ffb5a1","surface-container-highest":"#e7e2d8","inverse-on-surface":"#f5f0e6","outline":"#7b766e","on-tertiary-container":"#898377","on-secondary-fixed-variant":"#881f00","inverse-surface":"#32302a","secondary":"#b22c01","primary-fixed-dim":"#cbc6bf","on-secondary-container":"#5d1200"},borderRadius:{DEFAULT:"0.125rem",lg:"0.25rem",xl:"0.5rem",full:"0.75rem"},spacing:{"margin-desktop":"3rem","space-xs":"0.5rem","space-xl":"4rem","margin":"1.25rem","space-sm":"1rem","space-md":"1.5rem","space-lg":"2.5rem",gutter:"1.5rem","space-2xl":"8rem","gutter-desktop":"2.5rem"},fontFamily:{"display-lg":["EB Garamond"],"headline-md":["EB Garamond"],"body-sm":["Geist"],"headline-lg":["EB Garamond"],"body-md":["Geist"],"display-xl":["EB Garamond"],"label-sm":["Geist"],"display-lg-mobile":["EB Garamond"],"headline-sm":["EB Garamond"],"display-xl-mobile":["EB Garamond"],"label-md":["Geist"],"body-lg":["Geist"]},fontSize:{"display-lg":["4rem",{lineHeight:"1.05",letterSpacing:"-0.025em",fontWeight:"400"}],"headline-md":["2rem",{lineHeight:"1.2",letterSpacing:"-0.01em",fontWeight:"400"}],"body-sm":["0.875rem",{lineHeight:"1.55",fontWeight:"400"}],"headline-lg":["2.75rem",{lineHeight:"1.15",letterSpacing:"-0.015em",fontWeight:"400"}],"body-md":["1rem",{lineHeight:"1.6",fontWeight:"400"}],"display-xl":["5.5rem",{lineHeight:"1.02",letterSpacing:"-0.03em",fontWeight:"400"}],"label-sm":["0.6875rem",{lineHeight:"1.3",letterSpacing:"0.14em",fontWeight:"500"}],"display-lg-mobile":["2.5rem",{lineHeight:"1.12",letterSpacing:"-0.015em",fontWeight:"400"}],"headline-sm":["1.5rem",{lineHeight:"1.3",fontWeight:"500"}],"display-xl-mobile":["3.25rem",{lineHeight:"1.08",letterSpacing:"-0.02em",fontWeight:"400"}],"label-md":["0.75rem",{lineHeight:"1.4",letterSpacing:"0.12em",fontWeight:"500"}],"body-lg":["1.125rem",{lineHeight:"1.65",letterSpacing:"-0.01em",fontWeight:"400"}]}}}};</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 w-full z-50 bg-surface/95 backdrop-blur-md border-b border-outline-variant/60"><div class="h-20 max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex items-center justify-between"><a class="flex items-center gap-space-xs group" data-path="centres" href="#"><span class="font-headline-md text-headline-md text-on-surface tracking-tight group-hover:text-primary transition-colors">Synapse</span><span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block mb-1"></span></a><nav class="hidden xl:flex items-center gap-space-lg" data-active-classes="text-on-surface relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-[1.5px] after:bg-secondary font-medium"><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="the-idea" href="#">The Idea</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="the-building" href="#">The Building</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="fellowship" href="#">Fellowship</a><a class="font-label-md text-label-md uppercase text-on-surface-variant hover:text-on-surface transition-colors" data-path="passport" href="#">Passport</a><a aria-current="page" class="uppercase transition-colors text-on-surface relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:w-full after:h-[1.5px] after:bg-secondary font-medium" data-path="centres" href="#">Centres</a></nav><div class="flex items-center gap-space-sm"><a class="hidden md:inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] border border-on-surface/80 font-label-md text-label-md uppercase tracking-wider text-on-surface hover:bg-surface-variant/40 transition-colors" data-path="fellowship" href="#">Teach With Us</a><a class="inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider hover:bg-secondary transition-colors" data-path="enquire" href="#">Visit or Enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="fixed right-margin-desktop top-1/2 -translate-y-1/2 z-40 hidden 2xl:flex flex-col items-center gap-space-sm text-outline font-label-sm text-label-sm tracking-widest select-none pointer-events-none"><span class="hover:text-on-surface transition-colors">G</span><span class="hover:text-on-surface transition-colors">1</span><div class="flex items-center gap-1.5"><span class="text-on-surface font-semibold">2</span><span class="w-1 h-1 rounded-full bg-secondary inline-block"></span></div><div class="w-[1px] h-12 bg-outline-variant/50 mt-space-xs"></div></aside><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- PLATE METADATA HEADER -->
+<section class="w-full bg-surface border-b border-outline-variant/60">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop py-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase tracking-widest">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+<span class="text-on-surface font-semibold">Plate No. 08</span>
+<span class="text-outline-variant">/</span>
+<span>Federation Protocol · Regional Centres</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="text-outline-variant hidden lg:inline">Datum:</span>
+<span class="tracking-normal font-body-sm text-body-sm text-on-surface">One District, One Specialisation · सीखो · सिखाओ · बनाओ · दिखाओ</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] text-secondary">hub</span>
+<span class="text-on-surface font-medium">Topology: Distributed Sovereignty</span>
+</div>
+</div>
+</section>
+<!-- HERO: INK BACKGROUND WITH INDIA TOPOLOGY DOT MATRIX -->
+<section class="w-full bg-primary-container text-surface py-space-2xl md:py-[120px] relative overflow-hidden border-b border-outline/30">
+<!-- Ambient technical grid lines -->
+<div class="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#ccc6bc_1px,transparent_1px),linear-gradient(to_bottom,#ccc6bc_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Text Column -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-xs px-3 py-1 rounded-[9999px] border border-outline/40 bg-surface/5 backdrop-blur-sm w-fit font-label-sm text-label-sm uppercase tracking-widest text-on-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            Regional Network Manifesto
+          </div>
+<h1 class="font-display-xl text-display-xl tracking-tight leading-[0.98] text-surface">
+            A centre in every <span class="italic text-secondary">district</span>.
+          </h1>
+<p class="font-body-lg text-body-lg text-on-primary-container max-w-xl leading-relaxed">
+            Independent in their roots, connected in their strengths. We reject the centralising pull of the coastal metropolises. The future of Indian intellect lives within the district boundary.
+          </p>
+<div class="pt-space-sm flex flex-col sm:flex-row items-start sm:items-center gap-space-sm font-label-md text-label-md uppercase tracking-wider">
+<a class="inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] bg-secondary text-surface hover:bg-secondary-container transition-all" href="#propose-circle">
+              Anchor A District Bench
+            </a>
+<a class="inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] border border-outline/60 text-surface hover:bg-surface/10 transition-colors" href="#charter">
+              The Five Gates of Growth
+            </a>
+</div>
+<div class="mt-space-md pt-space-md border-t border-outline/25 grid grid-cols-2 gap-space-md text-on-primary-container">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest block text-outline">Anchor Status</span>
+<p class="font-headline-sm text-headline-sm text-surface mt-1">Chamba, HP</p>
+<p class="font-body-sm text-body-sm text-outline-variant mt-0.5">32.55° N, 76.12° E · Founding Bench</p>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest block text-outline">Expansion Rule</span>
+<p class="font-headline-sm text-headline-sm text-surface mt-1">0% Debt</p>
+<p class="font-body-sm text-body-sm text-outline-variant mt-0.5">Grown purely from operating surplus</p>
+</div>
+</div>
+</div>
+<!-- SVG Map Topology Column -->
+<div class="lg:col-span-6 relative flex flex-col items-center justify-center">
+<div class="w-full max-w-[520px] aspect-[4/5] relative rounded-xl border border-outline/30 bg-surface/[0.02] p-space-md backdrop-blur-sm flex flex-col justify-between">
+<!-- Map Top Label -->
+<div class="w-full flex items-center justify-between font-label-sm text-label-sm uppercase tracking-widest text-outline">
+<span class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[14px] text-secondary">explore</span>
+                Topology Matrix · India
+              </span>
+<span>GRID-REF: 768-SYN-24</span>
+</div>
+<!-- Stylized SVG Dot-Matrix of India Subcontinent -->
+<div class="relative w-full h-[360px] my-auto flex items-center justify-center">
+<svg class="w-full h-full max-h-[380px] select-none" viewbox="0 0 400 480" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="16" id="dotGrid" patternunits="userSpaceOnUse" width="16">
+<circle cx="8" cy="8" fill="#fef9ef" fill-opacity="0.22" r="1.5"></circle>
+</pattern>
+<radialgradient cx="50%" cy="50%" id="sparkPulse" r="50%">
+<stop offset="0%" stop-color="#ff6338" stop-opacity="0.8"></stop>
+<stop offset="100%" stop-color="#b22c01" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<!-- India Subcontinent approximate geometric polygon clipping for dots -->
+<path d="M 170 30 L 220 50 L 240 85 L 210 115 L 255 125 L 305 130 L 335 155 L 380 155 L 375 190 L 320 195 L 310 240 L 290 280 L 250 330 L 220 390 L 195 440 L 180 390 L 155 330 L 130 270 L 115 230 L 95 210 L 110 180 L 135 150 L 145 100 L 165 60 Z" fill="url(#dotGrid)"></path>
+<!-- Connecting Topology Hairlines (Latent mesh) -->
+<line stroke="#ccc6bc" stroke-dasharray="3 3" stroke-opacity="0.4" stroke-width="0.8" x1="188" x2="198" y1="92" y2="120"></line>
+<line stroke="#ccc6bc" stroke-dasharray="3 3" stroke-opacity="0.4" stroke-width="0.8" x1="188" x2="225" y1="92" y2="70"></line>
+<line stroke="#ccc6bc" stroke-dasharray="3 3" stroke-opacity="0.4" stroke-width="0.8" x1="188" x2="215" y1="92" y2="155"></line>
+<line stroke="#ccc6bc" stroke-dasharray="3 3" stroke-opacity="0.3" stroke-width="0.8" x1="215" x2="165" y1="155" y2="280"></line>
+<line stroke="#ccc6bc" stroke-dasharray="3 3" stroke-opacity="0.3" stroke-width="0.8" x1="165" x2="175" y1="280" y2="385"></line>
+<!-- CHAMBA (ACTIVE FOUNDING BENCH) -->
+<!-- Pulse halo -->
+<circle class="animate-ping" cx="188" cy="92" fill="url(#sparkPulse)" r="16" style="animation-duration: 3s;"></circle>
+<circle cx="188" cy="92" fill="#b22c01" r="5" stroke="#fef9ef" stroke-width="1.5"></circle>
+<!-- Callout indicator for Chamba -->
+<polyline fill="none" points="188,92 140,65 70,65" stroke="#b22c01" stroke-width="1.2"></polyline>
+<circle cx="70" cy="65" fill="#b22c01" r="2"></circle>
+<text fill="#b22c01" font-family="Geist" font-size="9" font-weight="600" letter-spacing="0.1em" text-anchor="end" x="65" y="55">CHAMBA [FOUNDING BENCH]</text>
+<text fill="#ccc6bc" font-family="Geist" font-size="7.5" text-anchor="end" x="65" y="44">32.55° N · ACTIVE SANCTUARY</text>
+<!-- Dharamshala Node -->
+<circle cx="198" cy="120" fill="none" r="3" stroke="#ccc6bc" stroke-width="1.2"></circle>
+<text fill="#88837d" font-family="Geist" font-size="7.5" x="210" y="123">DHARAMSHALA (NEXT)</text>
+<!-- Leh Node -->
+<circle cx="225" cy="70" fill="none" r="3" stroke="#ccc6bc" stroke-width="1.2"></circle>
+<text fill="#88837d" font-family="Geist" font-size="7.5" x="236" y="73">LEH (PIPELINE)</text>
+<!-- Dehradun Node -->
+<circle cx="215" cy="155" fill="none" r="3" stroke="#ccc6bc" stroke-width="1.2"></circle>
+<text fill="#88837d" font-family="Geist" font-size="7.5" x="226" y="158">DEHRADUN (PROPOSED)</text>
+<!-- Pune Node -->
+<circle cx="165" cy="280" fill="none" r="3" stroke="#ccc6bc" stroke-width="1.2"></circle>
+<text fill="#88837d" font-family="Geist" font-size="7.5" x="175" y="283">PUNE (INDUSTRIAL EXPLORATORY)</text>
+<!-- Wayanad Node -->
+<circle cx="175" cy="385" fill="none" r="3" stroke="#ccc6bc" stroke-width="1.2"></circle>
+<text fill="#88837d" font-family="Geist" font-size="7.5" x="186" y="388">WAYANAD (AGRI/ECOLOGY)</text>
+</svg>
+</div>
+<!-- Map Bottom Datum Tag -->
+<div class="w-full pt-space-xs border-t border-outline/25 flex items-center justify-between text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<span>Projection: Albers Equal Area</span>
+<span class="text-on-primary-container font-medium">Zero Land-Grab Speculation</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 01: ONE DISTRICT, ONE SPECIALISATION -->
+<section class="w-full bg-surface py-space-2xl border-b border-outline-variant/60">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex flex-col gap-space-xl">
+<!-- Section Header -->
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">
+          01 / Curricular Architecture · Dual-Layer Topology
+        </span>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
+          One district, one <span class="italic text-secondary">specialisation</span>.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+          Every centre runs the shared universal spine, while solving the specific physical physics and economic friction of its own valley. We train minds universally, then focus them locally.
+        </p>
+</div>
+<!-- Layered Diagram: Top Layer / Vertical Connectors / Universal Base -->
+<div class="w-full flex flex-col gap-space-sm bg-surface-container-low p-space-md md:p-space-lg rounded-xl border border-outline-variant/70">
+<!-- Top Title Indicator -->
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-space-xs font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
+<span>Curricular Stack Diagram</span>
+<span class="text-secondary font-medium">Level 2 Emergence over Level 1 Invariant</span>
+</div>
+<!-- Top Layer: Local Specialisations (4 Distinct Cards) -->
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<div class="flex items-center gap-space-xs font-label-md text-label-md uppercase tracking-wider text-on-surface font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+            Layer 02: Local Specialisation Layer (Emergent from District Reality)
+          </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-sm mt-space-xs">
+<!-- Alpine card -->
+<div class="bg-surface p-space-md rounded border border-outline-variant/80 flex flex-col justify-between hover:border-secondary transition-colors group">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Example · Alpine</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Mountain Engineering</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-normal">
+                  Horticulture cold-chains, high-altitude logistics, timber preservation &amp; vernacular seismic masonry.
+                </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/40 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                Terrain: 1,500m - 3,800m
+              </div>
+</div>
+<!-- Urban Gateway card -->
+<div class="bg-surface p-space-md rounded border border-outline-variant/80 flex flex-col justify-between hover:border-secondary transition-colors group">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Example · Gateway Hub</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Cognitive Tooling</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-normal">
+                  Entrance pedagogy teardowns, anti-burnout pacing, educational software tooling &amp; peer study carrels.
+                </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/40 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                Transit: High-Density Youth
+              </div>
+</div>
+<!-- Manufacturing card -->
+<div class="bg-surface p-space-md rounded border border-outline-variant/80 flex flex-col justify-between hover:border-secondary transition-colors group">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Example · Industrial Belt</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Hardware &amp; Firmware</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-normal">
+                  Embedded telemetry, factory floor sensor retrofits, precision machining &amp; industrial PLC hacking.
+                </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/40 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                Context: Fabrication Corridor
+              </div>
+</div>
+<!-- Maritime card -->
+<div class="bg-surface p-space-md rounded border border-outline-variant/80 flex flex-col justify-between hover:border-secondary transition-colors group">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary block mb-space-xs">Example · Maritime</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Ocean Telemetry</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-normal">
+                  Aquaculture monitoring, coastal micro-meteorology, tidal energy storage &amp; port supply dispatch.
+                </p>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/40 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+                Zone: Estuary &amp; Littoral
+              </div>
+</div>
+</div>
+</div>
+<!-- Vertical Connectors between layers -->
+<div class="py-space-xs flex justify-around items-center opacity-60">
+<div class="flex items-center gap-1 font-label-sm text-label-sm uppercase tracking-widest text-outline">
+<span class="material-symbols-outlined text-[18px] text-secondary">arrow_downward</span>
+            Inherits Universal Invariants
+          </div>
+</div>
+<!-- Base Layer: Universal Core -->
+<div class="bg-surface p-space-md md:p-space-lg rounded border border-outline-variant/90 flex flex-col gap-space-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline">Level 01 Invariant Core</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Common Core Base (Universal Foundation)</h4>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider px-2.5 py-1 rounded bg-surface-container text-on-surface font-medium border border-outline-variant/60 w-fit">
+              Non-Negotiable in all 780 Districts
+            </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+            Whether a student steps into an atelier in Kargil or a workshop in Coimbatore, these rigorous fundamental faculties are identical, open-source, and verified through continuous peer synthesis:
+          </p>
+<!-- Badges / Chips -->
+<div class="flex flex-wrap gap-2 pt-space-xs">
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Axiomatic Learning Model</span>
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">AI Tutor Engine</span>
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Verifiable Synapse Passport</span>
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">First-Principles Scientific Inquiry</span>
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Bilingual Vernacular &amp; Rigorous Rhetoric</span>
+<span class="px-3 py-1.5 rounded-[9999px] border border-outline-variant/80 bg-surface font-label-sm text-label-sm uppercase tracking-wider text-on-surface">Quantitative Grounding</span>
+</div>
+</div>
+</div>
+<!-- Special Highlight Anchor Card: Chamba Formulation -->
+<div class="w-full bg-surface-container p-space-md md:p-space-lg rounded-xl border border-secondary/40 flex flex-col md:flex-row gap-space-md items-start justify-between">
+<div class="flex gap-space-sm items-start max-w-3xl">
+<span class="material-symbols-outlined text-secondary text-[28px] mt-0.5">location_pin</span>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">Chamba Founding Protocol</span>
+<span class="text-outline-variant">·</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline">District Case Zero</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">
+              Specialisation to be discovered with the valley, not imported.
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              We do not import pre-cooked curriculum from Delhi or Bangalore; we sit with Chamba's carpenters, farmers, and weavers, and examine what its youth are forced to migrate to do. The local specialisation emerges from the district's unsolved economic friction.
+            </p>
+</div>
+</div>
+<div class="md:text-right shrink-0">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline block">Active Cohort</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">14 Fellows In Situ</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-1">Court Road, Chamba</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 02: THREE SIZES (GRADUATION OF SCALE) -->
+<section class="w-full bg-surface py-space-2xl border-b border-outline-variant/60">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex flex-col gap-space-xl">
+<!-- Header -->
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">
+          02 / Spatial Evolution · Three Graduated Archetypes
+        </span>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
+          Districts can graduate upward.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Growth is not a franchise blitz; it is a biological thickening of local capability and civic stewardship.
+        </p>
+</div>
+<!-- 3 Columns Architectural Schematics with Stepped Height -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md items-end">
+<!-- CARD 01: THE CIRCLE (SEED CELL) -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/80 p-space-md md:p-space-lg flex flex-col justify-between h-full hover:border-outline transition-colors">
+<div class="flex flex-col gap-space-md">
+<!-- Architectural Schematic: Level 0 Single room -->
+<div class="w-full h-40 bg-surface rounded border border-outline-variant/50 p-space-sm flex flex-col justify-end relative overflow-hidden">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline absolute top-2 left-3">Elevation: 3.2m</span>
+<!-- Schematic SVG -->
+<svg class="w-full h-24 stroke-on-surface fill-none" stroke-width="1.2" viewbox="0 0 240 90">
+<polygon points="20,70 120,30 220,70"></polygon>
+<rect height="18" width="170" x="35" y="70"></rect>
+<line stroke-dasharray="2 2" x1="60" x2="60" y1="70" y2="88"></line>
+<line stroke-dasharray="2 2" x1="180" x2="180" y1="70" y2="88"></line>
+<circle cx="120" cy="50" fill="#b22c01" r="3" stroke="none"></circle>
+</svg>
+<div class="flex justify-between items-center text-outline font-label-sm text-label-sm pt-1 border-t border-outline-variant/30">
+<span>Floor G Only</span>
+<span>Panchayat Cell</span>
+</div>
+</div>
+<!-- Details -->
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block">01 · The Circle (Seed Cell)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">The Question Board</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+                A weekly evening meeting, a physical Question Board, and a dedicated library corner inside an existing rented space or community room. Minimum barrier, maximum intensity.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/60 flex flex-col gap-1 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<div class="flex justify-between">
+<span class="text-outline">Fellows:</span>
+<span class="text-on-surface font-medium">1 Host Fellow</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Cadre:</span>
+<span class="text-on-surface font-medium">12–20 Scholars</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Capital:</span>
+<span class="text-secondary font-medium">Zero Permanent Lease</span>
+</div>
+</div>
+</div>
+<!-- CARD 02: THE LIBRARY (TWO FLOORS) -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant/80 p-space-md md:p-space-lg flex flex-col justify-between h-full hover:border-outline transition-colors">
+<div class="flex flex-col gap-space-md">
+<!-- Architectural Schematic: Level 1 Two-storey cutaway -->
+<div class="w-full h-52 bg-surface rounded border border-outline-variant/50 p-space-sm flex flex-col justify-end relative overflow-hidden">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline absolute top-2 left-3">Elevation: 7.4m</span>
+<!-- Schematic SVG -->
+<svg class="w-full h-36 stroke-on-surface fill-none" stroke-width="1.2" viewbox="0 0 240 130">
+<polygon points="15,40 120,10 225,40"></polygon>
+<!-- Floor 1 -->
+<rect height="42" width="190" x="25" y="40"></rect>
+<line x1="70" x2="70" y1="40" y2="82"></line>
+<line x1="120" x2="120" y1="40" y2="82"></line>
+<line x1="170" x2="170" y1="40" y2="82"></line>
+<!-- Floor G -->
+<rect height="44" stroke-dasharray="3 3" width="190" x="25" y="82"></rect>
+<circle cx="120" cy="62" fill="#b22c01" r="3" stroke="none"></circle>
+<circle cx="120" cy="102" fill="#1d1c16" r="3" stroke="none"></circle>
+</svg>
+<div class="flex justify-between items-center text-outline font-label-sm text-label-sm pt-1 border-t border-outline-variant/30">
+<span>Floor G + Floor 1</span>
+<span>Self-Sustaining Bench</span>
+</div>
+</div>
+<!-- Details -->
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block">02 · The Library (Two Floors)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">The Knowledge Commons</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+                The Learning Commons (Floor G) plus a paid, self-sustaining quiet carrel floor (Floor 1). Subscription memberships from working citizens fund free teaching below.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/60 flex flex-col gap-1 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<div class="flex justify-between">
+<span class="text-outline">Fellows:</span>
+<span class="text-on-surface font-medium">6 Teaching Fellows</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Cadre:</span>
+<span class="text-on-surface font-medium">120 Library Cardholders</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Capital:</span>
+<span class="text-on-surface font-medium">Self-Funded Daily Ops</span>
+</div>
+</div>
+</div>
+<!-- CARD 03: THE CAMPUS (THREE FLOORS - FULL MONOGRAPH) -->
+<div class="bg-surface-container rounded-xl border-2 border-primary p-space-md md:p-space-lg flex flex-col justify-between h-full relative">
+<div class="absolute -top-3 right-6 bg-primary text-surface px-3 py-0.5 rounded-[9999px] font-label-sm text-label-sm uppercase tracking-wider">
+            Full Monograph
+          </div>
+<div class="flex flex-col gap-space-md">
+<!-- Architectural Schematic: Level 2 Three Floors complete -->
+<div class="w-full h-64 bg-surface rounded border border-outline-variant/70 p-space-sm flex flex-col justify-end relative overflow-hidden">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-outline absolute top-2 left-3">Elevation: 11.8m</span>
+<!-- Schematic SVG -->
+<svg class="w-full h-48 stroke-on-surface fill-none" stroke-width="1.2" viewbox="0 0 240 170">
+<!-- Roof Atelier -->
+<polygon points="10,35 120,5 230,35" stroke="#b22c01"></polygon>
+<line stroke="#b22c01" stroke-dasharray="2 2" x1="80" x2="160" y1="20" y2="20"></line>
+<!-- Floor 2 (Venture & Prototyping) -->
+<rect height="42" stroke="#b22c01" width="200" x="20" y="35"></rect>
+<circle cx="120" cy="55" fill="#b22c01" r="3.5" stroke="none"></circle>
+<!-- Floor 1 (Carrels) -->
+<rect height="42" width="200" x="20" y="77"></rect>
+<!-- Floor G (Commons) -->
+<rect height="46" width="200" x="20" y="119"></rect>
+<!-- Architectural Grid Verticals -->
+<line stroke-dasharray="2 2" stroke-opacity="0.4" x1="65" x2="65" y1="35" y2="165"></line>
+<line stroke-dasharray="2 2" stroke-opacity="0.4" x1="175" x2="175" y1="35" y2="165"></line>
+</svg>
+<div class="flex justify-between items-center text-outline font-label-sm text-label-sm pt-1 border-t border-outline-variant/30">
+<span>Floor G + 1 + 2 Atelier</span>
+<span class="text-secondary font-medium">Chamba Benchmark</span>
+</div>
+</div>
+<!-- Details -->
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold block">03 · The Campus (Three Floors)</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mt-1">The Complete Engine</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-space-xs leading-relaxed">
+                All three storeys complete. Ground Floor learning commons, Floor 1 quiet library, and Floor 2 venture bench. Resident founders building locally and teaching 10 hours each week.
+              </p>
+</div>
+</div>
+<div class="pt-space-md mt-space-md border-t border-outline-variant/60 flex flex-col gap-1 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<div class="flex justify-between">
+<span class="text-outline">Leadership:</span>
+<span class="text-on-surface font-medium">16 Founders &amp; Fellows</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">District Impact:</span>
+<span class="text-on-surface font-medium">250+ Daily Builders</span>
+</div>
+<div class="flex justify-between">
+<span class="text-outline">Engine:</span>
+<span class="text-secondary font-medium">Full Economic Autonomy</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 03: A FEDERATION, NOT A FRANCHISE -->
+<section class="w-full bg-surface py-space-2xl border-b border-outline-variant/60">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex flex-col gap-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Left Sticky Editorial Note -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm lg:sticky lg:top-28">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">
+            03 / Governance Charter · Reciprocal Sovereignty
+          </span>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-on-surface">
+            A federation, not a franchise.
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+            Franchises extract brand royalties and mandate uniform mediocrity. A federation pools sovereign research strength while leaving the key to the front door entirely with the local district council.
+          </p>
+<div class="p-space-sm bg-surface-container-low rounded border border-outline-variant/60 font-body-sm text-body-sm text-on-surface-variant mt-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface block font-medium mb-1">Clause of Autonomy:</span>
+            No central headquarters may revoke a district's physical premises or dictate its curriculum beyond the universal axiomatic grounding.
+          </div>
+</div>
+<!-- Right: 5 Sequential Structural Tenets -->
+<div class="lg:col-span-7 flex flex-col divide-y divide-outline-variant/60 border-y border-outline-variant/60">
+<!-- Tenet 01 -->
+<div class="py-space-md flex gap-space-md items-start group hover:bg-surface-container-low transition-colors px-space-xs">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary transition-colors shrink-0 w-12">
+              01
+            </span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shared Curriculum &amp; AI Tutor</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                A single rigorous, open-source core of axiomatic mathematics, dialectic reasoning, and empirical science that improves continuously with every classroom session logged across all 780 districts.
+              </p>
+</div>
+</div>
+<!-- Tenet 02 -->
+<div class="py-space-md flex gap-space-md items-start group hover:bg-surface-container-low transition-colors px-space-xs">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary transition-colors shrink-0 w-12">
+              02
+            </span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Shared Immutable Passport</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                A mastery record earned on a bench in Chamba is cryptographically verifiable in Leh, Bangalore, or Boston. One single, unforgeable standard for human intellectual capability.
+              </p>
+</div>
+</div>
+<!-- Tenet 03 -->
+<div class="py-space-md flex gap-space-md items-start group hover:bg-surface-container-low transition-colors px-space-xs">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary transition-colors shrink-0 w-12">
+              03
+            </span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Circuits of Mentors and Founders</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Visiting software engineers, mathematical researchers, and historical scholars spend month-long residencies moving in continuous rotation between regional nodes.
+              </p>
+</div>
+</div>
+<!-- Tenet 04 -->
+<div class="py-space-md flex gap-space-md items-start group hover:bg-surface-container-low transition-colors px-space-xs">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary transition-colors shrink-0 w-12">
+              04
+            </span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Exchanges Between Centres</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                A mountain scholar from Himachal spends a monsoon term in an industrial corridor learning precision CNC machining; a city fellow retreats to Chamba for uninterrupted philosophical writing.
+              </p>
+</div>
+</div>
+<!-- Tenet 05 -->
+<div class="py-space-md flex gap-space-md items-start group hover:bg-surface-container-low transition-colors px-space-xs">
+<span class="font-headline-md text-headline-md text-outline group-hover:text-secondary transition-colors shrink-0 w-12">
+              05
+            </span>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">A National Problem Exchange</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                District bottlenecks pinned to Floor 2 problem boards are broadcast across the entire federation. A frost-resistant agricultural telemetry prototype built in Himachal can instantly deploy in Uttarakhand.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 04: HOW WE GROW: FIVE SOVEREIGN GATES -->
+<section class="w-full bg-primary-container text-surface py-space-2xl border-b border-outline/30 relative" id="charter">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex flex-col gap-space-xl relative z-10">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-2xl">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">
+            04 / Prudential Discipline · Capital Constraints
+          </span>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-surface">
+            Grown only from what it earns.
+          </h2>
+<p class="font-body-lg text-body-lg text-on-primary-container">
+            Speculative venture capital corrupts pedagogical devotion. We expand only as fast as operational discipline permits.
+          </p>
+</div>
+<div class="px-4 py-2 rounded border border-secondary/60 bg-surface/[0.04] text-secondary font-label-md text-label-md uppercase tracking-widest">
+          Bootstrapped · Anti-Speculative Charter
+        </div>
+</div>
+<!-- The 5 Sovereign Gates Flow -->
+<div class="relative w-full mt-space-md">
+<!-- Connecting Hairline Vermilion Thread (desktop) -->
+<div class="hidden lg:block absolute top-[28px] left-0 w-full h-[2px] bg-secondary/80 z-0"></div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter-desktop relative z-10">
+<!-- Gate 01 -->
+<div class="flex flex-col gap-space-sm bg-surface/[0.03] p-space-md rounded border border-outline/30 lg:border-none lg:p-0">
+<div class="flex items-center gap-space-xs">
+<div class="w-14 h-14 rounded-full bg-primary-container border-2 border-secondary flex items-center justify-center font-headline-sm text-headline-sm text-surface shrink-0">
+                01
+              </div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary lg:hidden">Gate One</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-surface">Self-Sustaining Classroom</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                Prove the first classroom pays for itself. No expansion until Floor G tuition and carrel exchange break even with exactly zero outside subsidy.
+              </p>
+</div>
+<span class="mt-auto pt-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline block">Condition: Breakeven Invariant</span>
+</div>
+<!-- Gate 02 -->
+<div class="flex flex-col gap-space-sm bg-surface/[0.03] p-space-md rounded border border-outline/30 lg:border-none lg:p-0">
+<div class="flex items-center gap-space-xs">
+<div class="w-14 h-14 rounded-full bg-primary-container border-2 border-secondary flex items-center justify-center font-headline-sm text-headline-sm text-surface shrink-0">
+                02
+              </div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary lg:hidden">Gate Two</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-surface">Citizen Card Buy-In</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                Add the library only when the town buys the cards. Floor 1 opens when 80+ citizens formally commit to monthly quiet carrel subscriptions.
+              </p>
+</div>
+<span class="mt-auto pt-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline block">Condition: 80+ Committed Readers</span>
+</div>
+<!-- Gate 03 -->
+<div class="flex flex-col gap-space-sm bg-surface/[0.03] p-space-md rounded border border-outline/30 lg:border-none lg:p-0">
+<div class="flex items-center gap-space-xs">
+<div class="w-14 h-14 rounded-full bg-primary-container border-2 border-secondary flex items-center justify-center font-headline-sm text-headline-sm text-surface shrink-0">
+                03
+              </div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary lg:hidden">Gate Three</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-surface">Authentic Founders In-Situ</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                Add the venture floor only when authentic makers exist. Never furnish Floor 2 for hypothetical startups; open only when builders bring genuine regional craft.
+              </p>
+</div>
+<span class="mt-auto pt-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline block">Condition: Genuine Substrates</span>
+</div>
+<!-- Gate 04 -->
+<div class="flex flex-col gap-space-sm bg-surface/[0.03] p-space-md rounded border border-outline/30 lg:border-none lg:p-0">
+<div class="flex items-center gap-space-xs">
+<div class="w-14 h-14 rounded-full bg-primary-container border-2 border-secondary flex items-center justify-center font-headline-sm text-headline-sm text-surface shrink-0">
+                04
+              </div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary lg:hidden">Gate Four</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-surface">Surplus-Funded Expansion</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                Open a second centre only when the first generates organic financial surplus. A new district node is capitalized entirely from real operational margin.
+              </p>
+</div>
+<span class="mt-auto pt-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline block">Condition: Node 1 Organic Margin</span>
+</div>
+<!-- Gate 05 -->
+<div class="flex flex-col gap-space-sm bg-surface/[0.03] p-space-md rounded border border-outline/30 lg:border-none lg:p-0">
+<div class="flex items-center gap-space-xs">
+<div class="w-14 h-14 rounded-full bg-primary-container border-2 border-secondary flex items-center justify-center font-headline-sm text-headline-sm text-surface shrink-0">
+                05
+              </div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary lg:hidden">Gate Five</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-surface">Proof Before Scale</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container leading-relaxed">
+                Zero institutional philanthropic or venture capital until 5 or 6 independent centres prove the loop in distinct geographies. Institutional autonomy is total.
+              </p>
+</div>
+<span class="mt-auto pt-space-xs font-label-sm text-label-sm uppercase tracking-wider text-outline block">Condition: 6 Nodes Validated</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- TERMINAL CTA & DISTRICT CIRCLE INITIATION FORM -->
+<section class="w-full bg-surface py-space-2xl" id="propose-circle">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop">
+<div class="bg-surface-container rounded-xl border border-outline-variant/80 p-space-md md:p-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- Left Column Manifesto -->
+<div class="lg:col-span-5 flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-semibold">
+                District Convening Petition
+              </span>
+<h2 class="font-display-lg text-display-lg tracking-tight text-on-surface">
+                Start a Circle in your <span class="italic text-secondary">district</span>.
+              </h2>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mt-space-xs">
+                Do not wait for a full three-storey monograph building. Gather four serious learners, secure a blackboard, and claim a quiet corner.
+              </p>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                We will dispatch the Question Board architectural specifications, the axiomatic tutor training logs, and verify your Circle under the Synapse Registry.
+              </p>
+</div>
+<div class="pt-space-md border-t border-outline-variant/60 flex flex-col gap-1 font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span>Standard Response Horizon: 72 Hours via Dispatch</span>
+<span>Registry Dispatch Desk: Chamba — Himachal Pradesh</span>
+</div>
+</div>
+<!-- Right Column: Short Interest Form -->
+<div class="lg:col-span-7 bg-surface p-space-md md:p-space-lg rounded-lg border border-outline-variant/80">
+<form class="flex flex-col gap-space-md" onsubmit="event.preventDefault(); document.getElementById('form-feedback').classList.remove('hidden');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Full Name -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Full Name / Convenor</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/60 focus:border-secondary focus:outline-none transition-colors" placeholder="e.g. Vikramaditya Katoch" required="" type="text"/>
+</div>
+<!-- Target District & State -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Target District &amp; State</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/60 focus:border-secondary focus:outline-none transition-colors" placeholder="e.g. Mandi, Himachal Pradesh" required="" type="text"/>
+</div>
+</div>
+<!-- What room exists today? -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">What room or physical space exists today?</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/60 focus:border-secondary focus:outline-none transition-colors" placeholder="Panchayat hall corner, school attic, family library, terrace shed..." required="" type="text"/>
+</div>
+<!-- Signal / WhatsApp Contact -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">WhatsApp or Signal Dispatch Line</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline/60 focus:border-secondary focus:outline-none transition-colors" placeholder="+91 ····· ·····" required="" type="tel"/>
+</div>
+<!-- Affirmation checkbox -->
+<div class="flex items-start gap-space-xs pt-1">
+<input class="mt-1 h-4 w-4 accent-secondary rounded" id="charter-consent" required="" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant select-none" for="charter-consent">
+                  I commit to bootstrapping this cell from local stewardship without speculative capital or tuition extraction.
+                </label>
+</div>
+<!-- Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm pt-space-xs">
+<button class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] bg-secondary text-surface font-label-md text-label-md uppercase tracking-wider hover:bg-secondary-container transition-all" type="submit">
+                  Apply to Convene a District Circle
+                </button>
+<a class="w-full sm:w-auto inline-flex items-center justify-center h-12 px-space-md rounded-[9999px] border border-on-surface/80 font-label-md text-label-md uppercase tracking-wider text-on-surface hover:bg-surface-container transition-colors" href="#charter">
+                  Read Charter v0.4
+                </a>
+</div>
+<!-- Feedback message -->
+<div class="hidden p-space-sm bg-secondary/10 border border-secondary/40 rounded text-secondary font-body-sm text-body-sm" id="form-feedback">
+                Dispatch logged. The Chamba bench will transmit the Question Board blueprint within 72 hours.
+              </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-primary-container text-surface border-t border-outline/30 pt-space-2xl pb-space-xl"><div class="max-w-[1280px] mx-auto px-margin md:px-margin-desktop flex flex-col gap-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-start"><div class="md:col-span-5 flex flex-col gap-space-sm"><div class="flex items-center gap-space-xs"><span class="font-headline-md text-headline-md text-surface tracking-tight">Synapse</span><span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block mb-1"></span></div><p class="font-body-lg text-body-lg text-on-primary-container italic max-w-sm">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col gap-space-md"><span class="font-label-sm text-label-sm uppercase tracking-widest text-on-primary-container">Monograph Directory</span><nav class="grid grid-cols-2 sm:grid-cols-3 gap-space-sm font-label-md text-label-md uppercase tracking-wider"><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="the-idea" href="#">The Idea</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="the-building" href="#">The Building</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="fellowship" href="#">Fellowship</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="passport" href="#">Passport</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="centres" href="#">Centres &amp; Field Stations</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="principles" href="#">Principles</a><a class="text-inverse-on-surface/80 hover:text-surface transition-colors" data-path="contact" href="#">Contact</a></nav></div></div><div class="w-full h-[1px] bg-outline/25"></div><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline text-on-primary-container font-label-sm text-label-sm"><div class="md:col-span-7 flex flex-col gap-space-xs"><span class="text-outline uppercase tracking-widest">Registry &amp; Presence</span><p class="text-inverse-on-surface/75 normal-case font-body-sm text-body-sm">Behind the Post Office, Chamba, Himachal Pradesh — 176310, Himalayan Republic / Dispatch via WhatsApp</p></div><div class="md:col-span-5 flex flex-col md:text-right gap-space-xs"><span class="text-outline uppercase tracking-widest">Status</span><p class="text-inverse-on-surface/75 uppercase tracking-widest">An autonomous sanctuary of learning · Bootstrapped. Grown only from what it earns.</p></div></div><div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pt-space-xs border-t border-outline/15 text-outline font-label-sm text-label-sm tracking-widest uppercase"><p>MMXXIV SYNAPSE. ALL RIGHTS RESERVED.</p><p>CHAMBA — DHARAMSHALA — LEH</p></div></div></footer></body></html>

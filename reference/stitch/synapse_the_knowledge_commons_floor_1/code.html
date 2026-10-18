@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+
+<html class="bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><title>Synapse — Gurukul for the Age of AI</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Geist+Mono:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-container-highest": "#e7e2d8",
+        "inverse-on-surface": "#f5f0e6",
+        "secondary-container": "#ff6338",
+        "tertiary": "#000000",
+        "primary-fixed-dim": "#cbc6bf",
+        "inverse-primary": "#cbc6bf",
+        "surface-tint": "#625e58",
+        "outline": "#7b766e",
+        "on-error": "#ffffff",
+        "surface": "#fef9ef",
+        "on-secondary-container": "#5d1200",
+        "surface-container-high": "#ede8de",
+        "error-container": "#ffdad6",
+        "tertiary-fixed-dim": "#cdc6b7",
+        "on-primary": "#ffffff",
+        "on-secondary-fixed-variant": "#881f00",
+        "surface-bright": "#fef9ef",
+        "secondary": "#b22c01",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-container": "#898377",
+        "on-primary-fixed": "#1d1b17",
+        "on-tertiary-fixed-variant": "#4b463c",
+        "on-surface-variant": "#4a463f",
+        "on-background": "#1d1c16",
+        "on-error-container": "#93000a",
+        "on-primary-fixed-variant": "#494641",
+        "on-surface": "#1d1c16",
+        "on-secondary": "#ffffff",
+        "surface-variant": "#e7e2d8",
+        "error": "#ba1a1a",
+        "surface-container-lowest": "#ffffff",
+        "on-primary-container": "#88837d",
+        "surface-container": "#f2ede3",
+        "outline-variant": "#ccc6bc",
+        "on-secondary-fixed": "#3b0800",
+        "primary-fixed": "#e8e1da",
+        "inverse-surface": "#32302a",
+        "secondary-fixed": "#ffdbd1",
+        "tertiary-container": "#1e1b12",
+        "surface-container-low": "#f8f3e9",
+        "surface-dim": "#dedad0",
+        "tertiary-fixed": "#e9e2d3",
+        "background": "#fef9ef",
+        "on-tertiary-fixed": "#1e1b12",
+        "secondary-fixed-dim": "#ffb5a1",
+        "primary": "#000000",
+        "primary-container": "#1d1b17"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.125rem",
+        "lg": "0.25rem",
+        "xl": "0.5rem",
+        "full": "0.75rem"
+      },
+      "spacing": {
+        "space-md": "1.5rem",
+        "margin": "1.25rem",
+        "space-sm": "1rem",
+        "margin-desktop": "3rem",
+        "space-xl": "4rem",
+        "space-lg": "2.5rem",
+        "space-xs": "0.5rem",
+        "gutter-desktop": "2.5rem",
+        "gutter": "1.5rem",
+        "space-2xl": "8rem"
+      },
+      "fontFamily": {
+        "headline-lg": ["EB Garamond"],
+        "display-lg": ["EB Garamond"],
+        "body-sm": ["Geist"],
+        "headline-md": ["EB Garamond"],
+        "display-lg-mobile": ["EB Garamond"],
+        "display-xl": ["EB Garamond"],
+        "label-sm": ["Geist"],
+        "body-md": ["Geist"],
+        "display-xl-mobile": ["EB Garamond"],
+        "headline-sm": ["EB Garamond"],
+        "body-lg": ["Geist"],
+        "label-md": ["Geist"],
+        "mono": ["Geist Mono", "monospace"]
+      },
+      "fontSize": {
+        "headline-lg": ["2.75rem", {"lineHeight": "1.15", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-lg": ["4rem", {"lineHeight": "1.05", "letterSpacing": "-0.025em", "fontWeight": "400"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.55", "fontWeight": "400"}],
+        "headline-md": ["2rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "display-lg-mobile": ["2.5rem", {"lineHeight": "1.12", "letterSpacing": "-0.015em", "fontWeight": "400"}],
+        "display-xl": ["5.5rem", {"lineHeight": "1.02", "letterSpacing": "-0.03em", "fontWeight": "400"}],
+        "label-sm": ["0.6875rem", {"lineHeight": "1.3", "letterSpacing": "0.14em", "fontWeight": "500"}],
+        "body-md": ["1rem", {"lineHeight": "1.6", "fontWeight": "400"}],
+        "display-xl-mobile": ["3.25rem", {"lineHeight": "1.08", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+        "headline-sm": ["1.5rem", {"lineHeight": "1.3", "fontWeight": "500"}],
+        "body-lg": ["1.125rem", {"lineHeight": "1.65", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+        "label-md": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.12em", "fontWeight": "500"}]
+      }
+    }
+  }
+}</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen relative selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-[#F3EEE4] border-b border-[#D8D0BF]"><div class="h-20 max-w-[1440px] mx-auto px-margin-desktop flex items-center justify-between"><div class="flex items-center gap-3"><a class="flex items-center gap-2.5 group" data-path="the-idea" href="#"><span class="font-headline-md text-headline-md tracking-tight text-on-surface font-normal">Synapse</span><span aria-hidden="true" class="flex items-center text-secondary"><svg fill="none" height="14" viewbox="0 0 14 14" width="14" xmlns="http://www.w3.org/2000/svg"><line stroke="currentColor" stroke-width="1.2" x1="2" x2="12" y1="7" y2="7"></line><circle cx="7" cy="7" fill="currentColor" r="2.5"></circle></svg></span></a></div><nav class="hidden xl:flex items-center gap-8 font-mono text-[11px] tracking-[0.2em] uppercase" data-active-classes="text-secondary font-medium"><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-idea" href="#">THE IDEA</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="the-building" href="#">THE BUILDING</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="fellowship" href="#">FELLOWSHIP</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="passport" href="#">PASSPORT</a><a class="text-on-surface-variant hover:text-on-surface transition-colors py-1" data-path="centres" href="#">CENTRES</a></nav><div class="flex items-center gap-4"><a class="hidden sm:inline-flex items-center h-10 px-5 rounded-[9999px] border border-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-on-surface hover:bg-[#D8D0BF]/30 hover:text-on-surface transition-colors" data-path="teach-with-us" href="#">Teach with us</a><a class="inline-flex items-center h-10 px-6 rounded-[9999px] bg-[#15130F] font-label-sm text-label-sm uppercase tracking-[0.14em] text-[#F3EEE4] hover:bg-secondary transition-colors" data-path="visit-or-enquire" href="#">Visit or enquire</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col items-center gap-4 select-none font-mono text-[11px] text-on-surface-variant/70"><div class="w-px h-8 bg-[#D8D0BF]"></div><div class="flex flex-col items-center gap-3"><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span><span class="text-secondary font-semibold">2</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">1</span></div><div class="flex items-center gap-2 relative group cursor-pointer"><span class="w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]"></span><span class="hover:text-on-surface transition-colors">G</span></div></div><div class="w-px h-8 bg-[#D8D0BF]"></div><span class="[writing-mode:vertical-rl] font-mono text-[9px] tracking-[0.25em] text-on-surface-variant/50 uppercase mt-1">FLOOR GAUGE</span></aside><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full relative">
+<!-- FLOOR GAUGE OVERRIDE SCRIPT (Updates shell's gauge to highlight '1') -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const gauge = document.querySelector("aside");
+      if (gauge) {
+        const floorItems = gauge.querySelectorAll(".flex.flex-col > div");
+        if (floorItems.length >= 3) {
+          // Reset Floor 2 (index 0)
+          floorItems[0].querySelector("span:first-child").className = "w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]";
+          floorItems[0].querySelector("span:last-child").className = "hover:text-on-surface transition-colors";
+          // Activate Floor 1 (index 1)
+          floorItems[1].querySelector("span:first-child").className = "w-1.5 h-1.5 rounded-full bg-[#D9481F]";
+          floorItems[1].querySelector("span:last-child").className = "text-[#D9481F] font-semibold";
+          // Reset Ground (index 2)
+          floorItems[2].querySelector("span:first-child").className = "w-1 h-1 rounded-full bg-transparent group-hover:bg-[#D8D0BF]";
+          floorItems[2].querySelector("span:last-child").className = "hover:text-on-surface transition-colors";
+        }
+      }
+    });
+  </script>
+<!-- ARCHITECTURAL DATUM STRIP -->
+<div class="w-full bg-[#15130F] text-[#D8D0BF] border-b border-[#3A362E] select-none">
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop py-3 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] tracking-[0.18em] uppercase">
+<div class="flex items-center gap-3">
+<span class="inline-block w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span class="text-[#F3EEE4] font-medium">ARCHITECTURAL PROGRAMME · PLATE NO. 04</span>
+<span class="text-[#7B766E]">/</span>
+<span class="text-[#D8D0BF]">FLOOR 1 · KNOWLEDGE COMMONS</span>
+</div>
+<div class="flex items-center gap-6 text-[10px]">
+<span class="text-[#7B766E] hidden sm:inline">ELEVATION DATUM: <span class="text-[#F3EEE4]">+4.20m LEVEL 1</span></span>
+<span class="tracking-[0.24em] text-[#D9481F]/90 font-serif lowercase italic text-[12px]">सीखो · सिखाओ · बनाओ · दिखाओ</span>
+</div>
+</div>
+</div>
+<!-- 00 / HERO: NOCTURNAL SANCTUARY (INK BACKGROUND) -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] relative overflow-hidden">
+<!-- Continuous 2px Spark vertical datum thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F]/40 z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pt-space-xl pb-space-2xl relative z-10 pl-10 md:pl-20">
+<!-- Monospace Classification Tag -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#CDC6B7]/70 uppercase mb-8">
+<span class="text-[#D9481F] font-semibold">00</span>
+<span>/</span>
+<span>FLOOR 1 · SECTION 00 — KNOWLEDGE COMMONS</span>
+<span class="hidden md:inline text-[#3A362E]">————————————————————————</span>
+</div>
+<!-- Hero Grid: Asymmetric 7 / 5 Editorial Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Left: Statement & Manifesto -->
+<div class="lg:col-span-7 flex flex-col justify-between">
+<div>
+<h1 class="font-display-xl text-display-xl tracking-tight text-[#F3EEE4] leading-[0.98] mb-8">
+              A door that is <br/>
+<span class="italic font-display-xl text-[#D9481F] underline decoration-1 underline-offset-8 decoration-[#D9481F]/40">always open.</span>
+</h1>
+<p class="font-headline-sm text-headline-sm text-[#CDC6B7] leading-relaxed max-w-2xl font-normal mb-10">
+              A community library for anyone with a monthly card: school students, graduates preparing for civil exams, retired engineers, craftspeople, and anyone who simply demands uninterrupted silence to read.
+            </p>
+</div>
+<!-- Metadata Spec Chips -->
+<div class="flex flex-wrap gap-3 pt-6 border-t border-[#3A362E]/70 font-mono text-[11px] tracking-[0.14em] uppercase text-[#CDC6B7]/80">
+<span class="px-3 py-1.5 rounded-[2px] border border-[#3A362E] bg-[#1E1B12]/80 flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#D9481F]"></span>
+              CAPACITY: 120 SCHOLARS
+            </span>
+<span class="px-3 py-1.5 rounded-[2px] border border-[#3A362E] bg-[#1E1B12]/80">
+              HOURS: 06:00 – 22:00 DAILY
+            </span>
+<span class="px-3 py-1.5 rounded-[2px] border border-[#3A362E] bg-[#1E1B12]/80">
+              ACCESS: OPEN TO ALL TIERS
+            </span>
+<span class="px-3 py-1.5 rounded-[2px] border border-[#3A362E] bg-[#1E1B12]/80 text-[#D8D0BF]">
+              SOLAR-BACKED · 300MBPS FIBER
+            </span>
+</div>
+</div>
+<!-- Right: Architectural Fine-Line Ink Draft Elevation -->
+<div class="lg:col-span-5 flex flex-col border border-[#3A362E] bg-[#1A1813] p-6 relative">
+<div class="flex items-center justify-between pb-4 border-b border-[#3A362E] font-mono text-[10px] tracking-[0.16em] text-[#CDC6B7]/60 uppercase">
+<span>ELEVATION: TRANSEPTS &amp; CARRELS</span>
+<span class="text-[#D9481F]">PLATE F1-A</span>
+</div>
+<!-- Architectural Line Drawing Canvas (SVG Draft of Silent Hall) -->
+<div class="my-6 w-full aspect-[4/3] bg-[#15130F] border border-[#3A362E]/60 p-4 flex flex-col justify-between relative overflow-hidden select-none">
+<!-- Subtle architectural drafting grid lines -->
+<svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<pattern height="24" id="archGrid" patternunits="userSpaceOnUse" width="24">
+<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#D8D0BF" stroke-width="0.5"></path>
+</pattern>
+</defs>
+<rect fill="url(#archGrid)" height="100%" width="100%"></rect>
+</svg>
+<!-- Line-Art Elevation of Communal Tables & Question Board -->
+<svg class="w-full h-full relative z-10 text-[#CDC6B7]" fill="none" stroke="currentColor" stroke-width="1" viewbox="0 0 460 260">
+<!-- Ceiling Beams -->
+<line stroke="#7B766E" stroke-width="0.8" x1="20" x2="440" y1="25" y2="25"></line>
+<line stroke="#3A362E" stroke-dasharray="2 3" x1="20" x2="440" y1="35" y2="35"></line>
+<!-- Pendants Hanging Over Long Table -->
+<line stroke="#7B766E" stroke-width="0.6" x1="90" x2="90" y1="25" y2="90"></line>
+<circle cx="90" cy="94" fill="#D9481F" r="3" stroke="none"></circle>
+<line stroke="#7B766E" stroke-width="0.6" x1="180" x2="180" y1="25" y2="90"></line>
+<circle cx="180" cy="94" fill="#F3EEE4" r="3" stroke="none"></circle>
+<line stroke="#7B766E" stroke-width="0.6" x1="270" x2="270" y1="25" y2="90"></line>
+<circle cx="270" cy="94" fill="#F3EEE4" r="3" stroke="none"></circle>
+<!-- Long Communal Study Table -->
+<rect fill="#1E1B12" height="6" stroke="#D8D0BF" stroke-width="1.2" width="280" x="40" y="160"></rect>
+<line stroke="#D8D0BF" stroke-width="1.2" x1="50" x2="50" y1="166" y2="225"></line>
+<line stroke="#7B766E" stroke-width="1" x1="180" x2="180" y1="166" y2="225"></line>
+<line stroke="#D8D0BF" stroke-width="1.2" x1="310" x2="310" y1="166" y2="225"></line>
+<!-- Partitioned Study Carrels (Left Partition) -->
+<line stroke="#7B766E" stroke-dasharray="1 2" stroke-width="1" x1="110" x2="110" y1="130" y2="160"></line>
+<line stroke="#7B766E" stroke-dasharray="1 2" stroke-width="1" x1="225" x2="225" y1="130" y2="160"></line>
+<!-- Silent Reader Silhouette 1 (Head, Torso, Book) -->
+<circle cx="90" cy="132" fill="#15130F" r="7" stroke="#D8D0BF" stroke-width="1"></circle>
+<path d="M 78 158 C 80 144, 100 144, 102 158" fill="none" stroke="#D8D0BF" stroke-width="1"></path>
+<path d="M 85 158 L 98 152 L 105 158" fill="none" stroke="#D9481F" stroke-width="1.2"></path>
+<!-- Silent Reader Silhouette 2 (Taking Notes) -->
+<circle cx="200" cy="134" fill="#15130F" r="7" stroke="#CDC6B7" stroke-width="1"></circle>
+<path d="M 188 158 C 190 146, 210 146, 212 158" fill="none" stroke="#CDC6B7" stroke-width="1"></path>
+<line stroke="#D8D0BF" stroke-width="0.8" x1="205" x2="218" y1="150" y2="158"></line>
+<!-- Question Board Wall (Right section) -->
+<rect fill="#1E1B12" height="150" stroke="#7B766E" stroke-width="1" width="85" x="350" y="60"></rect>
+<line stroke="#3A362E" stroke-width="0.8" x1="350" x2="435" y1="75" y2="75"></line>
+<text fill="#CDC6B7" font-family="monospace" font-size="7" letter-spacing="1" x="358" y="71">QUESTION BOARD</text>
+<!-- Index cards on board -->
+<rect fill="#2A261F" height="15" stroke="#D9481F" stroke-width="0.8" width="22" x="356" y="82"></rect>
+<rect fill="#2A261F" height="15" stroke="#7B766E" stroke-width="0.6" width="22" x="382" y="82"></rect>
+<rect fill="#2A261F" height="15" stroke="#7B766E" stroke-width="0.6" width="22" x="408" y="82"></rect>
+<rect fill="#2A261F" height="15" stroke="#7B766E" stroke-width="0.6" width="22" x="356" y="103"></rect>
+<rect fill="#2A261F" height="15" stroke="#D9481F" stroke-width="0.8" width="22" x="382" y="103"></rect>
+<rect fill="#2A261F" height="15" stroke="#7B766E" stroke-width="0.6" width="22" x="356" y="124"></rect>
+<!-- Figure Pinning a Card to the Wall -->
+<circle cx="338" cy="115" fill="#15130F" r="7" stroke="#D9481F" stroke-width="1.2"></circle>
+<path d="M 335 123 L 333 168 L 324 225" fill="none" stroke="#D9481F" stroke-width="1"></path>
+<line stroke="#D9481F" stroke-width="1" x1="333" x2="343" y1="168" y2="225"></line>
+<path d="M 336 132 L 354 110" stroke="#D9481F" stroke-width="1.2"></path>
+<!-- Floor Datum Line -->
+<line stroke="#D8D0BF" stroke-width="1.5" x1="20" x2="440" y1="225" y2="225"></line>
+<text fill="#7B766E" font-family="monospace" font-size="7" x="25" y="240">±0.00 FLOOR 1 FINISH</text>
+</svg>
+</div>
+<div class="flex items-center justify-between text-[#CDC6B7] font-mono text-[10px] tracking-widest pt-2">
+<span>SILENT HALL &amp; QUESTION BOARD · ELEVATION 1:100</span>
+<span class="text-[#D9481F]">MEASURED DRAWING</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 01 / THE SPACE: ACOUSTIC ARCHITECTURE (PAPER BACKGROUND) -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-space-xl relative border-b border-[#D8D0BF]">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<!-- Section Tag -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#6F6A5E] uppercase mb-4">
+<span class="text-[#D9481F] font-semibold">01</span>
+<span>/</span>
+<span>ACOUSTIC ARCHITECTURE</span>
+<span class="text-[#D8D0BF]">——</span>
+<span class="text-[#15130F]">SOUND GRADIENT CALIBRATION</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-[#15130F]">
+            A gradient of sound.
+          </h2>
+<p class="font-body-lg text-body-lg text-[#4A463F] mt-2 max-w-xl">
+            Silence is not a single state; it is an engineered continuum. Floor 1 is mapped into four distinct acoustic thresholds from absolute contemplation to catalytic conversation.
+          </p>
+</div>
+<div class="font-mono text-label-sm text-[#6F6A5E] uppercase tracking-widest border border-[#D8D0BF] px-4 py-2 bg-[#FEF9EF]">
+          ZONE CALIBRATION: 0 dB – 60 dB
+        </div>
+</div>
+<!-- Horizontal Gradient Sound Spectrum Bar & Demarcated Zones -->
+<div class="w-full border border-[#D8D0BF] bg-[#FEF9EF] p-2 md:p-3 mb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+<!-- Zone 1 -->
+<div class="bg-[#F3EEE4] p-5 flex flex-col justify-between border-l-2 border-[#15130F]">
+<div>
+<div class="flex items-center justify-between font-mono text-[11px] mb-3">
+<span class="text-[#D9481F] font-semibold tracking-wider">ZONE 01</span>
+<span class="bg-[#15130F] text-[#F3EEE4] px-2 py-0.5 rounded-[2px] font-mono text-[10px]">0 – 15 dB</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mb-1">Silent Hall</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+                Absolute silence. 32 partitioned solid oak reading desks, directional warm desk-lamps, no notifications, no whispers.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#D8D0BF]/70 flex items-center justify-between font-mono text-[10px] text-[#6F6A5E]">
+<span>CAPACITY: 32 DESKS</span>
+<span class="material-symbols-outlined text-[16px] text-[#D9481F]">volume_off</span>
+</div>
+</div>
+<!-- Zone 2 -->
+<div class="bg-[#F3EEE4] p-5 flex flex-col justify-between border-l-2 border-[#7B766E]">
+<div>
+<div class="flex items-center justify-between font-mono text-[11px] mb-3">
+<span class="text-[#15130F] font-semibold tracking-wider">ZONE 02</span>
+<span class="bg-[#7B766E] text-[#F3EEE4] px-2 py-0.5 rounded-[2px] font-mono text-[10px]">~30 dB</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mb-1">Quiet Commons</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+                Gentle page turning, whispered queries, district reference stacks, long shared maple reading tables.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#D8D0BF]/70 flex items-center justify-between font-mono text-[10px] text-[#6F6A5E]">
+<span>CAPACITY: 48 SEATS</span>
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+</div>
+</div>
+<!-- Zone 3 -->
+<div class="bg-[#F3EEE4] p-5 flex flex-col justify-between border-l-2 border-[#D9481F]">
+<div>
+<div class="flex items-center justify-between font-mono text-[11px] mb-3">
+<span class="text-[#D9481F] font-semibold tracking-wider">ZONE 03</span>
+<span class="bg-[#D9481F] text-[#F3EEE4] px-2 py-0.5 rounded-[2px] font-mono text-[10px]">~45 dB</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mb-1">Discussion Rooms</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+                Triple-glazed acoustic glass enclosures for 3–5 scholars. Full wall chalkboards, dual microphone arrays.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#D8D0BF]/70 flex items-center justify-between font-mono text-[10px] text-[#6F6A5E]">
+<span>4 ROOMS · 20 TOTAL</span>
+<span class="material-symbols-outlined text-[16px] text-[#D9481F]">forum</span>
+</div>
+</div>
+<!-- Zone 4 -->
+<div class="bg-[#F3EEE4] p-5 flex flex-col justify-between border-l-2 border-[#15130F]">
+<div>
+<div class="flex items-center justify-between font-mono text-[11px] mb-3">
+<span class="text-[#15130F] font-semibold tracking-wider">ZONE 04</span>
+<span class="bg-[#15130F] text-[#F3EEE4] px-2 py-0.5 rounded-[2px] font-mono text-[10px]">~60 dB</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mb-1">Atrium &amp; Café</h3>
+<p class="font-body-sm text-body-sm text-[#4A463F] leading-relaxed">
+                The central timber stairway landing. Local Himalayan herbal infusions, dark pour-overs, cross-floor serendipity.
+              </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#D8D0BF]/70 flex items-center justify-between font-mono text-[10px] text-[#6F6A5E]">
+<span>UNLIMITED FLOW</span>
+<span class="material-symbols-outlined text-[16px]">coffee</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Architectural Quote Callout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center bg-[#FEF9EF] border border-[#D8D0BF] p-6 md:p-8">
+<div class="lg:col-span-1 flex items-center justify-center">
+<span class="font-serif text-5xl text-[#D9481F] italic select-none">“</span>
+</div>
+<div class="lg:col-span-8">
+<blockquote class="font-headline-sm text-headline-sm text-[#15130F] leading-relaxed font-normal italic">
+            The café near the stairs is the glue, not a side business: it is where people from different floors bump into each other.
+          </blockquote>
+</div>
+<div class="lg:col-span-3 lg:border-l border-[#D8D0BF] lg:pl-6 pt-4 lg:pt-0">
+<p class="font-mono text-label-sm uppercase tracking-widest text-[#6F6A5E]">Source Citation</p>
+<p class="font-body-sm text-body-sm text-[#15130F] font-medium mt-1">Architectural Programme Notes</p>
+<p class="font-mono text-[10px] text-[#7B766E] uppercase">Folio 04 · Synapse Chamba</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 02 / THE QUESTION BOARD: PEDAGOGICAL ENGINE (PAPER BACKGROUND) -->
+<section class="w-full bg-[#FEF9EF] text-[#15130F] py-space-xl relative border-b border-[#D8D0BF]">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<!-- Section Label -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#6F6A5E] uppercase mb-4">
+<span class="text-[#D9481F] font-semibold">02</span>
+<span>/</span>
+<span>PEDAGOGICAL ENGINE</span>
+<span class="text-[#D8D0BF]">——</span>
+<span>THE PHYSICAL WALL DISPATCH</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop mb-10 items-end">
+<div class="lg:col-span-8">
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-[#15130F]">
+            The physical board that sets the evening agenda.
+          </h2>
+<p class="font-body-lg text-body-lg text-[#4A463F] mt-3 max-w-2xl">
+            The top-voted questions each day get an acoustic discussion room that evening with a designated host: a visiting reader, an academic fellow, or a resident founder.
+          </p>
+</div>
+<div class="lg:col-span-4 lg:text-right">
+<span class="inline-flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-[#D9481F] bg-[#F3EEE4] px-3.5 py-1.5 border border-[#D8D0BF]">
+<span class="w-2 h-2 rounded-full bg-[#D9481F] animate-pulse"></span>
+            LIVE BOARD ARCHIVE · 17:00 DISPATCH
+          </span>
+</div>
+</div>
+<!-- Live Mock Physical Index Card Board (Annotated ILLUSTRATIVE) -->
+<div class="bg-[#F3EEE4] border border-[#D8D0BF] p-6 md:p-8 relative">
+<!-- Stamp Indicator -->
+<div class="absolute top-4 right-4 font-mono text-[10px] tracking-[0.2em] text-[#7B766E] uppercase border border-[#D8D0BF] px-2 py-0.5">
+          FIGURE 2.1 — WALL REPLICA (ILLUSTRATIVE)
+        </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+<!-- Card 1 (Top Voted - Scheduled) -->
+<div class="bg-[#FEF9EF] border-2 border-[#15130F] p-6 relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF]">
+<span class="font-mono text-[10px] tracking-widest uppercase text-[#6F6A5E]">SLOT #01 · HYDROLOGY</span>
+<div class="flex items-center gap-1.5 font-mono text-[12px] font-semibold text-[#D9481F]">
+<span class="material-symbols-outlined text-[16px]">how_to_vote</span>
+<span>84 VOTES</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-3 leading-snug">
+                “Why do rivers flood in some years and not others, despite identical total monsoon precipitation?”
+              </h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+                Examining soil saturation mechanics, timber canopy loss in the Ravi catchment, and runoff flash curves.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-[#D8D0BF]">
+<!-- Vermilion Spark badge: Scheduled Room -->
+<div class="bg-[#D9481F] text-[#F3EEE4] px-3 py-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 font-mono text-[10px] tracking-[0.14em] uppercase">
+<span class="font-semibold">TONIGHT 7:00 PM · ROOM 02</span>
+<span class="text-[#F3EEE4]/90">HOST: RETIRED PWD ENGINEER &amp; FELLOW</span>
+</div>
+</div>
+</div>
+<!-- Card 2 (High Interest) -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF]">
+<span class="font-mono text-[10px] tracking-widest uppercase text-[#6F6A5E]">SLOT #02 · GEOMORPHOLOGY</span>
+<div class="flex items-center gap-1.5 font-mono text-[12px] font-semibold text-[#15130F]">
+<span class="material-symbols-outlined text-[16px]">how_to_vote</span>
+<span>61 VOTES</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-3 leading-snug">
+                “How does a glacier become a river, and at what elevation does meltwater reach drinking mineral balance?”
+              </h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+                Pointers to the Chamba District Water Archive logs from 1984–2024 on Floor 1 stacks.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-[#D8D0BF] flex items-center justify-between font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+<span>HYDROLOGY &amp; GLACIOLOGY</span>
+<span class="text-[#D9481F] font-medium">3 FELLOWS INTERESTED</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF]">
+<span class="font-mono text-[10px] tracking-widest uppercase text-[#6F6A5E]">SLOT #03 · COMPUTER SYSTEMS</span>
+<div class="flex items-center gap-1.5 font-mono text-[12px] font-semibold text-[#15130F]">
+<span class="material-symbols-outlined text-[16px]">how_to_vote</span>
+<span>47 VOTES</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-3 leading-snug">
+                “Is it still worth learning low-level memory management and C if automated code generation writes production code?”
+              </h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+                A rigorous look at compiler output, silicon constraints, and true cognitive independence.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-[#D8D0BF] flex items-center justify-between font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+<span>COMPUTING &amp; COGNITION</span>
+<span>QUEUED FOR THURSDAY POD</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 relative flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF]">
+<span class="font-mono text-[10px] tracking-widest uppercase text-[#6F6A5E]">SLOT #04 · LOCAL AGRONOMY</span>
+<div class="flex items-center gap-1.5 font-mono text-[12px] font-semibold text-[#15130F]">
+<span class="material-symbols-outlined text-[16px]">how_to_vote</span>
+<span>39 VOTES</span>
+</div>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-3 leading-snug">
+                “Why did our village’s royal delicious apple trees flower three weeks early this spring, and what does it mean for chilling hours?”
+              </h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+                Gathering observational notes from three different panchayats along the Sal river valley.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-[#D8D0BF] flex items-center justify-between font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+<span>LOCAL HORTICULTURE &amp; CLIMATE</span>
+<span>INDEXED IN DISTRICT ARCHIVE</span>
+</div>
+</div>
+</div>
+<!-- Mechanism Footer Note -->
+<div class="mt-8 pt-4 border-t border-[#D8D0BF] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-label-sm text-[#6F6A5E] uppercase tracking-widest">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-[#D9481F]">push_pin</span>
+<span>Scholars pin physical 3×5 cards on the cedar board throughout the morning</span>
+</div>
+<span class="text-[#15130F] font-semibold">TALLY CLOSED DAILY AT 17:00 SHARP</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 03 / CARD TIERS: ACCESS ARCHITECTURE (PAPER BACKGROUND) -->
+<section class="w-full bg-[#F3EEE4] text-[#15130F] py-space-xl relative border-b border-[#D8D0BF]">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<!-- Section Label -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#6F6A5E] uppercase mb-4">
+<span class="text-[#D9481F] font-semibold">03</span>
+<span>/</span>
+<span>ACCESS ARCHITECTURE</span>
+<span class="text-[#D8D0BF]">——</span>
+<span>COMMONS SUBSCRIPTION</span>
+</div>
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-[#15130F]">
+          Four tiers, one standard of quiet.
+        </h2>
+<p class="font-body-lg text-body-lg text-[#4A463F] mt-2 max-w-2xl">
+          We operate without venture capital or government endowments. Memberships fund the clean light, high-speed fiber, heating, and archival caretakers.
+        </p>
+</div>
+<!-- Four Tall Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop mb-8">
+<!-- Tier 01: READER -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 flex flex-col justify-between hover:border-[#15130F] transition-colors">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">TIER 01 / PASS</span>
+<span class="text-[#6F6A5E]">FLEXIBLE</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-2">Reader Card</h3>
+<div class="font-mono text-label-sm text-[#7B766E] uppercase tracking-wider mb-6">Fee set per centre</div>
+<ul class="space-y-3 font-body-sm text-body-sm text-[#4A463F]">
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Open seating in the Silent Hall &amp; Quiet Commons.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Access to district reference stacks &amp; periodicals.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Herbal tea &amp; pour-over coffee bar access.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Auditor status for evening Room discussions.</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-[#D8D0BF] font-mono text-[11px] text-[#15130F] uppercase tracking-wider flex items-center justify-between">
+<span>UNALLOCATED SEATS</span>
+<span class="font-semibold">06:00 – 22:00</span>
+</div>
+</div>
+<!-- Tier 02: STUDY DESK -->
+<div class="bg-[#FEF9EF] border-2 border-[#15130F] p-6 flex flex-col justify-between relative">
+<div class="absolute -top-3 right-4 bg-[#15130F] text-[#F3EEE4] font-mono text-[9px] tracking-widest uppercase px-2 py-0.5">
+            MOST RIGOROUS
+          </div>
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">TIER 02 / DEDICATED</span>
+<span class="text-[#15130F] font-semibold">RESERVED</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-2">Study Desk</h3>
+<div class="font-mono text-label-sm text-[#7B766E] uppercase tracking-wider mb-6">Fee set per centre</div>
+<ul class="space-y-3 font-body-sm text-body-sm text-[#4A463F]">
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Dedicated partitioned walnut desk with brass nameplate.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Personal lockable book locker &amp; device dock.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Hardwired 1Gbps Ethernet line at desk.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Priority voting &amp; topic submission on Question Board.</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-[#D8D0BF] font-mono text-[11px] text-[#15130F] uppercase tracking-wider flex items-center justify-between">
+<span>PERMANENT DESK</span>
+<span class="font-semibold text-[#D9481F]">32 SLOTS ONLY</span>
+</div>
+</div>
+<!-- Tier 03: MAKER -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 flex flex-col justify-between hover:border-[#15130F] transition-colors">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">TIER 03 / HYBRID</span>
+<span class="text-[#6F6A5E]">FL-1 + FL-2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-2">Maker Pass</h3>
+<div class="font-mono text-label-sm text-[#7B766E] uppercase tracking-wider mb-6">Fee set per centre</div>
+<ul class="space-y-3 font-body-sm text-body-sm text-[#4A463F]">
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Complete Floor 1 Quiet Commons &amp; library stack access.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Floor 2 Hardware Lab bench access &amp; soldering bays.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>3D printing queue allocation (50 hours/month).</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Electronics tool crib &amp; oscilloscope access.</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-[#D8D0BF] font-mono text-[11px] text-[#15130F] uppercase tracking-wider flex items-center justify-between">
+<span>CROSS-FLOOR</span>
+<span class="font-semibold">LAB BADGE</span>
+</div>
+</div>
+<!-- Tier 04: FOUNDER DESK -->
+<div class="bg-[#FEF9EF] border border-[#D8D0BF] p-6 flex flex-col justify-between hover:border-[#15130F] transition-colors">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#D8D0BF] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">TIER 04 / RESIDENT</span>
+<span class="text-[#6F6A5E]">FLOOR 2 STUDIO</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#15130F] mt-4 mb-2">Founder Desk</h3>
+<div class="font-mono text-label-sm text-[#7B766E] uppercase tracking-wider mb-6">Fee set per centre</div>
+<ul class="space-y-3 font-body-sm text-body-sm text-[#4A463F]">
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>Permanent executive workbench on Floor 2 Incubator.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>20 monthly meeting room hours + private booth booking.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span>District legal &amp; compliance repository consultation.</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="text-[#D9481F] mt-0.5">•</span>
+<span class="text-[#15130F] font-medium underline decoration-1 decoration-[#D9481F]">Mandate: 10 hrs/week public teaching or mentoring.</span>
+</li>
+</ul>
+</div>
+<div class="mt-8 pt-4 border-t border-[#D8D0BF] font-mono text-[11px] text-[#15130F] uppercase tracking-wider flex items-center justify-between">
+<span>RESIDENCY</span>
+<span class="font-semibold">BY INTERVIEW</span>
+</div>
+</div>
+</div>
+<!-- Reciprocity Clause Banner -->
+<div class="border border-[#15130F] bg-[#15130F] text-[#F3EEE4] p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-[#D9481F] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#F3EEE4] text-[20px]">handshake</span>
+</div>
+<div>
+<span class="font-mono text-label-sm tracking-[0.16em] uppercase text-[#D9481F] block">FELLOWS’ RECIPROCITY CLAUSE</span>
+<p class="font-headline-sm text-[1.25rem] text-[#F3EEE4] font-normal mt-0.5">
+              Free reserved study desk for teaching fellows in exchange for one daily guided pod on Floor G.
+            </p>
+</div>
+</div>
+<a class="shrink-0 h-10 px-5 rounded-[9999px] border border-[#D8D0BF] font-mono text-[11px] uppercase tracking-widest text-[#F3EEE4] hover:bg-[#F3EEE4] hover:text-[#15130F] transition-colors flex items-center gap-2" data-path="fellowship" href="#">
+<span>APPLY AS FELLOW</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 04 / THE DISTRICT'S MEMORY: ARCHIVAL REPOSITORY (INK BACKGROUND) -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-space-xl relative border-b border-[#3A362E]">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<!-- Section Label -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#CDC6B7]/70 uppercase mb-4">
+<span class="text-[#D9481F] font-semibold">04</span>
+<span>/</span>
+<span>ARCHIVAL REPOSITORY</span>
+<span class="text-[#3A362E]">——</span>
+<span>DISTRICT KNOWLEDGE CODEX</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop mb-12">
+<div class="lg:col-span-8">
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-[#F3EEE4]">
+            The knowledge that escaped the textbooks.
+          </h2>
+<p class="font-body-lg text-body-lg text-[#CDC6B7] mt-3 max-w-2xl font-light">
+            Knowledge usually held by a few elders and then lost forever, collected, recorded and open-sourced: teaching material rooted in the specific geology and customs of the place, real problems for student projects and startups, and living pride for the district.
+          </p>
+</div>
+<div class="lg:col-span-4 flex lg:justify-end items-end">
+<div class="font-mono text-label-sm uppercase tracking-widest text-[#D9481F] border border-[#3A362E] px-4 py-2 bg-[#1E1B12]">
+            TOTAL ACCESSIONS: 1,420 CODICES
+          </div>
+</div>
+</div>
+<!-- Museum Catalogue Grid of Archival Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<!-- Accession 01 -->
+<div class="border border-[#3A362E] bg-[#1A1813] p-6 hover:border-[#D9481F] transition-colors flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#3A362E] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">[ARCH-0142]</span>
+<span class="text-[#CDC6B7]/60">TIMBER &amp; JOINERY ARCHIVE</span>
+</div>
+<div class="my-4 flex items-center gap-4">
+<div class="w-12 h-12 border border-[#3A362E] flex items-center justify-center text-[#D9481F]">
+<span class="material-symbols-outlined text-[24px]">architecture</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#F3EEE4] leading-snug">
+                Oral Histories of Chamba Woodcarving &amp; Temple Joinery
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-6 font-light">
+              18 hours of studio audio recordings and 44 hand-drafted interlocking mortise-and-tenon diagrams dictated by master woodcarver Gian Chand. Captures earthquake-resilient kath-kuni structural joints unknown to standard engineering curricula.
+            </p>
+</div>
+<div class="pt-4 border-t border-[#3A362E] flex items-center justify-between font-mono text-[10px] text-[#CDC6B7]/60 uppercase tracking-widest">
+<span>FORMAT: MASTER AUDIO + CAD</span>
+<span class="text-[#D8D0BF]">OPEN ACCESSION · AISLE 3B</span>
+</div>
+</div>
+<!-- Accession 02 -->
+<div class="border border-[#3A362E] bg-[#1A1813] p-6 hover:border-[#D9481F] transition-colors flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#3A362E] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">[ARCH-0143]</span>
+<span class="text-[#CDC6B7]/60">HYDROLOGICAL RECORDS</span>
+</div>
+<div class="my-4 flex items-center gap-4">
+<div class="w-12 h-12 border border-[#3A362E] flex items-center justify-center text-[#D9481F]">
+<span class="material-symbols-outlined text-[24px]">water</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#F3EEE4] leading-snug">
+                Upper Ravi Micro-Watershed Seasonal Runoff Log (1984–2024)
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-6 font-light">
+              40 years of continuous daily gauge logs maintained by village forest guards across 6 micro-tributaries. Digitized, cleaned, and structured into open SQLite schema for local hydrological models and agricultural planning.
+            </p>
+</div>
+<div class="pt-4 border-t border-[#3A362E] flex items-center justify-between font-mono text-[10px] text-[#CDC6B7]/60 uppercase tracking-widest">
+<span>FORMAT: SQLITE + RAW LOGBOOKS</span>
+<span class="text-[#D8D0BF]">OPEN ACCESSION · AISLE 1A</span>
+</div>
+</div>
+<!-- Accession 03 -->
+<div class="border border-[#3A362E] bg-[#1A1813] p-6 hover:border-[#D9481F] transition-colors flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#3A362E] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">[ARCH-0144]</span>
+<span class="text-[#CDC6B7]/60">VERNACULAR PHYSICS</span>
+</div>
+<div class="my-4 flex items-center gap-4">
+<div class="w-12 h-12 border border-[#3A362E] flex items-center justify-center text-[#D9481F]">
+<span class="material-symbols-outlined text-[24px]">thermostat</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#F3EEE4] leading-snug">
+                Traditional Himalayan Adobe &amp; Slate Thermal Mass Metrics
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-6 font-light">
+              In-situ empirical heat-loss measurements across 12 high-altitude dwellings over three winters. Proves superior interior passive heat retention compared to modern reinforced concrete block construction in sub-zero elevations.
+            </p>
+</div>
+<div class="pt-4 border-t border-[#3A362E] flex items-center justify-between font-mono text-[10px] text-[#CDC6B7]/60 uppercase tracking-widest">
+<span>FORMAT: SENSOR LOGS + MONOGRAPH</span>
+<span class="text-[#D8D0BF]">OPEN ACCESSION · AISLE 2C</span>
+</div>
+</div>
+<!-- Accession 04 -->
+<div class="border border-[#3A362E] bg-[#1A1813] p-6 hover:border-[#D9481F] transition-colors flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between pb-3 border-b border-[#3A362E] font-mono text-[10px] tracking-widest uppercase">
+<span class="text-[#D9481F] font-semibold">[ARCH-0145]</span>
+<span class="text-[#CDC6B7]/60">APPLIED BOTANY</span>
+</div>
+<div class="my-4 flex items-center gap-4">
+<div class="w-12 h-12 border border-[#3A362E] flex items-center justify-center text-[#D9481F]">
+<span class="material-symbols-outlined text-[24px]">local_florist</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-[#F3EEE4] leading-snug">
+                Indigenous Wild Herbarium &amp; Ethnobotanical Primer
+              </h3>
+</div>
+<p class="font-body-sm text-body-sm text-[#CDC6B7] leading-relaxed mb-6 font-light">
+              160 verified pressed specimens of Pangi and Churah valley medicinal flora catalogued with phonetic Pahari nomenclature, seasonal harvest timing, soil pH indicators, and active compounds cross-indexed with pharmacological papers.
+            </p>
+</div>
+<div class="pt-4 border-t border-[#3A362E] flex items-center justify-between font-mono text-[10px] text-[#CDC6B7]/60 uppercase tracking-widest">
+<span>FORMAT: PHYSICAL HERBARIUM + FOLIO</span>
+<span class="text-[#D8D0BF]">VAULT CABINET 01</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 05 / A BUILDING WITH A RHYTHM: CHRONOGRAM (PAPER BACKGROUND) -->
+<section class="w-full bg-[#FEF9EF] text-[#15130F] py-space-xl relative border-b border-[#D8D0BF]">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<!-- Section Label -->
+<div class="flex items-center gap-3 font-mono text-[11px] tracking-[0.2em] text-[#6F6A5E] uppercase mb-4">
+<span class="text-[#D9481F] font-semibold">05</span>
+<span>/</span>
+<span>CHRONOGRAM</span>
+<span class="text-[#D8D0BF]">——</span>
+<span>ANCHOR RHYTHM OF THE COMMONS</span>
+</div>
+<div class="mb-10">
+<h2 class="font-headline-lg text-headline-lg tracking-tight text-[#15130F]">
+          A building with a rhythm.
+        </h2>
+<p class="font-body-lg text-body-lg text-[#4A463F] mt-2 max-w-2xl">
+          “A building that is alive has a rhythm. Fixed anchors eliminate decision fatigue and build habitual mastery.”
+        </p>
+</div>
+<!-- Weekly Chronogram Schedule Grid (Mon - Sat) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 border border-[#D8D0BF] bg-[#F3EEE4] divide-y lg:divide-y-0 lg:divide-x divide-[#D8D0BF]">
+<!-- MON -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#15130F] tracking-tight mb-1">MON</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#D9481F] mb-4">18:30 IST</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Problem Board Curation</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              Open tally and sorting of community-submitted district issues into project pods.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+            ATRIUM STEPS
+          </div>
+</div>
+<!-- TUE -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#15130F] tracking-tight mb-1">TUE</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#D9481F] mb-4">19:00 IST</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Paper Club</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              Deep, line-by-line reading of one foundational research paper across computing, physics, or architecture.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+            ROOM 01 · 20 SCHOLARS
+          </div>
+</div>
+<!-- WED -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#15130F] tracking-tight mb-1">WED</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#D9481F] mb-4">18:00 IST</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Founder Teardown</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              Rigorous architectural, unit-economic, and systems interrogation of a live regional business model.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+            COMMONS EAST
+          </div>
+</div>
+<!-- THU -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#15130F] tracking-tight mb-1">THU</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#D9481F] mb-4">19:00 IST</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Debate &amp; Open Mic</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              Technical or civic thesis defended in public without slides. Rigorous cross-examination by fellows.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+            CENTRAL ATRIUM
+          </div>
+</div>
+<!-- FRI -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF] border-t-2 lg:border-t-0 lg:border-l-2 border-[#D9481F]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#D9481F] tracking-tight mb-1">FRI</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#D9481F] mb-4">17:30 IST</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Demo Day</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              Strictly 5 minutes per project. Working code, circuits, or physical joinery only. No marketing pitch decks permitted.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#D9481F] uppercase tracking-wider font-semibold">
+            ALL TIERS MANDATORY
+          </div>
+</div>
+<!-- SAT -->
+<div class="p-5 flex flex-col justify-between bg-[#FEF9EF]">
+<div>
+<div class="font-mono text-headline-sm font-semibold text-[#15130F] tracking-tight mb-1">SAT</div>
+<div class="font-mono text-[11px] tracking-widest uppercase text-[#7B766E] mb-4">ALL DAY</div>
+<h4 class="font-headline-sm text-[1.125rem] text-[#15130F] leading-snug mb-2 font-medium">Community Open Library</h4>
+<p class="font-body-sm text-body-sm text-[#4A463F]">
+              School students and visiting elders welcome. Cross-generational mentorship, book-binding, and tea service.
+            </p>
+</div>
+<div class="pt-6 font-mono text-[10px] text-[#6F6A5E] uppercase tracking-wider">
+            PUBLIC ACCESS
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 06 / ACTION & ACCESS STRIP -->
+<section class="w-full bg-[#15130F] text-[#F3EEE4] py-space-xl relative">
+<!-- Continuous vertical Spark thread -->
+<div class="absolute left-6 md:left-12 top-0 bottom-0 w-[2px] bg-[#D9481F] z-20 pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin md:px-margin-desktop pl-10 md:pl-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<div class="lg:col-span-7">
+<span class="font-mono text-label-sm uppercase tracking-[0.2em] text-[#D9481F] block mb-2">
+            CLAIM A SEAT AT THE BENCH
+          </span>
+<h2 class="font-headline-lg text-headline-lg text-[#F3EEE4] leading-tight">
+            Step into the quiet.
+          </h2>
+<p class="font-body-lg text-body-lg text-[#CDC6B7] mt-3 max-w-xl font-light">
+            Whether for 30 uninterrupted days of exam preparation or an evening room on Himalayan hydrology, Floor 1 is ready.
+          </p>
+</div>
+<div class="lg:col-span-5 flex flex-col sm:flex-row items-stretch sm:items-center lg:justify-end gap-4">
+<!-- Primary Vermilion Pill Action -->
+<a class="h-12 px-8 rounded-[9999px] bg-[#D9481F] text-[#F3EEE4] font-mono text-[11px] tracking-[0.16em] uppercase hover:bg-[#F3EEE4] hover:text-[#15130F] transition-colors flex items-center justify-center font-medium" data-path="visit-or-enquire" href="#">
+            Get a monthly card
+          </a>
+<!-- Hairline Secondary Pill Action -->
+<a class="h-12 px-8 rounded-[9999px] border border-[#D8D0BF] text-[#F3EEE4] font-mono text-[11px] tracking-[0.16em] uppercase hover:bg-[#F3EEE4]/10 transition-colors flex items-center justify-center" data-path="teach-with-us" href="#">
+            Host an evening room
+          </a>
+</div>
+</div>
+<!-- Address and Operational Verification -->
+<div class="mt-12 pt-6 border-t border-[#3A362E] flex flex-col sm:flex-row sm:items-center justify-between gap-4 font-mono text-[11px] text-[#CDC6B7]/60 uppercase tracking-widest">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#D9481F]"></span>
+<span>SYNAPSE CHAMBA · LEVEL 1 (+4.20m) · BEHIND POST OFFICE</span>
+</div>
+<div>
+<span>OPEN 06:00 TO 22:00 DAILY · TELEMETRY: ALL DESKS WIRED</span>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-[#15130F] text-[#F3EEE4] border-t border-[#3A362E]"><div class="max-w-[1440px] mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-desktop items-baseline pb-16 border-b border-[#3A362E]/70"><div class="md:col-span-5"><span class="font-headline-lg text-headline-lg tracking-tight font-normal text-[#F3EEE4] block">Synapse</span><p class="mt-4 font-headline-sm text-headline-sm italic text-[#CDC6B7] font-normal leading-relaxed">In every district, a place to learn, teach and build.</p></div><div class="md:col-span-7 flex flex-col md:items-end justify-between self-stretch"><div class="font-mono text-label-sm text-[#CDC6B7]/60 tracking-[0.16em] uppercase">An autonomous sanctuary of learning</div><div class="text-[#CDC6B7] font-body-sm text-body-sm tracking-wide mt-6 md:mt-0">Bootstrapped. Grown only from what it earns.</div></div></div><div class="grid grid-cols-2 md:grid-cols-7 gap-gutter-desktop py-12 border-b border-[#3A362E]/70 font-mono text-[11px] tracking-[0.16em] uppercase"><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-idea" href="#">The Idea</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="the-building" href="#">The Building</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="fellowship" href="#">Fellowship</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="passport" href="#">Passport</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="centres" href="#">Centres</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="principles" href="#">Principles</a></div><div><a class="text-[#CDC6B7] hover:text-white transition-colors block py-1" data-path="contact" href="#">Contact</a></div></div><div class="pt-10 flex flex-col md:flex-row md:items-center justify-between gap-6 font-body-sm text-body-sm text-[#CDC6B7]/70"><div>Behind the Post Office, Chamba, Himachal Pradesh · 8287248119 · WhatsApp</div><div class="font-mono text-[11px] tracking-widest text-[#CDC6B7]/50 uppercase">© MMXXIV SYNAPSE. ALL RIGHTS PRESERVED.</div></div></div></footer></body></html>

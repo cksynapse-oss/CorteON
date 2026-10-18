@@ -1,0 +1,74 @@
+---
+export type StatusType =
+  'live' | 'next' | 'direction' | 'LIVE NOW' | 'OPENING NEXT' | 'DIRECTION';
+
+interface Props {
+  status: StatusType;
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { status, onDark = false, class: className = '', ...rest } = Astro.props;
+
+// Normalize status key
+const normalizedStatus = ((): 'live' | 'next' | 'direction' => {
+  const s = String(status).toUpperCase();
+  if (s.includes('LIVE')) return 'live';
+  if (s.includes('NEXT')) return 'next';
+  return 'direction';
+})();
+
+const config = {
+  live: {
+    label: 'LIVE NOW',
+    light: {
+      chip: 'border border-ink text-ink bg-transparent',
+      dot: 'bg-spark-ink',
+    },
+    dark: {
+      chip: 'border border-paper text-paper bg-transparent',
+      dot: 'bg-spark-glow',
+    },
+  },
+  next: {
+    label: 'OPENING NEXT',
+    light: {
+      chip: 'border border-hair text-muted bg-transparent',
+      dot: 'border border-muted bg-transparent',
+    },
+    dark: {
+      chip: 'border border-hair-ink text-muted-on-ink bg-transparent',
+      dot: 'border border-muted-on-ink bg-transparent',
+    },
+  },
+  direction: {
+    label: 'DIRECTION',
+    light: {
+      chip: 'border border-dashed border-hair text-muted bg-transparent',
+      dot: 'bg-muted/50',
+    },
+    dark: {
+      chip: 'border border-dashed border-hair-ink text-muted-on-ink bg-transparent',
+      dot: 'bg-muted-on-ink/50',
+    },
+  },
+};
+
+const current = config[normalizedStatus];
+const themeStyles = onDark ? current.dark : current.light;
+
+const baseStyles =
+  'inline-flex items-center gap-1.5 h-6 px-2.5 rounded-pill text-xs font-sans font-medium uppercase tracking-[0.12em] select-none shrink-0 leading-none';
+
+const classes = [baseStyles, themeStyles.chip, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes} {...rest}>
+  <span
+    class={`inline-block w-1.5 h-1.5 rounded-full shrink-0 ${themeStyles.dot}`}
+    aria-hidden="true"></span>
+  <span>{current.label}</span>
+</span>

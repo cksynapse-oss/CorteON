@@ -1,0 +1,39 @@
+---
+interface Props {
+  variant?: 'hair' | 'hair-ink' | 'spark';
+  spacing?: 'none' | 'sm' | 'md' | 'lg';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'hair',
+  spacing = 'md',
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const spacingStyles = {
+  none: 'my-0',
+  sm: 'my-4 sm:my-6',
+  md: 'my-8 sm:my-12',
+  lg: 'my-12 sm:my-16 lg:my-20',
+};
+
+const variantStyles = {
+  hair: 'border-hair',
+  'hair-ink': 'border-hair-ink',
+  spark: 'border-spark',
+};
+
+const classes = [
+  'w-full border-0 border-t',
+  variantStyles[variant],
+  spacingStyles[spacing],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<hr class={classes} {...rest} />

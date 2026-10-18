@@ -1,0 +1,132 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  name?: string;
+  type?: 'text' | 'email' | 'tel' | 'number' | 'password' | 'search' | 'url';
+  value?: string;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  readonly?: boolean;
+  error?: string;
+  helpText?: string;
+  autocomplete?: string;
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  id,
+  label,
+  name = id,
+  type = 'text',
+  value,
+  placeholder,
+  required = false,
+  disabled = false,
+  readonly = false,
+  error,
+  helpText,
+  autocomplete,
+  onDark = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const describedBy = [
+  helpText ? `${id}-help` : null,
+  error ? `${id}-error` : null,
+]
+  .filter(Boolean)
+  .join(' ');
+
+// Label styles
+const labelStyles = [
+  'block text-xs font-sans font-medium uppercase tracking-[0.12em] mb-2 select-none',
+  onDark ? 'text-muted-on-ink' : 'text-muted',
+].join(' ');
+
+// Input box styling
+const baseInputStyles =
+  'w-full min-h-[48px] px-4 py-3 rounded text-base font-body transition-colors duration-150 outline-none box-border';
+
+const themeInputStyles = onDark
+  ? error
+    ? 'bg-transparent text-paper border border-spark-glow focus:border-spark-glow focus:ring-1 focus:ring-spark-glow'
+    : 'bg-transparent text-paper border border-hair-ink placeholder:text-muted-on-ink/60 focus:border-spark-glow focus:ring-1 focus:ring-spark-glow'
+  : error
+    ? 'bg-transparent text-ink border border-spark-ink focus:border-spark-ink focus:ring-1 focus:ring-spark-ink'
+    : 'bg-transparent text-ink border border-hair placeholder:text-muted/60 focus:border-spark focus:ring-1 focus:ring-spark';
+
+const disabledStyles = disabled
+  ? 'opacity-40 cursor-not-allowed bg-hair/10'
+  : '';
+
+const inputClasses = [
+  baseInputStyles,
+  themeInputStyles,
+  disabledStyles,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class="w-full">
+  <div class="flex items-center justify-between">
+    <label for={id} class={labelStyles}>
+      {label}
+      {
+        required && (
+          <span
+            class={onDark ? 'text-spark-glow' : 'text-spark-ink'}
+            aria-hidden="true"
+          >
+            *
+          </span>
+        )
+      }
+    </label>
+  </div>
+
+  <input
+    id={id}
+    name={name}
+    type={type}
+    value={value}
+    placeholder={placeholder}
+    required={required}
+    disabled={disabled}
+    readonly={readonly}
+    aria-invalid={error ? 'true' : undefined}
+    aria-describedby={describedBy || undefined}
+    autocomplete={autocomplete}
+    class={inputClasses}
+    {...rest}
+  />
+
+  {
+    helpText && !error && (
+      <p
+        id={`${id}-help`}
+        class={`mt-1.5 font-sans text-xs ${onDark ? 'text-muted-on-ink' : 'text-muted'}`}
+      >
+        {helpText}
+      </p>
+    )
+  }
+
+  {
+    error && (
+      <p
+        id={`${id}-error`}
+        role="alert"
+        class={`mt-1.5 font-sans text-xs font-medium ${onDark ? 'text-spark-glow' : 'text-spark-ink'}`}
+      >
+        {error}
+      </p>
+    )
+  }
+</div>

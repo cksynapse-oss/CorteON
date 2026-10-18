@@ -1,0 +1,494 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+import TextLink from '../components/ui/TextLink.astro';
+import Chip from '../components/ui/Chip.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Card from '../components/ui/Card.astro';
+import Field from '../components/ui/Field.astro';
+import Select from '../components/ui/Select.astro';
+import Checkbox from '../components/ui/Checkbox.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Rule from '../components/ui/Rule.astro';
+
+const sampleOptions = [
+  { value: 'parent', label: 'Parent or student' },
+  { value: 'fellow', label: 'Graduate who wants to teach' },
+  { value: 'reader', label: 'Reader' },
+  { value: 'founder', label: 'Founder or builder' },
+  { value: 'partner', label: 'District partner' },
+];
+---
+
+<BaseLayout
+  title="Component Primitives & Design Kit — Synapse"
+  description="Internal developer showcase displaying all component primitives, states, and tokens for the Synapse Monograph Design System."
+>
+  {/* Dev Page Intro Banner */}
+  <header class="border-b border-hair bg-paper py-12">
+    <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+      <div class="mb-3 flex items-center gap-2">
+        <Chip variant="spark">DEV SYSTEM</Chip>
+        <span class="font-sans text-xs uppercase tracking-[0.12em] text-muted"
+          >/_kit</span
+        >
+      </div>
+      <h1
+        class="font-serif text-headline-lg font-normal leading-[1.05] text-ink sm:text-display-lg"
+      >
+        Component Primitives
+      </h1>
+      <p
+        class="mt-4 max-w-2xl font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        All core design system primitives in their standard, active, focus,
+        error, disabled, and nocturnal ink states. Verified against WCAG AA
+        standards.
+      </p>
+    </div>
+  </header>
+
+  {/* SECTION 1: BUTTONS */}
+  <Section id="buttons" padding="lg">
+    <SectionHeader
+      number="01"
+      label="ACTIONS"
+      title="Button"
+      sub="Strict 48px height, 9999px pill geometry, uppercase label typography. Transitions to Spark-ink (#B22C01) on Paper and Spark-glow (#FF6338) on Ink."
+    />
+
+    <div class="space-y-8">
+      <div>
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          On Paper Canvas (Standard)
+        </h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button variant="primary">Enquire Now</Button>
+          <Button variant="secondary">Browse Tracks</Button>
+          <Button variant="ghost">Read The Idea</Button>
+          <Button variant="primary" size="sm">Small Primary</Button>
+          <Button variant="secondary" size="sm">Small Secondary</Button>
+          <Button variant="primary" disabled>Disabled Action</Button>
+          <Button variant="primary" href="#buttons">Anchor As Button</Button>
+        </div>
+      </div>
+
+      <div class="theme-ink rounded border border-hair-ink bg-ink p-8">
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted-on-ink"
+        >
+          On Ink Canvas (Nocturnal Blocks)
+        </h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button variant="primary" onDark>Enquire Now</Button>
+          <Button variant="secondary" onDark>Browse Tracks</Button>
+          <Button variant="ghost" onDark>Read The Idea</Button>
+          <Button variant="primary" size="sm" onDark>Small Primary</Button>
+          <Button variant="primary" disabled onDark>Disabled</Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 2: TEXT LINKS */}
+  <Section id="links" padding="lg">
+    <SectionHeader
+      number="02"
+      label="TYPOGRAPHY & PROMPTS"
+      title="TextLink"
+      sub="Hairline 1px underline offset by 4px. Transitions to vermilion Spark on interaction."
+    />
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <Card padding="md">
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          Light Surface Links
+        </h3>
+        <div class="space-y-4 font-body text-base text-ink">
+          <p>
+            Standard inline link: Synapse is located{' '}
+            <TextLink href="#chamba">behind the Post Office in Chamba</TextLink
+            >.
+          </p>
+          <p>
+            External link with accessible target note:{' '}
+            <TextLink href="https://corteon.in" external>
+              Visit corteon.in
+            </TextLink>
+          </p>
+          <p>
+            Unadorned link without underline:{' '}
+            <TextLink href="#open" underline={false}>
+              Explore our curriculum tracks &rarr;
+            </TextLink>
+          </p>
+        </div>
+      </Card>
+
+      <Card padding="md" theme="ink">
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted-on-ink"
+        >
+          Dark Surface Links
+        </h3>
+        <div class="space-y-4 font-body text-base text-paper">
+          <p>
+            Nocturnal inline link:{' '}
+            <TextLink href="#fellowship" onDark>
+              Apply for the teaching fellowship
+            </TextLink>.
+          </p>
+          <p>
+            External link on ink:{' '}
+            <TextLink href="https://wa.me/918287248119" external onDark>
+              Connect on WhatsApp
+            </TextLink>
+          </p>
+        </div>
+      </Card>
+    </div>
+  </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 3: CHIPS & STATUS CHIPS */}
+  <Section id="chips" padding="lg">
+    <SectionHeader
+      number="03"
+      label="METADATA & STATE"
+      title="Chip & StatusChip"
+      sub="Metadata tags and strictly typed operational status chips: LIVE NOW, OPENING NEXT, DIRECTION."
+    />
+
+    <div class="space-y-8">
+      <div>
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          Metadata Chips (Standard & Interactive)
+        </h3>
+        <div class="flex flex-wrap items-center gap-3">
+          <Chip variant="default">Floor G</Chip>
+          <Chip variant="outline">PCM Track</Chip>
+          <Chip variant="muted">Mon–Sat</Chip>
+          <Chip variant="spark">Illustrative</Chip>
+          <Chip variant="default" as="button" onClick="void(0)">
+            Clickable Filter Tag
+          </Chip>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-8">
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          Operational Status Chips (On Paper Canvas)
+        </h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2">
+            <StatusChip status="LIVE NOW" />
+            <span class="font-sans text-xs text-muted"
+              >(Learning Commons classroom, Entrance baseline)</span
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <StatusChip status="OPENING NEXT" />
+            <span class="font-sans text-xs text-muted"
+              >(Floor 1 Knowledge Commons)</span
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <StatusChip status="DIRECTION" />
+            <span class="font-sans text-xs text-muted"
+              >(Floor 2 Venture Hub, Digital Question Board)</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-ink rounded border border-hair-ink bg-ink p-8">
+        <h3
+          class="mb-4 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted-on-ink"
+        >
+          Operational Status Chips (On Ink Canvas)
+        </h3>
+        <div class="flex flex-wrap items-center gap-4">
+          <StatusChip status="LIVE NOW" onDark />
+          <StatusChip status="OPENING NEXT" onDark />
+          <StatusChip status="DIRECTION" onDark />
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 4: CARDS & CONTAINERS */}
+  <Section id="cards" padding="lg">
+    <SectionHeader
+      number="04"
+      label="SURFACES"
+      title="Card"
+      sub="4px base geometry, hairline structural boundaries (#D8D0BF or #3A362E), zero drop shadows or skeuomorphic elevation."
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <Card padding="md">
+        <div class="mb-4 flex items-center justify-between">
+          <Chip variant="outline">G · LIVE NOW</Chip>
+          <span class="font-mono text-xs uppercase text-muted"
+            >ILLUSTRATIVE</span
+          >
+        </div>
+        <h3 class="mb-2 font-serif text-headline-sm font-normal text-ink">
+          Learning Commons
+        </h3>
+        <p class="font-body text-base leading-relaxed text-muted">
+          Small-group classes where every learner has a guide who knows their
+          pace. Daily practice tests follow each lesson.
+        </p>
+      </Card>
+
+      <Card padding="md">
+        <div class="mb-4 flex items-center justify-between">
+          <Chip variant="default">1 · OPENING NEXT</Chip>
+          <span class="font-mono text-xs uppercase text-muted"
+            >ILLUSTRATIVE</span
+          >
+        </div>
+        <h3 class="mb-2 font-serif text-headline-sm font-normal text-ink">
+          Knowledge Commons
+        </h3>
+        <p class="font-body text-base leading-relaxed text-muted">
+          A physical library open to anyone with a reader card, planned when the
+          community demonstrates initial demand.
+        </p>
+      </Card>
+
+      <Card padding="md" theme="ink">
+        <div class="mb-4 flex items-center justify-between">
+          <Chip variant="spark" onDark>2 · DIRECTION</Chip>
+          <span class="font-mono text-xs uppercase text-muted-on-ink"
+            >ILLUSTRATIVE</span
+          >
+        </div>
+        <h3 class="mb-2 font-serif text-headline-sm font-normal text-paper">
+          Venture Hub
+        </h3>
+        <p class="font-body text-base leading-relaxed text-muted-on-ink">
+          A nocturnal workspace reserved for teams and founders who commit to
+          teaching children in return for benches.
+        </p>
+      </Card>
+    </div>
+  </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 5: FORM CONTROLS */}
+  <Section id="forms" padding="lg">
+    <SectionHeader
+      number="05"
+      label="INPUTS & CONTROLS"
+      title="Field, Select & Checkbox"
+      sub="1px hairline borders, min-height 48px touch targets, visible Spark focus states, full keyboard navigation, and explicit accessible labeling."
+    />
+
+    <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+      {/* Light Surface Form */}
+      <Card padding="lg" class="space-y-6">
+        <div>
+          <h3 class="mb-1 font-serif text-headline-sm text-ink">
+            Enquiry Fields (Paper Canvas)
+          </h3>
+          <p class="font-sans text-xs uppercase tracking-[0.12em] text-muted">
+            All interaction states
+          </p>
+        </div>
+
+        <form class="space-y-5" action="#" method="get">
+          <Field
+            id="kit-name"
+            label="Full Name"
+            placeholder="e.g. Aditi Sharma"
+            required
+            helpText="Enter your legal or preferred name."
+          />
+
+          <Field
+            id="kit-phone"
+            type="tel"
+            label="Phone or WhatsApp Number"
+            value="8287248119"
+            required
+          />
+
+          <Select
+            id="kit-door"
+            label="Choose Your Door"
+            options={sampleOptions}
+            value="parent"
+            required
+          />
+
+          <Field
+            id="kit-error"
+            label="Field With Validation Error"
+            value="invalid-entry"
+            error="Please provide a valid Indian telephone number."
+          />
+
+          <Field
+            id="kit-disabled"
+            label="Disabled Field"
+            value="Read-only system value"
+            disabled
+          />
+
+          <div class="pt-2">
+            <Checkbox
+              id="kit-consent"
+              label="I consent to be contacted about Synapse via phone or WhatsApp."
+              checked
+              required
+            />
+          </div>
+
+          <div class="pt-2">
+            <Checkbox
+              id="kit-checkbox-error"
+              label="Checkbox with validation error."
+              error="Consent is required before submitting your enquiry."
+            />
+          </div>
+
+          <div class="pt-4">
+            <Button variant="primary" type="submit"
+              >Submit Sample Enquiry</Button
+            >
+          </div>
+        </form>
+      </Card>
+
+      {/* Dark Surface Form */}
+      <Card padding="lg" theme="ink" class="space-y-6">
+        <div>
+          <h3 class="mb-1 font-serif text-headline-sm text-paper">
+            Enquiry Fields (Ink Canvas)
+          </h3>
+          <p
+            class="font-sans text-xs uppercase tracking-[0.12em] text-muted-on-ink"
+          >
+            Nocturnal contextual states
+          </p>
+        </div>
+
+        <form class="space-y-5" action="#" method="get">
+          <Field
+            id="kit-dark-name"
+            label="Full Name"
+            placeholder="e.g. Chandan Kumar"
+            onDark
+            required
+          />
+
+          <Select
+            id="kit-dark-door"
+            label="Select Track"
+            options={sampleOptions}
+            value="fellow"
+            onDark
+          />
+
+          <Field
+            id="kit-dark-error"
+            label="Field With Error on Ink"
+            value="unverified"
+            error="This record requires manual review."
+            onDark
+          />
+
+          <Field
+            id="kit-dark-disabled"
+            label="Disabled Input on Ink"
+            value="Chamba Centre 01"
+            disabled
+            onDark
+          />
+
+          <div class="pt-2">
+            <Checkbox
+              id="kit-dark-consent"
+              label="Confirm teaching availability for one class a day."
+              checked
+              onDark
+            />
+          </div>
+
+          <div class="pt-4">
+            <Button variant="primary" onDark type="submit">Submit On Ink</Button
+            >
+          </div>
+        </form>
+      </Card>
+    </div>
+  </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 6: SECTION & RULES */}
+  <Section id="rules" padding="lg">
+    <SectionHeader
+      number="06"
+      label="STRUCTURE & CADENCE"
+      title="Rule & Section Layout"
+      sub="Architectural dividers and structural cadence for meditative negative space."
+    />
+
+    <div class="space-y-8">
+      <div>
+        <p
+          class="mb-2 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          Hairline Rule (Default #D8D0BF)
+        </p>
+        <Rule variant="hair" spacing="sm" />
+      </div>
+
+      <div>
+        <p
+          class="mb-2 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted"
+        >
+          Spark Rule (#D9481F 1px Accent)
+        </p>
+        <Rule variant="spark" spacing="sm" />
+      </div>
+
+      <div class="theme-ink rounded border border-hair-ink bg-ink p-8">
+        <p
+          class="mb-2 font-sans text-xs font-medium uppercase tracking-[0.14em] text-muted-on-ink"
+        >
+          Hairline Rule on Ink (#3A362E)
+        </p>
+        <Rule variant="hair-ink" spacing="sm" />
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

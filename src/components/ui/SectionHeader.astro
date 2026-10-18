@@ -1,0 +1,72 @@
+---
+interface Props {
+  number?: string;
+  label?: string;
+  title: string;
+  sub?: string;
+  align?: 'left' | 'center';
+  as?: 'h1' | 'h2' | 'h3';
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  number,
+  label,
+  title,
+  sub,
+  align = 'left',
+  as: HeadingTag = 'h2',
+  onDark = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const alignmentStyles =
+  align === 'center'
+    ? 'text-center mx-auto items-center'
+    : 'text-left items-start';
+
+const labelTextColor = onDark ? 'text-muted-on-ink' : 'text-muted';
+const numberTextColor = onDark ? 'text-spark-glow' : 'text-spark-ink';
+const titleTextColor = onDark ? 'text-paper' : 'text-ink';
+const subTextColor = onDark ? 'text-muted-on-ink' : 'text-muted';
+---
+
+<header
+  class={`flex flex-col mb-8 sm:mb-12 lg:mb-16 ${alignmentStyles} ${className}`}
+  {...rest}
+>
+  {
+    (number || label) && (
+      <div
+        class={`mb-3 inline-flex select-none items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.14em] ${labelTextColor}`}
+      >
+        {number && <span class={numberTextColor}>{number}</span>}
+        {number && label && (
+          <span class="opacity-50" aria-hidden="true">
+            /
+          </span>
+        )}
+        {label && <span>{label}</span>}
+      </div>
+    )
+  }
+
+  <HeadingTag
+    class={`font-serif text-headline-md sm:text-headline-lg lg:text-display-lg font-normal leading-[1.08] tracking-[-0.02em] max-w-3xl ${titleTextColor}`}
+  >
+    {title}
+  </HeadingTag>
+
+  {
+    sub && (
+      <p
+        class={`mt-4 max-w-2xl font-body text-base leading-relaxed sm:text-body-lg ${subTextColor}`}
+      >
+        {sub}
+      </p>
+    )
+  }
+</header>

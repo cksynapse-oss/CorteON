@@ -1,0 +1,98 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'sm';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  target?: string;
+  rel?: string;
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  type = 'button',
+  disabled = false,
+  target,
+  rel,
+  onDark = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+// Base button styles conforming to DESIGN.md and BUILD_PLAN.md
+const baseStyles =
+  'inline-flex items-center justify-center font-sans font-medium uppercase transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-spark focus-visible:outline-offset-2 select-none text-center cursor-pointer';
+
+const sizeStyles = {
+  md: 'min-h-[48px] px-6 py-3 text-xs tracking-[0.14em] rounded-pill',
+  sm: 'min-h-[36px] px-4 py-1.5 text-xs tracking-[0.12em] rounded-pill',
+};
+
+// Colors strict to token specifications (Paper, Ink, Spark)
+const variantStylesLight = {
+  primary:
+    'bg-ink text-paper border border-ink hover:bg-spark-ink hover:border-spark-ink hover:text-paper active:bg-ink',
+  secondary:
+    'bg-transparent text-ink border border-ink hover:bg-hair/30 active:bg-hair/50',
+  ghost:
+    'bg-transparent text-ink border border-transparent hover:text-spark-ink hover:bg-hair/15 active:bg-hair/30',
+};
+
+const variantStylesDark = {
+  primary:
+    'bg-paper text-ink border border-paper hover:bg-spark-glow hover:border-spark-glow hover:text-ink active:bg-paper',
+  secondary:
+    'bg-transparent text-paper border border-paper hover:bg-hair-ink/40 active:bg-hair-ink/60',
+  ghost:
+    'bg-transparent text-paper border border-transparent hover:text-spark-glow hover:bg-hair-ink/20 active:bg-hair-ink/40',
+};
+
+const variantStyle = onDark
+  ? variantStylesDark[variant]
+  : variantStylesLight[variant];
+const disabledStyle = disabled
+  ? 'opacity-40 cursor-not-allowed pointer-events-none'
+  : '';
+
+const classes = [
+  baseStyles,
+  sizeStyles[size],
+  variantStyle,
+  disabledStyle,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+
+const isLink = typeof href === 'string' && !disabled;
+---
+
+{
+  isLink ? (
+    <a
+      href={href}
+      target={target}
+      rel={target === '_blank' && !rel ? 'noopener noreferrer' : rel}
+      class={classes}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type={type}
+      disabled={disabled}
+      aria-disabled={disabled ? 'true' : undefined}
+      class={classes}
+      {...rest}
+    >
+      <slot />
+    </button>
+  )
+}

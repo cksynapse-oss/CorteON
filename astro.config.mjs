@@ -5,6 +5,9 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   output: 'static',
   site: 'https://corteon.in',
+  redirects: {
+    '/_kit': '/kit',
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

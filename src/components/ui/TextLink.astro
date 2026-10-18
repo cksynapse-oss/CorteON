@@ -1,0 +1,46 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  underline?: boolean;
+  onDark?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  href,
+  external = false,
+  underline = true,
+  onDark = false,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const baseStyles =
+  'inline-flex items-center gap-1 font-body transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-spark focus-visible:outline-offset-2';
+
+const colorStyles = onDark
+  ? 'text-paper hover:text-spark-glow'
+  : 'text-ink hover:text-spark-ink';
+
+const underlineStyles = underline
+  ? onDark
+    ? 'underline underline-offset-4 decoration-hair-ink hover:decoration-spark-glow'
+    : 'underline underline-offset-4 decoration-hair hover:decoration-spark'
+  : 'no-underline';
+
+const classes = [baseStyles, colorStyles, underlineStyles, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<a
+  href={href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+  class={classes}
+  {...rest}
+>
+  <slot />{external && <span class="sr-only"> (opens in a new window)</span>}
+</a>

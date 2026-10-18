@@ -1,0 +1,53 @@
+---
+interface Props {
+  as?: 'article' | 'div' | 'section' | 'li';
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  theme?: 'paper' | 'ink';
+  bordered?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  as: Component = 'article',
+  padding = 'md',
+  theme = 'paper',
+  bordered = true,
+  class: className = '',
+  ...rest
+} = Astro.props;
+
+const paddingStyles = {
+  none: '',
+  sm: 'p-4 sm:p-6',
+  md: 'p-6 sm:p-8 lg:p-10',
+  lg: 'p-8 sm:p-10 lg:p-12',
+};
+
+const themeStyles = {
+  paper: 'bg-paper text-ink',
+  ink: 'theme-ink bg-ink text-paper',
+};
+
+const borderStyles = bordered
+  ? theme === 'ink'
+    ? 'border border-hair-ink'
+    : 'border border-hair'
+  : '';
+
+const baseStyles = 'rounded transition-colors duration-150';
+
+const classes = [
+  baseStyles,
+  themeStyles[theme],
+  borderStyles,
+  paddingStyles[padding],
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Component class={classes} {...rest}>
+  <slot />
+</Component>

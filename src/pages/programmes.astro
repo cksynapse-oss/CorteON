@@ -1,14 +1,460 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Accordion from '../components/ui/Accordion.astro';
+import TutorDemo from '../components/brand/TutorDemo.astro';
+
+import site from '../content/site.json';
+import programmesRaw from '../content/programmes.json';
+import faqRaw from '../content/faq.json';
+
+import type { ProgrammesContent, FaqContent } from '../content/schemas';
+
+const programmes = programmesRaw as ProgrammesContent;
+const faq = faqRaw as FaqContent;
 ---
 
-<BaseLayout title="Programmes — Synapse">
-  <ComingSoonStub
-    title="Programmes"
-    status="LIVE NOW"
-    phase="Phase 1 · Classes Active"
-    description="Small-group classes in Chamba across four launch tracks: PCM, PCB, CUET General Test + English, and CUET Arts/Commerce + NDA Army. Five days a week per student. Fees are shared when you enquire."
-    plannedNote="Complete schedule matrix, entrance diagnostic details, and interactive tutor demo are coming in Task T7."
-  />
+<BaseLayout
+  title={`Programmes & Learning Commons — ${site.name}`}
+  description="Small-group classes in Chamba across four launch tracks. A guide who knows every student. Five days a week per student. Fees are shared when you enquire."
+  activeFloor="g"
+>
+  {/* SECTION 1: HERO */}
+  <Section
+    id="overview"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <div class="max-w-4xl">
+      <div
+        class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        <span>{programmes.hero?.eyebrow ?? 'LEARNING COMMONS · FLOOR G'}</span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        Small groups. A guide who <span class="italic text-spark-ink"
+          >knows every student.</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {
+          programmes.hero?.sub ??
+            'Four launch tracks in Chamba, five days a week per student. Built around active problem solving, daily practice tests, and dedicated doubt clinics.'
+        }
+      </p>
+
+      {/* Open Now Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center"
+      >
+        <StatusChip status="LIVE NOW" />
+        <span class="font-sans text-xs text-ink sm:text-sm">
+          {
+            programmes.hero?.strip ??
+              `OPEN NOW: ${programmes.schedule.days}, ${programmes.schedule.hours} · ${site.place}`
+          }
+        </span>
+      </div>
+
+      {/* Primary and Secondary Actions */}
+      <div class="flex flex-wrap items-center gap-4">
+        <Button href="/enquire" variant="primary">
+          Enquire About Admission
+        </Button>
+        <Button href="#schedule" variant="secondary">
+          View Class Schedule
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 2: THE FOUR LAUNCH TRACKS */}
+  <Section id="tracks" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number="01"
+      label="Launch Tracks"
+      title="Four Focused Tracks in Chamba"
+      sub="Targeting national competitive entrances and foundational academic mastery."
+    />
+
+    <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        programmes.tracks.map((track) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8">
+            <div>
+              <div class="mb-4 flex items-center justify-between gap-3">
+                <h2 class="font-serif text-headline-sm text-ink">
+                  {track.name}
+                </h2>
+                <StatusChip status={track.status} />
+              </div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-wider text-muted">
+                Target Entrance Exams
+              </span>
+              <ul class="mb-6 flex flex-wrap gap-2">
+                {track.exams.map((exam) => (
+                  <li class="bg-surface-dim/40 rounded-pill border border-hair px-3 py-1 font-sans text-xs text-ink">
+                    {exam}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="border-t border-hair pt-4 font-mono text-xs uppercase tracking-wider text-muted">
+              Live in Chamba · Small Groups
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Entrance Baseline Diagnostic Card */}
+    <div
+      class="bg-surface-dim/20 flex flex-col justify-between gap-6 rounded border border-hair p-6 sm:p-8 md:flex-row md:items-center"
+    >
+      <div class="max-w-2xl space-y-2">
+        <div class="flex items-center gap-3">
+          <StatusChip status={programmes.baseline.status} />
+          <h2 class="font-serif text-xl font-medium text-ink">
+            {programmes.baseline.name}
+          </h2>
+        </div>
+        <p class="font-body text-base leading-relaxed text-muted">
+          {programmes.baseline.description}
+        </p>
+        <span
+          class="block font-mono text-xs uppercase tracking-wider text-spark-ink"
+        >
+          Diagnostic only · It places learners, it never excludes
+        </span>
+      </div>
+      <div class="shrink-0">
+        <Button href="/enquire" variant="secondary">
+          Ask About Baseline
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 3: SCHEDULE TABLE & RHYTHM */}
+  <Section
+    id="schedule"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number="02"
+      label="Class Rhythm"
+      title="Schedule & Weekly Attendance"
+      sub="Consistent daily slots with focused study windows."
+    />
+
+    {/* Schedule Table */}
+    <div class="mb-8 overflow-x-auto rounded border border-hair bg-paper">
+      <table class="w-full text-left font-sans text-sm">
+        <caption class="sr-only">
+          Synapse Chamba Weekly Class Schedule and Attendance Rhythm
+        </caption>
+        <thead
+          class="bg-surface-dim/40 border-b border-hair font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          <tr>
+            <th scope="col" class="p-4 sm:px-6 sm:py-4">Day</th>
+            <th scope="col" class="p-4 sm:px-6 sm:py-4">Session Window</th>
+            <th scope="col" class="p-4 sm:px-6 sm:py-4">Status</th>
+            <th scope="col" class="p-4 sm:px-6 sm:py-4">Structure</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-hair">
+          {
+            programmes.schedule.table?.map((row) => (
+              <tr class="hover:bg-surface-dim/20 transition-colors">
+                <th
+                  scope="row"
+                  class="whitespace-nowrap p-4 font-mono font-medium text-ink sm:px-6 sm:py-4"
+                >
+                  {row.day}
+                </th>
+                <td class="whitespace-nowrap p-4 font-sans text-ink sm:px-6 sm:py-4">
+                  {row.window}
+                </td>
+                <td class="whitespace-nowrap p-4 sm:px-6 sm:py-4">
+                  <span
+                    class={`inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs uppercase tracking-wider ${
+                      row.window === 'Closed'
+                        ? 'border border-hair bg-paper text-muted'
+                        : 'border-spark-ink/30 bg-surface-dim/50 border font-semibold text-spark-ink'
+                    }`}
+                  >
+                    {row.activity}
+                  </span>
+                </td>
+                <td class="p-4 font-body text-xs text-muted sm:px-6 sm:py-4 sm:text-sm">
+                  {row.detail}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    {/* Attendance Rhythm Note */}
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Session Timing
+        </span>
+        <span class="block font-serif text-xl text-ink">
+          {programmes.schedule.hours}
+        </span>
+        <p class="mt-2 font-body text-sm text-muted">
+          Active class slots Monday through Saturday.
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Weekly Attendance
+        </span>
+        <span class="block font-serif text-xl text-ink">
+          Five Days a Week
+        </span>
+        <p class="mt-2 font-body text-sm text-muted">
+          {programmes.schedule.attendance}
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Centre Location
+        </span>
+        <span class="block font-serif text-xl text-ink">
+          {site.place}
+        </span>
+        <p class="mt-2 font-body text-sm text-muted">
+          Walking distance from central transit points in Chamba.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 4: HOW A CLASS RUNS */}
+  <Section
+    id="how-it-runs"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number="03"
+      label="Inside The Classroom"
+      title="How a Class Runs Each Day"
+      sub="No anonymous lectures. Every student solves problems with a human guide."
+    />
+
+    <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5">
+      {
+        programmes.classStructure.steps?.map((step) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6">
+            <div>
+              <span class="mb-3 block font-mono text-xs font-semibold uppercase tracking-widest text-spark-ink">
+                Step {step.number}
+              </span>
+              <h2 class="mb-2 font-serif text-xl font-normal text-ink">
+                {step.name}
+              </h2>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {step.summary}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Plain Words Callout Strip */}
+    <div class="bg-surface-dim/30 rounded border border-hair p-6 sm:p-8">
+      <div
+        class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="max-w-2xl">
+          <span
+            class="mb-1 block font-mono text-xs uppercase tracking-wider text-muted"
+          >
+            The Flip-Slot Model In Plain Words
+          </span>
+          <p class="font-body text-base text-ink">
+            In standard coaching, teachers lecture and students struggle alone
+            with homework. At Synapse, core concepts are introduced first, then
+            students spend the session solving problems with a guide right at
+            their desk. Doubts are caught and solved on the same day.
+          </p>
+        </div>
+        <div class="shrink-0">
+          <Button href="/enquire" variant="primary"> Visit A Session </Button>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 5: TRANSPARENT FEE POLICY */}
+  <Section id="fees" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number="04"
+      label="Financial Terms"
+      title="Transparent Fee Policy"
+      sub="Honest terms without misleading discounts or hidden additions."
+    />
+
+    <div class="bg-surface-dim/30 rounded border border-hair p-8 sm:p-12">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2">
+          <StatusChip status="LIVE NOW" />
+          <span class="font-mono text-xs uppercase tracking-wider text-muted">
+            Admissions Policy
+          </span>
+        </div>
+
+        <h2 class="mb-4 font-serif text-2xl font-normal text-ink sm:text-3xl">
+          {programmes.feePolicy?.statement ?? programmes.fee}
+        </h2>
+
+        <p
+          class="mb-6 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+        >
+          {
+            programmes.feePolicy?.detail ??
+              'We do not publish fee estimates or take online payments on this site. When you enquire, the centre owner calls you personally to understand your goals and share full fee details.'
+          }
+        </p>
+
+        <div
+          class="mb-8 flex flex-col gap-3 rounded border border-hair bg-paper p-4 sm:flex-row sm:items-center sm:gap-6"
+        >
+          <div class="font-mono text-xs uppercase tracking-wider text-muted">
+            Response Promise
+          </div>
+          <div class="font-sans text-sm font-medium text-ink">
+            We call back {site.callbackWindow}. The owner makes the calls
+            himself.
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <Button href="/enquire" variant="primary">
+            Enquire For Fee Details
+          </Button>
+          <a
+            href={`https://wa.me/91${site.phone}?text=Hello%20Synapse%2C%20I%20would%20like%20to%20know%20about%20programmes%20and%20fees`}
+            class="hover:bg-hair/30 inline-flex min-h-[48px] items-center justify-center rounded-pill border border-ink px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ask On WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 6: PRACTICE ENGINE & TUTORDEMO */}
+  <Section id="tutor" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number="05"
+      label="Practice Engine"
+      title="Corteon: AI That Builds Thinking"
+      sub="The practice engine Synapse is building. In development (DIRECTION) and not available to the public."
+    />
+
+    {/* Corteon Design Rules */}
+    <div class="mb-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        programmes.tutorIntro?.rules.map((rule) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6">
+            <div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-widest text-spark-ink">
+                Rule {rule.number}
+              </span>
+              <h2 class="mb-2 font-serif text-xl font-normal text-ink">
+                {rule.title}
+              </h2>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {rule.detail}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Interactive Illustrative Demo Component */}
+    <div class="mt-8">
+      <TutorDemo />
+    </div>
+  </Section>
+
+  {/* SECTION 7: FREQUENTLY ASKED QUESTIONS */}
+  <Section id="faq" theme="paper" padding="lg">
+    <SectionHeader
+      number="06"
+      label="Common Questions"
+      title={faq.heading}
+      sub={faq.sub}
+    />
+
+    <div class="mb-12">
+      <Accordion items={faq.items} />
+    </div>
+
+    {/* Direct Question Callout */}
+    <div
+      class="flex flex-col justify-between gap-4 rounded border border-hair bg-paper p-6 sm:flex-row sm:items-center sm:p-8"
+    >
+      <div>
+        <span
+          class="mb-1 block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Have Another Question?
+        </span>
+        <p class="font-body text-base text-ink">
+          Speak directly with the guide in Chamba to discuss your child's
+          specific subjects.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={`https://wa.me/91${site.phone}?text=Hello%20Synapse%2C%20I%20have%20a%20question%20about%20programmes`}
+          class="inline-flex min-h-[48px] items-center justify-center rounded-pill bg-ink px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.14em] text-paper transition-colors hover:bg-spark-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp Us
+        </a>
+        <a
+          href={`tel:${site.phone}`}
+          class="hover:bg-hair/30 inline-flex min-h-[48px] items-center justify-center rounded-pill border border-ink px-6 py-3 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+        >
+          {site.phoneDisplay}
+        </a>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

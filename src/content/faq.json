@@ -1,0 +1,43 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "heading": "Frequently Asked Questions",
+  "sub": "Clear answers about the Learning Commons, admission, and how classes run in Chamba.",
+  "items": [
+    {
+      "id": "tracks",
+      "question": "What launch tracks and entrance exams are covered?",
+      "answer": "We offer four launch tracks: PCM (JEE Main/Advanced, IAT, NEST, CUET PCM, NDA, AIIMS Paramedical PCM), PCB (NEET UG, AIIMS Nursing, AIIMS Paramedical PCB, NEST, IAT, CUET PCB), CUET UG General Test + English, and CUET UG Arts/Commerce + NDA Army."
+    },
+    {
+      "id": "schedule",
+      "question": "What is the daily schedule and weekly rhythm?",
+      "answer": "Classes run Monday to Saturday, from 3:30 PM to 6:30 PM. Each student attends five days a week, with one rotating weekday off, and Sunday off."
+    },
+    {
+      "id": "fees",
+      "question": "What are the fees?",
+      "answer": "Fees are shared when you enquire. We do not publish fee figures or take online payments on this site."
+    },
+    {
+      "id": "baseline",
+      "question": "What is the entrance baseline for children?",
+      "answer": "The entrance baseline is a short diagnostic on reasoning, reading and arithmetic. It is running now. It places learners so guides know where to begin; it never excludes anyone."
+    },
+    {
+      "id": "how-it-runs",
+      "question": "How are classes conducted inside the centre?",
+      "answer": "Students learn in small groups with a guide who knows every student. Instead of one-way lectures, sessions use a flip-slot model where concepts are introduced and students solve problems with immediate guidance. Every class ends with a practice test on what was just taught, and doubts are solved in a separate short session."
+    },
+    {
+      "id": "admission",
+      "question": "How does admission work?",
+      "answer": "Submit an enquiry on this site or message us on WhatsApp at 8287248119. The centre owner calls back personally within 24 hours to discuss your learning goals and arrange a visit to the centre behind the Post Office in Chamba."
+    },
+    {
+      "id": "tutor",
+      "question": "What is Corteon and is it available now?",
+      "answer": "Corteon is the AI tutor and practice engine Synapse is building. Its status is in development (DIRECTION) and it is not available to the public. In our classrooms, the no-device quiz run by humans always wins."
+    }
+  ]
+}

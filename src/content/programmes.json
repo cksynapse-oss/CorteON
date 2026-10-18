@@ -2,15 +2,101 @@
   "status": "LIVE NOW",
   "source": "owner-confirmed",
   "fee": "Fees are shared when you enquire.",
+  "hero": {
+    "eyebrow": "LEARNING COMMONS · FLOOR G",
+    "title": "Small groups. A guide who knows every student.",
+    "sub": "Four launch tracks in Chamba, five days a week per student. Built around active problem solving, daily practice tests, and dedicated doubt clinics.",
+    "strip": "OPEN NOW: Monday to Saturday, 3:30 PM to 6:30 PM · Behind the Post Office, Chamba",
+    "primaryCta": {
+      "label": "Enquire About Admission",
+      "href": "/enquire"
+    },
+    "secondaryCta": {
+      "label": "View Schedule",
+      "href": "#schedule"
+    }
+  },
   "schedule": {
     "days": "Monday to Saturday",
     "hours": "3:30 PM to 6:30 PM",
-    "attendance": "Each student attends five days a week, with one rotating weekday off, Sunday off."
+    "attendance": "Each student attends five days a week, with one rotating weekday off, Sunday off.",
+    "attendanceRule": "Each student attends five days a week, with one rotating weekday off, Sunday off.",
+    "table": [
+      {
+        "day": "Monday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Tuesday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Wednesday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Thursday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Friday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Saturday",
+        "window": "3:30 PM to 6:30 PM",
+        "activity": "Active Class Session",
+        "detail": "Core problem solving, daily practice test, and doubt clinic"
+      },
+      {
+        "day": "Sunday",
+        "window": "Closed",
+        "activity": "Centre Closed",
+        "detail": "Weekly rest for learners and guides"
+      }
+    ]
   },
   "classStructure": {
     "groupSize": "Small groups with a guide who knows every student.",
     "dailyPracticeTest": "Every class ends with a practice test on what was just taught.",
-    "doubtClinics": "Doubts are solved in a separate short session."
+    "doubtClinics": "Doubts are solved in a separate short session.",
+    "steps": [
+      {
+        "number": "01",
+        "name": "Small Groups",
+        "summary": "Small groups with a guide who knows every student. No anonymous lecture halls."
+      },
+      {
+        "number": "02",
+        "name": "The Flip-Slot",
+        "summary": "Learn the core concept first, then spend the session solving problems with a guide right there. No getting stuck alone at home."
+      },
+      {
+        "number": "03",
+        "name": "Daily Practice Test",
+        "summary": "Every class ends with a practice test on what was just taught. Immediate retention before leaving the classroom."
+      },
+      {
+        "number": "04",
+        "name": "Doubt Clinic",
+        "summary": "Doubts are solved in a separate short session. No lingering confusion carried into the next week."
+      },
+      {
+        "number": "05",
+        "name": "Human Guidance",
+        "summary": "The guide asks questions instead of giving away answers, helping students build genuine reasoning."
+      }
+    ]
   },
   "tracks": [
     {
@@ -61,5 +147,41 @@
     "description": "A short diagnostic on reasoning, reading and arithmetic; it places learners, it never excludes.",
     "status": "LIVE NOW",
     "source": "owner-confirmed"
+  },
+  "feePolicy": {
+    "heading": "Transparent Fee Policy",
+    "statement": "Fees are shared when you enquire.",
+    "detail": "We do not publish fee estimates or take online payments on this site. When you enquire, the centre owner calls you personally to understand your goals and share full fee details.",
+    "cta": {
+      "label": "Enquire For Fees",
+      "href": "/enquire"
+    }
+  },
+  "tutorIntro": {
+    "eyebrow": "PRACTICE ENGINE · DIRECTION",
+    "title": "Corteon: AI That Builds Thinking",
+    "sub": "The practice engine Synapse is building is designed to refuse spoon-feeding. Currently in development (DIRECTION) and not available to the public.",
+    "rules": [
+      {
+        "number": "01",
+        "title": "Hints before answers",
+        "detail": "Gives progressive hints so students think through barriers themselves."
+      },
+      {
+        "number": "02",
+        "title": "Confidence calibration",
+        "detail": "Asks how sure you are and trains students to know what they know."
+      },
+      {
+        "number": "03",
+        "title": "The no-device quiz wins",
+        "detail": "The physical, pen-and-paper quiz run by humans always takes precedence."
+      },
+      {
+        "number": "04",
+        "title": "Aims to be needed less",
+        "detail": "Designed to build self-reliant learners who eventually outgrow the software."
+      }
+    ]
   }
 }

@@ -40,15 +40,51 @@ export const programmesSchema = z.object({
   status: z.literal('LIVE NOW'),
   source: z.literal('owner-confirmed'),
   fee: z.literal('Fees are shared when you enquire.'),
+  hero: z
+    .object({
+      eyebrow: z.string().min(1),
+      title: z.string().min(1),
+      sub: z.string().min(1),
+      strip: z.string().min(1),
+      primaryCta: z.object({
+        label: z.string().min(1),
+        href: z.string().min(1),
+      }),
+      secondaryCta: z.object({
+        label: z.string().min(1),
+        href: z.string().min(1),
+      }),
+    })
+    .optional(),
   schedule: z.object({
     days: z.string().min(1),
     hours: z.string().min(1),
     attendance: z.string().min(1),
+    attendanceRule: z.string().optional(),
+    table: z
+      .array(
+        z.object({
+          day: z.string().min(1),
+          window: z.string().min(1),
+          activity: z.string().min(1),
+          detail: z.string().min(1),
+        })
+      )
+      .optional(),
   }),
   classStructure: z.object({
     groupSize: z.string().min(1),
     dailyPracticeTest: z.string().min(1),
     doubtClinics: z.string().min(1),
+    steps: z
+      .array(
+        z.object({
+          number: z.string().min(1),
+          name: z.string().min(1),
+          summary: z.string().min(1),
+        })
+      )
+      .optional(),
   }),
   tracks: z.array(programmeTrackSchema).min(1),
   baseline: z.object({
@@ -57,8 +93,71 @@ export const programmesSchema = z.object({
     status: z.literal('LIVE NOW'),
     source: z.literal('owner-confirmed'),
   }),
+  feePolicy: z
+    .object({
+      heading: z.string().min(1),
+      statement: z.literal('Fees are shared when you enquire.'),
+      detail: z.string().min(1),
+      cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+    })
+    .optional(),
+  tutorIntro: z
+    .object({
+      eyebrow: z.string().min(1),
+      title: z.string().min(1),
+      sub: z.string().min(1),
+      rules: z.array(
+        z.object({
+          number: z.string().min(1),
+          title: z.string().min(1),
+          detail: z.string().min(1),
+        })
+      ),
+    })
+    .optional(),
 });
 export type ProgrammesContent = z.infer<typeof programmesSchema>;
+
+export const faqItemSchema = z.object({
+  id: z.string().min(1),
+  question: z.string().min(1),
+  answer: z.string().min(1),
+});
+
+export const faqSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  items: z.array(faqItemSchema).min(1),
+});
+export type FaqItem = z.infer<typeof faqItemSchema>;
+export type FaqContent = z.infer<typeof faqSchema>;
+
+export const tutorHintSchema = z.object({
+  step: z.string().min(1),
+  label: z.string().min(1),
+  title: z.string().min(1),
+  content: z.string().min(1),
+});
+
+export const tutorProblemSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  domain: z.string().min(1),
+  problemTitle: z.string().min(1),
+  problemStatement: z.string().min(1),
+  hints: z.array(tutorHintSchema).min(1),
+  calibration: z.object({
+    label: z.string().min(1),
+    sub: z.string().min(1),
+  }),
+  humanRule: z.string().min(1),
+});
+export type TutorHint = z.infer<typeof tutorHintSchema>;
+export type TutorProblemContent = z.infer<typeof tutorProblemSchema>;
 
 export const floorItemSchema = z.object({
   id: z.enum(['g', '1', '2']),

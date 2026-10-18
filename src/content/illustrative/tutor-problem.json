@@ -1,0 +1,34 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Tutor Demo",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "domain": "Foundational Reasoning",
+  "problemTitle": "Divisibility & Multiples",
+  "problemStatement": "Explain why any whole number divisible by 6 must also be divisible by both 2 and 3.",
+  "hints": [
+    {
+      "step": "01",
+      "label": "Hint 01",
+      "title": "Prime Factors",
+      "content": "Recall that 6 can be broken down into 2 multiplied by 3."
+    },
+    {
+      "step": "02",
+      "label": "Hint 02",
+      "title": "Divisibility Definition",
+      "content": "If a number is a multiple of 6, it can be written as 6 multiplied by some whole number."
+    },
+    {
+      "step": "03",
+      "label": "Hint 03",
+      "title": "Conclusion",
+      "content": "Substituting 6 with 2 times 3 proves the number contains both 2 and 3 as factors."
+    }
+  ],
+  "calibration": {
+    "label": "Confidence Estimation",
+    "sub": "Rate your confidence before unlocking hints or submitting your reasoning."
+  },
+  "humanRule": "In development. In the actual classroom, the no-device quiz run by humans always wins."
+}

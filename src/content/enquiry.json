@@ -1,0 +1,150 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "ADMISSIONS AND ENQUIRY",
+    "title": "Choose your door.",
+    "sub": "Synapse has five entry doors. Tell us who you are and what you need; the owner phones back personally to discuss next steps.",
+    "strip": "Monday to Saturday, 3:30 PM to 6:30 PM · Behind the Post Office, Chamba"
+  },
+  "notices": {
+    "under18": "For students under 18, a parent or guardian must provide contact details.",
+    "fees": "Fees are shared when you enquire.",
+    "callback": "The owner phones back personally within 24 hours."
+  },
+  "doors": [
+    {
+      "id": "parent",
+      "number": "01",
+      "title": "A parent or student",
+      "status": "LIVE NOW",
+      "summary": "Small-group classes, foundational reasoning, and daily practice tests. Or take the short entrance baseline diagnostic.",
+      "stageLabel": "Class or Stage",
+      "stagePlaceholder": "Select your class or stage",
+      "stageOptions": [
+        {
+          "value": "class_9_10",
+          "label": "Middle School / Class 9-10 (Foundation)"
+        },
+        { "value": "class_11", "label": "Class 11" },
+        { "value": "class_12", "label": "Class 12" },
+        { "value": "dropper", "label": "Exam Preparation / Dropper" },
+        { "value": "other", "label": "Other / College" }
+      ],
+      "interestLabel": "Track or Area of Interest",
+      "interestPlaceholder": "Select area of interest",
+      "interestOptions": [
+        {
+          "value": "pcm",
+          "label": "PCM (JEE Main/Advanced, IAT, NEST, CUET PCM, NDA)"
+        },
+        {
+          "value": "pcb",
+          "label": "PCB (NEET UG, AIIMS Nursing, Paramedical, CUET PCB)"
+        },
+        { "value": "cuet_gt", "label": "CUET UG General Test + English" },
+        {
+          "value": "cuet_arts_nda",
+          "label": "CUET UG Arts/Commerce + NDA Army"
+        },
+        { "value": "baseline", "label": "Entrance Baseline Diagnostic" },
+        { "value": "general", "label": "General Enquiry / Multiple Tracks" }
+      ],
+      "doorNote": "Small groups, five days a week per student. Fees are shared when you enquire."
+    },
+    {
+      "id": "fellow",
+      "number": "02",
+      "title": "A graduate who wants to teach",
+      "status": "LIVE NOW",
+      "summary": "Teach one class a day while preparing for your own examination. Receive a reserved library desk, certified teaching hours, and the tutor.",
+      "subjectLabel": "Subject You Teach",
+      "subjectPlaceholder": "e.g. Physics, Mathematics, Chemistry, Biology, Reasoning",
+      "examLabel": "Exam You Are Preparing For",
+      "examPlaceholder": "e.g. UPSC, State PSC, GATE, NET, SSC",
+      "doorNote": "Applications are open now. Each fellow teaches one class a day."
+    },
+    {
+      "id": "reader",
+      "number": "03",
+      "title": "A reader",
+      "status": "OPENING NEXT",
+      "summary": "Access the quiet desks, reference collections, and reading rooms of the Knowledge Commons when reader cards open.",
+      "interestLabel": "Reading / Study Interests",
+      "interestPlaceholder": "Subjects, research, or books you study",
+      "cardOptionLabel": "Notify me as soon as reader cards are released in Chamba",
+      "doorNote": "The Knowledge Commons library opens next, when people will buy the card."
+    },
+    {
+      "id": "founder",
+      "number": "04",
+      "title": "A founder or builder",
+      "status": "DIRECTION",
+      "summary": "Desks and community on the top floor in return for mentoring and teaching children. Agreed per founder.",
+      "projectLabel": "What You Are Building",
+      "projectPlaceholder": "Describe your project, software, hardware, or craft",
+      "mentorLabel": "What You Can Teach / Mentor",
+      "mentorPlaceholder": "Topics or skills you can share with children",
+      "doorNote": "Venture Hub space opens only when there are real founders. Mentoring commitment is agreed per founder."
+    },
+    {
+      "id": "partner",
+      "number": "05",
+      "title": "A district partner",
+      "status": "DIRECTION",
+      "summary": "Bring a Synapse Circle to your district. Each centre rooted in its district with local space and community.",
+      "districtLabel": "Your District & State",
+      "districtPlaceholder": "e.g. Kangra, Mandi, Kullu, Shimla",
+      "spaceLabel": "Space / Community Available",
+      "spacePlaceholder": "Describe your space, building, or local team",
+      "doorNote": "Each centre is rooted in its district with local space. Growth only from revenue."
+    }
+  ],
+  "commonFields": {
+    "name": {
+      "label": "Full Name",
+      "placeholder": "Enter your name"
+    },
+    "phone": {
+      "label": "Phone / WhatsApp",
+      "placeholder": "10-digit mobile number",
+      "helpText": "We use this only to phone you back personally."
+    },
+    "email": {
+      "label": "Email Address (Optional)",
+      "placeholder": "name@example.com"
+    },
+    "message": {
+      "label": "Questions or Notes (Optional)",
+      "placeholder": "Any specific requirements, questions, or context"
+    },
+    "consent": {
+      "label": "We use this only to contact you about Synapse."
+    }
+  },
+  "buttons": {
+    "submit": "Send Enquiry",
+    "submitting": "Sending...",
+    "submitted": "Enquiry Sent"
+  },
+  "success": {
+    "title": "Thank you.",
+    "lead": "Thank you. We will call you {callbackWindow}.",
+    "urgentPrompt": "If it is urgent, message us on WhatsApp.",
+    "whatsappAction": "Message on WhatsApp",
+    "anotherAction": "Submit Another Enquiry"
+  },
+  "error": {
+    "title": "Unable to send enquiry",
+    "message": "We could not submit your enquiry right now. Please message us directly on WhatsApp or call our centre.",
+    "whatsappAction": "Send via WhatsApp Instead"
+  },
+  "directContact": {
+    "heading": "Direct Contact",
+    "sub": "You can also reach the founder directly or visit during classroom hours.",
+    "phoneLabel": "Phone & WhatsApp",
+    "emailLabel": "Email",
+    "placeLabel": "Address",
+    "hoursLabel": "Classroom Hours"
+  }
+}

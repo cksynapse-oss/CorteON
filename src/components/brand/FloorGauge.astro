@@ -1,0 +1,108 @@
+---
+import navigation from '../../content/navigation.json';
+
+interface Props {
+  activeFloor?: 'g' | '1' | '2' | null;
+  class?: string;
+}
+
+const { activeFloor = null, class: className = '' } = Astro.props;
+const floors = navigation.floors;
+---
+
+<aside
+  aria-label="Floor Gauge"
+  id="floor-gauge"
+  class={`fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-4 select-none ${className}`}
+>
+  <div class="h-8 w-px bg-hair" aria-hidden="true"></div>
+
+  <nav
+    aria-label="Floors in Synapse"
+    class="flex flex-col items-center gap-3 font-mono text-xs tracking-wider"
+  >
+    {
+      floors.map((floor) => {
+        const isActive = activeFloor === floor.id;
+        return (
+          <a
+            href={floor.href}
+            data-floor-id={floor.id}
+            aria-label={`${floor.name} (${floor.status})`}
+            aria-current={isActive ? 'true' : undefined}
+            class={`group flex items-center gap-2.5 rounded-sm p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-spark ${
+              isActive
+                ? 'font-semibold text-spark-ink'
+                : 'text-muted hover:text-ink'
+            }`}
+          >
+            <span
+              class={`h-1.5 w-1.5 rounded-full transition-colors ${
+                isActive ? 'bg-spark' : 'bg-hair group-hover:bg-muted'
+              }`}
+              aria-hidden="true"
+            />
+            <span class="text-xs uppercase">{floor.shortName}</span>
+          </a>
+        );
+      })
+    }
+  </nav>
+
+  <div class="h-8 w-px bg-hair" aria-hidden="true"></div>
+
+  <span
+    class="mt-1 font-mono text-xs uppercase tracking-[0.2em] text-muted [writing-mode:vertical-rl]"
+    aria-hidden="true"
+  >
+    Floor Gauge
+  </span>
+</aside>
+
+<script>
+  // Progressive enhancement: update active floor on pages with floor sections (T9 / Home)
+  const observerCallback: IntersectionObserverCallback = (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        const floorId = entry.target.getAttribute('data-floor');
+        if (!floorId) continue;
+
+        document
+          .querySelectorAll('#floor-gauge [data-floor-id]')
+          .forEach((el) => {
+            const match = el.getAttribute('data-floor-id') === floorId;
+            el.setAttribute('aria-current', match ? 'true' : 'false');
+            if (match) {
+              el.classList.add('text-spark-ink', 'font-semibold');
+              el.classList.remove('text-muted');
+              const dot = el.querySelector('span:first-child');
+              if (dot) {
+                dot.classList.add('bg-spark');
+                dot.classList.remove('bg-hair');
+              }
+            } else {
+              el.classList.remove('text-spark-ink', 'font-semibold');
+              el.classList.add('text-muted');
+              const dot = el.querySelector('span:first-child');
+              if (dot) {
+                dot.classList.remove('bg-spark');
+                dot.classList.add('bg-hair');
+              }
+            }
+          });
+      }
+    }
+  };
+
+  if ('IntersectionObserver' in window) {
+    const floorSections = document.querySelectorAll('[data-floor]');
+    if (floorSections.length > 0) {
+      const observer = new IntersectionObserver(observerCallback, {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
+      });
+      floorSections.forEach((section) => observer.observe(section));
+    }
+  }
+</script>

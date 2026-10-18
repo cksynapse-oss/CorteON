@@ -5,17 +5,28 @@ import '@fontsource/eb-garamond/500.css';
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import '../styles/global.css';
+import NavBar from '../components/brand/NavBar.astro';
+import Footer from '../components/brand/Footer.astro';
+import FloorGauge from '../components/brand/FloorGauge.astro';
 
 interface Props {
   title?: string;
   description?: string;
   theme?: 'paper' | 'ink';
+  activeFloor?: 'g' | '1' | '2' | null;
+  hideNav?: boolean;
+  hideFooter?: boolean;
+  hideGauge?: boolean;
 }
 
 const {
   title = 'Synapse',
   description = 'A modern gurukul for the age of AI. Learn, teach and build, under one roof.',
   theme = 'paper',
+  activeFloor = null,
+  hideNav = false,
+  hideFooter = false,
+  hideGauge = false,
 } = Astro.props;
 ---
 
@@ -33,12 +44,18 @@ const {
     <!-- Accessible Skip Link (AGENTS.md rule 10 & BUILD_PLAN.md T1) -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <slot name="header" />
+    <slot name="header">
+      {!hideNav && <NavBar currentPath={Astro.url.pathname} />}
+    </slot>
+
+    {!hideGauge && <FloorGauge activeFloor={activeFloor} />}
 
     <main id="main-content" tabindex="-1" class="focus:outline-none">
       <slot />
     </main>
 
-    <slot name="footer" />
+    <slot name="footer">
+      {!hideFooter && <Footer />}
+    </slot>
   </body>
 </html>

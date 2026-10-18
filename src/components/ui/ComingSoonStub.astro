@@ -1,0 +1,56 @@
+---
+import StatusChip from './StatusChip.astro';
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  status?: 'LIVE NOW' | 'OPENING NEXT' | 'DIRECTION';
+  phase?: string;
+  description: string;
+  plannedNote?: string;
+}
+
+const {
+  title,
+  status = 'DIRECTION',
+  phase,
+  description,
+  plannedNote,
+} = Astro.props;
+---
+
+<div class="mx-auto max-w-content px-4 py-20 sm:px-6 md:px-8 lg:px-10">
+  <div class="max-w-2xl border border-hair bg-paper p-8 md:p-12">
+    <div class="flex items-center gap-3">
+      <StatusChip status={status} />
+      {
+        phase && (
+          <span class="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+            {phase}
+          </span>
+        )
+      }
+    </div>
+
+    <h1
+      class="mt-6 font-serif text-display-lg-mobile font-normal tracking-tight text-ink md:text-display-lg"
+    >
+      {title}
+    </h1>
+
+    <p class="mt-4 font-sans text-body-lg text-ink">
+      {description}
+    </p>
+
+    {
+      plannedNote && (
+        <p class="mt-4 font-sans text-body-sm text-muted">{plannedNote}</p>
+      )
+    }
+
+    <div class="mt-8 flex flex-wrap gap-4 border-t border-hair pt-4">
+      <Button href="/" variant="secondary" size="sm"> Return to Home </Button>
+      <Button href="/enquire" variant="primary" size="sm"> Enquire </Button>
+    </div>
+  </div>
+</div>

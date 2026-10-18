@@ -1,0 +1,202 @@
+---
+import site from '../../content/site.json';
+import navigation from '../../content/navigation.json';
+import Button from '../ui/Button.astro';
+
+interface Props {
+  currentPath?: string;
+  class?: string;
+}
+
+const { currentPath = Astro.url.pathname, class: className = '' } = Astro.props;
+const mainLinks = navigation.main;
+---
+
+<header
+  class={`sticky top-0 left-0 right-0 z-50 w-full border-b border-hair bg-paper ${className}`}
+>
+  <div
+    class="mx-auto flex h-20 max-w-content items-center justify-between px-4 sm:px-6 md:px-8 lg:px-10"
+  >
+    <!-- Brand Wordmark -->
+    <a
+      href="/"
+      class="group flex items-center gap-2.5 rounded-sm p-1 focus-visible:outline-2 focus-visible:outline-spark"
+      aria-label={`${site.name} home`}
+    >
+      <span
+        class="font-serif text-headline-sm font-normal tracking-tight text-ink transition-colors group-hover:text-spark-ink md:text-headline-md"
+      >
+        {site.name}
+      </span>
+      <span aria-hidden="true" class="flex items-center text-spark">
+        <svg
+          fill="none"
+          height="14"
+          viewBox="0 0 14 14"
+          width="14"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            stroke="currentColor"
+            stroke-width="1.2"
+            x1="2"
+            x2="12"
+            y1="7"
+            y2="7"></line>
+          <circle cx="7" cy="7" fill="currentColor" r="2.5"></circle>
+        </svg>
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <nav aria-label="Main Navigation" class="hidden items-center gap-8 lg:flex">
+      {
+        mainLinks.map((link) => {
+          const isActive =
+            currentPath === link.href ||
+            (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              aria-current={isActive ? 'page' : undefined}
+              class={`rounded-sm py-1 font-sans text-xs font-medium uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-spark ${
+                isActive
+                  ? 'font-semibold text-spark-ink'
+                  : 'text-muted hover:text-ink'
+              }`}
+            >
+              {link.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Desktop Action Buttons -->
+    <div class="hidden items-center gap-3 lg:flex">
+      <Button href="/fellowship" variant="ghost" size="sm">
+        Teach with us
+      </Button>
+      <Button href="/enquire" variant="primary" size="sm"> Enquire </Button>
+    </div>
+
+    <!-- Mobile Navigation Toggle (Native <details> with progressive enhancement) -->
+    <details id="mobile-nav-details" class="group/details relative lg:hidden">
+      <summary
+        aria-label="Toggle navigation menu"
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-sm border border-hair text-ink transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-spark [&::-webkit-details-marker]:hidden"
+      >
+        <!-- Hamburger Icon (when closed) -->
+        <svg
+          class="h-5 w-5 group-open/details:hidden"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        </svg>
+        <!-- Close Icon (when open) -->
+        <svg
+          class="hidden h-5 w-5 group-open/details:block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </summary>
+
+      <!-- Mobile Dropdown Panel -->
+      <nav
+        id="mobile-nav"
+        aria-label="Mobile Navigation"
+        class="absolute right-0 top-12 z-50 w-72 max-w-[calc(100vw-2rem)] border border-hair bg-paper p-6 shadow-none"
+      >
+        <div class="flex flex-col gap-4">
+          <span
+            class="font-mono text-xs uppercase tracking-[0.16em] text-muted"
+          >
+            Menu
+          </span>
+          <div class="h-px w-full bg-hair" aria-hidden="true"></div>
+
+          {
+            mainLinks.map((link) => {
+              const isActive =
+                currentPath === link.href ||
+                (link.href !== '/' && currentPath.startsWith(link.href));
+              return (
+                <a
+                  href={link.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  class={`rounded-sm py-2 font-sans text-sm font-medium uppercase tracking-[0.12em] transition-colors focus-visible:outline-2 focus-visible:outline-spark ${
+                    isActive
+                      ? 'font-semibold text-spark-ink'
+                      : 'text-muted hover:text-ink'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })
+          }
+
+          <div class="my-2 h-px w-full bg-hair" aria-hidden="true"></div>
+
+          <div class="flex flex-col gap-3 pt-2">
+            <Button
+              href="/fellowship"
+              variant="ghost"
+              size="sm"
+              class="w-full text-center"
+            >
+              Teach with us
+            </Button>
+            <Button
+              href="/enquire"
+              variant="primary"
+              size="sm"
+              class="w-full text-center"
+            >
+              Enquire
+            </Button>
+          </div>
+        </div>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  // Progressive enhancement: close mobile menu on Escape key or outside click
+  const details = document.getElementById(
+    'mobile-nav-details'
+  ) as HTMLDetailsElement | null;
+
+  if (details) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && details.hasAttribute('open')) {
+        details.removeAttribute('open');
+        const summary = details.querySelector('summary');
+        summary?.focus();
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (details.hasAttribute('open') && !details.contains(e.target as Node)) {
+        details.removeAttribute('open');
+      }
+    });
+  }
+</script>

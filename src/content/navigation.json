@@ -1,0 +1,47 @@
+{
+  "main": [
+    { "label": "The Idea", "href": "/idea" },
+    { "label": "The Building", "href": "/building" },
+    { "label": "Programmes", "href": "/programmes" },
+    { "label": "Fellowship", "href": "/fellowship" },
+    { "label": "Centres", "href": "/centres" }
+  ],
+  "actions": [
+    { "label": "Teach with us", "href": "/fellowship", "variant": "ghost" },
+    { "label": "Enquire", "href": "/enquire", "variant": "primary" }
+  ],
+  "footer": [
+    { "label": "The Idea", "href": "/idea" },
+    { "label": "The Building", "href": "/building" },
+    { "label": "Programmes", "href": "/programmes" },
+    { "label": "Fellowship", "href": "/fellowship" },
+    { "label": "Centres", "href": "/centres" },
+    { "label": "Passport", "href": "/passport" },
+    { "label": "Library", "href": "/library" },
+    { "label": "Venture", "href": "/venture" },
+    { "label": "Privacy", "href": "/privacy" }
+  ],
+  "floors": [
+    {
+      "id": "2",
+      "shortName": "2",
+      "name": "Floor 2: Venture Hub",
+      "status": "DIRECTION",
+      "href": "/building#floor-2"
+    },
+    {
+      "id": "1",
+      "shortName": "1",
+      "name": "Floor 1: Knowledge Commons",
+      "status": "OPENING NEXT",
+      "href": "/building#floor-1"
+    },
+    {
+      "id": "g",
+      "shortName": "G",
+      "name": "Floor G: Learning Commons",
+      "status": "LIVE NOW",
+      "href": "/building#floor-g"
+    }
+  ]
+}

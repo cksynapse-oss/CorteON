@@ -287,3 +287,155 @@ export const homeSchema = z.object({
   }),
 });
 export type HomeContent = z.infer<typeof homeSchema>;
+
+export const selectOptionSchema = z.object({
+  value: z.string().min(1),
+  label: z.string().min(1),
+});
+
+export const enquiryDoorSchema = z.object({
+  id: z.enum(['parent', 'fellow', 'reader', 'founder', 'partner']),
+  number: z.string().min(1),
+  title: z.string().min(1),
+  status: z.enum(['LIVE NOW', 'OPENING NEXT', 'DIRECTION']),
+  summary: z.string().min(1),
+  doorNote: z.string().min(1),
+  stageLabel: z.string().optional(),
+  stagePlaceholder: z.string().optional(),
+  stageOptions: z.array(selectOptionSchema).optional(),
+  interestLabel: z.string().optional(),
+  interestPlaceholder: z.string().optional(),
+  interestOptions: z.array(selectOptionSchema).optional(),
+  subjectLabel: z.string().optional(),
+  subjectPlaceholder: z.string().optional(),
+  examLabel: z.string().optional(),
+  examPlaceholder: z.string().optional(),
+  cardOptionLabel: z.string().optional(),
+  projectLabel: z.string().optional(),
+  projectPlaceholder: z.string().optional(),
+  mentorLabel: z.string().optional(),
+  mentorPlaceholder: z.string().optional(),
+  districtLabel: z.string().optional(),
+  districtPlaceholder: z.string().optional(),
+  spaceLabel: z.string().optional(),
+  spacePlaceholder: z.string().optional(),
+});
+
+export const enquirySchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  notices: z.object({
+    under18: z.string().min(1),
+    fees: z.literal('Fees are shared when you enquire.'),
+    callback: z.string().min(1),
+  }),
+  doors: z.array(enquiryDoorSchema).length(5),
+  commonFields: z.object({
+    name: z.object({
+      label: z.string().min(1),
+      placeholder: z.string().min(1),
+    }),
+    phone: z.object({
+      label: z.string().min(1),
+      placeholder: z.string().min(1),
+      helpText: z.string().min(1),
+    }),
+    email: z.object({
+      label: z.string().min(1),
+      placeholder: z.string().min(1),
+    }),
+    message: z.object({
+      label: z.string().min(1),
+      placeholder: z.string().min(1),
+    }),
+    consent: z.object({
+      label: z.string().min(1),
+    }),
+  }),
+  buttons: z.object({
+    submit: z.string().min(1),
+    submitting: z.string().min(1),
+    submitted: z.string().min(1),
+  }),
+  success: z.object({
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    urgentPrompt: z.string().min(1),
+    whatsappAction: z.string().min(1),
+    anotherAction: z.string().min(1),
+  }),
+  error: z.object({
+    title: z.string().min(1),
+    message: z.string().min(1),
+    whatsappAction: z.string().min(1),
+  }),
+  directContact: z.object({
+    heading: z.string().min(1),
+    sub: z.string().min(1),
+    phoneLabel: z.string().min(1),
+    emailLabel: z.string().min(1),
+    placeLabel: z.string().min(1),
+    hoursLabel: z.string().min(1),
+  }),
+});
+export type EnquiryDoor = z.infer<typeof enquiryDoorSchema>;
+export type EnquiryContent = z.infer<typeof enquirySchema>;
+
+export const buildingFloorSchema = z.object({
+  id: z.enum(['g', '1', '2']),
+  shortName: z.enum(['G', '1', '2']),
+  number: z.string().min(1),
+  name: z.string().min(1),
+  status: z.enum(['LIVE NOW', 'OPENING NEXT', 'DIRECTION']),
+  tenseNote: z.string().min(1),
+  condition: z.string().min(1),
+  summary: z.string().min(1),
+  description: z.string().min(1),
+  items: z.array(z.string().min(1)),
+  feeNotice: z.literal('Fees are shared when you enquire.'),
+  primaryCta: z.object({
+    label: z.string().min(1),
+    href: z.string().min(1),
+  }),
+  secondaryCta: z.object({
+    label: z.string().min(1),
+    href: z.string().min(1),
+  }),
+});
+
+export const buildingSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  switcher: z.object({
+    allLabel: z.string().min(1),
+    prompt: z.string().min(1),
+  }),
+  floors: z.array(buildingFloorSchema).length(3),
+  growthRule: z.object({
+    label: z.string().min(1),
+    title: z.string().min(1),
+    description: z.string().min(1),
+    cta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+  illustrationLegend: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+  }),
+});
+export type BuildingFloor = z.infer<typeof buildingFloorSchema>;
+export type BuildingContent = z.infer<typeof buildingSchema>;

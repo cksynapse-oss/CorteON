@@ -11,6 +11,8 @@ import {
   homeSchema,
   faqSchema,
   tutorProblemSchema,
+  enquirySchema,
+  buildingSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -151,6 +153,9 @@ const ALLOWED_NUMBERS = new Set([
   '06', // door/principle/section 06
   '07', // door/principle/section 07
   '08', // door/principle/section 08
+  '9', // school class stage (Class 9-10)
+  '11', // school class stage (Class 11)
+  '12', // school class stage (Class 12)
   '24', // callback window 24 hours (owner decision 2026-10-18)
   '2026', // decision year
   '10', // decision month
@@ -373,6 +378,8 @@ lintFile('principles.json', principlesSchema);
 lintFile('doors.json', doorsSchema);
 lintFile('home.json', homeSchema);
 lintFile('faq.json', faqSchema);
+lintFile('enquiry.json', enquirySchema);
+lintFile('building.json', buildingSchema);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
 
 // Lint any additional JSON files in src/content
@@ -386,6 +393,8 @@ if (fs.existsSync(contentDir)) {
     'doors.json',
     'home.json',
     'faq.json',
+    'enquiry.json',
+    'building.json',
   ];
   for (const file of files) {
     if (file.endsWith('.json') && !knownFiles.includes(file)) {

@@ -1,0 +1,108 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "ONE BUILDING · THREE FLOORS",
+    "title": "Three floors, built in order.",
+    "sub": "One building in Chamba growing floor by floor as each community proves itself. Floor G is open now; upper floors open only when the community is ready.",
+    "strip": "Behind the Post Office, Chamba, Himachal Pradesh. Mon–Sat, 3:30 PM to 6:30 PM."
+  },
+  "switcher": {
+    "allLabel": "All Floors",
+    "prompt": "Select a floor to view or inspect the drawing:"
+  },
+  "floors": [
+    {
+      "id": "g",
+      "shortName": "G",
+      "number": "01",
+      "name": "Floor G: Learning Commons",
+      "status": "LIVE NOW",
+      "tenseNote": "Currently running in Chamba",
+      "condition": "LIVE NOW: Open for classes",
+      "summary": "Small-group classes, daily practice tests, doubt clinics, and fellowship teaching.",
+      "description": "The ground floor is Synapse's active classroom in Chamba. Students work in small groups with a guide who knows every learner. Every class concludes with a short practice test on the topic just taught, and doubts are solved in separate dedicated sessions.",
+      "items": [
+        "Small-group classes across four tracks (PCM, PCB, CUET UG)",
+        "Daily practice tests at the end of each class",
+        "Doubt clinics in separate short sessions",
+        "Entrance baseline diagnostic for children (places learners, never excludes)",
+        "Teaching fellows: graduates teaching one class a day while preparing"
+      ],
+      "feeNotice": "Fees are shared when you enquire.",
+      "primaryCta": {
+        "label": "Enquire about admission",
+        "href": "/enquire?door=parent"
+      },
+      "secondaryCta": {
+        "label": "Explore programmes",
+        "href": "/programmes"
+      }
+    },
+    {
+      "id": "1",
+      "shortName": "1",
+      "number": "02",
+      "name": "Floor 1: Knowledge Commons",
+      "status": "OPENING NEXT",
+      "tenseNote": "Planned next stage",
+      "condition": "Opening when people will buy the card",
+      "summary": "A library open to anyone with a card, opening when people will buy the card.",
+      "description": "We plan a quiet library for study and reading, open to any learner or resident with a reader card. It will house dedicated desks for quiet study and curated reference collections.",
+      "items": [
+        "Library open to anyone with a reader card",
+        "Quiet desks for reading and study",
+        "Physical and digital reference collections",
+        "Community study space when demand is proven"
+      ],
+      "feeNotice": "Fees are shared when you enquire.",
+      "primaryCta": {
+        "label": "Register interest as reader",
+        "href": "/enquire?door=reader"
+      },
+      "secondaryCta": {
+        "label": "Learn about the library",
+        "href": "/library"
+      }
+    },
+    {
+      "id": "2",
+      "shortName": "2",
+      "number": "03",
+      "name": "Floor 2: Venture Hub",
+      "status": "DIRECTION",
+      "tenseNote": "Future direction",
+      "condition": "Opening only when there are real founders",
+      "summary": "Desks for a few startups who must teach, opening only when there are real founders.",
+      "description": "We intend the top floor for local founders and builders who commit to teaching and mentoring children in return for desk space and community. It will open only when real founders are present in the district.",
+      "items": [
+        "Desks and community for local founders and builders",
+        "Founders teach and mentor children in return for space",
+        "The exact teaching commitment is agreed per founder",
+        "Opens only when there are real founders"
+      ],
+      "feeNotice": "Fees are shared when you enquire.",
+      "primaryCta": {
+        "label": "Register interest as founder",
+        "href": "/enquire?door=founder"
+      },
+      "secondaryCta": {
+        "label": "Explore venture direction",
+        "href": "/venture"
+      }
+    }
+  ],
+  "growthRule": {
+    "label": "THE GROWTH RULE",
+    "title": "Built only from revenue. No outside money until 5-6 centres.",
+    "description": "Synapse expands strictly in order. Floor G finances its own guide and classroom. Floor 1 opens only when enough readers purchase cards. Floor 2 opens only when genuine founders need desks. We take no outside capital until 5-6 centres are thriving.",
+    "cta": {
+      "label": "Read the idea",
+      "href": "/idea"
+    }
+  },
+  "illustrationLegend": {
+    "title": "Architectural Schematic",
+    "description": "Isometric exploded view of the three floors. The vermilion thread marks a learner's progression through learning, teaching, and building."
+  }
+}

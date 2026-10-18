@@ -1,14 +1,288 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Building from '../components/brand/Building.astro';
+import FloorSwitcher from '../components/brand/FloorSwitcher.astro';
+
+import site from '../content/site.json';
+import buildingRaw from '../content/building.json';
+import type { BuildingContent } from '../content/schemas';
+
+const building = buildingRaw as BuildingContent;
 ---
 
-<BaseLayout title="The Building — Synapse">
-  <ComingSoonStub
-    title="The Building"
-    status="LIVE NOW"
-    phase="Phase 1 · Floor G Active"
-    description="A three-floor place in Chamba: Floor G (Learning Commons, LIVE NOW), Floor 1 (Knowledge Commons, OPENING NEXT), Floor 2 (Venture Hub, DIRECTION). Floors are built in order."
-    plannedNote="The interactive architectural isometric drawing and floor switcher are coming in Task T9."
-  />
+<BaseLayout
+  title={`The Building — ${site.name}`}
+  description="A three-floor place in Chamba: Floor G (Learning Commons, LIVE NOW), Floor 1 (Knowledge Commons, OPENING NEXT), Floor 2 (Venture Hub, DIRECTION). Floors are built in order."
+  activeFloor="g"
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-3xl">
+      <div
+        class="mb-3 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        <span>{building.hero.eyebrow}</span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        Three floors, <span class="italic text-spark-ink">built in order.</span>
+      </h1>
+
+      <p
+        class="mb-6 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {building.hero.sub}
+      </p>
+
+      {/* Open now location strip */}
+      <div
+        class="bg-surface-dim/30 flex flex-col gap-2 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-2">
+          <span class="h-2 w-2 rounded-full bg-spark-ink" aria-hidden="true"
+          ></span>
+          <span
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-ink"
+          >
+            {building.hero.strip}
+          </span>
+        </div>
+        <a
+          href="/enquire"
+          class="inline-flex items-center text-xs font-semibold uppercase tracking-wider text-spark-ink underline hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          Enquire about Chamba &rarr;
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  {/* MAIN WALKTHROUGH SECTION: 2-COLUMN MONOGRAPH LAYOUT */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12">
+      {/* LEFT COLUMN: STICKY ARCHITECTURAL DRAWING */}
+      <aside
+        class="mb-12 lg:col-span-5 lg:mb-0"
+        aria-label="Architectural drawing and floor reference"
+      >
+        <div class="top-24 lg:sticky">
+          <div class="rounded border border-hair bg-paper p-4 sm:p-6">
+            <div
+              class="mb-4 flex items-center justify-between border-b border-hair pb-3"
+            >
+              <span
+                class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+              >
+                {building.illustrationLegend.title}
+              </span>
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+              >
+                Isometric 3:4
+              </span>
+            </div>
+
+            {/* Exploded Isometric SVG Drawing */}
+            <div class="mb-6 flex justify-center">
+              <Building scrollThread={true} class="max-h-[500px] w-full" />
+            </div>
+
+            <p class="mb-5 font-body text-xs leading-relaxed text-muted">
+              {building.illustrationLegend.description}
+            </p>
+
+            {/* Quick floor summary legend */}
+            <div class="space-y-2.5 border-t border-hair pt-4">
+              {
+                building.floors.map((floor) => (
+                  <a
+                    href={`#floor-${floor.id}`}
+                    class="hover:bg-surface-dim/40 flex items-center justify-between rounded p-1.5 transition-colors focus-visible:outline-2 focus-visible:outline-spark"
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="font-mono text-xs font-semibold text-ink">
+                        Floor {floor.shortName}
+                      </span>
+                      <span class="text-xs text-muted">
+                        · {floor.name.split(': ')[1]}
+                      </span>
+                    </div>
+                    <StatusChip status={floor.status} />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      {/* RIGHT COLUMN: FLOOR SWITCHER ISLAND & STACKED FLOORS */}
+      <div class="lg:col-span-7">
+        {/* Floor switcher island */}
+        <FloorSwitcher floors={building.floors} />
+
+        {/* Stacked floor sections (fully accessible without JavaScript) */}
+        <div id="all-floors" class="space-y-12">
+          {
+            building.floors.map((floor) => (
+              <article
+                id={`floor-${floor.id}`}
+                data-floor={floor.id}
+                data-floor-section
+                class="scroll-mt-24 rounded border border-hair bg-paper p-6 sm:p-8"
+              >
+                {/* Floor Header Bar */}
+                <div class="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-hair pb-4">
+                  <div class="flex items-center gap-3">
+                    <span class="rounded bg-ink px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-paper">
+                      Floor {floor.shortName}
+                    </span>
+                    <span class="font-mono text-xs uppercase tracking-wider text-muted">
+                      {floor.tenseNote}
+                    </span>
+                  </div>
+                  <StatusChip status={floor.status} />
+                </div>
+
+                {/* Floor Title */}
+                <h2 class="mb-3 font-serif text-2xl font-normal text-ink sm:text-3xl">
+                  {floor.name}
+                </h2>
+
+                {/* Condition Tag */}
+                <div class="mb-4">
+                  <span class="bg-surface-dim/30 inline-block rounded-pill border border-hair px-3 py-1 font-mono text-xs uppercase tracking-wider text-muted">
+                    {floor.condition}
+                  </span>
+                </div>
+
+                {/* Summary & Narrative */}
+                <p class="mb-4 font-body text-base font-medium leading-relaxed text-ink">
+                  {floor.summary}
+                </p>
+
+                <p class="mb-6 font-body text-base leading-relaxed text-muted">
+                  {floor.description}
+                </p>
+
+                {/* Verified Floor Features */}
+                <div class="bg-surface-dim/20 mb-6 rounded border border-hair p-4 sm:p-5">
+                  <span class="mb-3 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+                    What is planned & verified
+                  </span>
+                  <ul
+                    role="list"
+                    class="space-y-2.5 font-body text-sm text-ink sm:text-base"
+                  >
+                    {floor.items.map((item) => (
+                      <li class="flex items-start gap-2.5">
+                        <span
+                          class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                          aria-hidden="true"
+                        />
+                        <span class="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Fee Notice */}
+                <p class="mb-6 font-mono text-xs uppercase tracking-wider text-muted">
+                  {floor.feeNotice}
+                </p>
+
+                {/* Action Buttons */}
+                <div class="flex flex-wrap items-center gap-3">
+                  <Button
+                    href={floor.primaryCta.href}
+                    variant="primary"
+                    size="md"
+                  >
+                    {floor.primaryCta.label}
+                  </Button>
+                  <Button
+                    href={floor.secondaryCta.href}
+                    variant="secondary"
+                    size="md"
+                  >
+                    {floor.secondaryCta.label}
+                  </Button>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 3: THE GROWTH RULE */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-3xl">
+      <span
+        class="mb-3 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        {building.growthRule.label}
+      </span>
+
+      <h2
+        class="mb-4 font-serif text-2xl font-normal text-ink sm:text-3xl lg:text-4xl"
+      >
+        {building.growthRule.title}
+      </h2>
+
+      <p
+        class="mb-6 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {building.growthRule.description}
+      </p>
+
+      <Button href={building.growthRule.cta.href} variant="secondary" size="md">
+        {building.growthRule.cta.label} &rarr;
+      </Button>
+    </div>
+  </Section>
+
+  {/* SECTION 4: DIRECT VISIT & ENQUIRY CONTACT */}
+  <Section theme="paper" padding="md">
+    <div class="bg-surface-dim/20 rounded border border-hair p-6 sm:p-8">
+      <div
+        class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <span
+            class="mb-1 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+          >
+            VISIT OR ENQUIRE
+          </span>
+          <h3 class="font-serif text-xl text-ink sm:text-2xl">
+            {site.place}
+          </h3>
+          <p class="mt-1 font-body text-sm text-muted">
+            {site.hours} · {site.hoursDetail}
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <Button href="/enquire" variant="primary" size="md">
+            Enquire about admission
+          </Button>
+          <a
+            href={`https://wa.me/91${site.phone}?text=${encodeURIComponent('Hello Synapse, I want to enquire about the centre in Chamba.')}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-12 items-center rounded-pill border border-hair px-6 font-mono text-xs font-medium uppercase tracking-wider text-ink transition-colors hover:border-ink hover:bg-paper focus-visible:outline-2 focus-visible:outline-spark"
+          >
+            WhatsApp {site.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

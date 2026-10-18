@@ -642,3 +642,348 @@ export const fellowshipSchema = z.object({
   }),
 });
 export type FellowshipContent = z.infer<typeof fellowshipSchema>;
+
+export const librarySchema = z.object({
+  status: z.literal('OPENING NEXT'),
+  source: z.literal('owner-confirmed'),
+  fee: z.literal('Fees are shared when you enquire.'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  plannedNotice: z.object({
+    status: z.literal('OPENING NEXT'),
+    title: z.string().min(1),
+    notice: z.string().min(1),
+    liveCallout: z.string().min(1),
+  }),
+  theModel: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    pillars: z.array(
+      z.object({
+        number: z.string().min(1),
+        title: z.string().min(1),
+        summary: z.string().min(1),
+      })
+    ),
+  }),
+  access: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    fee: z.literal('Fees are shared when you enquire.'),
+    feeNotice: z.string().min(1),
+    hoursNotice: z.string().min(1),
+  }),
+  questionBoardIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    demoNote: z.string().min(1),
+  }),
+  interestForm: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    doorNote: z.string().min(1),
+    callbackPromise: z.string().min(1),
+  }),
+});
+export type LibraryContent = z.infer<typeof librarySchema>;
+
+export const ventureSchema = z.object({
+  status: z.literal('DIRECTION'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  plannedNotice: z.object({
+    status: z.literal('DIRECTION'),
+    title: z.string().min(1),
+    notice: z.string().min(1),
+    liveCallout: z.string().min(1),
+  }),
+  theDeal: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    give: z.object({
+      heading: z.string().min(1),
+      items: z.array(z.string().min(1)),
+    }),
+    receive: z.object({
+      heading: z.string().min(1),
+      items: z.array(z.string().min(1)),
+    }),
+    commitmentNote: z.string().min(1),
+  }),
+  openDilemma: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    growthPrinciple: z.string().min(1),
+  }),
+  problemBoardIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    demoNote: z.string().min(1),
+  }),
+  interestForm: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    doorNote: z.string().min(1),
+    callbackPromise: z.string().min(1),
+  }),
+});
+export type VentureContent = z.infer<typeof ventureSchema>;
+
+export const passportSchema = z.object({
+  status: z.literal('DIRECTION'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  plannedNotice: z.object({
+    status: z.literal('DIRECTION'),
+    title: z.string().min(1),
+    notice: z.string().min(1),
+    liveCallout: z.string().min(1),
+  }),
+  theLoop: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    stages: z.array(
+      z.object({
+        number: z.string().min(1),
+        name: z.string().min(1),
+        summary: z.string().min(1),
+      })
+    ),
+  }),
+  plainExplanation: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    points: z.array(
+      z.object({
+        title: z.string().min(1),
+        detail: z.string().min(1),
+      })
+    ),
+  }),
+  demosIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+  }),
+  interestForm: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    doorNote: z.string().min(1),
+    callbackPromise: z.string().min(1),
+  }),
+});
+export type PassportContent = z.infer<typeof passportSchema>;
+
+export const centresSchema = z.object({
+  status: z.literal('DIRECTION'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+  }),
+  plannedNotice: z.object({
+    status: z.literal('DIRECTION'),
+    title: z.string().min(1),
+    notice: z.string().min(1),
+    liveCallout: z.string().min(1),
+  }),
+  theModel: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    stages: z.array(
+      z.object({
+        number: z.string().min(1),
+        name: z.string().min(1),
+        summary: z.string().min(1),
+        requirement: z.string().min(1),
+      })
+    ),
+  }),
+  districtFirst: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    chambaOpenStatus: z.string().min(1),
+    onlyChambaRule: z.string().min(1),
+  }),
+  demoIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+  }),
+  interestForm: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    doorNote: z.string().min(1),
+    callbackPromise: z.string().min(1),
+  }),
+});
+export type CentresContent = z.infer<typeof centresSchema>;
+
+export const questionBoardSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  categories: z.array(z.string().min(1)),
+  questions: z.array(
+    z.object({
+      id: z.string().min(1),
+      number: z.string().min(1),
+      isIllustrative: z.literal(true),
+      category: z.string().min(1),
+      title: z.string().min(1),
+      question: z.string().min(1),
+      status: z.literal('DIRECTION'),
+      source: z.literal('illustrative'),
+      authorRole: z.string().min(1),
+      responsesCount: z.string().min(1),
+      tags: z.array(z.string().min(1)),
+      pinnedNote: z.string().min(1),
+    })
+  ),
+});
+export type QuestionBoardContent = z.infer<typeof questionBoardSchema>;
+
+export const ventureProblemBoardSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  problems: z.array(
+    z.object({
+      id: z.string().min(1),
+      number: z.string().min(1),
+      isIllustrative: z.literal(true),
+      title: z.string().min(1),
+      area: z.string().min(1),
+      status: z.literal('DIRECTION'),
+      source: z.literal('illustrative'),
+      description: z.string().min(1),
+      apprenticeRole: z.string().min(1),
+      output: z.string().min(1),
+    })
+  ),
+});
+export type VentureProblemBoardContent = z.infer<
+  typeof ventureProblemBoardSchema
+>;
+
+export const passportCardSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  recordId: z.string().min(1),
+  learnerTrack: z.string().min(1),
+  location: z.string().min(1),
+  sections: z.array(
+    z.object({
+      step: z.string().min(1),
+      label: z.string().min(1),
+      title: z.string().min(1),
+      items: z.array(z.string().min(1)),
+      evaluationNote: z.string().min(1),
+    })
+  ),
+});
+export type PassportCardContent = z.infer<typeof passportCardSchema>;
+
+export const laneBoardSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  lanes: z.array(
+    z.object({
+      id: z.string().min(1),
+      number: z.string().min(1),
+      title: z.string().min(1),
+      description: z.string().min(1),
+      cards: z.array(
+        z.object({
+          id: z.string().min(1),
+          title: z.string().min(1),
+          subject: z.string().min(1),
+          tag: z.string().min(1),
+          note: z.string().min(1),
+        })
+      ),
+    })
+  ),
+});
+export type LaneBoardContent = z.infer<typeof laneBoardSchema>;
+
+export const centresModelSchema = z.object({
+  isIllustrative: z.literal(true),
+  name: z.string().min(1),
+  status: z.literal('DIRECTION'),
+  source: z.literal('illustrative'),
+  heading: z.string().min(1),
+  sub: z.string().min(1),
+  phases: z.array(
+    z.object({
+      step: z.string().min(1),
+      name: z.string().min(1),
+      badge: z.string().min(1),
+      summary: z.string().min(1),
+      liveExample: z.string().min(1),
+      prerequisites: z.string().min(1),
+      advancementGate: z.string().min(1),
+    })
+  ),
+});
+export type CentresModelContent = z.infer<typeof centresModelSchema>;

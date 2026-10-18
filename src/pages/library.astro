@@ -1,14 +1,236 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import PlannedBanner from '../components/brand/PlannedBanner.astro';
+import QuestionBoardDemo from '../components/brand/QuestionBoardDemo.astro';
+import DirectionInterestForm from '../components/brand/DirectionInterestForm.astro';
+
+import site from '../content/site.json';
+import rawLibrary from '../content/library.json';
+import type { LibraryContent } from '../content/schemas';
+
+const library = rawLibrary as LibraryContent;
 ---
 
-<BaseLayout title="Knowledge Commons — Synapse">
-  <ComingSoonStub
-    title="Knowledge Commons"
-    status="OPENING NEXT"
-    phase="Phase 2 · Opening Next"
-    description="Floor 1: a quiet library open to anyone with a card. Opening when people will buy the card."
-    plannedNote="The digital Question Board demo and cardholder interest form are coming in Task T12."
-  />
+<BaseLayout
+  title={`Knowledge Commons (Floor 1) — ${site.name}`}
+  description="Floor 1: a quiet library open to anyone with a card. Study desks, reference collections, paper club, and the community Question Board. Opening when people will buy the card."
+  activeFloor="1"
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {library.hero.eyebrow}
+        </span>
+        <StatusChip status={library.status} size="sm" />
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        A quiet library open to <span class="italic text-spark-ink"
+          >anyone with a card.</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {library.hero.sub}
+      </p>
+
+      {/* Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            {library.hero.strip}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-10 flex flex-wrap items-center gap-4">
+        <Button href="#interest-form" variant="primary">
+          Register Interest for a Card
+        </Button>
+        <Button href="/building#floor-1" variant="secondary">
+          View Floor 1 in Building
+        </Button>
+        <Button href="#question-board" variant="ghost">
+          Question Board Demo
+        </Button>
+      </div>
+
+      <!-- Prominent PLANNED Banner -->
+      <PlannedBanner
+        status={library.plannedNotice.status}
+        title={library.plannedNotice.title}
+        notice={library.plannedNotice.notice}
+        liveCallout={library.plannedNotice.liveCallout}
+        liveHref="/programmes"
+      />
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE MODEL */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={library.theModel.number}
+      label={library.theModel.label}
+      title={library.theModel.title}
+      sub={library.theModel.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        library.theModel.pillars.map((pil) => (
+          <div class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-5">
+            <div>
+              <span class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                {pil.number}
+              </span>
+              <h3 class="mb-2 font-serif text-xl font-normal text-ink">
+                {pil.title}
+              </h3>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {pil.summary}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 02: READER CARDS & ACCESS */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={library.access.number}
+      label={library.access.label}
+      title={library.access.title}
+      sub={library.access.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          Card Policy & Fees
+        </span>
+        <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+          {library.access.fee}
+        </h3>
+        <p class="font-body text-sm leading-relaxed text-muted">
+          {library.access.feeNotice}
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          Library Operating Schedule
+        </span>
+        <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+          Announced when cards open
+        </h3>
+        <p class="font-body text-sm leading-relaxed text-muted">
+          {library.access.hoursNotice}
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 03: QUESTION BOARD DEMO */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="question-board"
+  >
+    <SectionHeader
+      number={library.questionBoardIntro.number}
+      label={library.questionBoardIntro.label}
+      title={library.questionBoardIntro.title}
+      sub={library.questionBoardIntro.lead}
+    />
+
+    <QuestionBoardDemo />
+  </Section>
+
+  {/* SECTION 04: INTEREST FORM */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="interest-form"
+  >
+    <SectionHeader
+      number={library.interestForm.number}
+      label={library.interestForm.label}
+      title={library.interestForm.title}
+      sub={library.interestForm.lead}
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <DirectionInterestForm
+        door="reader"
+        doorTitle="Door 03 · Reader Card Interest"
+        formId="library-reader"
+        redirectTo="/library"
+        heading={library.interestForm.title}
+        sub={library.interestForm.lead}
+        doorNote={library.interestForm.doorNote}
+        customFields="reader"
+      />
+    </div>
+  </Section>
+
+  {/* DIRECT CONTACT STRIP */}
+  <Section theme="paper" padding="md">
+    <div
+      class="bg-surface-dim/30 flex flex-col gap-4 rounded border border-hair p-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Have a specific question about the Knowledge Commons?
+        </h3>
+        <p class="font-body text-xs text-muted">
+          Phone or WhatsApp us directly at {site.phoneDisplay}. The owner phones
+          back personally.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <Button href="/enquire?door=reader" variant="primary" size="sm">
+          Admissions & Enquiry
+        </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}`}
+          variant="secondary"
+          size="sm"
+        >
+          WhatsApp
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

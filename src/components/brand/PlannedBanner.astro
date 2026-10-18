@@ -1,0 +1,57 @@
+---
+import StatusChip from '../ui/StatusChip.astro';
+
+interface Props {
+  status: 'OPENING NEXT' | 'DIRECTION';
+  title?: string;
+  notice: string;
+  liveCallout?: string;
+  liveHref?: string;
+  class?: string;
+}
+
+const {
+  status,
+  title = 'Planned Direction · Not Active Today',
+  notice,
+  liveCallout = 'Visit the live classroom on Floor G',
+  liveHref = '/programmes',
+  class: className = '',
+} = Astro.props;
+---
+
+<aside
+  class:list={[
+    'bg-surface-dim/30 relative rounded border border-l-4 border-hair border-l-spark-ink p-5 sm:p-6',
+    className,
+  ]}
+  aria-label={title}
+>
+  <div
+    class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between"
+  >
+    <div class="max-w-2xl">
+      <div class="mb-2 flex items-center gap-3">
+        <StatusChip status={status} size="sm" />
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {title}
+        </span>
+      </div>
+      <p class="font-body text-sm leading-relaxed text-ink">
+        {notice}
+      </p>
+    </div>
+
+    <div class="shrink-0 pt-1 sm:pt-0">
+      <a
+        href={liveHref}
+        class="inline-flex items-center gap-1.5 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink underline hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+      >
+        <span>{liveCallout}</span>
+        <span aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</aside>

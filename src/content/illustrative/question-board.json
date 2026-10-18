@@ -1,0 +1,73 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Question Board",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "heading": "ILLUSTRATIVE Question Board",
+  "sub": "Fictional inquiries pinned to the board. In the planned physical library, physical index cards will hold questions and reference notes.",
+  "categories": [
+    "All",
+    "Mathematics",
+    "Natural Sciences",
+    "Computing",
+    "Mechanics"
+  ],
+  "questions": [
+    {
+      "id": "q-01",
+      "number": "01",
+      "isIllustrative": true,
+      "category": "Mathematics",
+      "title": "Uniqueness of Prime Factorisation",
+      "question": "Can the Fundamental Theorem of Arithmetic be proven without using Euclid's Lemma?",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "authorRole": "Learner in PCM track",
+      "responsesCount": "3 notes attached",
+      "tags": ["Number Theory", "Euclid", "Proof"],
+      "pinnedNote": "Examining whether the well-ordering principle provides an alternative inductive derivation."
+    },
+    {
+      "id": "q-02",
+      "number": "02",
+      "isIllustrative": true,
+      "category": "Natural Sciences",
+      "title": "Turbulent Water Flow in Silt Channels",
+      "question": "Why does silt deposition accelerate when water velocity drops below a critical threshold in Himalayan streams?",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "authorRole": "Visiting Reader",
+      "responsesCount": "2 notes attached",
+      "tags": ["Fluid Dynamics", "Himalayan Hydrology", "Sediment"],
+      "pinnedNote": "Cross-referenced with Rouse profile equations and local stream bed observations."
+    },
+    {
+      "id": "q-03",
+      "number": "03",
+      "isIllustrative": true,
+      "category": "Mechanics",
+      "title": "Interlocking Wood Joints Under Shear",
+      "question": "How do traditional mortise-and-tenon joints distribute dynamic torsional stress compared to pinned metal brackets?",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "authorRole": "Local Builder",
+      "responsesCount": "4 notes attached",
+      "tags": ["Structural Mechanics", "Woodcraft", "Shear"],
+      "pinnedNote": "Frictional resistance at contact faces absorbs vibrational energy during earth tremors."
+    },
+    {
+      "id": "q-04",
+      "number": "04",
+      "isIllustrative": true,
+      "category": "Computing",
+      "title": "Spaced Revision Interval Calibration",
+      "question": "How should an interval spacing schedule adjust when confidence calibration is consistently overconfident?",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "authorRole": "Teaching Fellow",
+      "responsesCount": "1 note attached",
+      "tags": ["Cognitive Science", "Calibration", "Algorithms"],
+      "pinnedNote": "When confidence exceeds measured recall accuracy, shorten the next review interval."
+    }
+  ]
+}

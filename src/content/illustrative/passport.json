@@ -1,0 +1,55 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Passport Record",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "heading": "ILLUSTRATIVE Passport Card",
+  "sub": "Fictional student monograph record. In the planned Passport, verified work is recorded across the four steps of the learning loop.",
+  "recordId": "PASSPORT-DEMO-01",
+  "learnerTrack": "PCM Track · Senior Class 12",
+  "location": "Chamba Centre",
+  "sections": [
+    {
+      "step": "01",
+      "label": "LEARNED",
+      "title": "Unassisted Problem Mastery",
+      "items": [
+        "Rigid body angular momentum conservation under external impulse",
+        "Conic sections: hyperbolic orbit coordinate transformations",
+        "Acid-base equilibria calculations with multiple weak diprotic acids"
+      ],
+      "evaluationNote": "Verified by human guide on paper without prompts or handheld devices."
+    },
+    {
+      "step": "02",
+      "label": "TAUGHT",
+      "title": "Peer Instruction Record",
+      "items": [
+        "12 hours of classroom teaching with Class 9 foundation learners",
+        "Conducted 4 small-group doubt clinic sessions on quadratic roots",
+        "Author of 2 peer reference solution guides for rotational dynamics"
+      ],
+      "evaluationNote": "Certified by Senior Pedagogical Fellow."
+    },
+    {
+      "step": "03",
+      "label": "BUILT",
+      "title": "Constructed Projects & Models",
+      "items": [
+        "Optical timing gate for measuring gravitational acceleration g",
+        "Hand-soldered operational amplifier circuit for strain-gauge telemetry"
+      ],
+      "evaluationNote": "Working physical build inspected and retained in Chamba workshop."
+    },
+    {
+      "step": "04",
+      "label": "SHOWN",
+      "title": "Public Demonstration & Defense",
+      "items": [
+        "Live 30-minute demonstration of optical timing apparatus",
+        "Public Q&A answering peer inquiries on measurement uncertainty"
+      ],
+      "evaluationNote": "Public presentation delivered before guides and fellow learners."
+    }
+  ]
+}

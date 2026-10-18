@@ -1,0 +1,77 @@
+---
+import rawData from '../../content/illustrative/lane-board.json';
+import type { LaneBoardContent } from '../../content/schemas';
+
+const data = rawData as LaneBoardContent;
+---
+
+<div
+  class="rounded border border-hair bg-paper p-5 sm:p-8"
+  id="lane-board-demo"
+>
+  <div class="mb-6 border-b border-hair pb-4">
+    <div class="mb-1 flex items-center gap-2">
+      <span
+        class="border-spark-ink/40 bg-surface-dim inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+      >
+        ILLUSTRATIVE
+      </span>
+      <span class="font-mono text-xs uppercase tracking-wider text-muted">
+        Four-Lane Progression
+      </span>
+    </div>
+    <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+      {data.heading}
+    </h3>
+    <p class="mt-1 font-body text-xs text-muted sm:text-sm">
+      {data.sub}
+    </p>
+  </div>
+
+  {/* Four Columns Grid */}
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      data.lanes.map((lane) => (
+        <div class="bg-surface-dim/20 flex flex-col rounded border border-hair p-4">
+          {/* Lane Header */}
+          <div class="mb-3 border-b border-hair pb-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Lane {lane.number}
+              </span>
+              <span class="rounded border border-hair bg-paper px-2 py-0.5 font-mono text-[11px] text-muted">
+                {lane.cards.length} {lane.cards.length === 1 ? 'task' : 'tasks'}
+              </span>
+            </div>
+            <h4 class="mt-1 font-serif text-lg font-normal text-ink">
+              {lane.title}
+            </h4>
+            <p class="mt-1 font-body text-xs text-muted">{lane.description}</p>
+          </div>
+
+          {/* Lane Cards */}
+          <div class="space-y-3">
+            {lane.cards.map((c) => (
+              <div class="hover:border-spark-ink/50 rounded border border-hair bg-paper p-3 shadow-none transition-colors">
+                <div class="mb-1.5 flex items-center justify-between">
+                  <span class="font-mono text-[11px] uppercase tracking-wider text-muted">
+                    {c.subject}
+                  </span>
+                  <span class="rounded-full border border-hair px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-spark-ink">
+                    {c.tag}
+                  </span>
+                </div>
+                <h5 class="font-serif text-base font-normal text-ink">
+                  {c.title}
+                </h5>
+                <p class="mt-1.5 font-body text-xs leading-relaxed text-muted">
+                  {c.note}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,80 @@
+---
+import rawData from '../../content/illustrative/centres-model.json';
+import type { CentresModelContent } from '../../content/schemas';
+
+const data = rawData as CentresModelContent;
+---
+
+<div
+  class="rounded border border-hair bg-paper p-5 sm:p-8"
+  id="centres-model-demo"
+>
+  <div class="mb-6 border-b border-hair pb-4">
+    <div class="mb-1 flex items-center gap-2">
+      <span
+        class="border-spark-ink/40 bg-surface-dim inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+      >
+        ILLUSTRATIVE
+      </span>
+      <span class="font-mono text-xs uppercase tracking-wider text-muted">
+        Progression Gates
+      </span>
+    </div>
+    <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+      {data.heading}
+    </h3>
+    <p class="mt-1 font-body text-xs text-muted sm:text-sm">
+      {data.sub}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+    {
+      data.phases.map((ph) => (
+        <div class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-5">
+          <div>
+            <div class="border-hair/60 mb-3 flex items-center justify-between border-b pb-2">
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Stage {ph.step}
+              </span>
+              <span class="rounded-full border border-hair bg-paper px-2.5 py-0.5 font-mono text-[11px] uppercase tracking-wider text-ink">
+                {ph.badge}
+              </span>
+            </div>
+
+            <h4 class="mb-2 font-serif text-xl font-normal text-ink">
+              {ph.name}
+            </h4>
+
+            <p class="mb-4 font-body text-sm leading-relaxed text-ink">
+              {ph.summary}
+            </p>
+
+            <div class="border-hair/60 mb-3 rounded border bg-paper p-3">
+              <span class="mb-1 block font-mono text-[11px] font-semibold uppercase tracking-wider text-muted">
+                Live Reference
+              </span>
+              <p class="font-body text-xs text-ink">{ph.liveExample}</p>
+            </div>
+
+            <div class="border-hair/60 mb-4 rounded border bg-paper p-3">
+              <span class="mb-1 block font-mono text-[11px] font-semibold uppercase tracking-wider text-muted">
+                Prerequisites
+              </span>
+              <p class="font-body text-xs text-muted">{ph.prerequisites}</p>
+            </div>
+          </div>
+
+          <div class="border-hair/60 border-t pt-3">
+            <span class="block font-mono text-[11px] uppercase tracking-wider text-spark-ink">
+              Advancement Gate:
+            </span>
+            <p class="mt-1 font-body text-xs text-muted">
+              {ph.advancementGate}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

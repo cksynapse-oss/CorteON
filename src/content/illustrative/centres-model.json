@@ -1,0 +1,37 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Centres Model",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "heading": "ILLUSTRATIVE Growth Model",
+  "sub": "Fictional progression model. In the planned expansion, centres only advance when local demand and learning quality are independently demonstrated.",
+  "phases": [
+    {
+      "step": "01",
+      "name": "Circle",
+      "badge": "Entry Stage",
+      "summary": "One or two classroom pods operating in a shared local hall or partner space.",
+      "liveExample": "Chamba classroom on Floor G today operates in this lean, focused format.",
+      "prerequisites": "Local guide who knows every student; verified demand for foundational tracks.",
+      "advancementGate": "Stable enrollment and consistent unassisted learning gains across five days a week."
+    },
+    {
+      "step": "02",
+      "name": "Library",
+      "badge": "Intermediate Stage",
+      "summary": "Adding Floor 1 Knowledge Commons for quiet independent reading and reference.",
+      "liveExample": "Planned for Chamba as soon as enough cardholders subscribe.",
+      "prerequisites": "Dedicated reading room; curated reference collection; active paper club.",
+      "advancementGate": "Community reader card subscriptions cover ongoing room maintenance."
+    },
+    {
+      "step": "03",
+      "name": "Campus",
+      "badge": "Complete Model",
+      "summary": "Full three-floor gurukul integrating learning, quiet study, and resident builders who teach.",
+      "liveExample": "Long-term vision for Chamba once real founders commit to mentoring.",
+      "prerequisites": "Established Learning Commons and Knowledge Commons floors.",
+      "advancementGate": "Funded purely from operating revenue with no outside money until five to six centres."
+    }
+  ]
+}

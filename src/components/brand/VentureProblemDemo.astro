@@ -1,0 +1,73 @@
+---
+import rawData from '../../content/illustrative/venture-problems.json';
+import type { VentureProblemBoardContent } from '../../content/schemas';
+
+const data = rawData as VentureProblemBoardContent;
+---
+
+<div
+  class="rounded border border-hair bg-paper p-5 sm:p-8"
+  id="venture-problem-demo"
+>
+  <div class="mb-6 border-b border-hair pb-4">
+    <div class="mb-1 flex items-center gap-2">
+      <span
+        class="border-spark-ink/40 bg-surface-dim inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+      >
+        ILLUSTRATIVE
+      </span>
+      <span class="font-mono text-xs uppercase tracking-wider text-muted">
+        Top Floor Challenges
+      </span>
+    </div>
+    <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+      {data.heading}
+    </h3>
+    <p class="mt-1 font-body text-xs text-muted sm:text-sm">
+      {data.sub}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {
+      data.problems.map((prob) => (
+        <article class="bg-surface-dim/20 hover:border-spark-ink/40 flex flex-col justify-between rounded border border-hair p-5 transition-colors">
+          <div>
+            <div class="border-hair/60 mb-3 flex items-center justify-between border-b pb-2">
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                {prob.area}
+              </span>
+              <span class="font-mono text-xs uppercase text-muted">
+                Problem {prob.number}
+              </span>
+            </div>
+
+            <h4 class="mb-2 font-serif text-lg font-normal text-ink">
+              {prob.title}
+            </h4>
+
+            <p class="mb-4 font-body text-sm leading-relaxed text-ink">
+              {prob.description}
+            </p>
+
+            <div class="border-hair/60 mb-4 rounded border bg-paper p-3">
+              <span class="mb-1 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Student Apprentice Role
+              </span>
+              <p class="font-body text-xs leading-relaxed text-muted">
+                {prob.apprenticeRole}
+              </p>
+            </div>
+          </div>
+
+          <div class="border-hair/60 border-t pt-3">
+            <span class="font-mono text-xs uppercase tracking-wider text-muted">
+              Target Output:{' '}
+              <strong class="font-normal text-ink">{prob.output}</strong>
+            </span>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</div>

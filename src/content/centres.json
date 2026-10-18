@@ -1,0 +1,64 @@
+{
+  "status": "DIRECTION",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "DIRECTION · FUTURE CENTRES",
+    "title": "One district, one specialisation.",
+    "sub": "The planned expansion model for Synapse: Circle to Library to Campus. Chamba is our only centre today. Growth is funded only from operating revenue with no outside money until five to six centres.",
+    "strip": "Chamba is our only live centre today · Behind the Post Office, Chamba"
+  },
+  "plannedNotice": {
+    "status": "DIRECTION",
+    "title": "Planned Model · Not Active Today",
+    "notice": "Future centres are a planned direction. Chamba is our only centre today. We have no other active locations. We do not take outside investment or rush expansion ahead of verified learning.",
+    "liveCallout": "Visit the live classroom in Chamba"
+  },
+  "theModel": {
+    "number": "01",
+    "label": "THE EXPANSION MODEL",
+    "title": "Circle to Library to Campus.",
+    "lead": "We do not open empty commercial campuses. Each centre begins as an agile study circle in a partner space, grows into a community library, and expands into a full campus only when local demand is proven.",
+    "stages": [
+      {
+        "number": "01",
+        "name": "Stage 01: Circle",
+        "summary": "An initial small-group classroom pod in a partner space, running daily classes, entrance baselines, and peer teaching.",
+        "requirement": "Requires a verified local guide, classroom space, and active student demand."
+      },
+      {
+        "number": "02",
+        "name": "Stage 02: Library",
+        "summary": "Adding the quiet Knowledge Commons floor when enough local readers register and purchase reader cards.",
+        "requirement": "Requires dedicated quiet desks, reference collections, and cardholder subscriptions."
+      },
+      {
+        "number": "03",
+        "name": "Stage 03: Campus",
+        "summary": "A complete three-floor gurukul: Learning Commons on Floor G, Knowledge Commons on Floor 1, and Venture Hub on Floor 2.",
+        "requirement": "Requires sustainable operating revenue and resident builders who teach children."
+      }
+    ]
+  },
+  "districtFirst": {
+    "number": "02",
+    "label": "LOCAL ROOTS",
+    "title": "Rooted in district ecology.",
+    "lead": "Each district has its own crafts, ecology, and technical requirements. Rather than forcing a generic curriculum, future centres will specialize in their district's core strengths.",
+    "chambaOpenStatus": "Chamba's specialisation is open: we are currently determining whether Chamba's primary focus should be mountain hydrology, timber craft engineering, or computational linguistics.",
+    "onlyChambaRule": "Chamba is our only centre today. We do not announce or promise centres in any other district until the Chamba classroom is fully proven."
+  },
+  "demoIntro": {
+    "number": "03",
+    "label": "ILLUSTRATIVE MODEL",
+    "title": "Progression gates and growth rules.",
+    "lead": "Below is an illustrative overview of how a centre progresses across stages without speculative outside capital."
+  },
+  "interestForm": {
+    "number": "04",
+    "label": "START A CIRCLE",
+    "title": "Bring Synapse to your district.",
+    "lead": "If you have suitable space, a local teaching team, or wish to explore hosting an initial Circle in your district, talk with us.",
+    "doorNote": "Each centre is rooted in its district with local space. Growth only from revenue.",
+    "callbackPromise": "The owner phones back personally within 24 hours."
+  }
+}

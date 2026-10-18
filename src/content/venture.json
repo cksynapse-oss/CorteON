@@ -1,0 +1,61 @@
+{
+  "status": "DIRECTION",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "FLOOR 2 · VENTURE HUB",
+    "title": "Startups who teach.",
+    "sub": "Planned for Floor 2 of Synapse in Chamba. A place for a few genuine builders and startups who teach and mentor children in return for desks and community.",
+    "strip": "Opens only when there are real founders · Behind the Post Office, Chamba"
+  },
+  "plannedNotice": {
+    "status": "DIRECTION",
+    "title": "Planned Floor · Not Active Today",
+    "notice": "Floor 2: Venture Hub is a planned direction. It will open only when there are real founders. No startups, desks, or equipment are active today.",
+    "liveCallout": "Visit the live classroom on Floor G"
+  },
+  "theDeal": {
+    "number": "01",
+    "label": "THE DEAL",
+    "title": "Desks and community in return for mentoring.",
+    "lead": "We do not charge speculative rent, take equity, or pretend Chamba is a metropolitan software campus. We offer quiet desks and an honest community in return for active teaching.",
+    "give": {
+      "heading": "What the building offers",
+      "items": [
+        "Dedicated workspace and quiet reading environment on Floor 2",
+        "Community of serious fellows, learners, and readers",
+        "A peaceful space to build deep, enduring work without noise"
+      ]
+    },
+    "receive": {
+      "heading": "What you return in kind",
+      "items": [
+        "Teach and mentor children in foundational craft, coding, or reasoning",
+        "Host regular review sessions where children see real work being built",
+        "The exact teaching commitment is agreed per founder"
+      ]
+    },
+    "commitmentNote": "Founder teaching commitment: teach and mentor children in return for desks and community; the exact commitment is agreed per founder."
+  },
+  "openDilemma": {
+    "number": "02",
+    "label": "OPEN DILEMMA",
+    "title": "Patience over vanity occupancy.",
+    "lead": "Chamba is not a metro tech hub. Finding local builders whose work is rooted in real systems or local enterprises—and who are genuinely willing to mentor children—requires patience over easy vanity occupancy.",
+    "growthPrinciple": "Growth only from operating revenue with no outside money until five to six centres. We do not issue speculative promises or build ahead of real demand."
+  },
+  "problemBoardIntro": {
+    "number": "03",
+    "label": "LOCAL PROBLEMS",
+    "title": "Problems rooted in the district.",
+    "lead": "We believe meaningful software, hardware, and craft solve tangible challenges. Below is an illustrative board of real mountain challenges that builders could tackle.",
+    "demoNote": "Below is an illustrative board of sample engineering and craft challenges."
+  },
+  "interestForm": {
+    "number": "04",
+    "label": "REGISTER INTEREST",
+    "title": "Tell us what you are building.",
+    "lead": "If you are a founder or builder in Himachal Pradesh or nearby districts, speak with us about the top floor.",
+    "doorNote": "Venture Hub space opens only when there are real founders. Mentoring commitment is agreed per founder.",
+    "callbackPromise": "The owner phones back personally within 24 hours."
+  }
+}

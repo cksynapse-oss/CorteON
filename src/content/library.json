@@ -1,0 +1,69 @@
+{
+  "status": "OPENING NEXT",
+  "source": "owner-confirmed",
+  "fee": "Fees are shared when you enquire.",
+  "hero": {
+    "eyebrow": "FLOOR 1 · KNOWLEDGE COMMONS",
+    "title": "A quiet library open to anyone with a card.",
+    "sub": "Planned for Floor 1 of Synapse in Chamba. A place for sustained reading, reference study, and shared inquiries without digital distractions.",
+    "strip": "Planned to open when people will buy the card · Behind the Post Office, Chamba"
+  },
+  "plannedNotice": {
+    "status": "OPENING NEXT",
+    "title": "Planned Floor · Not Active Today",
+    "notice": "Floor 1 is planned to open when people will buy the card. Only Floor G (Learning Commons) in Chamba is open today. No library desks or rooms are active yet.",
+    "liveCallout": "Visit the live classroom on Floor G"
+  },
+  "theModel": {
+    "number": "01",
+    "label": "THE MODEL",
+    "title": "A library for the whole district.",
+    "lead": "Most study halls are either crowded commercial cubicles or silent archives where conversation is forbidden. The Knowledge Commons is planned as a balanced space for serious readers, fellows, and students.",
+    "pillars": [
+      {
+        "number": "01",
+        "title": "Quiet Desks",
+        "summary": "Individual study desks reserved for deep, undisturbed reading and preparation."
+      },
+      {
+        "number": "02",
+        "title": "Reference Collections",
+        "summary": "Hand-picked foundational texts in mathematics, natural sciences, history, and craft."
+      },
+      {
+        "number": "03",
+        "title": "Paper Club",
+        "summary": "Weekly reading group where fellows and students read primary papers and classic essays aloud."
+      },
+      {
+        "number": "04",
+        "title": "Physical Question Board",
+        "summary": "A wall board in the reading room where anyone can pin an unresolved problem for others to examine."
+      }
+    ]
+  },
+  "access": {
+    "number": "02",
+    "label": "READER CARDS",
+    "title": "How reader cards will work.",
+    "lead": "A single library card grants desk access and borrowing privileges. Cards will be issued in order of registration.",
+    "fee": "Fees are shared when you enquire.",
+    "feeNotice": "Reader card fees are set per centre and will be shared when cards open. We do not publish speculative card fees.",
+    "hoursNotice": "Library operating hours will be announced when reader cards are released. Only the Floor G classroom schedule is active today."
+  },
+  "questionBoardIntro": {
+    "number": "03",
+    "label": "THE QUESTION BOARD",
+    "title": "Pinned inquiries, open to all.",
+    "lead": "In the physical library, a dedicated board allows learners, fellows, and visiting readers to pin hard questions. Others attach references, derivations, or counter-examples.",
+    "demoNote": "Below is an illustrative preview of how inquiries will be catalogued."
+  },
+  "interestForm": {
+    "number": "04",
+    "label": "REGISTER INTEREST",
+    "title": "Tell us what you study.",
+    "lead": "We will open reader cards as soon as there is real demand. Register your interest to be notified first.",
+    "doorNote": "The Knowledge Commons library opens next, when people will buy the card.",
+    "callbackPromise": "The owner phones back personally within 24 hours."
+  }
+}

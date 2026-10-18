@@ -1,14 +1,237 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import PlannedBanner from '../components/brand/PlannedBanner.astro';
+import CentresModelDemo from '../components/brand/CentresModelDemo.astro';
+import DirectionInterestForm from '../components/brand/DirectionInterestForm.astro';
+
+import site from '../content/site.json';
+import rawCentres from '../content/centres.json';
+import type { CentresContent } from '../content/schemas';
+
+const centres = rawCentres as CentresContent;
 ---
 
-<BaseLayout title="Centres — Synapse">
-  <ComingSoonStub
-    title="Centres"
-    status="DIRECTION"
-    phase="Phase 2 · Planned Model"
-    description="Circle to Library to Campus. Chamba is our only centre today. Growth is funded only from revenue with no outside money until five to six centres."
-    plannedNote="The district partnership model and specialisation details are coming in Task T12."
-  />
+<BaseLayout
+  title={`Centres (Planned Model) — ${site.name}`}
+  description="The planned expansion model for Synapse: Circle to Library to Campus. Chamba is our only centre today. Growth is funded only from operating revenue with no outside money until five to six centres."
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {centres.hero.eyebrow}
+        </span>
+        <StatusChip status={centres.status} size="sm" />
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        One district, <span class="italic text-spark-ink"
+          >one specialisation.</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {centres.hero.sub}
+      </p>
+
+      {/* Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            {centres.hero.strip}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-10 flex flex-wrap items-center gap-4">
+        <Button href="#interest-form" variant="primary">
+          Start a Circle
+        </Button>
+        <Button href="#expansion-model" variant="secondary">
+          View Progression Gates
+        </Button>
+        <Button href="/building#floor-g" variant="ghost">
+          Chamba Classroom Details
+        </Button>
+      </div>
+
+      <!-- Prominent PLANNED Banner -->
+      <PlannedBanner
+        status={centres.plannedNotice.status}
+        title={centres.plannedNotice.title}
+        notice={centres.plannedNotice.notice}
+        liveCallout={centres.plannedNotice.liveCallout}
+        liveHref="/programmes"
+      />
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE EXPANSION MODEL (CIRCLE -> LIBRARY -> CAMPUS) */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="expansion-model"
+  >
+    <SectionHeader
+      number={centres.theModel.number}
+      label={centres.theModel.label}
+      title={centres.theModel.title}
+      sub={centres.theModel.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {
+        centres.theModel.stages.map((st) => (
+          <div class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-6">
+            <div>
+              <span class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                {st.name}
+              </span>
+              <h3 class="mb-3 font-serif text-xl font-normal text-ink">
+                {st.summary}
+              </h3>
+            </div>
+            <div class="mt-4 border-t border-hair pt-4">
+              <span class="block font-mono text-xs uppercase tracking-wider text-muted">
+                Requirement:
+              </span>
+              <p class="mt-1 font-body text-xs text-ink">{st.requirement}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 02: DISTRICT FIRST & OPEN SPECIALISATION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={centres.districtFirst.number}
+      label={centres.districtFirst.label}
+      title={centres.districtFirst.title}
+      sub={centres.districtFirst.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          District Ecology
+        </span>
+        <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+          Chamba's Specialisation is Open
+        </h3>
+        <p class="font-body text-sm leading-relaxed text-muted">
+          {centres.districtFirst.chambaOpenStatus}
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          Current Operating Reality
+        </span>
+        <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+          One Centre Today
+        </h3>
+        <p class="font-body text-sm leading-relaxed text-muted">
+          {centres.districtFirst.onlyChambaRule}
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 03: ILLUSTRATIVE MODEL DEMO */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={centres.demoIntro.number}
+      label={centres.demoIntro.label}
+      title={centres.demoIntro.title}
+      sub={centres.demoIntro.lead}
+    />
+
+    <CentresModelDemo />
+  </Section>
+
+  {/* SECTION 04: START A CIRCLE INTEREST FORM */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="interest-form"
+  >
+    <SectionHeader
+      number={centres.interestForm.number}
+      label={centres.interestForm.label}
+      title={centres.interestForm.title}
+      sub={centres.interestForm.lead}
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <DirectionInterestForm
+        door="partner"
+        doorTitle="Door 05 · District Partner / Start a Circle"
+        formId="centres-partner"
+        redirectTo="/centres"
+        heading={centres.interestForm.title}
+        sub={centres.interestForm.lead}
+        doorNote={centres.interestForm.doorNote}
+        customFields="partner"
+      />
+    </div>
+  </Section>
+
+  {/* DIRECT CONTACT STRIP */}
+  <Section theme="paper" padding="md">
+    <div
+      class="bg-surface-dim/30 flex flex-col gap-4 rounded border border-hair p-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Want to visit our classroom in Chamba?
+        </h3>
+        <p class="font-body text-xs text-muted">
+          We are located behind the Post Office, Chamba. Hours: {
+            site.hoursDetail
+          }.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <Button href="/enquire" variant="primary" size="sm"> Enquire </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}`}
+          variant="secondary"
+          size="sm"
+        >
+          WhatsApp
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

@@ -1,0 +1,58 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Problem Board",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "heading": "ILLUSTRATIVE Local Problem Board",
+  "sub": "Fictional local engineering and design challenges. In the planned Venture Hub, founders and student apprentices will collaborate on tangible district problems.",
+  "problems": [
+    {
+      "id": "vp-01",
+      "number": "01",
+      "isIllustrative": true,
+      "title": "Stream Silt & Hydel Intake Telemetry",
+      "area": "Sensors and Firmware",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "description": "Continuous monitoring of water turbidity and intake silt levels in mountain stream micro-turbines.",
+      "apprenticeRole": "Students test analog-to-digital sensor calibration and record baseline voltage readings.",
+      "output": "Open hardware sensor probe with local serial logging."
+    },
+    {
+      "id": "vp-02",
+      "number": "02",
+      "isIllustrative": true,
+      "title": "Cold-Storage Thermal Logging",
+      "area": "Telemetry and Storage",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "description": "Battery-backed temperature loggers for high-altitude apple and medicinal herb storage.",
+      "apprenticeRole": "Students write data verification tests to detect sensor disconnects or temperature anomalies.",
+      "output": "Low-power microcontroller unit with offline flash memory."
+    },
+    {
+      "id": "vp-03",
+      "number": "03",
+      "isIllustrative": true,
+      "title": "Traditional Woodcraft Joinery Documentation",
+      "area": "Structural Modeling",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "description": "Digital measurement and shear stress modeling of regional earthquake-resistant timber joints.",
+      "apprenticeRole": "Students assist in spatial measurements and draft geometric diagrams of wood interlocks.",
+      "output": "Vector library of traditional seismic joinery patterns."
+    },
+    {
+      "id": "vp-04",
+      "number": "04",
+      "isIllustrative": true,
+      "title": "Mountain Road Alert Network",
+      "area": "Distributed Communications",
+      "status": "DIRECTION",
+      "source": "illustrative",
+      "description": "Short-message packet relays for high-pass transit alerts when mobile towers lose connectivity.",
+      "apprenticeRole": "Students conduct range tests and check signal reception across valley observation points.",
+      "output": "Low-frequency radio transceiver packet node."
+    }
+  ]
+}

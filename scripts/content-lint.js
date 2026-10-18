@@ -16,6 +16,15 @@ import {
   openProblemsSchema,
   ideaSchema,
   fellowshipSchema,
+  librarySchema,
+  ventureSchema,
+  passportSchema,
+  centresSchema,
+  questionBoardSchema,
+  ventureProblemBoardSchema,
+  passportCardSchema,
+  laneBoardSchema,
+  centresModelSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -386,7 +395,16 @@ lintFile('building.json', buildingSchema);
 lintFile('open-problems.json', openProblemsSchema);
 lintFile('idea.json', ideaSchema);
 lintFile('fellowship.json', fellowshipSchema);
+lintFile('library.json', librarySchema);
+lintFile('venture.json', ventureSchema);
+lintFile('passport.json', passportSchema);
+lintFile('centres.json', centresSchema);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
+lintFile('illustrative/question-board.json', questionBoardSchema);
+lintFile('illustrative/venture-problems.json', ventureProblemBoardSchema);
+lintFile('illustrative/passport.json', passportCardSchema);
+lintFile('illustrative/lane-board.json', laneBoardSchema);
+lintFile('illustrative/centres-model.json', centresModelSchema);
 
 // Lint any additional JSON files in src/content
 if (fs.existsSync(contentDir)) {
@@ -404,6 +422,10 @@ if (fs.existsSync(contentDir)) {
     'open-problems.json',
     'idea.json',
     'fellowship.json',
+    'library.json',
+    'venture.json',
+    'passport.json',
+    'centres.json',
   ];
   for (const file of files) {
     if (file.endsWith('.json') && !knownFiles.includes(file)) {

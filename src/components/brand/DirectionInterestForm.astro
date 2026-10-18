@@ -1,0 +1,437 @@
+---
+import Button from '../ui/Button.astro';
+import Field from '../ui/Field.astro';
+import Checkbox from '../ui/Checkbox.astro';
+import site from '../../content/site.json';
+
+interface Props {
+  door: 'reader' | 'founder' | 'partner' | 'parent';
+  doorTitle?: string;
+  formId: string;
+  redirectTo: string;
+  heading?: string;
+  sub?: string;
+  doorNote: string;
+  customFields?: 'reader' | 'founder' | 'partner' | 'passport';
+}
+
+const {
+  door,
+  doorTitle,
+  formId,
+  redirectTo,
+  heading = 'Register Your Interest',
+  sub = 'Tell us who you are and what you need. The owner phones back personally.',
+  doorNote,
+  customFields = 'reader',
+} = Astro.props;
+
+// URL parameters for native non-JS form submission callback
+const isSubmittedSuccess =
+  Astro.url.searchParams.get('submitted') === 'success';
+const errorMessage = Astro.url.searchParams.get('error') || '';
+
+// WhatsApp click-to-chat fallback URL prefilled by door
+const defaultWaTexts: Record<string, string> = {
+  reader:
+    'Hello Synapse, I am interested in reader cards for the Knowledge Commons in Chamba.',
+  founder:
+    'Hello Synapse, I am interested in the Venture Hub and mentoring in Chamba.',
+  partner:
+    'Hello Synapse, I am interested in bringing a Synapse Circle to our district.',
+  parent:
+    'Hello Synapse, I am interested in learning more about the Passport and curriculum.',
+};
+
+const waText = encodeURIComponent(
+  defaultWaTexts[door] || 'Hello Synapse, I would like to enquire.'
+);
+const whatsAppUrl = `https://wa.me/91${site.phone}?text=${waText}`;
+---
+
+<div
+  class="rounded border border-hair bg-paper p-6 sm:p-8 lg:p-10"
+  id={`container-${formId}`}
+>
+  {
+    isSubmittedSuccess ? (
+      <div
+        id={`native-success-${formId}`}
+        tabindex="-1"
+        class="border-spark-ink/30 bg-surface-dim/40 rounded border p-6 text-center sm:p-8"
+      >
+        <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-spark-ink text-paper">
+          <svg
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h3 class="mb-2 font-serif text-2xl font-normal text-ink">
+          Thank you.
+        </h3>
+        <p class="mx-auto mb-6 max-w-md font-body text-sm leading-relaxed text-muted">
+          We have received your details. The owner will phone you back
+          personally within {site.callbackWindow}.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-hair bg-paper px-4 py-2 font-sans text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:border-spark-ink hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+          >
+            <span>Message on WhatsApp</span>
+          </a>
+          <a
+            href={redirectTo}
+            class="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-[0.12em] text-muted underline hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+          >
+            Submit another response
+          </a>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <div class="mb-6 border-b border-hair pb-4">
+          <span class="mb-1 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+            {doorTitle || 'Interest Form'}
+          </span>
+          <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+            {heading}
+          </h3>
+          <p class="mt-2 font-body text-sm leading-relaxed text-muted">{sub}</p>
+        </div>
+
+        {errorMessage && (
+          <div
+            class="border-spark-ink/40 bg-surface-dim/40 mb-6 rounded border p-4 font-body text-sm text-spark-ink"
+            role="alert"
+          >
+            {errorMessage}
+          </div>
+        )}
+
+        {/* Dynamic client-side alert container */}
+        <div
+          id={`client-alert-${formId}`}
+          class="border-spark-ink/40 bg-surface-dim/40 mb-6 hidden rounded border p-4 font-body text-sm text-spark-ink"
+          role="alert"
+        />
+
+        {/* In-page AJAX success message */}
+        <div
+          id={`ajax-success-${formId}`}
+          class="border-spark-ink/30 bg-surface-dim/40 hidden rounded border p-6 text-center sm:p-8"
+          tabindex="-1"
+        >
+          <div class="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-spark-ink text-paper">
+            <svg
+              class="h-5 w-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <h4 class="mb-2 font-serif text-2xl font-normal text-ink">
+            Thank you.
+          </h4>
+          <p class="mx-auto mb-6 max-w-md font-body text-sm leading-relaxed text-muted">
+            Thank you. We will call you within {site.callbackWindow}. If it is
+            urgent, message us on WhatsApp.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-full border border-hair bg-paper px-4 py-2 font-sans text-xs uppercase tracking-[0.12em] text-ink transition-colors hover:border-spark-ink hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+            >
+              <span>Message on WhatsApp</span>
+            </a>
+            <button
+              type="button"
+              id={`reset-btn-${formId}`}
+              class="inline-flex items-center gap-1 font-sans text-xs uppercase tracking-[0.12em] text-muted underline hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+            >
+              Submit another response
+            </button>
+          </div>
+        </div>
+
+        {/* Form element */}
+        <form
+          id={`form-${formId}`}
+          action="/api/enquire"
+          method="POST"
+          class="space-y-5"
+        >
+          <input type="hidden" name="door" value={door} />
+          <input type="hidden" name="redirect_to" value={redirectTo} />
+
+          {/* Anti-spam honeypot */}
+          <div style="display: none;" aria-hidden="true">
+            <label for={`_hp_${formId}`}>Do not fill this field</label>
+            <input
+              type="text"
+              id={`_hp_${formId}`}
+              name="_hp_company"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {/* Full Name */}
+            <Field
+              id={`${formId}_name`}
+              name="name"
+              label="Full Name"
+              placeholder="Enter your full name"
+              required
+              autocomplete="name"
+            />
+
+            {/* Phone / WhatsApp */}
+            <Field
+              id={`${formId}_phone`}
+              name="phone"
+              type="tel"
+              label="Phone / WhatsApp"
+              placeholder="10-digit mobile number"
+              helpText={`The owner phones back personally within ${site.callbackWindow}.`}
+              required
+              autocomplete="tel"
+            />
+          </div>
+
+          {/* Email Address */}
+          <Field
+            id={`${formId}_email`}
+            name="email"
+            type="email"
+            label="Email Address (Optional)"
+            placeholder="name@example.com"
+            autocomplete="email"
+          />
+
+          {/* Door-specific fields */}
+          {customFields === 'reader' && (
+            <div class="space-y-4">
+              <Field
+                id={`${formId}_reader_interest`}
+                name="reader_interest"
+                label="Reading / Study Interests"
+                placeholder="Subjects, research topics, or books you study"
+                required
+              />
+              <div class="pt-1">
+                <Checkbox
+                  id={`${formId}_card_notify`}
+                  name="card_notify"
+                  label="Notify me as soon as reader cards are released in Chamba"
+                  checked
+                />
+              </div>
+            </div>
+          )}
+
+          {customFields === 'founder' && (
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <Field
+                id={`${formId}_founder_project`}
+                name="founder_project"
+                label="What You Are Building"
+                placeholder="Describe your software, hardware, or craft"
+                required
+              />
+              <Field
+                id={`${formId}_founder_mentor`}
+                name="founder_mentor"
+                label="What You Can Teach / Mentor"
+                placeholder="Topics or skills you can share with children"
+                required
+              />
+            </div>
+          )}
+
+          {customFields === 'partner' && (
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <Field
+                id={`${formId}_partner_district`}
+                name="partner_district"
+                label="Your District & State"
+                placeholder="e.g. Kangra, Mandi, Kullu, Shimla"
+                required
+              />
+              <Field
+                id={`${formId}_partner_space`}
+                name="partner_space"
+                label="Space / Community Available"
+                placeholder="Describe your space, hall, or local team"
+                required
+              />
+            </div>
+          )}
+
+          {customFields === 'passport' && (
+            <Field
+              id={`${formId}_passport_role`}
+              name="stageOrSubject"
+              label="Your Role or Interest"
+              placeholder="e.g. Student, Parent, Educator, Builder"
+              required
+            />
+          )}
+
+          {/* Questions or Notes */}
+          <div>
+            <label
+              for={`${formId}_message`}
+              class="mb-2 block select-none font-sans text-xs font-medium uppercase tracking-[0.12em] text-muted"
+            >
+              Questions or Notes (Optional)
+            </label>
+            <textarea
+              id={`${formId}_message`}
+              name="message"
+              rows="3"
+              placeholder="Any specific questions, study schedule, or context"
+              class="placeholder:text-muted/60 box-border min-h-[88px] w-full rounded border border-hair bg-transparent px-4 py-3 font-body text-base text-ink outline-none transition-colors duration-150 focus:border-spark focus:ring-1 focus:ring-spark"
+            />
+          </div>
+
+          {/* Consent Checkbox */}
+          <div class="pt-1">
+            <Checkbox
+              id={`${formId}_consent`}
+              name="consent"
+              label="We use this only to contact you about Synapse."
+              required
+              checked
+            />
+          </div>
+
+          {/* Door note notice */}
+          <div class="bg-surface-dim/30 rounded border border-hair p-4 font-body text-xs text-muted">
+            {doorNote}
+          </div>
+
+          {/* Submit Button & WhatsApp Alternative */}
+          <div class="flex flex-col gap-4 border-t border-hair pt-5 sm:flex-row sm:items-center">
+            <Button
+              type="submit"
+              variant="primary"
+              size="md"
+              id={`btn-submit-${formId}`}
+              class="w-full sm:w-auto"
+            >
+              Send Interest
+            </Button>
+
+            <a
+              id={`wa-link-${formId}`}
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 py-2 font-sans text-xs uppercase tracking-[0.12em] text-muted transition-colors hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29" />
+              </svg>
+              <span>Or message via WhatsApp</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    )
+  }
+</div>
+
+{/* Progressive Enhancement Script for In-Page Submission */}
+<script is:inline define:vars={{ formId }}>
+  (function () {
+    const form = document.getElementById('form-' + formId);
+    if (!form) return;
+
+    const submitBtn = document.getElementById('btn-submit-' + formId);
+    const alertBox = document.getElementById('client-alert-' + formId);
+    const ajaxSuccess = document.getElementById('ajax-success-' + formId);
+    const resetBtn = document.getElementById('reset-btn-' + formId);
+
+    if (resetBtn && ajaxSuccess) {
+      resetBtn.addEventListener('click', function () {
+        ajaxSuccess.classList.add('hidden');
+        form.classList.remove('hidden');
+        form.reset();
+      });
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (alertBox) alertBox.classList.add('hidden');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      }
+
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((val, key) => {
+        data[key] = val;
+      });
+      data.consent = Boolean(data.consent);
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const json = await res.json().catch(() => null);
+
+        if (res.ok && json && json.ok) {
+          form.classList.add('hidden');
+          if (ajaxSuccess) {
+            ajaxSuccess.classList.remove('hidden');
+            ajaxSuccess.focus();
+          }
+        } else {
+          const err =
+            (json && json.error) ||
+            'We could not submit your details. Please use WhatsApp or phone.';
+          if (alertBox) {
+            alertBox.textContent = err;
+            alertBox.classList.remove('hidden');
+          } else {
+            alert(err);
+          }
+        }
+      } catch {
+        if (alertBox) {
+          alertBox.textContent =
+            'Connection issue. Please message us directly on WhatsApp.';
+          alertBox.classList.remove('hidden');
+        } else {
+          alert('Connection issue. Please message us directly on WhatsApp.');
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Interest';
+        }
+      }
+    });
+  })();
+</script>

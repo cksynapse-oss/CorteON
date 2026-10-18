@@ -1,14 +1,229 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import PlannedBanner from '../components/brand/PlannedBanner.astro';
+import PassportCard from '../components/brand/PassportCard.astro';
+import LaneBoardDemo from '../components/brand/LaneBoardDemo.astro';
+import DirectionInterestForm from '../components/brand/DirectionInterestForm.astro';
+
+import site from '../content/site.json';
+import rawPassport from '../content/passport.json';
+import type { PassportContent } from '../content/schemas';
+
+const passport = rawPassport as PassportContent;
 ---
 
-<BaseLayout title="Passport — Synapse">
-  <ComingSoonStub
-    title="Passport"
-    status="DIRECTION"
-    phase="Phase 2 · Planned Direction"
-    description="A verifiable record of work, projects, and mastered topics. Described plainly without crypto or blockchain claims."
-    plannedNote="The illustrative Passport card and Lane board are coming in Task T12."
-  />
+<BaseLayout
+  title={`The Passport (Planned Direction) — ${site.name}`}
+  description="A verifiable record of work, projects, and mastered topics. Described plainly without crypto or blockchain claims."
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {passport.hero.eyebrow}
+        </span>
+        <StatusChip status={passport.status} size="sm" />
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        A record of work, <span class="italic text-spark-ink"
+          >not test tricks.</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {passport.hero.sub}
+      </p>
+
+      {/* Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            {passport.hero.strip}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-10 flex flex-wrap items-center gap-4">
+        <Button href="#interest-form" variant="primary">
+          Register Interest
+        </Button>
+        <Button href="#passport-card" variant="secondary">
+          View Illustrative Passport
+        </Button>
+        <Button href="#lane-board" variant="ghost"> Lane Board Demo </Button>
+      </div>
+
+      <!-- Prominent PLANNED Banner -->
+      <PlannedBanner
+        status={passport.plannedNotice.status}
+        title={passport.plannedNotice.title}
+        notice={passport.plannedNotice.notice}
+        liveCallout={passport.plannedNotice.liveCallout}
+        liveHref="/programmes"
+      />
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE FOUR-STEP LOOP */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={passport.theLoop.number}
+      label={passport.theLoop.label}
+      title={passport.theLoop.title}
+      sub={passport.theLoop.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        passport.theLoop.stages.map((st) => (
+          <div class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-5">
+            <div>
+              <span class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Step {st.number}
+              </span>
+              <h3 class="mb-2 font-serif text-xl font-normal text-ink">
+                {st.name}
+              </h3>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {st.summary}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 02: PLAIN MONOGRAPH EXPLANATION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={passport.plainExplanation.number}
+      label={passport.plainExplanation.label}
+      title={passport.plainExplanation.title}
+      sub={passport.plainExplanation.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {
+        passport.plainExplanation.points.map((pt) => (
+          <div class="rounded border border-hair bg-paper p-6">
+            <span class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              Verification Principle
+            </span>
+            <h3 class="mb-3 font-serif text-xl font-normal text-ink">
+              {pt.title}
+            </h3>
+            <p class="font-body text-sm leading-relaxed text-muted">
+              {pt.detail}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 03: ILLUSTRATIVE DEMOS (PASSPORT CARD + LANE BOARD) */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="passport-card"
+  >
+    <SectionHeader
+      number={passport.demosIntro.number}
+      label={passport.demosIntro.label}
+      title={passport.demosIntro.title}
+      sub={passport.demosIntro.lead}
+    />
+
+    <div class="space-y-12">
+      <PassportCard />
+
+      <div id="lane-board">
+        <LaneBoardDemo />
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 04: INTEREST FORM */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="interest-form"
+  >
+    <SectionHeader
+      number={passport.interestForm.number}
+      label={passport.interestForm.label}
+      title={passport.interestForm.title}
+      sub={passport.interestForm.lead}
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <DirectionInterestForm
+        door="parent"
+        doorTitle="Passport Updates · Proof-of-Work Inquiry"
+        formId="passport-interest"
+        redirectTo="/passport"
+        heading={passport.interestForm.title}
+        sub={passport.interestForm.lead}
+        doorNote={passport.interestForm.doorNote}
+        customFields="passport"
+      />
+    </div>
+  </Section>
+
+  {/* DIRECT CONTACT STRIP */}
+  <Section theme="paper" padding="md">
+    <div
+      class="bg-surface-dim/30 flex flex-col gap-4 rounded border border-hair p-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Want to know how we evaluate learners unassisted today?
+        </h3>
+        <p class="font-body text-xs text-muted">
+          Our entrance baseline diagnostic is running now in Chamba. Phone us at {
+            site.phoneDisplay
+          }.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <Button href="/programmes#baseline" variant="primary" size="sm">
+          Entrance Baseline
+        </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}`}
+          variant="secondary"
+          size="sm"
+        >
+          WhatsApp
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

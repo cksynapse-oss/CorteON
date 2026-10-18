@@ -1,0 +1,77 @@
+{
+  "isIllustrative": true,
+  "name": "ILLUSTRATIVE Lane Board",
+  "status": "DIRECTION",
+  "source": "illustrative",
+  "heading": "ILLUSTRATIVE Lane Board",
+  "sub": "Fictional milestone tracking board. In the planned system, student work advances across four lanes as it is demonstrated and verified.",
+  "lanes": [
+    {
+      "id": "lane-learn",
+      "number": "01",
+      "title": "Learn It",
+      "description": "Unassisted problem practice & concept diagnostics",
+      "cards": [
+        {
+          "id": "card-01",
+          "title": "Thermodynamics Carnot Cycle Proof",
+          "subject": "Physics",
+          "tag": "In Diagnostic",
+          "note": "Working through unassisted proof without reference notes."
+        },
+        {
+          "id": "card-02",
+          "title": "Complex Number Roots of Unity",
+          "subject": "Mathematics",
+          "tag": "Practice Test",
+          "note": "Preparing for daily 30-minute unassisted quiz."
+        }
+      ]
+    },
+    {
+      "id": "lane-teach",
+      "number": "02",
+      "title": "Teach It",
+      "description": "Peer instruction & doubt clinic explanation",
+      "cards": [
+        {
+          "id": "card-03",
+          "title": "Electromagnetic Induction Lesson",
+          "subject": "Peer Teaching",
+          "tag": "Scheduled",
+          "note": "Preparing to lead 1 small-group review for Class 11 peers."
+        }
+      ]
+    },
+    {
+      "id": "lane-build",
+      "number": "03",
+      "title": "Build It",
+      "description": "Constructing working hardware or code models",
+      "cards": [
+        {
+          "id": "card-04",
+          "title": "Solar Photocell Angle Rig",
+          "subject": "Applied Physics",
+          "tag": "Assembly",
+          "note": "Constructing wooden frame with calibrated protractor base."
+        }
+      ]
+    },
+    {
+      "id": "lane-show",
+      "number": "04",
+      "title": "Show It",
+      "description": "Public presentation & defense before guides",
+      "cards": [
+        {
+          "id": "card-05",
+          "title": "Stream Velocity Acoustic Meter",
+          "subject": "Field Science",
+          "tag": "Certified",
+          "note": "Defended live during community exhibition in Chamba."
+        }
+      ]
+    }
+  ]
+}

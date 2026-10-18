@@ -1,0 +1,78 @@
+{
+  "status": "DIRECTION",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "DIRECTION · THE PASSPORT",
+    "title": "A record of work, not test tricks.",
+    "sub": "A planned direction for recording verified learning, teaching sessions, and physical projects. Described plainly without crypto or blockchain claims.",
+    "strip": "In active conceptual design · Tied to the four-step loop"
+  },
+  "plannedNotice": {
+    "status": "DIRECTION",
+    "title": "Planned Direction · Not Active Today",
+    "notice": "The Passport is a planned direction in development. It is not an active credential or software system today. In Chamba today, evaluation happens through human-evaluated daily practice tests and baseline diagnostics.",
+    "liveCallout": "View the live learning tracks on Floor G"
+  },
+  "theLoop": {
+    "number": "01",
+    "label": "THE RECORD",
+    "title": "Four proof points for every learner.",
+    "lead": "Conventional certificates record seat time or multiple-choice test scores. The Passport is planned to record four tangible kinds of evidence.",
+    "stages": [
+      {
+        "number": "01",
+        "name": "Learn It",
+        "summary": "Concepts solved without assistance on unfamiliar questions, evaluated by human guides."
+      },
+      {
+        "number": "02",
+        "name": "Teach It",
+        "summary": "Logged hours teaching junior peers and proving deep mastery through explanation."
+      },
+      {
+        "number": "03",
+        "name": "Build It",
+        "summary": "Physical models, working programs, or measured experimental setups constructed by hand."
+      },
+      {
+        "number": "04",
+        "name": "Show It",
+        "summary": "Public presentations, live defenses, and exhibitions answering unscripted questions."
+      }
+    ]
+  },
+  "plainExplanation": {
+    "number": "02",
+    "label": "PLAIN MONOGRAPH",
+    "title": "Why we reject crypto and hype.",
+    "lead": "We do not believe certificates require blockchains, tokens, or digital buzzwords. True credibility comes from clear evidence: what problem you solved, who evaluated it, and whether you can defend it in person.",
+    "points": [
+      {
+        "title": "Human Examination",
+        "detail": "Every record is signed by an identified guide or fellow who sat with the student during the unassisted evaluation."
+      },
+      {
+        "title": "Transparent Artifacts",
+        "detail": "Anyone reviewing a learner's passport can see the actual problem statement, the student's handwritten work, and the code or physical model built."
+      },
+      {
+        "title": "Permanence Without Waste",
+        "detail": "A simple public monograph web page and printed portfolio sheet provide all the permanence a future employer or university needs."
+      }
+    ]
+  },
+  "demosIntro": {
+    "number": "03",
+    "label": "ILLUSTRATIVE DEMOS",
+    "title": "The Passport Card and Lane Board.",
+    "lead": "Below are illustrative representations of how a student's verified record will look, and how learning milestones advance across lanes."
+  },
+  "interestForm": {
+    "number": "04",
+    "label": "REGISTER INTEREST",
+    "title": "Follow Passport developments.",
+    "lead": "If you are an educator, parent, or institution interested in our proof-of-work evaluation model, get in touch.",
+    "doorNote": "The Passport is in conceptual design. Growth only from operating revenue.",
+    "callbackPromise": "The owner phones back personally within 24 hours."
+  }
+}

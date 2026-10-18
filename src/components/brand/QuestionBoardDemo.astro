@@ -1,0 +1,142 @@
+---
+import rawData from '../../content/illustrative/question-board.json';
+import type { QuestionBoardContent } from '../../content/schemas';
+
+const data = rawData as QuestionBoardContent;
+---
+
+<div
+  class="rounded border border-hair bg-paper p-5 sm:p-8"
+  id="question-board-demo"
+>
+  {/* Demo Header with explicit ILLUSTRATIVE badge */}
+  <div
+    class="mb-6 flex flex-col gap-3 border-b border-hair pb-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div>
+      <div class="mb-1 flex items-center gap-2">
+        <span
+          class="border-spark-ink/40 bg-surface-dim inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+        >
+          ILLUSTRATIVE
+        </span>
+        <span class="font-mono text-xs uppercase tracking-wider text-muted">
+          Digital Board Preview
+        </span>
+      </div>
+      <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+        {data.heading}
+      </h3>
+      <p class="mt-1 font-body text-xs text-muted sm:text-sm">
+        {data.sub}
+      </p>
+    </div>
+
+    {/* Category filter buttons (progressive enhancement) */}
+    <div
+      class="flex flex-wrap items-center gap-1.5 pt-2 sm:pt-0"
+      id="qb-filter-container"
+    >
+      {
+        data.categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-category={cat}
+            class:list={[
+              'rounded-full px-3 py-1 font-mono text-xs uppercase tracking-wider transition-colors',
+              idx === 0
+                ? 'qb-filter-btn active bg-ink text-paper'
+                : 'qb-filter-btn border border-hair text-muted hover:border-ink hover:text-ink',
+            ]}
+          >
+            {cat}
+          </button>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* Cards Grid */}
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-2" id="qb-cards-grid">
+    {
+      data.questions.map((q) => (
+        <article
+          class="qb-card bg-surface-dim/20 hover:border-spark-ink/40 flex flex-col justify-between rounded border border-hair p-5 transition-colors"
+          data-category={q.category}
+        >
+          <div>
+            <div class="border-hair/60 mb-2 flex items-center justify-between border-b pb-2">
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                {q.category}
+              </span>
+              <span class="font-mono text-xs uppercase text-muted">
+                Card {q.number}
+              </span>
+            </div>
+
+            <h4 class="mb-2 font-serif text-lg font-normal text-ink">
+              {q.title}
+            </h4>
+
+            <p class="mb-4 font-body text-sm leading-relaxed text-ink">
+              &ldquo;{q.question}&rdquo;
+            </p>
+
+            {/* Pinned note / references */}
+            <div class="border-hair/60 mb-4 rounded border bg-paper p-3">
+              <span class="mb-1 block font-mono text-[11px] font-semibold uppercase tracking-wider text-muted">
+                Pinned Guide Note
+              </span>
+              <p class="font-body text-xs leading-relaxed text-muted">
+                {q.pinnedNote}
+              </p>
+            </div>
+          </div>
+
+          <div class="border-hair/60 flex items-center justify-between border-t pt-3">
+            <span class="font-body text-xs text-muted">
+              Pinned by:{' '}
+              <strong class="font-medium text-ink">{q.authorRole}</strong>
+            </span>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              {q.responsesCount}
+            </span>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const container = document.getElementById('question-board-demo');
+    if (!container) return;
+
+    const filterBtns = container.querySelectorAll('.qb-filter-btn');
+    const cards = container.querySelectorAll('.qb-card');
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-category');
+
+        filterBtns.forEach((b) => {
+          b.classList.remove('bg-ink', 'text-paper');
+          b.classList.add('border', 'border-hair', 'text-muted');
+        });
+
+        btn.classList.add('bg-ink', 'text-paper');
+        btn.classList.remove('border', 'border-hair', 'text-muted');
+
+        cards.forEach((card) => {
+          const cardCat = card.getAttribute('data-category');
+          if (cat === 'All' || cardCat === cat) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>

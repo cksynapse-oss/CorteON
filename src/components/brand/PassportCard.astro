@@ -1,0 +1,85 @@
+---
+import rawData from '../../content/illustrative/passport.json';
+import type { PassportCardContent } from '../../content/schemas';
+
+const data = rawData as PassportCardContent;
+---
+
+<div
+  class="rounded border-2 border-hair bg-paper p-6 sm:p-8"
+  id="passport-card-demo"
+>
+  <!-- Top Monograph Bar -->
+  <div
+    class="mb-6 flex flex-col gap-3 border-b-2 border-hair pb-4 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div>
+      <div class="mb-1 flex items-center gap-2">
+        <span
+          class="border-spark-ink/40 bg-surface-dim inline-flex items-center rounded-full border px-2.5 py-0.5 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+        >
+          ILLUSTRATIVE
+        </span>
+        <span class="font-mono text-xs uppercase tracking-wider text-muted">
+          {data.recordId}
+        </span>
+      </div>
+      <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+        {data.heading}
+      </h3>
+      <p class="mt-1 font-body text-xs text-muted sm:text-sm">
+        {data.sub}
+      </p>
+    </div>
+
+    <div class="bg-surface-dim/30 rounded border border-hair p-3 sm:text-right">
+      <div
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-ink"
+      >
+        {data.learnerTrack}
+      </div>
+      <div class="font-body text-xs text-muted">
+        {data.location}
+      </div>
+    </div>
+  </div>
+
+  <!-- Four Proof Sections -->
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    {
+      data.sections.map((sec) => (
+        <div class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-5">
+          <div>
+            <div class="mb-2 flex items-center justify-between border-b border-hair pb-2">
+              <span class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+                Step {sec.step} · {sec.label}
+              </span>
+            </div>
+
+            <h4 class="mb-3 font-serif text-lg font-normal text-ink">
+              {sec.title}
+            </h4>
+
+            <ul class="mb-4 space-y-2">
+              {sec.items.map((item) => (
+                <li class="flex items-start gap-2 font-body text-sm text-ink">
+                  <span
+                    class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="border-t border-hair pt-3">
+            <p class="font-mono text-xs leading-relaxed text-muted">
+              &check; {sec.evaluationNote}
+            </p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

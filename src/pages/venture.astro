@@ -1,14 +1,266 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import PlannedBanner from '../components/brand/PlannedBanner.astro';
+import VentureProblemDemo from '../components/brand/VentureProblemDemo.astro';
+import DirectionInterestForm from '../components/brand/DirectionInterestForm.astro';
+
+import site from '../content/site.json';
+import rawVenture from '../content/venture.json';
+import type { VentureContent } from '../content/schemas';
+
+const venture = rawVenture as VentureContent;
 ---
 
-<BaseLayout title="Venture Hub — Synapse">
-  <ComingSoonStub
-    title="Venture Hub"
-    status="DIRECTION"
-    phase="Phase 2 · Planned Direction"
-    description="Floor 2: a few startups who must teach and mentor children in return for desks and community. Only when there are real founders."
-    plannedNote="The founder residency framework and problem board are coming in Task T12."
-  />
+<BaseLayout
+  title={`Venture Hub (Floor 2) — ${site.name}`}
+  description="Floor 2: a few startups who must teach and mentor children in return for desks and community. Opens only when there are real founders."
+  activeFloor="2"
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-4 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {venture.hero.eyebrow}
+        </span>
+        <StatusChip status={venture.status} size="sm" />
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        Startups who <span class="italic text-spark-ink">teach.</span>
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {venture.hero.sub}
+      </p>
+
+      {/* Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            {venture.hero.strip}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mb-10 flex flex-wrap items-center gap-4">
+        <Button href="#interest-form" variant="primary">
+          Join Venture Hub
+        </Button>
+        <Button href="/building#floor-2" variant="secondary">
+          View Floor 2 in Building
+        </Button>
+        <Button href="#problem-board" variant="ghost">
+          Local Problem Board
+        </Button>
+      </div>
+
+      <!-- Prominent PLANNED Banner -->
+      <PlannedBanner
+        status={venture.plannedNotice.status}
+        title={venture.plannedNotice.title}
+        notice={venture.plannedNotice.notice}
+        liveCallout={venture.plannedNotice.liveCallout}
+        liveHref="/programmes"
+      />
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE DEAL */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={venture.theDeal.number}
+      label={venture.theDeal.label}
+      title={venture.theDeal.title}
+      sub={venture.theDeal.lead}
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <!-- What the building offers -->
+      <div
+        class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-6"
+      >
+        <div>
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+          >
+            Workspace & Community
+          </span>
+          <h3 class="mb-4 font-serif text-2xl font-normal text-ink">
+            {venture.theDeal.give.heading}
+          </h3>
+          <ul class="space-y-3">
+            {
+              venture.theDeal.give.items.map((item) => (
+                <li class="flex items-start gap-2.5 font-body text-sm text-ink">
+                  <span
+                    class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- What you return in kind -->
+      <div
+        class="bg-surface-dim/20 flex flex-col justify-between rounded border border-hair p-6"
+      >
+        <div>
+          <span
+            class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+          >
+            Reciprocal Teaching
+          </span>
+          <h3 class="mb-4 font-serif text-2xl font-normal text-ink">
+            {venture.theDeal.receive.heading}
+          </h3>
+          <ul class="space-y-3">
+            {
+              venture.theDeal.receive.items.map((item) => (
+                <li class="flex items-start gap-2.5 font-body text-sm text-ink">
+                  <span
+                    class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark-ink"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="mt-6 border-t border-hair pt-4">
+          <p class="font-body text-xs text-muted">
+            {venture.theDeal.commitmentNote}
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 02: OPEN DILEMMA & HONEST PRINCIPLES */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number={venture.openDilemma.number}
+      label={venture.openDilemma.label}
+      title={venture.openDilemma.title}
+      sub={venture.openDilemma.lead}
+    />
+
+    <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+      <div class="max-w-3xl">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          Self-Funded Growth
+        </span>
+        <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+          No outside money until five to six centres.
+        </h3>
+        <p class="font-body text-sm leading-relaxed text-muted">
+          {venture.openDilemma.growthPrinciple}
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 03: LOCAL PROBLEM BOARD DEMO */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="problem-board"
+  >
+    <SectionHeader
+      number={venture.problemBoardIntro.number}
+      label={venture.problemBoardIntro.label}
+      title={venture.problemBoardIntro.title}
+      sub={venture.problemBoardIntro.lead}
+    />
+
+    <VentureProblemDemo />
+  </Section>
+
+  {/* SECTION 04: INTEREST FORM */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="interest-form"
+  >
+    <SectionHeader
+      number={venture.interestForm.number}
+      label={venture.interestForm.label}
+      title={venture.interestForm.title}
+      sub={venture.interestForm.lead}
+    />
+
+    <div class="mx-auto max-w-3xl">
+      <DirectionInterestForm
+        door="founder"
+        doorTitle="Door 04 · Founder & Builder Interest"
+        formId="venture-founder"
+        redirectTo="/venture"
+        heading={venture.interestForm.title}
+        sub={venture.interestForm.lead}
+        doorNote={venture.interestForm.doorNote}
+        customFields="founder"
+      />
+    </div>
+  </Section>
+
+  {/* DIRECT CONTACT STRIP */}
+  <Section theme="paper" padding="md">
+    <div
+      class="bg-surface-dim/30 flex flex-col gap-4 rounded border border-hair p-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div>
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Are you building hardware, software, or craft in Chamba?
+        </h3>
+        <p class="font-body text-xs text-muted">
+          Contact the founder directly at {site.phoneDisplay}. The owner phones
+          back personally.
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <Button href="/enquire?door=founder" variant="primary" size="sm">
+          Admissions & Enquiry
+        </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}`}
+          variant="secondary"
+          size="sm"
+        >
+          WhatsApp
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

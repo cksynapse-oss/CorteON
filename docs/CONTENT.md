@@ -11,7 +11,7 @@ Anything not written here does not go on the site. Mark owner decisions in secti
 - Launch tracks: PCM (JEE Main/Advanced, IAT, NEST, CUET PCM, NDA, AIIMS Paramedical PCM); PCB (NEET UG, AIIMS Nursing, AIIMS Paramedical PCB, NEST, IAT, CUET PCB); CUET UG General Test + English; CUET UG Arts/Commerce + NDA Army.
 - Fees: NOT shown anywhere on the site at launch (owner decision, 2026-10-18). Every programme says "Fees are shared when you enquire." Do not publish, estimate or hint at any amount.
 - No online payments at launch. Admission = browse, send the form, the owner phones back personally.
-- Callback promise: YES, the form states a callback window. Value lives in `site.json` as `callbackWindow`. Currently TBD: the owner must set it (see section 6). The owner makes the calls himself.
+- Callback promise: YES, the form states a callback window. Value lives in `site.json` as `callbackWindow`. Set to "within 24 hours" (owner decision, 2026-10-18). The owner makes the calls himself.
 - Fellowship: applications are open now. Each fellow teaches one class a day. Do not state class length, tenure or number of fellows.
 - Entrance baseline for children: running now (a short diagnostic on reasoning, reading and arithmetic; it places learners, it never excludes).
 - The model: three floors (Learning Commons G, Knowledge Commons 1, Venture Hub 2); fellowship of graduates who teach while preparing; library open to anyone with a card; startups on the top floor who must teach; entrance baseline for children; certificate courses beyond exam coaching; each centre rooted in its district; growth only from revenue; no outside money until 5-6 centres.
@@ -72,9 +72,8 @@ Anything not written here does not go on the site. Mark owner decisions in secti
 **Doors.** A parent or student / a graduate who wants to teach / a reader / a founder or builder / a district partner.
 
 ## 6. Owner decisions
-Answered (2026-10-18): fees hidden; fellowship open; one class a day; baseline running; callback promise yes; line drawings plus the isometric building (docs/ILLUSTRATIONS.md); no photos for now.
+Answered (2026-10-18): fees hidden; fellowship open; one class a day; baseline running; callback promise yes ("within 24 hours"); line drawings plus the isometric building (docs/ILLUSTRATIONS.md); no photos for now.
 Still needed:
-1. Callback window: how long after a form do you promise to call (for example "within one working day")? Until set, `content-lint` fails the production build on purpose.
-2. Senior Pedagogical Fellow stipend wording: keep "amount to be agreed"?
-3. Founder teaching commitment wording (section 4, item 3).
-4. Hindi pages priority.
+1. Senior Pedagogical Fellow stipend wording: keep "amount to be agreed"?
+2. Founder teaching commitment wording (section 4, item 3).
+3. Hindi pages priority.

@@ -11,6 +11,9 @@ import Checkbox from '../components/ui/Checkbox.astro';
 import Section from '../components/ui/Section.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import Rule from '../components/ui/Rule.astro';
+import Building from '../components/brand/Building.astro';
+import LoopDiagram from '../components/brand/LoopDiagram.astro';
+import ThreeWorlds from '../components/brand/ThreeWorlds.astro';
 
 const sampleOptions = [
   { value: 'parent', label: 'Parent or student' },
@@ -491,4 +494,272 @@ const sampleOptions = [
       </div>
     </div>
   </Section>
+
+  <div class="mx-auto max-w-content px-5 sm:px-8 lg:px-10">
+    <Rule variant="hair" spacing="none" />
+  </div>
+
+  {/* SECTION 7: BRAND ILLUSTRATIONS */}
+  <Section id="illustrations" padding="lg">
+    <SectionHeader
+      number="07"
+      label="BRAND ASSETS"
+      title="Brand Illustrations"
+      sub="Exploded isometric building, the 4-part pedagogic loop, and the 3-domain diagnostic Venn. Pure line art driven by CSS variable tokens with zero hardcoded hex."
+    />
+
+    <div class="space-y-16">
+      {/* 1. Building Isometric Drawing */}
+      <div>
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h3 class="font-serif text-2xl font-normal text-ink">
+              Building Isometric Drawing (<code class="font-mono text-sm"
+                >&lt;Building active="g|1|2" /&gt;</code
+              >)
+            </h3>
+            <p class="mt-1 font-sans text-sm text-muted">
+              Active floor opacity transitions (0.28 vs 1.0), roof dimming, and
+              progressive thread draw-on-scroll.
+            </p>
+          </div>
+
+          {/* Interactive floor selector controls */}
+          <div class="flex items-center gap-2" id="building-demo-controls">
+            <span class="font-mono text-xs uppercase tracking-wider text-muted"
+              >Toggle Active Floor:</span
+            >
+            <button
+              type="button"
+              class="kit-floor-btn rounded-full border border-ink bg-ink px-3 py-1 font-mono text-xs uppercase tracking-wider text-paper transition-colors hover:bg-spark-ink"
+              data-target-floor=""
+            >
+              All
+            </button>
+            <button
+              type="button"
+              class="kit-floor-btn rounded-full border border-hair bg-paper px-3 py-1 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-ink"
+              data-target-floor="g"
+            >
+              Floor G
+            </button>
+            <button
+              type="button"
+              class="kit-floor-btn rounded-full border border-hair bg-paper px-3 py-1 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-ink"
+              data-target-floor="1"
+            >
+              Floor 1
+            </button>
+            <button
+              type="button"
+              class="kit-floor-btn rounded-full border border-hair bg-paper px-3 py-1 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-ink"
+              data-target-floor="2"
+            >
+              Floor 2
+            </button>
+          </div>
+        </div>
+
+        {/* Building Displays Grid */}
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {/* Card 1: Live Interactive Target */}
+          <div class="flex flex-col rounded border border-hair bg-paper p-6">
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >Interactive Demo</span
+              >
+              <span
+                class="font-mono text-xs text-spark"
+                id="current-floor-indicator">active: all</span
+              >
+            </div>
+            <div class="flex flex-1 items-center justify-center p-2">
+              <Building id="interactive-demo-building" class="max-w-[280px]" />
+            </div>
+          </div>
+
+          {/* Card 2: Floor G Active */}
+          <div class="flex flex-col rounded border border-hair bg-paper p-6">
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >Floor G (Learning)</span
+              >
+              <span class="font-mono text-xs text-muted">active="g"</span>
+            </div>
+            <div class="flex flex-1 items-center justify-center p-2">
+              <Building active="g" class="max-w-[280px]" />
+            </div>
+          </div>
+
+          {/* Card 3: Floor 1 Active */}
+          <div class="flex flex-col rounded border border-hair bg-paper p-6">
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >Floor 1 (Library)</span
+              >
+              <span class="font-mono text-xs text-muted">active="1"</span>
+            </div>
+            <div class="flex flex-1 items-center justify-center p-2">
+              <Building active="1" class="max-w-[280px]" />
+            </div>
+          </div>
+
+          {/* Card 4: Floor 2 Active */}
+          <div class="flex flex-col rounded border border-hair bg-paper p-6">
+            <div class="mb-4 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >Floor 2 (Venture)</span
+              >
+              <span class="font-mono text-xs text-muted">active="2"</span>
+            </div>
+            <div class="flex flex-1 items-center justify-center p-2">
+              <Building active="2" class="max-w-[280px]" />
+            </div>
+          </div>
+        </div>
+
+        {/* Building On Ink (Nocturnal) */}
+        <div class="theme-ink mt-8 rounded border border-hair-ink bg-ink p-8">
+          <div class="mb-6 flex items-center justify-between">
+            <div>
+              <h4 class="font-serif text-xl font-normal text-ink">
+                Building on Nocturnal Ink Canvas
+              </h4>
+              <p class="font-sans text-xs text-muted-on-ink">
+                Tokens automatically adapt (--ink becomes Paper #F3EEE4, --paper
+                becomes Ink #15130F, --spark becomes Glow #FF6338).
+              </p>
+            </div>
+            <span class="font-mono text-xs text-spark">active="g"</span>
+          </div>
+          <div class="flex justify-center p-4">
+            <Building active="g" onDark class="max-w-[360px]" />
+          </div>
+        </div>
+      </div>
+
+      {/* 2. The Loop Diagram */}
+      <div>
+        <div class="mb-6">
+          <h3 class="font-serif text-2xl font-normal text-ink">
+            The Loop Diagram (<code class="font-mono text-sm"
+              >&lt;LoopDiagram /&gt;</code
+            >)
+          </h3>
+          <p class="mt-1 font-sans text-sm text-muted">
+            Continuous 4-part pedagogic cycle: Learn, Teach, Build, Show with
+            authentic Hindi terms and center cadence.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* Light canvas */}
+          <div class="rounded border border-hair bg-paper p-8">
+            <div class="mb-6 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >On Paper Canvas</span
+              >
+              <span class="font-mono text-xs text-spark">02 / THE LOOP</span>
+            </div>
+            <LoopDiagram />
+          </div>
+
+          {/* Nocturnal dark canvas */}
+          <div class="theme-ink rounded border border-hair-ink bg-ink p-8">
+            <div class="mb-6 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+                >On Nocturnal Ink Canvas</span
+              >
+              <span class="font-mono text-xs text-spark">02 / THE LOOP</span>
+            </div>
+            <LoopDiagram onDark />
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Three Worlds Diagnostic */}
+      <div>
+        <div class="mb-6">
+          <h3 class="font-serif text-2xl font-normal text-ink">
+            Three Worlds Diagnostic (<code class="font-mono text-sm"
+              >&lt;ThreeWorlds /&gt;</code
+            >)
+          </h3>
+          <p class="mt-1 font-sans text-sm text-muted">
+            The structural dilemma of School, Coaching, and Innovation,
+            converging on the Synapse overlap.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {/* Light canvas */}
+          <div class="rounded border border-hair bg-paper p-8">
+            <div class="mb-6 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted"
+                >On Paper Canvas</span
+              >
+              <span class="font-mono text-xs text-spark">01 / THE PROBLEM</span>
+            </div>
+            <ThreeWorlds />
+          </div>
+
+          {/* Nocturnal dark canvas */}
+          <div class="theme-ink rounded border border-hair-ink bg-ink p-8">
+            <div class="mb-6 flex items-center justify-between">
+              <span
+                class="font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+                >On Nocturnal Ink Canvas</span
+              >
+              <span class="font-mono text-xs text-spark">01 / THE PROBLEM</span>
+            </div>
+            <ThreeWorlds onDark />
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <script>
+    function setupKitFloorDemo() {
+      const controls = document.getElementById('building-demo-controls');
+      const building = document.getElementById('interactive-demo-building');
+      const indicator = document.getElementById('current-floor-indicator');
+      if (!controls || !building || !indicator) return;
+
+      const buttons =
+        controls.querySelectorAll<HTMLButtonElement>('.kit-floor-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const floor = btn.getAttribute('data-target-floor') || '';
+          if (floor) {
+            building.setAttribute('data-active', floor);
+            indicator.textContent = `active="${floor}"`;
+          } else {
+            building.removeAttribute('data-active');
+            indicator.textContent = 'active: all';
+          }
+
+          buttons.forEach((b) => {
+            b.classList.remove('bg-ink', 'text-paper', 'border-ink');
+            b.classList.add('bg-paper', 'text-ink', 'border-hair');
+          });
+          btn.classList.remove('bg-paper', 'text-ink', 'border-hair');
+          btn.classList.add('bg-ink', 'text-paper', 'border-ink');
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupKitFloorDemo);
+    } else {
+      setupKitFloorDemo();
+    }
+  </script>
 </BaseLayout>

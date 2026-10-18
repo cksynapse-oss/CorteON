@@ -90,7 +90,7 @@ const EXPLICIT_INVENTED_NUMBERS = [
   '80',
   '42',
   '14',
-  '24',
+  'fellow #24',
   '250',
   '3200',
   '3,200',
@@ -136,6 +136,7 @@ const ALLOWED_NUMBERS = new Set([
   '2', // Floor 2
   '0', // Floor G / 0
   '4', // 4 tracks
+  '24', // callback window 24 hours (owner decision 2026-10-18)
   '2026', // decision year
   '10', // decision month
   '18', // decision day

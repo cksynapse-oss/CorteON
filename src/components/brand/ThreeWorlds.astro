@@ -1,0 +1,223 @@
+---
+interface Props {
+  onDark?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const { onDark = false, class: className = '', id } = Astro.props;
+
+const domains = [
+  {
+    number: 'DOMAIN 01',
+    name: 'School',
+    quote: '“A syllabus and a certificate, but no attention per child.”',
+    tag: 'Passive consumption',
+  },
+  {
+    number: 'DOMAIN 02',
+    name: 'Coaching',
+    quote: '“Exam technique, rarely thinking or building.”',
+    tag: 'Narrow drill',
+  },
+  {
+    number: 'DOMAIN 03',
+    name: 'Innovation',
+    quote: '“Happens elsewhere, in big cities.”',
+    tag: 'Geographic exile',
+  },
+];
+---
+
+<div
+  class:list={[
+    'three-worlds-container w-full',
+    onDark && 'theme-ink',
+    className,
+  ]}
+  id={id}
+>
+  <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-10">
+    <!-- Left: 3 Structural Dilemma Cards -->
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7">
+      {
+        domains.map((d) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 transition-colors">
+            <div class="space-y-2">
+              <span class="font-mono text-[10px] uppercase tracking-widest text-muted">
+                {d.number}
+              </span>
+              <h3 class="font-serif text-xl font-normal text-ink">{d.name}</h3>
+            </div>
+            <p class="my-4 font-sans text-xs leading-relaxed text-muted sm:text-sm">
+              {d.quote}
+            </p>
+            <div class="font-mono text-[10px] uppercase tracking-wider text-muted">
+              {d.tag}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Right: Venn Diagram with Center Spark -->
+    <div
+      class="flex flex-col items-center justify-center rounded border border-hair bg-paper p-6 text-center lg:col-span-5 lg:p-8"
+    >
+      <div class="relative aspect-square w-full max-w-[280px]">
+        <!-- SVG Venn Lines -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 320"
+          fill="none"
+          role="img"
+          aria-labelledby="venn-title-cmp venn-desc-cmp"
+          class="h-full w-full select-none"
+        >
+          <title id="venn-title-cmp">Three Worlds Venn Diagram</title>
+          <desc id="venn-desc-cmp">
+            Interlocking circles representing School, Coaching, and Innovation,
+            converging on Synapse.
+          </desc>
+
+          <!-- Framing boundary -->
+          <rect
+            x="4"
+            y="4"
+            width="312"
+            height="312"
+            rx="4"
+            stroke="var(--hair)"
+            stroke-width="1"
+            stroke-opacity="0.6"
+            fill="none"></rect>
+
+          <!-- 3 intersecting domain circles -->
+          <circle
+            cx="122"
+            cy="138"
+            r="76"
+            stroke="var(--hair)"
+            stroke-width="1.5"
+            fill="none"></circle>
+          <circle
+            cx="122"
+            cy="138"
+            r="70"
+            stroke="var(--hair)"
+            stroke-width="0.8"
+            stroke-dasharray="3 3"
+            stroke-opacity="0.5"
+            fill="none"></circle>
+
+          <circle
+            cx="198"
+            cy="138"
+            r="76"
+            stroke="var(--hair)"
+            stroke-width="1.5"
+            fill="none"></circle>
+          <circle
+            cx="198"
+            cy="138"
+            r="70"
+            stroke="var(--hair)"
+            stroke-width="0.8"
+            stroke-dasharray="3 3"
+            stroke-opacity="0.5"
+            fill="none"></circle>
+
+          <circle
+            cx="160"
+            cy="204"
+            r="76"
+            stroke="var(--hair)"
+            stroke-width="1.5"
+            fill="none"></circle>
+          <circle
+            cx="160"
+            cy="204"
+            r="70"
+            stroke="var(--hair)"
+            stroke-width="0.8"
+            stroke-dasharray="3 3"
+            stroke-opacity="0.5"
+            fill="none"></circle>
+
+          <!-- Domain node points -->
+          <circle cx="72" cy="110" r="3.5" fill="var(--ink)" fill-opacity="0.6"
+          ></circle>
+          <circle cx="248" cy="110" r="3.5" fill="var(--ink)" fill-opacity="0.6"
+          ></circle>
+          <circle cx="160" cy="262" r="3.5" fill="var(--ink)" fill-opacity="0.6"
+          ></circle>
+
+          <!-- Central Overlap (Synapse) -->
+          <circle
+            cx="160"
+            cy="160"
+            r="38"
+            fill="var(--paper)"
+            stroke="var(--spark)"
+            stroke-width="1"
+            stroke-dasharray="2 3"></circle>
+          <circle cx="160" cy="160" r="30" fill="var(--spark)"></circle>
+          <circle
+            cx="160"
+            cy="160"
+            r="28"
+            fill="none"
+            stroke="var(--paper)"
+            stroke-width="1"
+            stroke-opacity="0.3"></circle>
+        </svg>
+
+        <!-- Overlap Spark Center Overlay Text -->
+        <div
+          class="pointer-events-none absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center text-center"
+        >
+          <span
+            class="font-serif text-sm font-medium leading-none text-paper sm:text-base"
+            >Synapse</span
+          >
+          <span
+            class="text-paper/90 font-mono text-[7px] uppercase tracking-widest sm:text-[8px]"
+            >The Overlap</span
+          >
+        </div>
+      </div>
+
+      <div class="mt-4 max-w-xs space-y-1">
+        <p class="font-sans text-xs font-medium text-ink sm:text-sm">
+          AI can explain anything, so your own thinking can weaken.
+        </p>
+        <p
+          class="font-mono text-[10px] uppercase tracking-wider text-muted sm:text-xs"
+        >
+          Synapse binds all three under one roof
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .three-worlds-container {
+    --ink: var(--ink);
+    --paper: var(--paper);
+    --hair: var(--hair);
+    --spark: var(--spark);
+    --muted: var(--muted);
+  }
+
+  :global(.theme-ink) .three-worlds-container,
+  :global([data-theme='ink']) .three-worlds-container,
+  :global(.dark) .three-worlds-container,
+  .three-worlds-container.theme-ink {
+    --ink: var(--ink);
+    --paper: var(--paper);
+    --hair: var(--hair);
+    --spark: var(--spark);
+    --muted: var(--muted);
+  }
+</style>

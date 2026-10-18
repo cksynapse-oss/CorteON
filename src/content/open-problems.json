@@ -1,0 +1,66 @@
+{
+  "status": "OPEN",
+  "source": "owner-confirmed",
+  "section": {
+    "number": "04",
+    "label": "OPEN PROBLEMS",
+    "title": "I'd rather you hear it from us.",
+    "sub": "Six pedagogical and architectural dilemmas keeping us awake at night. We believe genuine trust begins by naming what is hard."
+  },
+  "items": [
+    {
+      "id": "prob-01",
+      "number": "01",
+      "title": "Teaching quality and retention during exam seasons",
+      "status": "OPEN",
+      "question": "How do we maintain classroom dedication when fellows enter their own final exam preparations?",
+      "context": "Graduates who teach are preparing for competitive exams themselves. While staggered cycles help, balancing intense personal preparation with daily teaching remains a delicate equilibrium.",
+      "area": "Classroom and Fellowship"
+    },
+    {
+      "id": "prob-02",
+      "number": "02",
+      "title": "Proving learning gains against an unassisted baseline",
+      "status": "OPEN",
+      "question": "How do we isolate the learning gains from Synapse from outside schooling and natural growth?",
+      "context": "Our standard is unassisted student performance on unfamiliar problems without prompts or devices. Measuring true concept mastery cleanly requires years of consistent tracking rather than instant marketing claims.",
+      "area": "Measurement and Learning"
+    },
+    {
+      "id": "prob-03",
+      "number": "03",
+      "title": "The top floor in a mountain district with few founders",
+      "status": "OPEN",
+      "question": "How do we fill the top floor with genuine builders who also commit to teaching?",
+      "context": "Chamba is not a metro tech hub. Finding local builders whose work is rooted in real systems or local enterprises—and who are genuinely willing to mentor children—requires patience over easy vanity occupancy.",
+      "area": "Venture Hub"
+    },
+    {
+      "id": "prob-04",
+      "number": "04",
+      "title": "Fair compensation and ownership without outside capital",
+      "status": "OPEN",
+      "question": "How do we structure long-term rewards for early collaborators on a self-funded model?",
+      "context": "Growing only from operating revenue without outside investors means we do not issue speculative equity. Designing fair stipends and long-term stakes for early guides and collaborators is an open design challenge.",
+      "area": "Pay and Governance"
+    },
+    {
+      "id": "prob-05",
+      "number": "05",
+      "title": "Preserving personal attention as we grow",
+      "status": "OPEN",
+      "question": "Can the depth of a single classroom survive expansion without turning into a bureaucratic checklist?",
+      "context": "One centre in Chamba thrives because the guide knows every student personally. When future centres open, keeping that direct human devotion intact without diluting standards is an unsolved organizational problem.",
+      "area": "Future Centres"
+    },
+    {
+      "id": "prob-06",
+      "number": "06",
+      "title": "Keeping software tools strictly subordinate to human teaching",
+      "status": "OPEN",
+      "question": "How do we ensure that AI tools never make learners or teachers passive?",
+      "context": "Automated tutors can generate endless practice, but they risk weakening independent thought if learners lean on them. Maintaining the rule that software assists the human guide—and never replaces direct inquiry—requires daily care.",
+      "area": "Tutor and Pedagogy"
+    }
+  ]
+}

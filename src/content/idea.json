@@ -1,0 +1,137 @@
+{
+  "status": "LIVE NOW",
+  "source": "owner-confirmed",
+  "hero": {
+    "eyebrow": "THE IDEA · WHY SYNAPSE EXISTS",
+    "title": "Learn it. Teach it. Build it. Show it.",
+    "sub": "Synapse is a learning centre in Chamba that brings students, graduates, readers and builders together under one roof so people take turns learning, teaching, and building.",
+    "analogy": "AI is the encyclopaedia; Synapse is the gym and the workshop.",
+    "strip": "A modern gurukul for the age of AI. Learn, teach and build, under one roof.",
+    "primaryCta": {
+      "label": "Enquire about admission",
+      "href": "/enquire"
+    },
+    "secondaryCta": {
+      "label": "Explore the building",
+      "href": "/building"
+    }
+  },
+  "problem": {
+    "number": "01",
+    "label": "THE PROBLEM",
+    "title": "Three worlds that never meet.",
+    "lead": "Education in our districts is broken into three separate spheres that do not talk to each other.",
+    "threeWorlds": [
+      {
+        "number": "01",
+        "name": "School",
+        "summary": "A syllabus and a certificate, but no individual attention.",
+        "breakdown": "Classrooms move at one rigid pace. Teachers must finish textbook chapters rather than ensure deep understanding, leaving children with credentials but fragile fundamentals."
+      },
+      {
+        "number": "02",
+        "name": "Coaching",
+        "summary": "Exam tricks and rote drill, rarely independent thinking.",
+        "breakdown": "Mass coaching factories drill pattern recall for entrance tests. They train students to guess quickly rather than reason from first principles, and discard those who do not fit the mold."
+      },
+      {
+        "number": "03",
+        "name": "Innovation",
+        "summary": "Happens elsewhere, draining local talent to distant metros.",
+        "breakdown": "Real engineering, research, and enterprise happen far away in big cities. District youth believe they must leave their homes and families just to access serious mentorship and modern tools."
+      }
+    ],
+    "conclusion": "Nothing connects them. Synapse bridges this gap by putting learners, teachers, and builders under one roof."
+  },
+  "loop": {
+    "number": "02",
+    "label": "THE SYNAPSE LOOP",
+    "title": "The four-part cadence: learn, teach, build, show.",
+    "lead": "True understanding is not completed when an exam answer is marked correct. It is sealed when you can teach it to another and build something real with it.",
+    "steps": [
+      {
+        "number": "01",
+        "name": "Learn",
+        "devanagari": "सीखो",
+        "action": "Learn it down to the roots.",
+        "detail": "Deconstruct concepts to first principles before memorizing formulas. Understand why a law of physics or a theorem holds true before applying it."
+      },
+      {
+        "number": "02",
+        "name": "Teach",
+        "devanagari": "सिखाओ",
+        "action": "Teach it to someone else.",
+        "detail": "Explaining a concept to a peer or a younger learner reveals gaps instantly. You do not truly understand an idea until you can teach it simply."
+      },
+      {
+        "number": "03",
+        "name": "Build",
+        "devanagari": "बनाओ",
+        "action": "Build something tangible with it.",
+        "detail": "Apply your knowledge to working circuits, code, written essays, or physical models. Connect textbook theory to practical creations."
+      },
+      {
+        "number": "04",
+        "name": "Show",
+        "devanagari": "दिखाओ",
+        "action": "Show your work in daylight.",
+        "detail": "Present your work to peers, parents, and visitors. Defend your findings, accept critique, and leave with marks and a body of work."
+      }
+    ]
+  },
+  "principlesIntro": {
+    "number": "03",
+    "label": "WHAT WE STAND FOR",
+    "title": "Eight principles that govern our work.",
+    "sub": "A child ends a term with marks and a body of work."
+  },
+  "notList": {
+    "number": "04",
+    "label": "WHAT WE REFUSE TO BECOME",
+    "title": "Defined as clearly by what Synapse is not.",
+    "sub": "Negative definitions guard the integrity of the institution.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Not a coaching mill",
+        "refusal": "We do not herd hundreds of students into tiered lecture factories to drill multiple-choice tricks.",
+        "instead": "We teach in small groups where a guide knows every student personally, tests daily on what was just taught, and solves doubts individually."
+      },
+      {
+        "number": "02",
+        "title": "Not a software app with a classroom",
+        "refusal": "AI is an infinite encyclopaedia and practice engine, not an institutional substitute.",
+        "instead": "Software assists with practice and spaced revision, but a human guide, a real desk, a shared chalkboard, and a physical community are non-negotiable."
+      },
+      {
+        "number": "03",
+        "title": "Not an accelerator that sells equity",
+        "refusal": "We do not demand equity from young founders or push venture-scale hype on local soil.",
+        "instead": "The top floor offers desks and community to local founders and builders in exchange for teaching and mentoring children; the exact commitment is agreed per founder."
+      }
+    ]
+  },
+  "unsolvedIntro": {
+    "number": "05",
+    "label": "OPEN PROBLEMS",
+    "title": "I'd rather you hear it from us.",
+    "sub": "Six pedagogical and architectural questions we are still solving.",
+    "lead": "Institutions fail when they hide their real challenges behind marketing polish. These are the six open questions we are actively working through:"
+  },
+  "navigationCta": {
+    "heading": "A place built for honest work.",
+    "sub": "Synapse is open now in Chamba behind the Post Office. Come see how we learn, teach, and build.",
+    "doorsAction": {
+      "label": "Enquire about admission",
+      "href": "/enquire"
+    },
+    "buildingAction": {
+      "label": "Walk through the building",
+      "href": "/building"
+    },
+    "fellowshipAction": {
+      "label": "Apply for Fellowship",
+      "href": "/fellowship"
+    }
+  }
+}

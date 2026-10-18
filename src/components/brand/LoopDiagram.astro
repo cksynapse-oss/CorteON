@@ -223,24 +223,3 @@ const { onDark = false, class: className = '', id } = Astro.props;
     </div>
   </div>
 </div>
-
-<style>
-  .loop-diagram-container {
-    --ink: var(--ink);
-    --paper: var(--paper);
-    --hair: var(--hair);
-    --spark: var(--spark);
-    --muted: var(--muted);
-  }
-
-  :global(.theme-ink) .loop-diagram-container,
-  :global([data-theme='ink']) .loop-diagram-container,
-  :global(.dark) .loop-diagram-container,
-  .loop-diagram-container.theme-ink {
-    --ink: var(--ink);
-    --paper: var(--paper);
-    --hair: var(--hair);
-    --spark: var(--spark);
-    --muted: var(--muted);
-  }
-</style>

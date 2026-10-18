@@ -1,14 +1,383 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ComingSoonStub from '../components/ui/ComingSoonStub.astro';
+import Section from '../components/ui/Section.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import ThreeWorlds from '../components/brand/ThreeWorlds.astro';
+import LoopDiagram from '../components/brand/LoopDiagram.astro';
+
+import site from '../content/site.json';
+import ideaRaw from '../content/idea.json';
+import principlesRaw from '../content/principles.json';
+import openProblemsRaw from '../content/open-problems.json';
+
+import type {
+  IdeaContent,
+  PrinciplesContent,
+  OpenProblemsContent,
+} from '../content/schemas';
+
+const idea = ideaRaw as IdeaContent;
+const principles = principlesRaw as PrinciplesContent;
+const openProblems = openProblemsRaw as OpenProblemsContent;
 ---
 
-<BaseLayout title="The Idea — Synapse">
-  <ComingSoonStub
-    title="The Idea"
-    status="DIRECTION"
-    phase="Phase 1 · In Preparation"
-    description="School gives a syllabus. Coaching gives exam technique. Innovation happens elsewhere. Nothing joins them. Synapse puts learners, teachers and builders in one building so people take turns: learn it, teach it, build it, show it."
-    plannedNote="The complete philosophy, three-worlds analysis, principles, and unsolved problems are being authored for Task T10."
-  />
+<BaseLayout
+  title={`The Idea — ${site.name}`}
+  description="School gives a syllabus. Coaching gives exam technique. Innovation happens elsewhere. Nothing joins them. Synapse puts learners, teachers and builders in one building."
+>
+  {/* HERO SECTION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-3xl">
+      <div
+        class="mb-3 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        <span>{idea.hero.eyebrow}</span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-lg-mobile font-normal leading-[1.06] tracking-[-0.02em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        Learn it. Teach it. Build it. <span class="italic text-spark-ink"
+          >Show it.</span
+        >
+      </h1>
+
+      <p
+        class="mb-6 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {idea.hero.sub}
+      </p>
+
+      {/* Analogy Box */}
+      <div class="bg-surface-dim/20 mb-8 rounded border border-hair p-5 sm:p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          The Core Analogy
+        </span>
+        <p
+          class="font-serif text-xl italic leading-relaxed text-ink sm:text-2xl"
+        >
+          “{idea.hero.analogy}”
+        </p>
+      </div>
+
+      {/* Location Strip & CTAs */}
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+        <Button href={idea.hero.primaryCta.href} variant="primary">
+          {idea.hero.primaryCta.label}
+        </Button>
+        <Button href={idea.hero.secondaryCta.href} variant="secondary">
+          {idea.hero.secondaryCta.label}
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 01: THE PROBLEM (THREE WORLDS) */}
+  <Section
+    id="the-problem"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number={idea.problem.number}
+      label={idea.problem.label}
+      title={idea.problem.title}
+      sub={idea.problem.lead}
+    />
+
+    {/* Three Worlds Diagram */}
+    <div class="mb-12">
+      <ThreeWorlds />
+    </div>
+
+    {/* Detailed Breakdown of the Three Worlds */}
+    <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        idea.problem.threeWorlds.map((world) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8">
+            <div class="space-y-3">
+              <span class="font-mono text-xs font-semibold uppercase tracking-widest text-spark-ink">
+                DOM-{world.number}
+              </span>
+              <h3 class="font-serif text-2xl font-normal text-ink">
+                {world.name}
+              </h3>
+              <p class="font-sans text-sm font-medium text-ink">
+                {world.summary}
+              </p>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {world.breakdown}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Synthesis statement */}
+    <div
+      class="bg-surface-dim/30 rounded border border-hair p-5 text-center sm:p-6"
+    >
+      <p
+        class="font-body text-base font-medium leading-relaxed text-ink sm:text-body-lg"
+      >
+        {idea.problem.conclusion}
+      </p>
+    </div>
+  </Section>
+
+  {/* SECTION 02: THE LOOP (CADENCE) */}
+  <Section
+    id="the-loop"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number={idea.loop.number}
+      label={idea.loop.label}
+      title={idea.loop.title}
+      sub={idea.loop.lead}
+    />
+
+    {/* Vector Loop Graphic */}
+    <div class="mb-12 sm:mb-16">
+      <LoopDiagram />
+    </div>
+
+    {/* The 4 Cadence Steps */}
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        idea.loop.steps.map((step) => (
+          <div class="hover:border-spark-ink/50 flex flex-col justify-between rounded border border-hair bg-paper p-6 transition-colors sm:p-8">
+            <div class="space-y-3">
+              <div class="border-hair/60 flex items-center justify-between border-b pb-3">
+                <span class="font-mono text-xs font-semibold uppercase tracking-widest text-spark-ink">
+                  STAGE {step.number}
+                </span>
+                <span class="font-serif text-base font-medium text-spark-ink">
+                  {step.devanagari}
+                </span>
+              </div>
+              <h3 class="font-serif text-2xl font-normal text-ink">
+                {step.name}
+              </h3>
+              <p class="font-sans text-sm font-semibold text-ink">
+                {step.action}
+              </p>
+              <p class="font-body text-xs leading-relaxed text-muted sm:text-sm">
+                {step.detail}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 03: PRINCIPLES (WHAT WE STAND FOR) */}
+  <Section
+    id="principles"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number={idea.principlesIntro.number}
+      label={idea.principlesIntro.label}
+      title={idea.principlesIntro.title}
+      sub={idea.principlesIntro.sub}
+    />
+
+    {/* 8 Numbered Principles Rows */}
+    <div class="border-t border-hair">
+      {
+        principles.items.map((item) => (
+          <article class="hover:bg-surface-dim/20 group border-b border-hair py-6 transition-colors sm:py-8">
+            <div class="grid grid-cols-1 items-baseline gap-3 md:grid-cols-12 md:gap-8">
+              <div class="font-mono text-sm font-semibold tracking-widest text-spark-ink md:col-span-1">
+                {item.number}
+              </div>
+              <div class="font-serif text-xl font-normal text-ink sm:text-2xl md:col-span-4">
+                {item.title}
+              </div>
+              <div class="font-body text-base leading-relaxed text-muted md:col-span-7">
+                {item.detail}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    {/* Footnote linking to unsolved and negative definitions */}
+    <div
+      class="mt-8 flex flex-col gap-4 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <span>{principles.boundary.text}</span>
+      <a
+        href="#unsolved"
+        class="font-mono uppercase tracking-wider text-spark-ink underline hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+      >
+        See what we haven't solved &darr;
+      </a>
+    </div>
+  </Section>
+
+  {/* SECTION 04: WHAT SYNAPSE IS NOT (NEGATIVE DEFINITIONS) */}
+  <Section
+    id="what-we-are-not"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number={idea.notList.number}
+      label={idea.notList.label}
+      title={idea.notList.title}
+      sub={idea.notList.sub}
+    />
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+      {
+        idea.notList.items.map((item) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8">
+            <div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-widest text-muted">
+                ANTITHESIS {item.number}
+              </span>
+
+              <div class="relative mb-5 inline-block">
+                <span class="font-serif text-2xl font-normal text-ink">
+                  {item.title}
+                </span>
+                <div
+                  class="pointer-events-none absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 bg-spark-ink"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <p class="mb-6 font-body text-sm leading-relaxed text-ink">
+                {item.refusal}
+              </p>
+            </div>
+
+            <div class="border-hair/80 border-t pt-4">
+              <span class="mb-1 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                What we do instead
+              </span>
+              <p class="font-body text-xs leading-relaxed text-muted sm:text-sm">
+                {item.instead}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 05: OPEN PROBLEMS (NOCTURNAL / INK SECTION) */}
+  <Section
+    id="unsolved"
+    theme="ink"
+    padding="lg"
+    class="border-b border-hair-ink"
+  >
+    <SectionHeader
+      number={openProblems.section.number}
+      label={openProblems.section.label}
+      title={openProblems.section.title}
+      sub={openProblems.section.sub}
+      onDark={true}
+    />
+
+    <p
+      class="mb-10 max-w-3xl font-body text-base leading-relaxed text-muted-on-ink sm:text-body-lg"
+    >
+      {idea.unsolvedIntro.lead}
+    </p>
+
+    {/* 6 Unsolved Problem Cards */}
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        openProblems.items.map((prob) => (
+          <div class="bg-surface-container-low/5 flex flex-col justify-between rounded border border-hair-ink p-6 sm:p-8">
+            <div class="space-y-4">
+              <div class="border-hair-ink/60 flex items-center justify-between border-b pb-3">
+                <span class="font-mono text-xs font-semibold tracking-wider text-spark-glow">
+                  [{prob.id.toUpperCase()}]
+                </span>
+                <StatusChip status={prob.status} />
+              </div>
+
+              <h3 class="font-serif text-xl font-normal leading-snug text-paper sm:text-2xl">
+                {prob.title}
+              </h3>
+
+              <div class="space-y-1">
+                <span class="block font-mono text-xs uppercase tracking-wider text-muted-on-ink">
+                  The Core Question
+                </span>
+                <p class="text-paper/90 font-sans text-xs italic sm:text-sm">
+                  “{prob.question}”
+                </p>
+              </div>
+
+              <div class="space-y-1">
+                <span class="block font-mono text-xs uppercase tracking-wider text-muted-on-ink">
+                  Context
+                </span>
+                <p class="font-body text-xs leading-relaxed text-[#CDC6B7] sm:text-sm">
+                  {prob.context}
+                </p>
+              </div>
+            </div>
+
+            <div class="border-hair-ink/60 mt-6 border-t pt-3">
+              <span class="font-mono text-xs uppercase tracking-widest text-muted-on-ink">
+                Area: {prob.area}
+              </span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 06: NAVIGATION CTA */}
+  <Section theme="paper" padding="lg">
+    <div
+      class="bg-surface-dim/20 flex flex-col items-start justify-between gap-6 rounded border border-hair p-6 sm:p-10 lg:flex-row lg:items-center"
+    >
+      <div class="max-w-2xl space-y-2">
+        <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+          {idea.navigationCta.heading}
+        </h2>
+        <p class="font-body text-base leading-relaxed text-muted">
+          {idea.navigationCta.sub}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <Button href={idea.navigationCta.doorsAction.href} variant="primary">
+          {idea.navigationCta.doorsAction.label}
+        </Button>
+        <Button
+          href={idea.navigationCta.buildingAction.href}
+          variant="secondary"
+        >
+          {idea.navigationCta.buildingAction.label}
+        </Button>
+        <Button href={idea.navigationCta.fellowshipAction.href} variant="ghost">
+          {idea.navigationCta.fellowshipAction.label}
+        </Button>
+      </div>
+    </div>
+  </Section>
 </BaseLayout>

@@ -13,6 +13,8 @@ import {
   tutorProblemSchema,
   enquirySchema,
   buildingSchema,
+  openProblemsSchema,
+  ideaSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -380,6 +382,8 @@ lintFile('home.json', homeSchema);
 lintFile('faq.json', faqSchema);
 lintFile('enquiry.json', enquirySchema);
 lintFile('building.json', buildingSchema);
+lintFile('open-problems.json', openProblemsSchema);
+lintFile('idea.json', ideaSchema);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
 
 // Lint any additional JSON files in src/content
@@ -395,6 +399,8 @@ if (fs.existsSync(contentDir)) {
     'faq.json',
     'enquiry.json',
     'building.json',
+    'open-problems.json',
+    'idea.json',
   ];
   for (const file of files) {
     if (file.endsWith('.json') && !knownFiles.includes(file)) {

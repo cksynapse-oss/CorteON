@@ -1,6 +1,6 @@
 ---
-export type StatusType =
-  'live' | 'next' | 'direction' | 'LIVE NOW' | 'OPENING NEXT' | 'DIRECTION';
+import type { StatusType } from '../../content/schemas';
+export type { StatusType };
 
 interface Props {
   status: StatusType;
@@ -12,10 +12,11 @@ interface Props {
 const { status, onDark = false, class: className = '', ...rest } = Astro.props;
 
 // Normalize status key
-const normalizedStatus = ((): 'live' | 'next' | 'direction' => {
+const normalizedStatus = ((): 'live' | 'next' | 'direction' | 'open' => {
   const s = String(status).toUpperCase();
   if (s.includes('LIVE')) return 'live';
   if (s.includes('NEXT')) return 'next';
+  if (s.includes('OPEN')) return 'open';
   return 'direction';
 })();
 
@@ -51,6 +52,17 @@ const config = {
     dark: {
       chip: 'border border-dashed border-hair-ink text-muted-on-ink bg-transparent',
       dot: 'bg-muted-on-ink/50',
+    },
+  },
+  open: {
+    label: 'STATUS: OPEN',
+    light: {
+      chip: 'border border-spark-ink text-spark-ink bg-transparent',
+      dot: 'bg-spark-ink',
+    },
+    dark: {
+      chip: 'border border-spark-glow text-spark-glow bg-transparent',
+      dot: 'bg-spark-glow',
     },
   },
 };

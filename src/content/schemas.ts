@@ -8,6 +8,16 @@ export const StatusChipEnum = z.enum([
 ]);
 export type StatusChip = z.infer<typeof StatusChipEnum>;
 
+export type StatusType =
+  | 'live'
+  | 'next'
+  | 'direction'
+  | 'open'
+  | 'LIVE NOW'
+  | 'OPENING NEXT'
+  | 'DIRECTION'
+  | 'OPEN';
+
 export const SourceEnum = z.enum(['owner-confirmed', 'illustrative']);
 export type Source = z.infer<typeof SourceEnum>;
 
@@ -439,3 +449,120 @@ export const buildingSchema = z.object({
 });
 export type BuildingFloor = z.infer<typeof buildingFloorSchema>;
 export type BuildingContent = z.infer<typeof buildingSchema>;
+
+export const openProblemItemSchema = z.object({
+  id: z.string().min(1),
+  number: z.string().min(1),
+  title: z.string().min(1),
+  status: z.literal('OPEN'),
+  question: z.string().min(1),
+  context: z.string().min(1),
+  area: z.string().min(1),
+});
+
+export const openProblemsSchema = z.object({
+  status: z.literal('OPEN'),
+  source: z.literal('owner-confirmed'),
+  section: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+  }),
+  items: z.array(openProblemItemSchema).length(6),
+});
+export type OpenProblemItem = z.infer<typeof openProblemItemSchema>;
+export type OpenProblemsContent = z.infer<typeof openProblemsSchema>;
+
+export const notListItemSchema = z.object({
+  number: z.string().min(1),
+  title: z.string().min(1),
+  refusal: z.string().min(1),
+  instead: z.string().min(1),
+});
+
+export const loopStepSchema = z.object({
+  number: z.string().min(1),
+  name: z.string().min(1),
+  devanagari: z.string().min(1),
+  action: z.string().min(1),
+  detail: z.string().min(1),
+});
+
+export const ideaSchema = z.object({
+  status: z.literal('LIVE NOW'),
+  source: z.literal('owner-confirmed'),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    analogy: z.string().min(1),
+    strip: z.string().min(1),
+    primaryCta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+    secondaryCta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+  problem: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    threeWorlds: z
+      .array(
+        z.object({
+          number: z.string().min(1),
+          name: z.string().min(1),
+          summary: z.string().min(1),
+          breakdown: z.string().min(1),
+        })
+      )
+      .length(3),
+    conclusion: z.string().min(1),
+  }),
+  loop: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    lead: z.string().min(1),
+    steps: z.array(loopStepSchema).length(4),
+  }),
+  principlesIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+  }),
+  notList: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    items: z.array(notListItemSchema).length(3),
+  }),
+  unsolvedIntro: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    lead: z.string().min(1),
+  }),
+  navigationCta: z.object({
+    heading: z.string().min(1),
+    sub: z.string().min(1),
+    doorsAction: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+    buildingAction: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+    fellowshipAction: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
+});
+export type IdeaContent = z.infer<typeof ideaSchema>;

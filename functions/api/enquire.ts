@@ -13,7 +13,11 @@
 
 export interface Env {
   APPS_SCRIPT_URL?: string;
+  APPS_SCRIPT_TOKEN?: string;
   TURNSTILE_SECRET_KEY?: string;
+  PUBLIC_TURNSTILE_SITE_KEY?: string;
+  ENVIRONMENT?: string;
+  CF_PAGES_BRANCH?: string;
 }
 
 export interface EnquiryPayload {
@@ -28,6 +32,8 @@ export interface EnquiryPayload {
   consent: boolean;
   honeypot?: string;
   turnstileToken?: string;
+  source?: string;
+  token?: string;
   [key: string]: unknown;
 }
 
@@ -117,6 +123,11 @@ export function validateEnquiry(
       ? data.message.trim().slice(0, 1000)
       : undefined;
 
+  const source =
+    typeof data.source === 'string'
+      ? data.source.trim().slice(0, 50)
+      : undefined;
+
   return {
     valid: true,
     cleaned: {
@@ -139,6 +150,7 @@ export function validateEnquiry(
         typeof data.turnstileToken === 'string'
           ? data.turnstileToken
           : undefined,
+      source: source || 'web',
     },
   };
 }
@@ -328,6 +340,7 @@ export async function onRequestPost(context: {
     turnstileToken: (rawData['cf-turnstile-response'] ||
       rawData.turnstileToken ||
       '') as string,
+    source: (rawData.source || '') as string,
   };
 
   // 3. Validation
@@ -346,19 +359,81 @@ export async function onRequestPost(context: {
     }
     const targetBase = safeRedirect || '/enquire';
     return Response.redirect(
-      `${url.origin}${targetBase}?door=${door}&error=${encodeURIComponent(errorMsg)}#apply`,
+      `${url.origin}${targetBase}?door=${door}&error=${encodeURIComponent(
+        errorMsg
+      )}#apply`,
       303
     );
   }
 
   const cleaned = validation.cleaned;
 
-  // 4. Cloudflare Turnstile Verification (if configured and token present)
-  if (env && env.TURNSTILE_SECRET_KEY && cleaned.turnstileToken) {
+  // 4. Cloudflare Turnstile & Production Environment Checks (Requirement 4 & 6)
+  const isProduction =
+    (env &&
+      (env.ENVIRONMENT === 'production' || env.CF_PAGES_BRANCH === 'main')) ||
+    url.hostname === 'corteon.in';
+
+  // In production, both TURNSTILE_SECRET_KEY and PUBLIC_TURNSTILE_SITE_KEY must be configured
+  if (
+    isProduction &&
+    (!env || !env.TURNSTILE_SECRET_KEY || !env.PUBLIC_TURNSTILE_SITE_KEY)
+  ) {
+    const errorMsg =
+      'Enquiry service is temporarily unavailable. Please message us on WhatsApp.';
+    if (isJsonRequest) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          error: errorMsg,
+          whatsappFallbackUrl: buildWhatsAppUrl(cleaned.door, cleaned.name),
+        }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    const targetBase = safeRedirect || '/enquire';
+    return Response.redirect(
+      `${url.origin}${targetBase}?door=${cleaned.door}&error=${encodeURIComponent(
+        errorMsg
+      )}#apply`,
+      303
+    );
+  }
+
+  // Determine Turnstile secret key: in dev/preview, allow Cloudflare test key if not set
+  // Cloudflare Always Passes secret key: 1x0000000000000000000000000000000AA
+  const turnstileSecret =
+    (env && env.TURNSTILE_SECRET_KEY) ||
+    (!isProduction ? '1x0000000000000000000000000000000AA' : '');
+
+  // In production, Turnstile token is mandatory
+  if (isProduction && !cleaned.turnstileToken) {
+    const errorMsg = 'Anti-spam check failed. Please refresh and try again.';
+    if (isJsonRequest) {
+      return new Response(
+        JSON.stringify({
+          ok: false,
+          error: errorMsg,
+          whatsappFallbackUrl: buildWhatsAppUrl(cleaned.door, cleaned.name),
+        }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    const targetBase = safeRedirect || '/enquire';
+    return Response.redirect(
+      `${url.origin}${targetBase}?door=${cleaned.door}&error=${encodeURIComponent(
+        errorMsg
+      )}#apply`,
+      303
+    );
+  }
+
+  // Verify Turnstile token if present and secret key available
+  if (turnstileSecret && cleaned.turnstileToken) {
     const clientIp = request.headers.get('CF-Connecting-IP') || undefined;
     const turnstileResult = await verifyTurnstile(
       cleaned.turnstileToken,
-      env.TURNSTILE_SECRET_KEY,
+      turnstileSecret,
       clientIp
     );
     if (!turnstileResult.success) {
@@ -368,27 +443,33 @@ export async function onRequestPost(context: {
           JSON.stringify({
             ok: false,
             error: errorMsg,
-            whatsappFallbackUrl: buildWhatsAppUrl(door, cleaned.name),
+            whatsappFallbackUrl: buildWhatsAppUrl(cleaned.door, cleaned.name),
           }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
       const targetBase = safeRedirect || '/enquire';
       return Response.redirect(
-        `${url.origin}${targetBase}?door=${door}&error=${encodeURIComponent(errorMsg)}#apply`,
+        `${url.origin}${targetBase}?door=${cleaned.door}&error=${encodeURIComponent(
+          errorMsg
+        )}#apply`,
         303
       );
     }
   }
 
-  // 5. Forward to Google Apps Script Webhook
+  // 5. Forward to Google Apps Script Webhook (sending APPS_SCRIPT_TOKEN - Requirement 5)
   let sheetSaved = false;
   if (env && env.APPS_SCRIPT_URL) {
     try {
+      const payloadToSend = {
+        ...cleaned,
+        token: env.APPS_SCRIPT_TOKEN || '',
+      };
       const appsScriptRes = await fetch(env.APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cleaned),
+        body: JSON.stringify(payloadToSend),
       });
       if (appsScriptRes.ok) {
         sheetSaved = true;

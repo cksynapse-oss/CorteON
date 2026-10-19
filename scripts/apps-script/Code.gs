@@ -61,8 +61,20 @@ function doPost(e) {
       });
     }
 
+    // Token verification (Requirement 5)
+    // Configure APPS_SCRIPT_TOKEN in Script Properties (File > Project properties > Script properties)
+    const expectedToken =
+      PropertiesService.getScriptProperties().getProperty('APPS_SCRIPT_TOKEN');
+    if (expectedToken && (!data.token || data.token !== expectedToken)) {
+      return createJsonResponse({
+        ok: false,
+        error: 'Unauthorized: invalid or missing security token.',
+      });
+    }
+
     const timestamp = new Date();
     const sheet = getOrCreateSheet();
+    const source = String(data.source || 'web');
 
     // Append new row
     sheet.appendRow([
@@ -75,6 +87,7 @@ function doPost(e) {
       data.stageOrSubject || '',
       data.interestOrExam || '',
       data.message || '',
+      source,
       'New',
     ]);
 
@@ -125,6 +138,7 @@ function getOrCreateSheet() {
       'Stage / Subject / District',
       'Interest / Track / Space',
       'Message',
+      'Source',
       'Status',
     ];
     sheet.appendRow(headers);
@@ -150,13 +164,16 @@ function getOrCreateSheet() {
  */
 function sendEmailNotification(data, timestamp) {
   const doorTitle = data.doorTitle || data.door || 'General Enquiry';
-  const subject = `[Synapse Enquiry] ${doorTitle} - ${data.name}`;
+  const isTest = data.source === 't18-test';
+  const prefix = isTest ? '[TEST - T18] ' : '';
+  const subject = `${prefix}[Synapse Enquiry] ${doorTitle} - ${data.name}`;
 
   const body =
     `New enquiry received for Synapse:\n\n` +
     `Door: ${doorTitle} (${data.door || 'parent'})\n` +
     `Name: ${data.name}\n` +
     `Phone / WhatsApp: ${data.phone}\n` +
+    (data.source ? `Source: ${data.source}\n` : '') +
     (data.email ? `Email: ${data.email}\n` : '') +
     (data.stageOrSubject
       ? `Stage / Subject / District: ${data.stageOrSubject}\n`

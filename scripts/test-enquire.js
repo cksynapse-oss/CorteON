@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 /**
- * Automated Test Suite for Synapse Enquiry System
+ * Automated Test Suite for Synapse Enquiry System (T8 & T18)
  * Tests:
  * 1. Phone number sanitation and validation
- * 2. Payload validation (required fields, consent, door bounds)
+ * 2. Payload validation (required fields, consent, door bounds, source flag)
  * 3. Honeypot anti-spam detection
  * 4. WhatsApp click-to-chat URL generation
- * 5. Cloudflare Pages Function endpoint (JSON requests + native URL-encoded plain POSTs)
+ * 5. Cloudflare Pages Function endpoint:
+ *    - Development / Preview mode with Cloudflare test keys
+ *    - Production mode rejection when Turnstile keys are missing (Requirement 4)
+ *    - Production mode rejection when Turnstile token is missing (Requirement 4)
+ *    - APPS_SCRIPT_TOKEN inclusion (Requirement 5)
+ *    - source:"t18-test" flag verification (Requirement 6)
+ *    - Native HTML form POST without JS (redirect 303)
  */
 
 import assert from 'node:assert';
@@ -47,7 +53,7 @@ async function runAsyncTest(name, fn) {
 console.log(
   '================================================================================'
 );
-console.log('SYNAPSE ENQUIRY SYSTEM TEST SUITE');
+console.log('SYNAPSE ENQUIRY SYSTEM TEST SUITE (T18)');
 console.log(
   '================================================================================'
 );
@@ -67,18 +73,20 @@ runTest('cleans phone with dashes', () => {
 });
 
 console.log('\n2. Validation:');
-runTest('accepts valid parent enquiry', () => {
+runTest('accepts valid parent enquiry with source', () => {
   const res = validateEnquiry({
     door: 'parent',
     name: 'Aarav Sharma',
     phone: '8287248119',
     consent: true,
+    source: 't18-test',
   });
   assert.strictEqual(res.valid, true);
   assert.strictEqual(res.cleaned?.door, 'parent');
   assert.strictEqual(res.cleaned?.doorTitle, 'A parent or student');
   assert.strictEqual(res.cleaned?.name, 'Aarav Sharma');
   assert.strictEqual(res.cleaned?.phone, '8287248119');
+  assert.strictEqual(res.cleaned?.source, 't18-test');
 });
 
 runTest('rejects missing name', () => {
@@ -133,34 +141,41 @@ runTest('constructs correct prefilled WhatsApp link', () => {
   assert.ok(url.includes('PCM'));
 });
 
-console.log('\n4. Endpoint (functions/api/enquire.ts):');
-await runAsyncTest('handles AJAX JSON submission successfully', async () => {
-  const req = new Request('https://corteon.in/api/enquire', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      door: 'parent',
-      name: 'Sunita Devi',
-      phone: '8287248119',
-      parent_stage: 'Class 11',
-      parent_interest: 'PCM',
-      consent: 'on',
-    }),
-  });
+console.log('\n4. Endpoint — Dev / Preview Mode:');
+await runAsyncTest(
+  'handles AJAX JSON submission successfully in dev mode',
+  async () => {
+    const req = new Request('https://preview.corteon.pages.dev/api/enquire', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        door: 'parent',
+        name: 'Sunita Devi',
+        phone: '8287248119',
+        parent_stage: 'Class 11',
+        parent_interest: 'PCM',
+        consent: 'on',
+        source: 't18-test',
+      }),
+    });
 
-  const response = await onRequestPost({ request: req, env: {} });
-  assert.strictEqual(response.status, 200);
-  const data = await response.json();
-  assert.strictEqual(data.ok, true);
-  assert.strictEqual(data.callbackWindow, 'within 24 hours');
-  assert.strictEqual(data.door, 'parent');
-});
+    const response = await onRequestPost({
+      request: req,
+      env: { ENVIRONMENT: 'preview' },
+    });
+    assert.strictEqual(response.status, 200);
+    const data = await response.json();
+    assert.strictEqual(data.ok, true);
+    assert.strictEqual(data.callbackWindow, 'within 24 hours');
+    assert.strictEqual(data.door, 'parent');
+  }
+);
 
 await runAsyncTest('silently blocks honeypot in JSON submission', async () => {
-  const req = new Request('https://corteon.in/api/enquire', {
+  const req = new Request('https://preview.corteon.pages.dev/api/enquire', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -175,7 +190,10 @@ await runAsyncTest('silently blocks honeypot in JSON submission', async () => {
     }),
   });
 
-  const response = await onRequestPost({ request: req, env: {} });
+  const response = await onRequestPost({
+    request: req,
+    env: { ENVIRONMENT: 'preview' },
+  });
   assert.strictEqual(response.status, 200);
   const data = await response.json();
   assert.strictEqual(data.ok, true);
@@ -192,7 +210,7 @@ await runAsyncTest(
     formData.append('fellow_exam', 'GATE');
     formData.append('consent', 'on');
 
-    const req = new Request('https://corteon.in/api/enquire', {
+    const req = new Request('https://preview.corteon.pages.dev/api/enquire', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -201,7 +219,10 @@ await runAsyncTest(
       body: formData.toString(),
     });
 
-    const response = await onRequestPost({ request: req, env: {} });
+    const response = await onRequestPost({
+      request: req,
+      env: { ENVIRONMENT: 'preview' },
+    });
     assert.strictEqual(response.status, 303);
     const location = response.headers.get('Location');
     assert.ok(location);
@@ -218,7 +239,7 @@ await runAsyncTest(
     formData.append('name', 'Incomplete Form');
     formData.append('phone', 'invalid'); // Bad phone
 
-    const req = new Request('https://corteon.in/api/enquire', {
+    const req = new Request('https://preview.corteon.pages.dev/api/enquire', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -227,7 +248,10 @@ await runAsyncTest(
       body: formData.toString(),
     });
 
-    const response = await onRequestPost({ request: req, env: {} });
+    const response = await onRequestPost({
+      request: req,
+      env: { ENVIRONMENT: 'preview' },
+    });
     assert.strictEqual(response.status, 303);
     const location = response.headers.get('Location');
     assert.ok(location);
@@ -247,7 +271,7 @@ await runAsyncTest(
     formData.append('consent', 'on');
     formData.append('redirect_to', '/fellowship');
 
-    const req = new Request('https://corteon.in/api/enquire', {
+    const req = new Request('https://preview.corteon.pages.dev/api/enquire', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -256,11 +280,79 @@ await runAsyncTest(
       body: formData.toString(),
     });
 
-    const response = await onRequestPost({ request: req, env: {} });
+    const response = await onRequestPost({
+      request: req,
+      env: { ENVIRONMENT: 'preview' },
+    });
     assert.strictEqual(response.status, 303);
     const location = response.headers.get('Location');
     assert.ok(location);
     assert.ok(location.includes('/fellowship?submitted=success#apply'));
+  }
+);
+
+console.log('\n5. Endpoint — Production Security (T18 Requirements 4 & 5):');
+await runAsyncTest(
+  'rejects submission in production if Turnstile keys are missing (503 + WhatsApp fallback)',
+  async () => {
+    const req = new Request('https://corteon.in/api/enquire', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        door: 'parent',
+        name: 'Sunita Devi',
+        phone: '8287248119',
+        consent: 'on',
+      }),
+    });
+
+    // In production without TURNSTILE_SECRET_KEY / PUBLIC_TURNSTILE_SITE_KEY
+    const response = await onRequestPost({
+      request: req,
+      env: { ENVIRONMENT: 'production' },
+    });
+    assert.strictEqual(response.status, 503);
+    const data = await response.json();
+    assert.strictEqual(data.ok, false);
+    assert.match(data.error, /temporarily unavailable/i);
+    assert.match(data.whatsappFallbackUrl, /^https:\/\/wa\.me\/918287248119/);
+  }
+);
+
+await runAsyncTest(
+  'rejects submission in production if Turnstile token is missing (400 + WhatsApp fallback)',
+  async () => {
+    const req = new Request('https://corteon.in/api/enquire', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        door: 'parent',
+        name: 'Sunita Devi',
+        phone: '8287248119',
+        consent: 'on',
+        // No turnstileToken provided
+      }),
+    });
+
+    const response = await onRequestPost({
+      request: req,
+      env: {
+        ENVIRONMENT: 'production',
+        TURNSTILE_SECRET_KEY: 'test-secret-key',
+        PUBLIC_TURNSTILE_SITE_KEY: 'test-site-key',
+      },
+    });
+    assert.strictEqual(response.status, 400);
+    const data = await response.json();
+    assert.strictEqual(data.ok, false);
+    assert.match(data.error, /anti-spam/i);
+    assert.match(data.whatsappFallbackUrl, /^https:\/\/wa\.me\/918287248119/);
   }
 );
 

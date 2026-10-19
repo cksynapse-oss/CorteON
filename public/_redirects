@@ -1,0 +1,41 @@
+# Synapse legacy route redirects (301 Moved Permanently)
+# Mappings from the legacy site to new canonical routes
+
+# Apex & Home
+/index.html / 301
+
+# Programmes & Tracks
+/programmes.html /programmes 301
+/engineering-research.html /programmes 301
+/engineering-research /programmes 301
+/medical-allied-health.html /programmes 301
+/medical-allied-health /programmes 301
+/cuet-general-english.html /programmes 301
+/cuet-general-english /programmes 301
+/cuet-arts-commerce-nda.html /programmes 301
+/cuet-arts-commerce-nda /programmes 301
+/communication-business.html /programmes 301
+/communication-business /programmes 301
+/how-we-teach.html /programmes 301
+/how-we-teach /programmes 301
+
+# Admissions & Contact
+/admissions.html /enquire 301
+/admissions /enquire 301
+/contact.html /enquire 301
+/contact /enquire 301
+
+# Teacher & Fellowship
+/teacher.html /fellowship 301
+/teacher /fellowship 301
+
+# Idea & Concept
+/innovation-concept.html /idea 301
+/innovation-concept /idea 301
+
+# Privacy Policy
+/privacy.html /privacy 301
+
+# Thank You / Success State
+/thank-you.html /enquire 301
+/thank-you /enquire 301

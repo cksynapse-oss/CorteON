@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /_kit
-Disallow: /kit
 
 Sitemap: https://corteon.in/sitemap.xml

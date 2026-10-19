@@ -1,0 +1,52 @@
+[
+  {
+    "id": "parent",
+    "number": "01",
+    "title": "अभिभावक या छात्र",
+    "summary": "छोटे समूह की कक्षाएं, मूलभूत तर्कशक्ति और दैनिक अभ्यास परीक्षाएं। या संक्षिप्त आधारभूत मूल्यांकन दें।",
+    "action": "प्रवेश के लिए पूछताछ करें",
+    "href": "/hi/enquire?door=parent",
+    "status": "LIVE NOW",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "fellow",
+    "number": "02",
+    "title": "शिक्षक बनने के इच्छुक स्नातक",
+    "summary": "अपनी परीक्षा की तैयारी करते हुए प्रतिदिन एक कक्षा पढ़ाएं। आरक्षित लाइब्रेरी डेस्क, प्रमाणित शिक्षण घंटे और ट्यूटर प्राप्त करें।",
+    "action": "फेलोशिप के लिए आवेदन करें",
+    "href": "/fellowship",
+    "status": "LIVE NOW",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "reader",
+    "number": "03",
+    "title": "पाठक",
+    "summary": "जब पाठक कार्ड शुरू हों, तो शांत डेस्क, संदर्भ संग्रह और रीडिंग रूम का उपयोग करें।",
+    "action": "रुचि दर्ज करें",
+    "href": "/library",
+    "status": "OPENING NEXT",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "founder",
+    "number": "04",
+    "title": "संस्थापक या निर्माता",
+    "summary": "बच्चों को मार्गदर्शन और सिखाने के बदले शीर्ष मंजिल पर डेस्क और समुदाय। प्रति संस्थापक सहमति अनुसार।",
+    "action": "वेंचर हब से जुड़ें",
+    "href": "/venture",
+    "status": "DIRECTION",
+    "source": "owner-confirmed"
+  },
+  {
+    "id": "partner",
+    "number": "05",
+    "title": "ज़िला साझेदार",
+    "summary": "अपने ज़िले में सिनेप्स सर्किल लाएं। प्रत्येक केंद्र स्थानीय स्थान और समुदाय से जुड़ा है।",
+    "action": "साझेदारी करें",
+    "href": "/centres",
+    "status": "DIRECTION",
+    "source": "owner-confirmed"
+  }
+]

@@ -1,13 +1,22 @@
 ---
-import site from '../../content/site.json';
-import navigation from '../../content/navigation.json';
+import siteEn from '../../content/site.json';
+import siteHi from '../../content/hi/site.json';
+import navEn from '../../content/navigation.json';
+import navHi from '../../content/hi/navigation.json';
+import LanguageToggle from '../ui/LanguageToggle.astro';
 
 interface Props {
   class?: string;
+  currentPath?: string;
 }
 
-const { class: className = '' } = Astro.props;
+const { class: className = '', currentPath = Astro.url.pathname } = Astro.props;
+
+const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
+const site = isHindi ? siteHi : siteEn;
+const navigation = isHindi ? navHi : navEn;
 const footerLinks = navigation.footer;
+const homeHref = isHindi ? '/hi' : '/';
 ---
 
 <footer
@@ -21,7 +30,7 @@ const footerLinks = navigation.footer;
     >
       <div class="md:col-span-6">
         <a
-          href="/"
+          href={homeHref}
           class="inline-block rounded-sm focus-visible:outline-2 focus-visible:outline-spark-glow"
           aria-label={`${site.name} home`}
         >
@@ -47,7 +56,11 @@ const footerLinks = navigation.footer;
           {site.tagline}
         </span>
         <p class="mt-4 font-sans text-sm tracking-wide text-muted-on-ink">
-          Grown only from what it earns. Chamba, Himachal Pradesh.
+          {
+            isHindi
+              ? 'केवल अपनी कमाई से बढ़ता हुआ। चंबा, हिमाचल प्रदेश।'
+              : 'Grown only from what it earns. Chamba, Himachal Pradesh.'
+          }
         </p>
       </div>
     </div>
@@ -105,10 +118,13 @@ const footerLinks = navigation.footer;
         </div>
       </div>
 
-      <div
-        class="font-mono text-xs uppercase tracking-widest text-muted-on-ink"
-      >
-        © Synapse · {site.domain}
+      <div class="flex flex-wrap items-center gap-4">
+        <LanguageToggle currentPath={currentPath} onDark={true} />
+        <div
+          class="font-mono text-xs uppercase tracking-widest text-muted-on-ink"
+        >
+          © Synapse · {site.domain}
+        </div>
       </div>
     </div>
   </div>

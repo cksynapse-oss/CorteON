@@ -327,10 +327,14 @@ function checkGeneralRules(obj, filePath, currentPath = '') {
     }
 
     // Check fee field copy
-    if (obj.fee && obj.fee !== 'Fees are shared when you enquire.') {
+    if (
+      obj.fee &&
+      obj.fee !== 'Fees are shared when you enquire.' &&
+      obj.fee !== 'पूछताछ करने पर फीस साझा की जाती है।'
+    ) {
       logError(
         filePath,
-        `Fee field must strictly be "Fees are shared when you enquire." at ${currentPath}.fee (found: "${obj.fee}")`
+        `Fee field must strictly be "Fees are shared when you enquire." or "पूछताछ करने पर फीस साझा की जाती है।" at ${currentPath}.fee (found: "${obj.fee}")`
       );
     }
 
@@ -404,6 +408,13 @@ lintFile('passport.json', passportSchema);
 lintFile('centres.json', centresSchema);
 lintFile('privacy.json', privacySchema);
 lintFile('404.json', notFoundSchema);
+lintFile('hi/site.json', siteSchema);
+lintFile('hi/home.json', homeSchema);
+lintFile('hi/programmes.json', programmesSchema);
+lintFile('hi/faq.json', faqSchema);
+lintFile('hi/enquiry.json', enquirySchema);
+lintFile('hi/doors.json', doorsSchema);
+lintFile('hi/navigation.json', null);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
 lintFile('illustrative/question-board.json', questionBoardSchema);
 lintFile('illustrative/venture-problems.json', ventureProblemBoardSchema);

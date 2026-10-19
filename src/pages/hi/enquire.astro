@@ -1,0 +1,866 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Button from '../../components/ui/Button.astro';
+import StatusChip from '../../components/ui/StatusChip.astro';
+import Field from '../../components/ui/Field.astro';
+import Select from '../../components/ui/Select.astro';
+import Checkbox from '../../components/ui/Checkbox.astro';
+import Rule from '../../components/ui/Rule.astro';
+
+import site from '../../content/hi/site.json';
+import enquiryRaw from '../../content/hi/enquiry.json';
+import type { EnquiryContent } from '../../content/schemas';
+
+const enquiry = enquiryRaw as EnquiryContent;
+
+// Pre-fill door from query param if available (default to 'parent')
+const queryDoor = Astro.url.searchParams.get('door') || 'parent';
+const isSubmittedSuccess =
+  Astro.url.searchParams.get('submitted') === 'success';
+const submittedDoor = Astro.url.searchParams.get('door') || 'parent';
+const errorMessage = Astro.url.searchParams.get('error') || '';
+
+// Default WhatsApp click-to-chat URL
+const defaultWhatsAppText = encodeURIComponent(
+  `नमस्ते Synapse, मैं चंबा में प्रवेश और कार्यक्रमों के बारे में जानकारी चाहता हूँ।`
+);
+const defaultWhatsAppUrl = `https://wa.me/91${site.phone}?text=${defaultWhatsAppText}`;
+
+// Door metadata lookup
+const currentDoorItem =
+  enquiry.doors.find(
+    (d) => d.id === (isSubmittedSuccess ? submittedDoor : queryDoor)
+  ) || enquiry.doors[0];
+---
+
+<BaseLayout
+  title={`प्रवेश एवं पूछताछ — ${site.name}`}
+  description="चंबा में सिनेप्स के पांच प्रवेश द्वार। हमें बताएं कि आप कौन हैं और आपको क्या चाहिए। संस्थापक 24 घंटे के भीतर व्यक्तिगत रूप से फोन करते हैं। पूछताछ करने पर फीस साझा की जाती है।"
+  lang="hi"
+>
+  {/* SECTION 1: HERO & NOTICE */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div
+        class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        <span>{enquiry.hero.eyebrow}</span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        अपना <span class="italic text-spark-ink">द्वार चुनें।</span>
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {enquiry.hero.sub}
+      </p>
+
+      {/* Classroom Hours & Location Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            खुला है: {site.hours}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      {/* Owner Promise and Policy Cards */}
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="rounded border border-hair bg-paper p-4">
+          <span
+            class="mb-1 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            कॉलबैक वादा
+          </span>
+          <p class="font-body text-sm leading-snug text-ink">
+            {enquiry.notices.callback}
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-4">
+          <span
+            class="mb-1 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            फीस नीति
+          </span>
+          <p class="font-body text-sm leading-snug text-ink">
+            {enquiry.notices.fees}
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-4">
+          <span
+            class="mb-1 block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            छात्र सुरक्षा
+          </span>
+          <p class="font-body text-sm leading-snug text-ink">
+            {enquiry.notices.under18}
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 2: ADAPTIVE FORM & CONFIRMATION */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="max-w-4xl">
+      {/* SUCCESS CONFIRMATION STATE */}
+      <div
+        id="confirmation"
+        class="confirmation-view mb-8 hidden target:block"
+        tabindex="-1"
+      >
+        <div
+          class="bg-surface-dim/30 rounded border-2 border-spark-ink p-8 sm:p-12"
+        >
+          <div
+            class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+          >
+            <span class="h-2 w-2 rounded-full bg-spark-ink"></span>
+            <span>पूछताछ दर्ज की गई</span>
+          </div>
+
+          <h2 class="mb-4 font-serif text-headline-lg font-normal text-ink">
+            {enquiry.success.title}
+          </h2>
+
+          <p class="mb-6 font-body text-lg leading-relaxed text-ink">
+            {
+              enquiry.success.lead.replace(
+                '{callbackWindow}',
+                site.callbackWindow
+              )
+            }
+          </p>
+
+          <p class="mb-8 font-body text-base leading-relaxed text-muted">
+            {enquiry.success.urgentPrompt}
+          </p>
+
+          <div
+            class="flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+          >
+            <a
+              id="confirmation-whatsapp-btn"
+              href={`https://wa.me/91${site.phone}?text=${encodeURIComponent(
+                `नमस्ते Synapse, मैंने ${currentDoorItem.title} के लिए पूछताछ भेजी है। यह corteon.in से भेजी गई है।`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-[48px] items-center justify-center rounded-full bg-ink px-8 font-sans text-xs font-medium uppercase tracking-[0.12em] text-paper transition-colors hover:bg-spark-ink hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+            >
+              {enquiry.success.whatsappAction}
+            </a>
+
+            <a
+              href="/hi/enquire"
+              class="inline-flex min-h-[48px] items-center justify-center rounded-full border border-hair px-6 font-sans text-xs font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:border-ink hover:bg-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+            >
+              {enquiry.success.anotherAction}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* FORM VIEW CONTAINER */}
+      <div id="form-view" class={isSubmittedSuccess ? 'hidden' : 'block'}>
+        {/* URL Error Message Display (e.g. from plain POST redirect) */}
+        {
+          errorMessage && (
+            <div
+              id="server-error-banner"
+              class="bg-spark-ink/10 mb-8 flex flex-col gap-4 rounded border border-spark-ink p-4 text-ink sm:flex-row sm:items-center sm:justify-between"
+              role="alert"
+            >
+              <div>
+                <strong class="mb-1 block font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink">
+                  सूचना
+                </strong>
+                <p class="font-body text-sm text-ink">{errorMessage}</p>
+              </div>
+              <a
+                href={defaultWhatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="shrink-0 font-sans text-xs uppercase tracking-[0.12em] text-spark-ink underline hover:text-ink"
+              >
+                व्हाट्सएप द्वारा भेजें &rarr;
+              </a>
+            </div>
+          )
+        }
+
+        {/* Client-side Async Error Alert */}
+        <div
+          id="client-error-alert"
+          class="bg-spark-ink/10 mb-8 hidden rounded border border-spark-ink p-4 text-ink"
+          role="alert"
+        >
+          <strong
+            class="mb-1 block font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink"
+          >
+            {enquiry.error.title}
+          </strong>
+          <p id="client-error-text" class="mb-3 font-body text-sm text-ink">
+            {enquiry.error.message}
+          </p>
+          <a
+            id="client-error-whatsapp-btn"
+            href={defaultWhatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink underline hover:text-ink"
+          >
+            {enquiry.error.whatsappAction} &rarr;
+          </a>
+        </div>
+
+        {/* The Native HTML Form */}
+        <form
+          id="enquiry-form"
+          method="POST"
+          action="/api/enquire"
+          class="space-y-8"
+        >
+          {/* DOOR SELECTOR FIELDSET (CSS :has() responsive tabs) */}
+          <fieldset class="m-0 border-none p-0">
+            <legend
+              class="mb-4 block font-sans text-xs font-semibold uppercase tracking-[0.14em] text-muted"
+            >
+              चरण 1 · अपना प्रवेश द्वार चुनें
+            </legend>
+
+            <div
+              class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5"
+              role="radiogroup"
+              aria-label="सिनेप्स प्रवेश द्वार"
+            >
+              {
+                enquiry.doors.map((door) => {
+                  const isChecked = door.id === queryDoor;
+                  return (
+                    <label
+                      for={`door-radio-${door.id}`}
+                      class="door-tab hover:bg-surface-dim/40 has-[:checked]:bg-surface-dim/50 relative flex cursor-pointer flex-col justify-between rounded border border-hair bg-paper p-4 transition-all duration-150 hover:border-ink has-[:checked]:border-ink has-[:checked]:ring-1 has-[:checked]:ring-ink"
+                    >
+                      <input
+                        type="radio"
+                        name="door"
+                        id={`door-radio-${door.id}`}
+                        value={door.id}
+                        checked={isChecked}
+                        class="door-radio peer sr-only"
+                      />
+
+                      <div>
+                        <div class="mb-3 flex items-center justify-between gap-2">
+                          <span class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink">
+                            द्वार {door.number}
+                          </span>
+                          <StatusChip status={door.status} />
+                        </div>
+
+                        <h3 class="mb-2 font-serif text-lg font-normal leading-snug text-ink">
+                          {door.title}
+                        </h3>
+
+                        <p class="mb-4 font-body text-xs leading-relaxed text-muted">
+                          {door.summary}
+                        </p>
+                      </div>
+
+                      <div class="border-hair/60 flex items-center justify-between border-t pt-3 font-sans text-xs font-medium uppercase tracking-[0.12em] text-muted peer-checked:text-spark-ink">
+                        <span>चुनें</span>
+                        <span class="font-mono text-xs">
+                          {door.status === 'LIVE NOW' ? 'लाइव' : 'योजना'}
+                        </span>
+                      </div>
+                    </label>
+                  );
+                })
+              }
+            </div>
+          </fieldset>
+
+          <Rule />
+
+          {/* STEP 2: DETAILS */}
+          <div>
+            <span
+              class="mb-6 block font-sans text-xs font-semibold uppercase tracking-[0.14em] text-muted"
+            >
+              चरण 2 · आपकी जानकारी और विवरण
+            </span>
+
+            {/* COMMON CONTACT FIELDS */}
+            <div class="mb-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <Field
+                id="name"
+                name="name"
+                label={enquiry.commonFields.name.label}
+                placeholder={enquiry.commonFields.name.placeholder}
+                required
+                autocomplete="name"
+              />
+
+              <Field
+                id="phone"
+                name="phone"
+                type="tel"
+                label={enquiry.commonFields.phone.label}
+                placeholder={enquiry.commonFields.phone.placeholder}
+                helpText={enquiry.commonFields.phone.helpText}
+                required
+                autocomplete="tel"
+              />
+            </div>
+
+            <div class="mb-6">
+              <Field
+                id="email"
+                name="email"
+                type="email"
+                label={enquiry.commonFields.email.label}
+                placeholder={enquiry.commonFields.email.placeholder}
+                autocomplete="email"
+              />
+            </div>
+
+            {
+              /* DOOR-SPECIFIC ADAPTIVE PANELS (Controlled via pure CSS :has()) */
+            }
+            {/* 1. Parent or student panel */}
+            <div
+              class="door-panel panel-parent border-hair/60 space-y-6 border-t pt-4"
+            >
+              <div
+                class="bg-surface-dim/20 rounded border border-hair p-4 font-body text-xs text-muted"
+              >
+                {enquiry.doors[0].doorNote}
+              </div>
+
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Select
+                  id="parent_stage"
+                  name="parent_stage"
+                  label={enquiry.doors[0].stageLabel ?? 'कक्षा या स्तर'}
+                  placeholder={enquiry.doors[0].stagePlaceholder}
+                  options={enquiry.doors[0].stageOptions ?? []}
+                />
+
+                <Select
+                  id="parent_interest"
+                  name="parent_interest"
+                  label={enquiry.doors[0].interestLabel ?? 'रुचि का ट्रैक'}
+                  placeholder={enquiry.doors[0].interestPlaceholder}
+                  options={enquiry.doors[0].interestOptions ?? []}
+                />
+              </div>
+            </div>
+
+            {/* 2. Fellow panel */}
+            <div
+              class="door-panel panel-fellow border-hair/60 space-y-6 border-t pt-4"
+            >
+              <div
+                class="bg-surface-dim/20 rounded border border-hair p-4 font-body text-xs text-muted"
+              >
+                {enquiry.doors[1].doorNote}
+              </div>
+
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Field
+                  id="fellow_subject"
+                  name="fellow_subject"
+                  label={enquiry.doors[1].subjectLabel ??
+                    'जो विषय आप पढ़ाते हैं'}
+                  placeholder={enquiry.doors[1].subjectPlaceholder}
+                />
+
+                <Field
+                  id="fellow_exam"
+                  name="fellow_exam"
+                  label={enquiry.doors[1].examLabel ??
+                    'जिस परीक्षा की आप तैयारी कर रहे हैं'}
+                  placeholder={enquiry.doors[1].examPlaceholder}
+                />
+              </div>
+            </div>
+
+            {/* 3. Reader panel */}
+            <div
+              class="door-panel panel-reader border-hair/60 space-y-6 border-t pt-4"
+            >
+              <div
+                class="bg-surface-dim/20 rounded border border-hair p-4 font-body text-xs text-muted"
+              >
+                {enquiry.doors[2].doorNote}
+              </div>
+
+              <Field
+                id="reader_interests"
+                name="reader_interests"
+                label={enquiry.doors[2].interestLabel ?? 'अध्ययन रुचियां'}
+                placeholder={enquiry.doors[2].interestPlaceholder}
+              />
+
+              <Checkbox
+                id="reader_card_interest"
+                name="reader_card_interest"
+                label={enquiry.doors[2].cardOptionLabel ??
+                  'चंबा में पाठक कार्ड उपलब्ध होते ही मुझे सूचित करें'}
+                checked
+              />
+            </div>
+
+            {/* 4. Founder panel */}
+            <div
+              class="door-panel panel-founder border-hair/60 space-y-6 border-t pt-4"
+            >
+              <div
+                class="bg-surface-dim/20 rounded border border-hair p-4 font-body text-xs text-muted"
+              >
+                {enquiry.doors[3].doorNote}
+              </div>
+
+              <Field
+                id="founder_project"
+                name="founder_project"
+                label={enquiry.doors[3].projectLabel ?? 'आप क्या बना रहे हैं'}
+                placeholder={enquiry.doors[3].projectPlaceholder}
+              />
+
+              <Field
+                id="founder_skills"
+                name="founder_skills"
+                label={enquiry.doors[3].mentorLabel ?? 'मार्गदर्शन कौशल'}
+                placeholder={enquiry.doors[3].mentorPlaceholder}
+              />
+            </div>
+
+            {/* 5. District Partner panel */}
+            <div
+              class="door-panel panel-partner border-hair/60 space-y-6 border-t pt-4"
+            >
+              <div
+                class="bg-surface-dim/20 rounded border border-hair p-4 font-body text-xs text-muted"
+              >
+                {enquiry.doors[4].doorNote}
+              </div>
+
+              <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <Field
+                  id="partner_district"
+                  name="partner_district"
+                  label={enquiry.doors[4].districtLabel ??
+                    'आपका ज़िला और राज्य'}
+                  placeholder={enquiry.doors[4].districtPlaceholder}
+                />
+
+                <Field
+                  id="partner_space"
+                  name="partner_space"
+                  label={enquiry.doors[4].spaceLabel ?? 'उपलब्ध स्थान'}
+                  placeholder={enquiry.doors[4].spacePlaceholder}
+                />
+              </div>
+            </div>
+
+            {/* MESSAGE / NOTES TEXTAREA */}
+            <div class="mt-6">
+              <label
+                for="message"
+                class="mb-2 block select-none font-sans text-xs font-medium uppercase tracking-[0.12em] text-muted"
+              >
+                {enquiry.commonFields.message.label}
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="3"
+                placeholder={enquiry.commonFields.message.placeholder}
+                class="placeholder:text-muted/60 box-border min-h-[96px] w-full rounded border border-hair bg-transparent px-4 py-3 font-body text-base text-ink outline-none transition-colors duration-150 focus:border-spark focus:ring-1 focus:ring-spark"
+              ></textarea>
+            </div>
+
+            {/* INVISIBLE HONEYPOT FIELD (Spam bot trap) */}
+            <div style="display: none;" aria-hidden="true">
+              <label for="_hp_company">Do not fill this field</label>
+              <input
+                type="text"
+                id="_hp_company"
+                name="_hp_company"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            {/* CLOUDFLARE TURNSTILE SLOT */}
+            <div id="cf-turnstile-container" class="my-4 min-h-[48px]">
+              {
+                /* Turnstile widget will be rendered here if sitekey is configured */
+              }
+            </div>
+
+            {/* CONSENT CHECKBOX */}
+            <div class="mt-6">
+              <Checkbox
+                id="consent"
+                name="consent"
+                label={enquiry.commonFields.consent.label}
+                required
+                checked
+              />
+            </div>
+          </div>
+
+          {/* SUBMIT BUTTON & WHATSAPP ACTION */}
+          <div
+            class="flex flex-col gap-4 border-t border-hair pt-6 sm:flex-row sm:items-center"
+          >
+            <Button
+              type="submit"
+              variant="primary"
+              size="md"
+              id="submit-button"
+              class="w-full sm:w-auto"
+            >
+              {enquiry.buttons.submit}
+            </Button>
+
+            <a
+              id="whatsapp-direct-link"
+              href={defaultWhatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 py-2 font-sans text-xs uppercase tracking-[0.12em] text-muted transition-colors hover:text-spark-ink"
+            >
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1s.9 2.43 1.03 2.6c.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29"
+                ></path>
+              </svg>
+              <span>या व्हाट्सएप पर संदेश भेजें</span>
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 3: DIRECT CONTACT & VISIT US */}
+  <Section theme="paper" padding="lg">
+    <SectionHeader
+      number="02"
+      label={enquiry.directContact.heading}
+      title="केंद्र से सीधा संपर्क।"
+      sub={enquiry.directContact.sub}
+    />
+
+    <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {enquiry.directContact.phoneLabel}
+        </span>
+        <a
+          href={`tel:${site.phone}`}
+          class="mb-2 block font-serif text-xl text-ink transition-colors hover:text-spark-ink"
+        >
+          {site.phoneDisplay}
+        </a>
+        <a
+          href={defaultWhatsAppUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-body text-xs text-muted underline hover:text-spark-ink"
+        >
+          व्हाट्सएप चैट खोलें &rarr;
+        </a>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {enquiry.directContact.emailLabel}
+        </span>
+        <a
+          href={`mailto:${site.email}`}
+          class="mb-2 block break-all font-serif text-lg text-ink transition-colors hover:text-spark-ink"
+        >
+          {site.email}
+        </a>
+        <span class="font-body text-xs text-muted">
+          केंद्र का सीधा इनबॉक्स
+        </span>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {enquiry.directContact.placeLabel}
+        </span>
+        <p class="mb-1 font-body text-sm leading-relaxed text-ink">
+          {site.place}
+        </p>
+        <span class="font-body text-xs text-muted"> हिमाचल प्रदेश </span>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span
+          class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          {enquiry.directContact.hoursLabel}
+        </span>
+        <p class="mb-1 font-body text-sm leading-relaxed text-ink">
+          {site.hours}
+        </p>
+        <span class="font-body text-xs text-muted"> रविवार अवकाश </span>
+      </div>
+    </div>
+  </Section>
+
+  {
+    /* Pure CSS Styles for Door Switching without JavaScript (Progressive Enhancement) */
+  }
+  <style>
+    /* By default, door panels are hidden */
+    .door-panel {
+      display: none;
+    }
+
+    /* Modern CSS :has() activates panel based on checked radio button with NO JS */
+    :has(#door-radio-parent:checked) .panel-parent {
+      display: block;
+    }
+    :has(#door-radio-fellow:checked) .panel-fellow {
+      display: block;
+    }
+    :has(#door-radio-reader:checked) .panel-reader {
+      display: block;
+    }
+    :has(#door-radio-founder:checked) .panel-founder {
+      display: block;
+    }
+    :has(#door-radio-partner:checked) .panel-partner {
+      display: block;
+    }
+
+    /* Native CSS confirmation state without JS via URL hash #confirmation */
+    #confirmation:target {
+      display: block !important;
+    }
+    body:has(#confirmation:target) #form-view {
+      display: none !important;
+    }
+  </style>
+
+  {/* Progressive Enhancement Client Script */}
+  <script is:inline>
+    (function () {
+      const form = document.getElementById('enquiry-form');
+      if (!form) return;
+
+      const doorRadios = form.querySelectorAll('input[name="door"]');
+      const whatsappDirectLink = document.getElementById(
+        'whatsapp-direct-link'
+      );
+      const nameInput = document.getElementById('name');
+      const parentInterestSelect = document.getElementById('parent_interest');
+      const submitButton = document.getElementById('submit-button');
+      const clientErrorAlert = document.getElementById('client-error-alert');
+      const clientErrorText = document.getElementById('client-error-text');
+      const clientErrorWhatsappBtn = document.getElementById(
+        'client-error-whatsapp-btn'
+      );
+      const formView = document.getElementById('form-view');
+      const confirmationView = document.getElementById('confirmation-view');
+      const confirmationWhatsappBtn = document.getElementById(
+        'confirmation-whatsapp-btn'
+      );
+
+      const phone = '918287248119';
+
+      function updateWhatsAppLink() {
+        let selectedDoor = 'parent';
+        doorRadios.forEach(function (r) {
+          if (r.checked) selectedDoor = r.value;
+        });
+
+        const nameVal = nameInput ? nameInput.value.trim() : '';
+        let msg =
+          'नमस्ते Synapse, मैं प्रवेश के बारे में पूछताछ कर रहा/रही हूँ (' +
+          selectedDoor +
+          ')।';
+        if (nameVal) {
+          msg += ' मेरा नाम ' + nameVal + ' है।';
+        }
+
+        const url =
+          'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+        if (whatsappDirectLink) {
+          whatsappDirectLink.href = url;
+        }
+        if (clientErrorWhatsappBtn) {
+          clientErrorWhatsappBtn.href = url;
+        }
+        if (confirmationWhatsappBtn) {
+          confirmationWhatsappBtn.href = url;
+        }
+      }
+
+      // Check URL query params on load (e.g. /hi/enquire?door=fellow or ?door=parent&track=pcm)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlDoor = urlParams.get('door');
+      const urlTrack = urlParams.get('track');
+      const urlSubmitted = urlParams.get('submitted');
+
+      if (urlSubmitted === 'success') {
+        if (formView) formView.classList.add('hidden');
+        const confirmationEl = document.getElementById('confirmation');
+        if (confirmationEl) {
+          confirmationEl.classList.remove('hidden');
+          confirmationEl.focus();
+        }
+      }
+
+      if (urlDoor) {
+        const matchingRadio = document.getElementById('door-radio-' + urlDoor);
+        if (matchingRadio) {
+          matchingRadio.checked = true;
+          window.synapseTrack?.('door_select', {
+            door: urlDoor,
+            source: 'url',
+          });
+        }
+      }
+
+      if (urlTrack && parentInterestSelect) {
+        parentInterestSelect.value = urlTrack;
+      }
+
+      doorRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          updateWhatsAppLink();
+          window.synapseTrack?.('door_select', {
+            door: radio.value,
+            source: 'radio',
+          });
+          // Update URL without reloading
+          if (window.history && window.history.replaceState) {
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('door', radio.value);
+            window.history.replaceState({}, '', newUrl);
+          }
+        });
+      });
+
+      if (nameInput) {
+        nameInput.addEventListener('input', updateWhatsAppLink);
+      }
+
+      updateWhatsAppLink();
+
+      // Track enquiry_start on first form field interaction
+      let enquiryStarted = false;
+      form.addEventListener('focusin', function () {
+        if (!enquiryStarted) {
+          enquiryStarted = true;
+          let currentDoor = 'parent';
+          doorRadios.forEach(function (r) {
+            if (r.checked) currentDoor = r.value;
+          });
+          window.synapseTrack?.('enquire_start', {
+            door: currentDoor,
+            form_id: 'enquiry-form',
+          });
+        }
+      });
+
+      // Progressive enhancement: AJAX submission
+      form.addEventListener('submit', async function (evt) {
+        evt.preventDefault();
+
+        let currentDoor = 'parent';
+        doorRadios.forEach(function (r) {
+          if (r.checked) currentDoor = r.value;
+        });
+        window.synapseTrack?.('enquire_submit', {
+          door: currentDoor,
+          form_id: 'enquiry-form',
+        });
+
+        if (clientErrorAlert) {
+          clientErrorAlert.classList.add('hidden');
+        }
+
+        const originalBtnText = submitButton
+          ? submitButton.textContent
+          : 'पूछताछ भेजें';
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'भेज रहे हैं...';
+        }
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch('/api/enquire', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+            },
+            body: formData,
+          });
+
+          const data = await response.json();
+
+          if (response.ok && data.ok) {
+            // Hide form and display confirmation smoothly
+            if (formView) formView.classList.add('hidden');
+            if (confirmationView) {
+              confirmationView.classList.remove('hidden');
+              confirmationView.focus();
+              confirmationView.scrollIntoView({ behavior: 'smooth' });
+            }
+          } else {
+            throw new Error(data.error || 'पूछताछ भेजने में विफल।');
+          }
+        } catch (err) {
+          if (clientErrorAlert && clientErrorText) {
+            clientErrorText.textContent =
+              err.message ||
+              'हम अभी आपकी पूछताछ नहीं भेज सके। कृपया हमें व्हाट्सएप पर संदेश भेजें।';
+            clientErrorAlert.classList.remove('hidden');
+            clientErrorAlert.scrollIntoView({ behavior: 'smooth' });
+          }
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalBtnText;
+          }
+        }
+      });
+    })();
+  </script>
+</BaseLayout>

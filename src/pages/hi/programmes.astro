@@ -1,0 +1,319 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import Button from '../../components/ui/Button.astro';
+import StatusChip from '../../components/ui/StatusChip.astro';
+import Accordion from '../../components/ui/Accordion.astro';
+import TutorDemo from '../../components/brand/TutorDemo.astro';
+
+import site from '../../content/hi/site.json';
+import programmesRaw from '../../content/hi/programmes.json';
+import faqRaw from '../../content/hi/faq.json';
+
+import type { ProgrammesContent, FaqContent } from '../../content/schemas';
+
+const programmes = programmesRaw as ProgrammesContent;
+const faq = faqRaw as FaqContent;
+---
+
+<BaseLayout
+  title={`कार्यक्रम एवं शिक्षण व्यवस्था — ${site.name}`}
+  description="चंबा में चार आरंभिक ट्रैक में छोटे समूह की कक्षाएं। एक मार्गदर्शक जो हर छात्र को जानता है। प्रति छात्र सप्ताह में 5 दिन। पूछताछ करने पर फीस साझा की जाती है।"
+  lang="hi"
+  activeFloor="g"
+>
+  {/* SECTION 1: HERO */}
+  <Section
+    id="overview"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <div class="max-w-4xl">
+      <div
+        class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        <span>{programmes.hero?.eyebrow ?? 'लर्निंग कॉमन्स · भूतल (G)'}</span>
+      </div>
+
+      {/* Exactly ONE <h1> per page */}
+      <h1
+        class="mb-6 font-serif text-display-xl-mobile font-normal leading-[1.04] tracking-[-0.025em] text-ink sm:text-display-lg lg:text-display-xl"
+      >
+        छोटे समूह। एक मार्गदर्शक जो <span class="italic text-spark-ink"
+          >हर छात्र को जानता है।</span
+        >
+      </h1>
+
+      <p
+        class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {programmes.hero?.sub}
+      </p>
+
+      {/* Classroom Hours & Location Strip */}
+      <div
+        class="bg-surface-dim/30 mb-8 flex flex-col gap-3 rounded border border-hair p-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="h-2 w-2 shrink-0 rounded-full bg-spark-ink"
+            aria-hidden="true"></span>
+          <span
+            class="font-sans text-xs font-semibold uppercase tracking-[0.12em] text-ink"
+          >
+            अभी खुला है: {site.hours}
+          </span>
+        </div>
+        <div class="font-body text-xs text-muted sm:text-right">
+          {site.place}
+        </div>
+      </div>
+
+      {/* Primary Actions */}
+      <div class="flex flex-wrap items-center gap-4">
+        <Button href="/hi/enquire" variant="primary">
+          प्रवेश के लिए पूछताछ करें
+        </Button>
+        <Button href="#schedule" variant="secondary"> समय-सारणी देखें </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 2: FOUR LAUNCH TRACKS */}
+  <Section id="tracks" theme="paper" padding="lg" class="border-b border-hair">
+    <SectionHeader
+      number="01"
+      label="आरंभिक ट्रैक"
+      title="चंबा में चार शैक्षणिक ट्रैक"
+      sub="प्रत्येक ट्रैक स्कूल की समझ और प्रतियोगी परीक्षाओं के बीच के अंतर को समाप्त करता है।"
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        programmes.tracks.map((track) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8">
+            <div>
+              <div class="mb-4 flex items-center justify-between">
+                <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                  {track.id.toUpperCase()}
+                </span>
+                <StatusChip status={track.status} />
+              </div>
+              <h3 class="mb-3 font-serif text-2xl font-normal text-ink">
+                {track.name}
+              </h3>
+              <p class="mb-6 font-body text-sm leading-relaxed text-muted">
+                कवर की जाने वाली परीक्षाएं:
+              </p>
+              <div class="mb-6 flex flex-wrap gap-2">
+                {track.exams.map((exam) => (
+                  <span class="bg-surface-dim/30 rounded border border-hair px-3 py-1 font-mono text-xs text-ink">
+                    {exam}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div class="border-t border-hair pt-4">
+              <a
+                href={`/hi/enquire?door=parent&track=${track.id}`}
+                class="font-sans text-xs uppercase tracking-wider text-ink underline hover:text-spark-ink"
+              >
+                इस ट्रैक के लिए पूछताछ करें &rarr;
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 3: SCHEDULE */}
+  <Section
+    id="schedule"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number="02"
+      label="समय-सारणी"
+      title="साप्ताहिक नियम एवं कक्षा का समय"
+      sub={programmes.schedule.attendanceRule}
+    />
+
+    <div class="overflow-x-auto rounded border border-hair bg-paper">
+      <table class="w-full text-left font-body text-sm">
+        <thead
+          class="bg-surface-dim/30 border-b border-hair font-sans text-xs uppercase tracking-wider text-muted"
+        >
+          <tr>
+            <th class="p-4">दिन</th>
+            <th class="p-4">समय</th>
+            <th class="p-4">गतिविधि</th>
+            <th class="p-4">विवरण</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-hair">
+          {
+            programmes.schedule.table?.map((row) => (
+              <tr
+                class={
+                  row.day === 'रविवार' ? 'bg-surface-dim/10 text-muted' : ''
+                }
+              >
+                <td class="p-4 font-medium text-ink">{row.day}</td>
+                <td class="p-4 font-mono text-xs text-muted">{row.window}</td>
+                <td class="p-4 text-ink">{row.activity}</td>
+                <td class="p-4 text-muted">{row.detail}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  {/* SECTION 4: HOW A CLASS RUNS */}
+  <Section
+    id="how-a-class-runs"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number="03"
+      label="कक्षा का संचालन"
+      title="कक्षा के भीतर एक दिन"
+      sub="सक्रिय समस्या समाधान, दैनिक अभ्यास परीक्षाएं और समर्पित संदेह समाधान।"
+    />
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5">
+      {
+        programmes.classStructure.steps?.map((step) => (
+          <div class="rounded border border-hair bg-paper p-5">
+            <span class="mb-2 block font-mono text-xs font-semibold text-spark-ink">
+              {step.number}
+            </span>
+            <h4 class="mb-2 font-serif text-lg font-normal text-ink">
+              {step.name}
+            </h4>
+            <p class="font-body text-xs leading-relaxed text-muted">
+              {step.summary}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* SECTION 5: ENTRANCE BASELINE */}
+  <Section
+    id="entrance-baseline"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <div class="bg-surface-dim/30 rounded border border-hair p-8 sm:p-10">
+      <div class="mb-4 flex items-center justify-between">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          आधारभूत मूल्यांकन
+        </span>
+        <StatusChip status={programmes.baseline.status} />
+      </div>
+      <h3 class="mb-3 font-serif text-2xl font-normal text-ink sm:text-3xl">
+        {programmes.baseline.name}
+      </h3>
+      <p class="mb-6 max-w-2xl font-body text-base leading-relaxed text-muted">
+        {programmes.baseline.description}
+      </p>
+      <Button
+        href="/hi/enquire?door=parent&track=baseline"
+        variant="primary"
+        size="md"
+      >
+        आधारभूत मूल्यांकन के लिए पूछताछ करें
+      </Button>
+    </div>
+  </Section>
+
+  {/* SECTION 6: FEE POLICY */}
+  <Section
+    id="fee-policy"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <div class="mx-auto max-w-3xl text-center">
+      <span
+        class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+      >
+        {programmes.feePolicy?.heading ?? 'फीस नीति'}
+      </span>
+      <h2 class="mb-4 font-serif text-3xl font-normal text-ink sm:text-4xl">
+        {programmes.feePolicy?.statement ?? programmes.fee}
+      </h2>
+      <p
+        class="mx-auto mb-8 max-w-xl font-body text-base leading-relaxed text-muted"
+      >
+        {programmes.feePolicy?.detail ?? 'पूछताछ करने पर फीस साझा की जाती है।'}
+      </p>
+      <Button
+        href={programmes.feePolicy?.cta?.href ?? '/hi/enquire'}
+        variant="primary"
+      >
+        {programmes.feePolicy?.cta?.label ?? 'प्रवेश के लिए पूछताछ करें'}
+      </Button>
+    </div>
+  </Section>
+
+  {/* SECTION 7: TUTOR DEMO (CORTEON) */}
+  <Section
+    id="tutor-demo"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <SectionHeader
+      number="04"
+      label="प्रायोगिक प्रदर्शन"
+      title="कोर्टियन ट्यूटर डेमो"
+      sub="संकेत पहले, उत्तर बाद में। देखें कि ट्यूटर कैसे सोचने की क्षमता विकसित करता है।"
+    />
+    <TutorDemo />
+  </Section>
+
+  {/* SECTION 8: FAQ */}
+  <Section id="faq" theme="paper" padding="lg">
+    <SectionHeader
+      number="05"
+      label="प्रश्नोत्तरी"
+      title={faq.heading}
+      sub={faq.sub}
+    />
+    <div class="mx-auto max-w-3xl">
+      <Accordion items={faq.items} />
+    </div>
+
+    {/* Final CTA Strip */}
+    <div class="mt-16 text-center">
+      <p class="mb-6 font-serif text-xl italic text-muted">
+        कोई अन्य प्रश्न है? हम सीधे फोन पर बात करने के लिए तत्पर हैं।
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <Button href="/hi/enquire" variant="primary">
+          प्रवेश पूछताछ फॉर्म
+        </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}?text=${encodeURIComponent('नमस्ते Synapse, मैं कार्यक्रमों के बारे में पूछना चाहता हूँ।')}`}
+          variant="secondary"
+        >
+          व्हाट्सएप पर पूछें
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

@@ -8,6 +8,13 @@ export default defineConfig({
   redirects: {
     '/_kit': '/kit',
   },
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'hi'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,

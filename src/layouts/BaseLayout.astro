@@ -14,6 +14,7 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  lang?: 'en' | 'hi';
   theme?: 'paper' | 'ink';
   activeFloor?: 'g' | '1' | '2' | null;
   hideNav?: boolean;
@@ -22,10 +23,14 @@ interface Props {
   noindex?: boolean;
 }
 
+const isPathHindi =
+  Astro.url.pathname === '/hi' || Astro.url.pathname.startsWith('/hi/');
+
 const {
   title = `${site.name} — A modern gurukul in Chamba`,
   description = site.tagline,
   image = '/og-image.png',
+  lang = isPathHindi ? 'hi' : 'en',
   theme = 'paper',
   activeFloor = null,
   hideNav = false,
@@ -40,6 +45,26 @@ const siteUrl = Astro.site
 const cleanPath = Astro.url.pathname.replace(/\/$/, '');
 const canonicalUrl = cleanPath ? `${siteUrl}${cleanPath}` : `${siteUrl}/`;
 const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+// Compute hreflang alternates for launch bilingual routes (Home, Programmes, Enquire)
+const isBilingualRoute =
+  cleanPath === '' ||
+  cleanPath === '/hi' ||
+  cleanPath === '/programmes' ||
+  cleanPath === '/hi/programmes' ||
+  cleanPath === '/enquire' ||
+  cleanPath === '/hi/enquire';
+
+let enCanonicalUrl = `${siteUrl}/`;
+let hiCanonicalUrl = `${siteUrl}/hi`;
+
+if (cleanPath === '/programmes' || cleanPath === '/hi/programmes') {
+  enCanonicalUrl = `${siteUrl}/programmes`;
+  hiCanonicalUrl = `${siteUrl}/hi/programmes`;
+} else if (cleanPath === '/enquire' || cleanPath === '/hi/enquire') {
+  enCanonicalUrl = `${siteUrl}/enquire`;
+  hiCanonicalUrl = `${siteUrl}/hi/enquire`;
+}
 
 const isDevRoute =
   noindex ||
@@ -82,7 +107,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en" data-theme={theme} class={theme === 'ink' ? 'theme-ink' : ''}>
+<html lang={lang} data-theme={theme} class={theme === 'ink' ? 'theme-ink' : ''}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,6 +118,15 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {
+      isBilingualRoute && (
+        <>
+          <link rel="alternate" hreflang="en" href={enCanonicalUrl} />
+          <link rel="alternate" hreflang="hi" href={hiCanonicalUrl} />
+          <link rel="alternate" hreflang="x-default" href={enCanonicalUrl} />
+        </>
+      )
+    }
     {
       isDevRoute ? (
         <meta name="robots" content="noindex, nofollow" />
@@ -108,7 +142,7 @@ const jsonLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale" content={lang === 'hi' ? 'hi_IN' : 'en_IN'} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -142,7 +176,7 @@ const jsonLd = {
     </main>
 
     <slot name="footer">
-      {!hideFooter && <Footer />}
+      {!hideFooter && <Footer currentPath={Astro.url.pathname} />}
     </slot>
   </body>
 </html>

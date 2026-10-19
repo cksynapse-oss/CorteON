@@ -1,0 +1,101 @@
+---
+interface Props {
+  currentPath?: string;
+  class?: string;
+  onDark?: boolean;
+}
+
+const {
+  currentPath = Astro.url.pathname,
+  class: className = '',
+  onDark = false,
+} = Astro.props;
+
+// Determine current locale
+const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
+
+// Compute counterpart routes
+let enHref = '/';
+let hiHref = '/hi';
+
+if (isHindi) {
+  const sub = currentPath.replace(/^\/hi\/?/, '');
+  enHref = sub ? `/${sub}` : '/';
+  hiHref = currentPath;
+} else {
+  enHref = currentPath;
+  if (currentPath === '/' || currentPath === '') {
+    hiHref = '/hi';
+  } else if (
+    currentPath === '/programmes' ||
+    currentPath.startsWith('/programmes/')
+  ) {
+    hiHref = '/hi/programmes';
+  } else if (
+    currentPath === '/enquire' ||
+    currentPath.startsWith('/enquire/')
+  ) {
+    hiHref = '/hi/enquire';
+  } else {
+    // Other pages link to Hindi home
+    hiHref = '/hi';
+  }
+}
+
+// Ensure clean paths without trailing slashes except for root
+if (enHref.length > 1 && enHref.endsWith('/')) {
+  enHref = enHref.slice(0, -1);
+}
+if (hiHref.length > 1 && hiHref.endsWith('/')) {
+  hiHref = hiHref.slice(0, -1);
+}
+---
+
+<nav
+  aria-label="Language selection"
+  class:list={[
+    'inline-flex select-none items-center rounded-pill border p-0.5 font-mono text-xs',
+    onDark
+      ? 'border-hair-ink bg-ink text-paper'
+      : 'border-hair bg-paper text-ink',
+    className,
+  ]}
+>
+  <a
+    href={enHref}
+    aria-label="Switch to English"
+    aria-current={!isHindi ? 'page' : undefined}
+    lang="en"
+    class:list={[
+      'inline-flex items-center justify-center rounded-pill px-2.5 py-1 transition-colors focus-visible:outline-2 focus-visible:outline-spark',
+      !isHindi
+        ? onDark
+          ? 'bg-paper font-semibold text-ink'
+          : 'bg-ink font-semibold text-paper'
+        : onDark
+          ? 'text-muted-on-ink hover:text-paper'
+          : 'text-muted hover:text-ink',
+    ]}
+  >
+    EN
+  </a>
+
+  <a
+    href={hiHref}
+    aria-label="हिन्दी में देखें (Switch to Hindi)"
+    aria-current={isHindi ? 'page' : undefined}
+    lang="hi"
+    class:list={[
+      'inline-flex items-center justify-center rounded-pill px-2.5 py-1 transition-colors focus-visible:outline-2 focus-visible:outline-spark',
+      isHindi
+        ? onDark
+          ? 'bg-paper font-semibold text-ink'
+          : 'bg-ink font-semibold text-paper'
+        : onDark
+          ? 'text-muted-on-ink hover:text-paper'
+          : 'text-muted hover:text-ink',
+    ]}
+  >
+    हिन्दी
+  </a>
+</nav>

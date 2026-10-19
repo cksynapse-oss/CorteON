@@ -22,7 +22,7 @@ export const SourceEnum = z.enum(['owner-confirmed', 'illustrative']);
 export type Source = z.infer<typeof SourceEnum>;
 
 export const siteSchema = z.object({
-  name: z.literal('Synapse'),
+  name: z.union([z.literal('Synapse'), z.literal('सिनेप्स')]),
   tagline: z.string().min(1),
   subline: z.string().min(1),
   domain: z.literal('corteon.in'),
@@ -49,7 +49,10 @@ export const programmeTrackSchema = z.object({
 export const programmesSchema = z.object({
   status: z.literal('LIVE NOW'),
   source: z.literal('owner-confirmed'),
-  fee: z.literal('Fees are shared when you enquire.'),
+  fee: z.union([
+    z.literal('Fees are shared when you enquire.'),
+    z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
+  ]),
   hero: z
     .object({
       eyebrow: z.string().min(1),
@@ -106,7 +109,10 @@ export const programmesSchema = z.object({
   feePolicy: z
     .object({
       heading: z.string().min(1),
-      statement: z.literal('Fees are shared when you enquire.'),
+      statement: z.union([
+        z.literal('Fees are shared when you enquire.'),
+        z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
+      ]),
       detail: z.string().min(1),
       cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
     })
@@ -242,7 +248,10 @@ export const homeSchema = z.object({
     label: z.string().min(1),
     title: z.string().min(1),
     sub: z.string().min(1),
-    fee: z.literal('Fees are shared when you enquire.'),
+    fee: z.union([
+      z.literal('Fees are shared when you enquire.'),
+      z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
+    ]),
     lead: z.string().min(1),
     cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
   }),
@@ -342,7 +351,10 @@ export const enquirySchema = z.object({
   }),
   notices: z.object({
     under18: z.string().min(1),
-    fees: z.literal('Fees are shared when you enquire.'),
+    fees: z.union([
+      z.literal('Fees are shared when you enquire.'),
+      z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
+    ]),
     callback: z.string().min(1),
   }),
   doors: z.array(enquiryDoorSchema).length(5),

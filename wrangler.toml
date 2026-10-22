@@ -1,3 +1,5 @@
-name = "corteon-synapse"
-pages_build_output_dir = "dist"
-compatibility_date = "2024-11-01"
+name = "corteon"
+compatibility_date = "2026-10-22"
+
+[assets]
+directory = "./dist"

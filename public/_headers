@@ -9,3 +9,7 @@
   # 2. Check browser console on all routes (including /hi/* and demo islands) for any CSP reports.
   # 3. Consider replacing 'unsafe-inline' with sha256 hashes/nonces if Astro inline scripts are refactored.
   Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
+
+/api/*
+  # CORS headers are deliberately omitted to enforce same-origin requests only; API submissions are accepted only from corteon.in.
+  Cache-Control: no-store

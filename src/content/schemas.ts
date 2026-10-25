@@ -21,12 +21,22 @@ export type StatusType =
 export const SourceEnum = z.enum(['owner-confirmed', 'illustrative']);
 export type Source = z.infer<typeof SourceEnum>;
 
+export const postalAddressSchema = z.object({
+  streetAddress: z.string().min(1),
+  addressLocality: z.string().min(1),
+  addressRegion: z.string().min(1),
+  postalCode: z.string().min(1).optional(),
+  addressCountry: z.string().min(1),
+});
+export type PostalAddress = z.infer<typeof postalAddressSchema>;
+
 export const siteSchema = z.object({
   name: z.union([z.literal('Synapse'), z.literal('सिनेप्स')]),
   tagline: z.string().min(1),
   subline: z.string().min(1),
   domain: z.literal('corteon.in'),
   place: z.string().min(1),
+  address: postalAddressSchema,
   phone: z.string().regex(/^\d{10}$/),
   phoneDisplay: z.string().min(1),
   email: z.string().email(),

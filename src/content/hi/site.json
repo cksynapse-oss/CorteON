@@ -4,6 +4,12 @@
   "subline": "हर ज़िले में, सीखने, सिखाने और बनाने की एक जगह।",
   "domain": "corteon.in",
   "place": "पोस्ट ऑफिस के पीछे, चंबा, हिमाचल प्रदेश",
+  "address": {
+    "streetAddress": "पोस्ट ऑफिस के पीछे",
+    "addressLocality": "चंबा",
+    "addressRegion": "हिमाचल प्रदेश",
+    "addressCountry": "IN"
+  },
   "phone": "8287248119",
   "phoneDisplay": "+91 82872 48119",
   "email": "cksynapse@mail.com",

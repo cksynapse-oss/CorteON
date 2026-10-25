@@ -4,6 +4,12 @@
   "subline": "In every district, a place to learn, teach and build.",
   "domain": "corteon.in",
   "place": "Behind the Post Office, Chamba, Himachal Pradesh",
+  "address": {
+    "streetAddress": "Behind the Post Office",
+    "addressLocality": "Chamba",
+    "addressRegion": "Himachal Pradesh",
+    "addressCountry": "IN"
+  },
   "phone": "8287248119",
   "phoneDisplay": "+91 82872 48119",
   "email": "cksynapse@mail.com",

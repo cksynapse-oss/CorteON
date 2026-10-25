@@ -87,10 +87,13 @@ const jsonLd = {
   email: site.email,
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Behind the Post Office',
-    addressLocality: 'Chamba',
-    addressRegion: 'Himachal Pradesh',
-    addressCountry: 'IN',
+    streetAddress: activeSite.address.streetAddress,
+    addressLocality: activeSite.address.addressLocality,
+    addressRegion: activeSite.address.addressRegion,
+    ...(activeSite.address.postalCode
+      ? { postalCode: activeSite.address.postalCode }
+      : {}),
+    addressCountry: activeSite.address.addressCountry,
   },
   openingHoursSpecification: [
     {

@@ -33,6 +33,7 @@ export const siteSchema = z.object({
   hours: z.string().min(1),
   hoursDetail: z.string().min(1),
   callbackWindow: z.string().min(1),
+  ogImageAlt: z.string().min(1),
   status: z.literal('LIVE NOW'),
   source: z.literal('owner-confirmed'),
 });

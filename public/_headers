@@ -3,3 +3,9 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  # Content-Security-Policy-Report-Only: monitors policy violations without breaking functionality.
+  # Before flipping to enforcing (Content-Security-Policy):
+  # 1. Verify Cloudflare Turnstile challenge loads and solves cleanly on /enquire and /fellowship.
+  # 2. Check browser console on all routes (including /hi/* and demo islands) for any CSP reports.
+  # 3. Consider replacing 'unsafe-inline' with sha256 hashes/nonces if Astro inline scripts are refactored.
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';

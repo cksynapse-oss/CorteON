@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://corteon.in/sitemap.xml
+Sitemap: https://corteon.in/sitemap-index.xml

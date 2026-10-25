@@ -19,6 +19,7 @@
     "check": "astro check && eslint . && prettier --check . && npm run test:contrast && npm run content-lint && npm run build && npm run link-check && npm run axe && npm run lighthouse-ci"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "@astrojs/tailwind": "^5.1.5",
     "@fontsource-variable/geist": "^5.1.1",
     "@fontsource-variable/geist-mono": "^5.1.1",

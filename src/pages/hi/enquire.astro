@@ -519,18 +519,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
             <div id="cf-turnstile-container" class="my-4 min-h-[48px]">
               {
                 turnstileSiteKey ? (
-                  <>
-                    <div
-                      class="cf-turnstile"
-                      data-sitekey={turnstileSiteKey}
-                      data-theme="light"
-                    />
-                    <script
-                      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-                      async
-                      defer
-                    />
-                  </>
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey={turnstileSiteKey}
+                    data-theme="light"
+                  />
                 ) : null
               }
             </div>
@@ -692,28 +685,44 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   </style>
 
   {/* Progressive Enhancement Client Script */}
-  <script is:inline>
+  <script>
+    import {
+      setupTurnstileLoader,
+      waitForTurnstileToken,
+    } from '../../scripts/turnstile';
+
     (function () {
-      const form = document.getElementById('enquiry-form');
+      const form = document.getElementById(
+        'enquiry-form'
+      ) as HTMLFormElement | null;
       if (!form) return;
 
-      const doorRadios = form.querySelectorAll('input[name="door"]');
+      setupTurnstileLoader(form);
+
+      const doorRadios =
+        form.querySelectorAll<HTMLInputElement>('input[name="door"]');
       const whatsappDirectLink = document.getElementById(
         'whatsapp-direct-link'
-      );
-      const nameInput = document.getElementById('name');
-      const parentInterestSelect = document.getElementById('parent_interest');
-      const submitButton = document.getElementById('submit-button');
+      ) as HTMLAnchorElement | null;
+      const nameInput = document.getElementById(
+        'name'
+      ) as HTMLInputElement | null;
+      const parentInterestSelect = document.getElementById(
+        'parent_interest'
+      ) as HTMLSelectElement | null;
+      const submitButton = document.getElementById(
+        'submit-button'
+      ) as HTMLButtonElement | null;
       const clientErrorAlert = document.getElementById('client-error-alert');
       const clientErrorText = document.getElementById('client-error-text');
       const clientErrorWhatsappBtn = document.getElementById(
         'client-error-whatsapp-btn'
-      );
+      ) as HTMLAnchorElement | null;
       const formView = document.getElementById('form-view');
       const confirmationView = document.getElementById('confirmation-view');
       const confirmationWhatsappBtn = document.getElementById(
         'confirmation-whatsapp-btn'
-      );
+      ) as HTMLAnchorElement | null;
 
       const phone = '918287248119';
 
@@ -761,7 +770,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
       }
 
       if (urlDoor) {
-        const matchingRadio = document.getElementById('door-radio-' + urlDoor);
+        const matchingRadio = document.getElementById(
+          'door-radio-' + urlDoor
+        ) as HTMLInputElement | null;
         if (matchingRadio) {
           matchingRadio.checked = true;
           window.synapseTrack?.('door_select', {
@@ -784,7 +795,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           });
           // Update URL without reloading
           if (window.history && window.history.replaceState) {
-            const newUrl = new URL(window.location);
+            const newUrl = new URL(window.location.href);
             newUrl.searchParams.set('door', radio.value);
             window.history.replaceState({}, '', newUrl);
           }
@@ -838,6 +849,8 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           submitButton.textContent = 'भेज रहे हैं...';
         }
 
+        await waitForTurnstileToken(form);
+
         try {
           const formData = new FormData(form);
           const response = await fetch('/api/enquire', {
@@ -864,7 +877,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
         } catch (err) {
           if (clientErrorAlert && clientErrorText) {
             clientErrorText.textContent =
-              err.message ||
+              (err instanceof Error ? err.message : '') ||
               'हम अभी आपकी पूछताछ नहीं भेज सके। कृपया हमें व्हाट्सएप पर संदेश भेजें।';
             clientErrorAlert.classList.remove('hidden');
             clientErrorAlert.scrollIntoView({ behavior: 'smooth' });

@@ -11,7 +11,7 @@
  * - Returns JSON response or HTTP 303 Redirect back to /enquire?submitted=success.
  */
 
-import site from '../../src/content/site.json';
+import site from '../../src/content/site.json' with { type: 'json' };
 
 export interface Env {
   APPS_SCRIPT_URL?: string;
@@ -538,7 +538,7 @@ export async function onRequestPost(context: {
     }
   } else {
     // Development / preview environment without APPS_SCRIPT_URL
-    console.log(
+    console.info(
       '[Synapse /api/enquire] Environment APPS_SCRIPT_URL not configured. Enquiry logged:',
       cleaned
     );

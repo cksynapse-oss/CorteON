@@ -559,18 +559,11 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           <div id="cf-turnstile-container" class="my-4 min-h-[48px]">
             {
               turnstileSiteKey ? (
-                <>
-                  <div
-                    class="cf-turnstile"
-                    data-sitekey={turnstileSiteKey}
-                    data-theme="light"
-                  />
-                  <script
-                    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-                    async
-                    defer
-                  />
-                </>
+                <div
+                  class="cf-turnstile"
+                  data-sitekey={turnstileSiteKey}
+                  data-theme="light"
+                />
               ) : null
             }
           </div>
@@ -628,18 +621,34 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
   </Section>
 
   {/* Progressive enhancement script for form submission */}
-  <script is:inline>
-    (function () {
-      const form = document.getElementById('fellowship-form');
-      if (!form) return;
+  <script>
+    import {
+      setupTurnstileLoader,
+      waitForTurnstileToken,
+    } from '../scripts/turnstile';
 
-      const submitButton = document.getElementById('submit-button');
+    (function () {
+      const form = document.getElementById(
+        'fellowship-form'
+      ) as HTMLFormElement | null;
+      if (!form) return;
+      setupTurnstileLoader(form);
+
+      const submitButton = document.getElementById(
+        'submit-button'
+      ) as HTMLButtonElement | null;
       const confirmationEl = document.getElementById('confirmation');
       const formContainer = document.getElementById('form-container');
       const clientErrorAlert = document.getElementById('client-error-alert');
-      const nameInput = document.getElementById('fellow_name');
-      const subjectInput = document.getElementById('fellow_subject');
-      const whatsappLink = document.getElementById('whatsapp-fellow-link');
+      const nameInput = document.getElementById(
+        'fellow_name'
+      ) as HTMLInputElement | null;
+      const subjectInput = document.getElementById(
+        'fellow_subject'
+      ) as HTMLInputElement | null;
+      const whatsappLink = document.getElementById(
+        'whatsapp-fellow-link'
+      ) as HTMLAnchorElement | null;
 
       function updateWhatsAppLink() {
         if (!whatsappLink) return;
@@ -654,7 +663,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
         whatsappLink.href = waUrl;
         const errWhatsappBtn = document.getElementById(
           'client-error-whatsapp-btn'
-        );
+        ) as HTMLAnchorElement | null;
         if (errWhatsappBtn) {
           errWhatsappBtn.href = waUrl;
         }
@@ -685,6 +694,8 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           submitButton.textContent = 'Sending...';
         }
 
+        await waitForTurnstileToken(form);
+
         try {
           const formData = new FormData(form);
           const response = await fetch('/api/enquire', {
@@ -709,7 +720,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               document.getElementById('client-error-text');
             const errWhatsappBtn = document.getElementById(
               'client-error-whatsapp-btn'
-            );
+            ) as HTMLAnchorElement | null;
             if (clientErrorText) {
               clientErrorText.textContent = err;
             } else if (clientErrorAlert) {

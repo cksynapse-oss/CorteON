@@ -652,6 +652,43 @@ export const fellowshipSchema = z.object({
     callbackPromise: z.string().min(1),
     termsNotice: z.string().min(1),
   }),
+  form: z.object({
+    fields: z.object({
+      name: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+      }),
+      phone: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+        helpText: z.string().min(1),
+      }),
+      email: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+      }),
+      subject: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+      }),
+      exam: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+      }),
+      message: z.object({
+        label: z.string().min(1),
+        placeholder: z.string().min(1),
+      }),
+      consent: z.object({
+        label: z.string().min(1),
+      }),
+    }),
+    buttons: z.object({
+      submit: z.string().min(1),
+      submitting: z.string().min(1),
+      whatsapp: z.string().min(1),
+    }),
+  }),
 });
 export type FellowshipContent = z.infer<typeof fellowshipSchema>;
 

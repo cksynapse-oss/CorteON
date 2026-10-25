@@ -126,5 +126,42 @@
     "doorNote": "Applications are open now. Each fellow teaches one class a day.",
     "callbackPromise": "The owner phones back personally {callbackWindow}.",
     "termsNotice": "Terms: One class a day. Reserved desk, certified teaching hours, and Corteon tutor access included. Senior roles stipend and media share: amount to be agreed. Unresolved terms say to be agreed."
+  },
+  "form": {
+    "fields": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "phone": {
+        "label": "Phone / WhatsApp",
+        "placeholder": "10-digit mobile number",
+        "helpText": "We use this only to phone you back personally {callbackWindow}."
+      },
+      "email": {
+        "label": "Email Address (Optional)",
+        "placeholder": "name@example.com"
+      },
+      "subject": {
+        "label": "Subject You Teach",
+        "placeholder": "e.g. Physics, Mathematics, Chemistry, Biology, Reasoning"
+      },
+      "exam": {
+        "label": "Exam You Are Preparing For",
+        "placeholder": "e.g. UPSC, State PSC, GATE, NET, SSC"
+      },
+      "message": {
+        "label": "Why do you want to teach? (Optional)",
+        "placeholder": "Tell us about your teaching experience, study schedule, or any specific questions."
+      },
+      "consent": {
+        "label": "We use this only to contact you about Synapse."
+      }
+    },
+    "buttons": {
+      "submit": "Send Application",
+      "submitting": "Sending...",
+      "whatsapp": "Or apply via WhatsApp"
+    }
   }
 }

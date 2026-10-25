@@ -34,7 +34,7 @@ const faq = resolveCallbackWindow(faqRaw as FaqContent);
       <div
         class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
       >
-        <span>{programmes.hero?.eyebrow ?? 'LEARNING COMMONS · FLOOR G'}</span>
+        <span>{programmes.hero.eyebrow}</span>
       </div>
 
       {/* Exactly ONE <h1> per page */}
@@ -49,10 +49,7 @@ const faq = resolveCallbackWindow(faqRaw as FaqContent);
       <p
         class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
       >
-        {
-          programmes.hero?.sub ??
-            'Four launch tracks in Chamba, five days a week per student. Built around active problem solving, daily practice tests, and dedicated doubt clinics.'
-        }
+        {programmes.hero.sub}
       </p>
 
       {/* Open Now Strip */}
@@ -61,20 +58,17 @@ const faq = resolveCallbackWindow(faqRaw as FaqContent);
       >
         <StatusChip status="LIVE NOW" />
         <span class="font-sans text-xs text-ink sm:text-sm">
-          {
-            programmes.hero?.strip ??
-              `OPEN NOW: ${programmes.schedule.days}, ${programmes.schedule.hours} · ${site.place}`
-          }
+          {programmes.hero.strip}
         </span>
       </div>
 
       {/* Primary and Secondary Actions */}
       <div class="flex flex-wrap items-center gap-4">
-        <Button href="/enquire" variant="primary">
-          Enquire About Admission
+        <Button href={programmes.hero.primaryCta.href} variant="primary">
+          {programmes.hero.primaryCta.label}
         </Button>
-        <Button href="#schedule" variant="secondary">
-          View Class Schedule
+        <Button href={programmes.hero.secondaryCta.href} variant="secondary">
+          {programmes.hero.secondaryCta.label}
         </Button>
       </div>
     </div>
@@ -83,10 +77,10 @@ const faq = resolveCallbackWindow(faqRaw as FaqContent);
   {/* SECTION 2: THE FOUR LAUNCH TRACKS */}
   <Section id="tracks" theme="paper" padding="lg" class="border-b border-hair">
     <SectionHeader
-      number="01"
-      label="Launch Tracks"
-      title="Four Focused Tracks in Chamba"
-      sub="Targeting national competitive entrances and foundational academic mastery."
+      number={programmes.tracksSection.number}
+      label={programmes.tracksSection.label}
+      title={programmes.tracksSection.title}
+      sub={programmes.tracksSection.sub}
     />
 
     <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -335,16 +329,13 @@ const faq = resolveCallbackWindow(faqRaw as FaqContent);
         </div>
 
         <h2 class="mb-4 font-serif text-2xl font-normal text-ink sm:text-3xl">
-          {programmes.feePolicy?.statement ?? programmes.fee}
+          {programmes.feePolicy.statement}
         </h2>
 
         <p
           class="mb-6 font-body text-base leading-relaxed text-muted sm:text-body-lg"
         >
-          {
-            programmes.feePolicy?.detail ??
-              'We do not publish fee estimates or take online payments on this site. When you enquire, the centre owner calls you personally to understand your goals and share full fee details.'
-          }
+          {programmes.feePolicy.detail}
         </p>
 
         <div

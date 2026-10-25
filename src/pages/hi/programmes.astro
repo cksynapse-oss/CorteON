@@ -34,7 +34,7 @@ const faq = faqRaw as FaqContent;
       <div
         class="mb-4 inline-flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
       >
-        <span>{programmes.hero?.eyebrow ?? 'लर्निंग कॉमन्स · भूतल (G)'}</span>
+        <span>{programmes.hero.eyebrow}</span>
       </div>
 
       {/* Exactly ONE <h1> per page */}
@@ -49,7 +49,7 @@ const faq = faqRaw as FaqContent;
       <p
         class="mb-8 font-body text-base leading-relaxed text-muted sm:text-body-lg"
       >
-        {programmes.hero?.sub}
+        {programmes.hero.sub}
       </p>
 
       {/* Classroom Hours & Location Strip */}
@@ -73,10 +73,12 @@ const faq = faqRaw as FaqContent;
 
       {/* Primary Actions */}
       <div class="flex flex-wrap items-center gap-4">
-        <Button href="/hi/enquire" variant="primary">
-          प्रवेश के लिए पूछताछ करें
+        <Button href={programmes.hero.primaryCta.href} variant="primary">
+          {programmes.hero.primaryCta.label}
         </Button>
-        <Button href="#schedule" variant="secondary"> समय-सारणी देखें </Button>
+        <Button href={programmes.hero.secondaryCta.href} variant="secondary">
+          {programmes.hero.secondaryCta.label}
+        </Button>
       </div>
     </div>
   </Section>
@@ -84,10 +86,10 @@ const faq = faqRaw as FaqContent;
   {/* SECTION 2: FOUR LAUNCH TRACKS */}
   <Section id="tracks" theme="paper" padding="lg" class="border-b border-hair">
     <SectionHeader
-      number="01"
-      label="आरंभिक ट्रैक"
-      title="चंबा में चार शैक्षणिक ट्रैक"
-      sub="प्रत्येक ट्रैक स्कूल की समझ और प्रतियोगी परीक्षाओं के बीच के अंतर को समाप्त करता है।"
+      number={programmes.tracksSection.number}
+      label={programmes.tracksSection.label}
+      title={programmes.tracksSection.title}
+      sub={programmes.tracksSection.sub}
     />
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -251,21 +253,18 @@ const faq = faqRaw as FaqContent;
       <span
         class="mb-2 block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
       >
-        {programmes.feePolicy?.heading ?? 'फीस नीति'}
+        {programmes.feePolicy.heading}
       </span>
       <h2 class="mb-4 font-serif text-3xl font-normal text-ink sm:text-4xl">
-        {programmes.feePolicy?.statement ?? programmes.fee}
+        {programmes.feePolicy.statement}
       </h2>
       <p
         class="mx-auto mb-8 max-w-xl font-body text-base leading-relaxed text-muted"
       >
-        {programmes.feePolicy?.detail ?? 'पूछताछ करने पर फीस साझा की जाती है।'}
+        {programmes.feePolicy.detail}
       </p>
-      <Button
-        href={programmes.feePolicy?.cta?.href ?? '/hi/enquire'}
-        variant="primary"
-      >
-        {programmes.feePolicy?.cta?.label ?? 'प्रवेश के लिए पूछताछ करें'}
+      <Button href={programmes.feePolicy.cta.href} variant="primary">
+        {programmes.feePolicy.cta.label}
       </Button>
     </div>
   </Section>

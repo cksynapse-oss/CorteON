@@ -53,51 +53,51 @@ export const programmesSchema = z.object({
     z.literal('Fees are shared when you enquire.'),
     z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
   ]),
-  hero: z
-    .object({
-      eyebrow: z.string().min(1),
-      title: z.string().min(1),
-      sub: z.string().min(1),
-      strip: z.string().min(1),
-      primaryCta: z.object({
-        label: z.string().min(1),
-        href: z.string().min(1),
-      }),
-      secondaryCta: z.object({
-        label: z.string().min(1),
-        href: z.string().min(1),
-      }),
-    })
-    .optional(),
+  hero: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    strip: z.string().min(1),
+    primaryCta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+    secondaryCta: z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    }),
+  }),
   schedule: z.object({
     days: z.string().min(1),
     hours: z.string().min(1),
     attendance: z.string().min(1),
     attendanceRule: z.string().optional(),
-    table: z
-      .array(
-        z.object({
-          day: z.string().min(1),
-          window: z.string().min(1),
-          activity: z.string().min(1),
-          detail: z.string().min(1),
-        })
-      )
-      .optional(),
+    table: z.array(
+      z.object({
+        day: z.string().min(1),
+        window: z.string().min(1),
+        activity: z.string().min(1),
+        detail: z.string().min(1),
+      })
+    ),
   }),
   classStructure: z.object({
     groupSize: z.string().min(1),
     dailyPracticeTest: z.string().min(1),
     doubtClinics: z.string().min(1),
-    steps: z
-      .array(
-        z.object({
-          number: z.string().min(1),
-          name: z.string().min(1),
-          summary: z.string().min(1),
-        })
-      )
-      .optional(),
+    steps: z.array(
+      z.object({
+        number: z.string().min(1),
+        name: z.string().min(1),
+        summary: z.string().min(1),
+      })
+    ),
+  }),
+  tracksSection: z.object({
+    number: z.string().min(1),
+    label: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
   }),
   tracks: z.array(programmeTrackSchema).min(1),
   baseline: z.object({
@@ -106,31 +106,27 @@ export const programmesSchema = z.object({
     status: z.literal('LIVE NOW'),
     source: z.literal('owner-confirmed'),
   }),
-  feePolicy: z
-    .object({
-      heading: z.string().min(1),
-      statement: z.union([
-        z.literal('Fees are shared when you enquire.'),
-        z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
-      ]),
-      detail: z.string().min(1),
-      cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
-    })
-    .optional(),
-  tutorIntro: z
-    .object({
-      eyebrow: z.string().min(1),
-      title: z.string().min(1),
-      sub: z.string().min(1),
-      rules: z.array(
-        z.object({
-          number: z.string().min(1),
-          title: z.string().min(1),
-          detail: z.string().min(1),
-        })
-      ),
-    })
-    .optional(),
+  feePolicy: z.object({
+    heading: z.string().min(1),
+    statement: z.union([
+      z.literal('Fees are shared when you enquire.'),
+      z.literal('पूछताछ करने पर फीस साझा की जाती है।'),
+    ]),
+    detail: z.string().min(1),
+    cta: z.object({ label: z.string().min(1), href: z.string().min(1) }),
+  }),
+  tutorIntro: z.object({
+    eyebrow: z.string().min(1),
+    title: z.string().min(1),
+    sub: z.string().min(1),
+    rules: z.array(
+      z.object({
+        number: z.string().min(1),
+        title: z.string().min(1),
+        detail: z.string().min(1),
+      })
+    ),
+  }),
 });
 export type ProgrammesContent = z.infer<typeof programmesSchema>;
 

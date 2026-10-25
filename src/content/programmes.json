@@ -12,7 +12,7 @@
       "href": "/enquire"
     },
     "secondaryCta": {
-      "label": "View Schedule",
+      "label": "View Class Schedule",
       "href": "#schedule"
     }
   },
@@ -97,6 +97,12 @@
         "summary": "The guide asks questions instead of giving away answers, helping students build genuine reasoning."
       }
     ]
+  },
+  "tracksSection": {
+    "number": "01",
+    "label": "Launch Tracks",
+    "title": "Four Focused Tracks in Chamba",
+    "sub": "Targeting national competitive entrances and foundational academic mastery."
   },
   "tracks": [
     {

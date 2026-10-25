@@ -73,6 +73,6 @@
     "title": "Follow Passport developments.",
     "lead": "If you are an educator, parent, or institution interested in our proof-of-work evaluation model, get in touch.",
     "doorNote": "The Passport is in conceptual design. Growth only from operating revenue.",
-    "callbackPromise": "The owner phones back personally within 24 hours."
+    "callbackPromise": "The owner phones back personally {callbackWindow}."
   }
 }

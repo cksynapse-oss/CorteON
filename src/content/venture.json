@@ -56,6 +56,6 @@
     "title": "Tell us what you are building.",
     "lead": "If you are a founder or builder in Himachal Pradesh or nearby districts, speak with us about the top floor.",
     "doorNote": "Venture Hub space opens only when there are real founders. Mentoring commitment is agreed per founder.",
-    "callbackPromise": "The owner phones back personally within 24 hours."
+    "callbackPromise": "The owner phones back personally {callbackWindow}."
   }
 }

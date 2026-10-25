@@ -32,7 +32,7 @@
     {
       "id": "admission",
       "question": "How does admission work?",
-      "answer": "Submit an enquiry on this site or message us on WhatsApp at 8287248119. The centre owner calls back personally within 24 hours to discuss your learning goals and arrange a visit to the centre behind the Post Office in Chamba."
+      "answer": "Submit an enquiry on this site or message us on WhatsApp at 8287248119. The centre owner calls back personally {callbackWindow} to discuss your learning goals and arrange a visit to the centre behind the Post Office in Chamba."
     },
     {
       "id": "tutor",

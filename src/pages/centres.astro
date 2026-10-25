@@ -11,8 +11,9 @@ import DirectionInterestForm from '../components/brand/DirectionInterestForm.ast
 import site from '../content/site.json';
 import rawCentres from '../content/centres.json';
 import type { CentresContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
-const centres = rawCentres as CentresContent;
+const centres = resolveCallbackWindow(rawCentres as CentresContent);
 ---
 
 <BaseLayout

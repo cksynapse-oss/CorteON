@@ -7,8 +7,9 @@ import Rule from '../components/ui/Rule.astro';
 import privacyRaw from '../content/privacy.json';
 import site from '../content/site.json';
 import type { PrivacyContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
-const privacy = privacyRaw as PrivacyContent;
+const privacy = resolveCallbackWindow(privacyRaw as PrivacyContent);
 ---
 
 <BaseLayout

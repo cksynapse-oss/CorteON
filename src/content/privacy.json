@@ -16,7 +16,7 @@
     {
       "number": "02",
       "title": "Direct Callback",
-      "summary": "The founder calls every enquiry back personally within 24 hours. Your information is never sent to marketing brokers."
+      "summary": "The founder calls every enquiry back personally {callbackWindow}. Your information is never sent to marketing brokers."
     },
     {
       "number": "03",

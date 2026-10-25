@@ -10,7 +10,7 @@
   "notices": {
     "under18": "For students under 18, a parent or guardian must provide contact details.",
     "fees": "Fees are shared when you enquire.",
-    "callback": "The owner phones back personally within 24 hours."
+    "callback": "The owner phones back personally {callbackWindow}."
   },
   "doors": [
     {

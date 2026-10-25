@@ -76,7 +76,7 @@ const whatsAppUrl = `https://wa.me/91${site.phone}?text=${waText}`;
         </h3>
         <p class="mx-auto mb-6 max-w-md font-body text-sm leading-relaxed text-muted">
           We have received your details. The owner will phone you back
-          personally within {site.callbackWindow}.
+          personally {site.callbackWindow}.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4">
           <a
@@ -144,8 +144,8 @@ const whatsAppUrl = `https://wa.me/91${site.phone}?text=${waText}`;
             Thank you.
           </h4>
           <p class="mx-auto mb-6 max-w-md font-body text-sm leading-relaxed text-muted">
-            Thank you. We will call you within {site.callbackWindow}. If it is
-            urgent, message us on WhatsApp.
+            Thank you. We will call you {site.callbackWindow}. If it is urgent,
+            message us on WhatsApp.
           </p>
           <div class="flex flex-wrap items-center justify-center gap-4">
             <a
@@ -206,7 +206,7 @@ const whatsAppUrl = `https://wa.me/91${site.phone}?text=${waText}`;
               type="tel"
               label="Phone / WhatsApp"
               placeholder="10-digit mobile number"
-              helpText={`The owner phones back personally within ${site.callbackWindow}.`}
+              helpText={`The owner phones back personally ${site.callbackWindow}.`}
               required
               autocomplete="tel"
             />

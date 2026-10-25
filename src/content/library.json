@@ -64,6 +64,6 @@
     "title": "Tell us what you study.",
     "lead": "We will open reader cards as soon as there is real demand. Register your interest to be notified first.",
     "doorNote": "The Knowledge Commons library opens next, when people will buy the card.",
-    "callbackPromise": "The owner phones back personally within 24 hours."
+    "callbackPromise": "The owner phones back personally {callbackWindow}."
   }
 }

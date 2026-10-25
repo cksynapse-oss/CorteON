@@ -12,8 +12,9 @@ import Rule from '../components/ui/Rule.astro';
 import site from '../content/site.json';
 import enquiryRaw from '../content/enquiry.json';
 import type { EnquiryContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
-const enquiry = enquiryRaw as EnquiryContent;
+const enquiry = resolveCallbackWindow(enquiryRaw as EnquiryContent);
 
 // Pre-fill door from query param if available (default to 'parent')
 const queryDoor = Astro.url.searchParams.get('door') || 'parent';
@@ -39,7 +40,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 
 <BaseLayout
   title={`Admissions & Enquire — ${site.name}`}
-  description="Five entry doors to Synapse in Chamba. Tell us who you are and what you need. The owner phones back personally within 24 hours. Fees are shared when you enquire."
+  description={`Five entry doors to Synapse in Chamba. Tell us who you are and what you need. The owner phones back personally ${site.callbackWindow}. Fees are shared when you enquire.`}
 >
   {/* SECTION 1: HERO & NOTICE */}
   <Section theme="paper" padding="lg" class="border-b border-hair">

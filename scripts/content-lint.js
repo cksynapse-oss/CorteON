@@ -32,6 +32,7 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const contentDir = path.resolve(__dirname, '../src/content');
+const pagesDir = path.resolve(__dirname, '../src/pages');
 
 const isProd =
   process.argv.includes('--prod') ||
@@ -422,6 +423,32 @@ lintFile('illustrative/passport.json', passportCardSchema);
 lintFile('illustrative/lane-board.json', laneBoardSchema);
 lintFile('illustrative/centres-model.json', centresModelSchema);
 
+function checkCallbackWindowRegression(dir) {
+  if (!fs.existsSync(dir)) return;
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      checkCallbackWindowRegression(fullPath);
+    } else if (entry.isFile()) {
+      const relPath = path.relative(path.resolve(__dirname, '..'), fullPath);
+      // site.json is the single source-of-truth for callbackWindow (AGENTS.md rule 6)
+      if (relPath === 'src/content/site.json') {
+        continue;
+      }
+      if (/\.(json|astro|ts|tsx|js|mjs)$/.test(entry.name)) {
+        const text = fs.readFileSync(fullPath, 'utf-8');
+        if (/24\s*hours/i.test(text)) {
+          logError(
+            relPath,
+            'AGENTS.md Rule 6 violation: literal "24 hours" found outside site.json. Interpolate site.callbackWindow or use {callbackWindow}.'
+          );
+        }
+      }
+    }
+  }
+}
+
 // Lint any additional JSON files in src/content
 if (fs.existsSync(contentDir)) {
   const files = fs.readdirSync(contentDir);
@@ -451,6 +478,10 @@ if (fs.existsSync(contentDir)) {
     }
   }
 }
+
+// Rule 6 check: ensure "24 hours" literal never appears outside site.json in content or pages
+checkCallbackWindowRegression(contentDir);
+checkCallbackWindowRegression(pagesDir);
 
 console.log(
   '--------------------------------------------------------------------------------'

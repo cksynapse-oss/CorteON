@@ -11,8 +11,9 @@ import DirectionInterestForm from '../components/brand/DirectionInterestForm.ast
 import site from '../content/site.json';
 import rawVenture from '../content/venture.json';
 import type { VentureContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
-const venture = rawVenture as VentureContent;
+const venture = resolveCallbackWindow(rawVenture as VentureContent);
 ---
 
 <BaseLayout

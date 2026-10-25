@@ -12,9 +12,10 @@ import programmesRaw from '../content/programmes.json';
 import faqRaw from '../content/faq.json';
 
 import type { ProgrammesContent, FaqContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
 const programmes = programmesRaw as ProgrammesContent;
-const faq = faqRaw as FaqContent;
+const faq = resolveCallbackWindow(faqRaw as FaqContent);
 ---
 
 <BaseLayout

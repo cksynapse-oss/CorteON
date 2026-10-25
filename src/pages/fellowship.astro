@@ -10,8 +10,9 @@ import Checkbox from '../components/ui/Checkbox.astro';
 import site from '../content/site.json';
 import fellowshipRaw from '../content/fellowship.json';
 import type { FellowshipContent } from '../content/schemas';
+import { resolveCallbackWindow } from '../lib/content';
 
-const fellowship = fellowshipRaw as FellowshipContent;
+const fellowship = resolveCallbackWindow(fellowshipRaw as FellowshipContent);
 
 // Handle URL parameters for native form submission callbacks
 const isSubmittedSuccess =
@@ -23,6 +24,8 @@ const whatsAppFellowText = encodeURIComponent(
   `Hello Synapse, I am applying for the Teaching Fellowship in Chamba.`
 );
 const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowText}`;
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 ---
 
 <BaseLayout
@@ -417,9 +420,21 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
         errorMessage && (
           <div
             id="server-error-alert"
-            class="border-error bg-error-container/20 text-error mb-6 rounded border p-4 font-body text-sm"
+            class="border-spark-ink/50 bg-surface-dim/30 mb-6 flex flex-col gap-3 rounded border p-4 font-body text-sm text-ink sm:flex-row sm:items-center sm:justify-between"
+            role="alert"
           >
-            <strong class="font-semibold">Notice:</strong> {errorMessage}
+            <div>
+              <strong class="font-semibold text-spark-ink">Notice:</strong>{' '}
+              {errorMessage}
+            </div>
+            <a
+              href={whatsAppFellowUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="shrink-0 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink underline hover:text-ink"
+            >
+              Message via WhatsApp &rarr;
+            </a>
           </div>
         )
       }
@@ -427,9 +442,19 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
       {/* DYNAMIC CLIENT ERROR ALERT */}
       <div
         id="client-error-alert"
-        class="border-error bg-error-container/20 text-error mb-6 hidden rounded border p-4 font-body text-sm"
+        class="border-spark-ink/50 bg-surface-dim/30 mb-6 hidden rounded border p-4 font-body text-sm text-ink"
         role="alert"
       >
+        <p id="client-error-text" class="mb-3"></p>
+        <a
+          id="client-error-whatsapp-btn"
+          href={whatsAppFellowUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center font-sans text-xs font-semibold uppercase tracking-[0.12em] text-spark-ink underline hover:text-ink"
+        >
+          Apply via WhatsApp &rarr;
+        </a>
       </div>
 
       {/* THE APPLICATION FORM */}
@@ -480,7 +505,7 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
             type="tel"
             label="Phone / WhatsApp"
             placeholder="10-digit mobile number"
-            helpText="We use this only to phone you back personally within 24 hours."
+            helpText={`We use this only to phone you back personally ${site.callbackWindow}.`}
             required
             autocomplete="tel"
           />
@@ -528,6 +553,26 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
               placeholder="Tell us about your teaching experience, study schedule, or any specific questions."
               class="placeholder:text-muted/60 box-border min-h-[96px] w-full rounded border border-hair bg-transparent px-4 py-3 font-body text-base text-ink outline-none transition-colors duration-150 focus:border-spark focus:ring-1 focus:ring-spark"
             ></textarea>
+          </div>
+
+          {/* CLOUDFLARE TURNSTILE SLOT */}
+          <div id="cf-turnstile-container" class="my-4 min-h-[48px]">
+            {
+              turnstileSiteKey ? (
+                <>
+                  <div
+                    class="cf-turnstile"
+                    data-sitekey={turnstileSiteKey}
+                    data-theme="light"
+                  />
+                  <script
+                    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                    async
+                    defer
+                  />
+                </>
+              ) : null
+            }
           </div>
 
           {/* Consent Checkbox */}
@@ -604,8 +649,15 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
           'Hello Synapse, I am applying for the Teaching Fellowship in Chamba.';
         if (name) msg += ' My name is ' + name + '.';
         if (subject) msg += ' Subject: ' + subject + '.';
-        whatsappLink.href =
+        const waUrl =
           'https://wa.me/918287248119?text=' + encodeURIComponent(msg);
+        whatsappLink.href = waUrl;
+        const errWhatsappBtn = document.getElementById(
+          'client-error-whatsapp-btn'
+        );
+        if (errWhatsappBtn) {
+          errWhatsappBtn.href = waUrl;
+        }
       }
 
       if (nameInput) nameInput.addEventListener('input', updateWhatsAppLink);
@@ -617,7 +669,12 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
 
         if (clientErrorAlert) {
           clientErrorAlert.classList.add('hidden');
-          clientErrorAlert.textContent = '';
+          const clientErrorText = document.getElementById('client-error-text');
+          if (clientErrorText) {
+            clientErrorText.textContent = '';
+          } else {
+            clientErrorAlert.textContent = '';
+          }
         }
 
         const originalBtnText = submitButton
@@ -648,8 +705,20 @@ const whatsAppFellowUrl = `https://wa.me/91${site.phone}?text=${whatsAppFellowTe
             }
           } else {
             const err = data.error || 'Please fill in all required fields.';
-            if (clientErrorAlert) {
+            const clientErrorText =
+              document.getElementById('client-error-text');
+            const errWhatsappBtn = document.getElementById(
+              'client-error-whatsapp-btn'
+            );
+            if (clientErrorText) {
+              clientErrorText.textContent = err;
+            } else if (clientErrorAlert) {
               clientErrorAlert.textContent = err;
+            }
+            if (errWhatsappBtn && data.whatsappFallbackUrl) {
+              errWhatsappBtn.href = data.whatsappFallbackUrl;
+            }
+            if (clientErrorAlert) {
               clientErrorAlert.classList.remove('hidden');
               clientErrorAlert.scrollIntoView({
                 behavior: 'smooth',

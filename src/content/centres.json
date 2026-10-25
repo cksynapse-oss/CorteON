@@ -59,6 +59,6 @@
     "title": "Bring Synapse to your district.",
     "lead": "If you have suitable space, a local teaching team, or wish to explore hosting an initial Circle in your district, talk with us.",
     "doorNote": "Each centre is rooted in its district with local space. Growth only from revenue.",
-    "callbackPromise": "The owner phones back personally within 24 hours."
+    "callbackPromise": "The owner phones back personally {callbackWindow}."
   }
 }

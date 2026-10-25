@@ -11,6 +11,8 @@
  * - Returns JSON response or HTTP 303 Redirect back to /enquire?submitted=success.
  */
 
+import site from '../../src/content/site.json';
+
 export interface Env {
   APPS_SCRIPT_URL?: string;
   APPS_SCRIPT_TOKEN?: string;
@@ -28,6 +30,10 @@ export interface EnquiryPayload {
   email?: string;
   stageOrSubject?: string;
   interestOrExam?: string;
+  fellow_subject?: string;
+  fellow_exam?: string;
+  parent_stage?: string;
+  parent_interest?: string;
   message?: string;
   consent: boolean;
   honeypot?: string;
@@ -128,6 +134,29 @@ export function validateEnquiry(
       ? data.source.trim().slice(0, 50)
       : undefined;
 
+  const rawObj = data as Record<string, unknown>;
+  const resolvedStage =
+    typeof data.stageOrSubject === 'string' && data.stageOrSubject.trim() !== ''
+      ? data.stageOrSubject.trim()
+      : typeof rawObj.fellow_subject === 'string' &&
+          (rawObj.fellow_subject as string).trim() !== ''
+        ? (rawObj.fellow_subject as string).trim()
+        : typeof rawObj.parent_stage === 'string' &&
+            (rawObj.parent_stage as string).trim() !== ''
+          ? (rawObj.parent_stage as string).trim()
+          : undefined;
+
+  const resolvedInterest =
+    typeof data.interestOrExam === 'string' && data.interestOrExam.trim() !== ''
+      ? data.interestOrExam.trim()
+      : typeof rawObj.fellow_exam === 'string' &&
+          (rawObj.fellow_exam as string).trim() !== ''
+        ? (rawObj.fellow_exam as string).trim()
+        : typeof rawObj.parent_interest === 'string' &&
+            (rawObj.parent_interest as string).trim() !== ''
+          ? (rawObj.parent_interest as string).trim()
+          : undefined;
+
   return {
     valid: true,
     cleaned: {
@@ -136,14 +165,8 @@ export function validateEnquiry(
       name,
       phone,
       email: email || undefined,
-      stageOrSubject:
-        typeof data.stageOrSubject === 'string'
-          ? data.stageOrSubject.trim()
-          : undefined,
-      interestOrExam:
-        typeof data.interestOrExam === 'string'
-          ? data.interestOrExam.trim()
-          : undefined,
+      stageOrSubject: resolvedStage,
+      interestOrExam: resolvedInterest,
       message: message || undefined,
       consent: true,
       turnstileToken:
@@ -292,7 +315,7 @@ export async function onRequestPost(context: {
         JSON.stringify({
           ok: true,
           message: 'Enquiry received.',
-          callbackWindow: 'within 24 hours',
+          callbackWindow: site.callbackWindow,
         }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
       );
@@ -310,22 +333,40 @@ export async function onRequestPost(context: {
   let interestOrExam = (rawData.interestOrExam || '') as string;
 
   if (door === 'parent') {
-    stageOrSubject = (rawData.parent_stage || stageOrSubject) as string;
-    interestOrExam = (rawData.parent_interest || interestOrExam) as string;
+    stageOrSubject = (rawData.parent_stage ||
+      rawData.stageOrSubject ||
+      stageOrSubject) as string;
+    interestOrExam = (rawData.parent_interest ||
+      rawData.interestOrExam ||
+      interestOrExam) as string;
   } else if (door === 'fellow') {
-    stageOrSubject = (rawData.fellow_subject || stageOrSubject) as string;
-    interestOrExam = (rawData.fellow_exam || interestOrExam) as string;
+    stageOrSubject = (rawData.fellow_subject ||
+      rawData.stageOrSubject ||
+      stageOrSubject) as string;
+    interestOrExam = (rawData.fellow_exam ||
+      rawData.interestOrExam ||
+      interestOrExam) as string;
   } else if (door === 'reader') {
-    stageOrSubject = (rawData.reader_interests || stageOrSubject) as string;
+    stageOrSubject = (rawData.reader_interests ||
+      rawData.stageOrSubject ||
+      stageOrSubject) as string;
     interestOrExam = rawData.reader_card_interest
       ? 'Requested reader card notification'
-      : '';
+      : (rawData.interestOrExam as string) || '';
   } else if (door === 'founder') {
-    stageOrSubject = (rawData.founder_project || stageOrSubject) as string;
-    interestOrExam = (rawData.founder_skills || interestOrExam) as string;
+    stageOrSubject = (rawData.founder_project ||
+      rawData.stageOrSubject ||
+      stageOrSubject) as string;
+    interestOrExam = (rawData.founder_skills ||
+      rawData.interestOrExam ||
+      interestOrExam) as string;
   } else if (door === 'partner') {
-    stageOrSubject = (rawData.partner_district || stageOrSubject) as string;
-    interestOrExam = (rawData.partner_space || interestOrExam) as string;
+    stageOrSubject = (rawData.partner_district ||
+      rawData.stageOrSubject ||
+      stageOrSubject) as string;
+    interestOrExam = (rawData.partner_space ||
+      rawData.interestOrExam ||
+      interestOrExam) as string;
   }
 
   const payloadToValidate: Partial<EnquiryPayload> = {
@@ -379,6 +420,11 @@ export async function onRequestPost(context: {
     isProduction &&
     (!env || !env.TURNSTILE_SECRET_KEY || !env.PUBLIC_TURNSTILE_SITE_KEY)
   ) {
+    console.error(
+      `[Synapse /api/enquire] Production config error: missing Turnstile key(s) (hasSecret=${Boolean(
+        env?.TURNSTILE_SECRET_KEY
+      )}, hasSiteKey=${Boolean(env?.PUBLIC_TURNSTILE_SITE_KEY)})`
+    );
     const errorMsg =
       'Enquiry service is temporarily unavailable. Please message us on WhatsApp.';
     if (isJsonRequest) {
@@ -408,6 +454,9 @@ export async function onRequestPost(context: {
 
   // In production, Turnstile token is mandatory
   if (isProduction && !cleaned.turnstileToken) {
+    console.warn(
+      `[Synapse /api/enquire] Production rejection: missing Turnstile token (door=${cleaned.door})`
+    );
     const errorMsg = 'Anti-spam check failed. Please refresh and try again.';
     if (isJsonRequest) {
       return new Response(
@@ -437,6 +486,11 @@ export async function onRequestPost(context: {
       clientIp
     );
     if (!turnstileResult.success) {
+      console.warn(
+        `[Synapse /api/enquire] Rejection: Turnstile verification failed (door=${cleaned.door}, code=${
+          turnstileResult.error || 'unknown'
+        })`
+      );
       const errorMsg = 'Anti-spam check failed. Please refresh and try again.';
       if (isJsonRequest) {
         return new Response(
@@ -498,8 +552,8 @@ export async function onRequestPost(context: {
         ok: true,
         saved: sheetSaved,
         door: cleaned.door,
-        callbackWindow: 'within 24 hours',
-        message: 'Thank you. We will call you within 24 hours.',
+        callbackWindow: site.callbackWindow,
+        message: `Thank you. We will call you ${site.callbackWindow}.`,
         whatsappFallbackUrl: buildWhatsAppUrl(cleaned.door, cleaned.name),
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }

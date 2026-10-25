@@ -116,15 +116,15 @@
         "focus": "We observe your patience, clarity, and how you respond to student doubts."
       }
     ],
-    "closingNote": "No exam rank cutoffs or artificial selection barriers. The owner phones back personally within 24 hours."
+    "closingNote": "No exam rank cutoffs or artificial selection barriers. The owner phones back personally {callbackWindow}."
   },
   "applyForm": {
     "number": "04",
     "label": "APPLY NOW",
     "title": "Apply for the Fellowship.",
-    "lead": "Applications are open now for classes in Chamba. Tell us what you teach and what you are preparing for; the owner phones back personally within 24 hours.",
+    "lead": "Applications are open now for classes in Chamba. Tell us what you teach and what you are preparing for; the owner phones back personally {callbackWindow}.",
     "doorNote": "Applications are open now. Each fellow teaches one class a day.",
-    "callbackPromise": "The owner phones back personally within 24 hours.",
+    "callbackPromise": "The owner phones back personally {callbackWindow}.",
     "termsNotice": "Terms: One class a day. Reserved desk, certified teaching hours, and Corteon tutor access included. Senior roles stipend and media share: amount to be agreed. Unresolved terms say to be agreed."
   }
 }

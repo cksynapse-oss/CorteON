@@ -10,6 +10,7 @@ import Footer from '../components/brand/Footer.astro';
 import FloorGauge from '../components/brand/FloorGauge.astro';
 import site from '../content/site.json';
 import hiSite from '../content/hi/site.json';
+import type { SiteContent } from '../content/schemas';
 
 interface Props {
   title?: string;
@@ -27,7 +28,7 @@ interface Props {
 
 const isPathHindi =
   Astro.url.pathname === '/hi' || Astro.url.pathname.startsWith('/hi/');
-const activeSite = isPathHindi ? hiSite : site;
+const activeSite = (isPathHindi ? hiSite : site) as unknown as SiteContent;
 
 const {
   title = `${activeSite.name} — A modern gurukul in Chamba`,
@@ -50,25 +51,28 @@ const cleanPath = Astro.url.pathname.replace(/\/$/, '');
 const canonicalUrl = cleanPath ? `${siteUrl}${cleanPath}` : `${siteUrl}/`;
 const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
 
-// Compute hreflang alternates for launch bilingual routes (Home, Programmes, Enquire)
-const isBilingualRoute =
-  cleanPath === '' ||
-  cleanPath === '/hi' ||
-  cleanPath === '/programmes' ||
-  cleanPath === '/hi/programmes' ||
-  cleanPath === '/enquire' ||
-  cleanPath === '/hi/enquire';
+/**
+ * Hreflang Rule:
+ * In Phase 1 launch, only three core routes have true 1:1 Hindi equivalents:
+ * 1. Home ('/' <-> '/hi')
+ * 2. Programmes ('/programmes' <-> '/hi/programmes')
+ * 3. Enquire ('/enquire' <-> '/hi/enquire')
+ *
+ * Per Google / W3C specifications, hreflang alternates MUST point only to
+ * genuine reciprocal translations of the exact same content. Routes without a
+ * translated Hindi equivalent (e.g. /fellowship, /building, /idea) deliberately
+ * omit hreflang alternate tags to avoid crawl errors and misleading indexation.
+ */
+import { getBilingualRoutePair } from '../lib/i18n';
 
-let enCanonicalUrl = `${siteUrl}/`;
-let hiCanonicalUrl = `${siteUrl}/hi`;
-
-if (cleanPath === '/programmes' || cleanPath === '/hi/programmes') {
-  enCanonicalUrl = `${siteUrl}/programmes`;
-  hiCanonicalUrl = `${siteUrl}/hi/programmes`;
-} else if (cleanPath === '/enquire' || cleanPath === '/hi/enquire') {
-  enCanonicalUrl = `${siteUrl}/enquire`;
-  hiCanonicalUrl = `${siteUrl}/hi/enquire`;
-}
+const matchingBilingualPair = getBilingualRoutePair(cleanPath);
+const isBilingualRoute = !!matchingBilingualPair;
+const enCanonicalUrl = matchingBilingualPair
+  ? `${siteUrl}${matchingBilingualPair.en === '/' ? '/' : matchingBilingualPair.en}`
+  : canonicalUrl;
+const hiCanonicalUrl = matchingBilingualPair
+  ? `${siteUrl}${matchingBilingualPair.hi}`
+  : '';
 
 const isDevRoute =
   noindex ||

@@ -1,4 +1,6 @@
 ---
+import { getBilingualRoutePair } from '../../lib/i18n';
+
 interface Props {
   currentPath?: string;
   class?: string;
@@ -14,30 +16,27 @@ const {
 // Determine current locale
 const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
 
-// Compute counterpart routes
-let enHref = '/';
-let hiHref = '/hi';
+// Compute counterpart routes using data-driven bilingual registry
+const clean = currentPath.replace(/\/$/, '') || '/';
+const pair = getBilingualRoutePair(clean);
+
+let enHref = clean;
+let hiHref = '/hi'; // Fallback to Hindi home for routes without dedicated Hindi equivalent
 
 if (isHindi) {
-  const sub = currentPath.replace(/^\/hi\/?/, '');
-  enHref = sub ? `/${sub}` : '/';
-  hiHref = currentPath;
-} else {
-  enHref = currentPath;
-  if (currentPath === '/' || currentPath === '') {
-    hiHref = '/hi';
-  } else if (
-    currentPath === '/programmes' ||
-    currentPath.startsWith('/programmes/')
-  ) {
-    hiHref = '/hi/programmes';
-  } else if (
-    currentPath === '/enquire' ||
-    currentPath.startsWith('/enquire/')
-  ) {
-    hiHref = '/hi/enquire';
+  if (pair) {
+    enHref = pair.en;
   } else {
-    // Other pages link to Hindi home
+    const sub = clean.replace(/^\/hi\/?/, '');
+    enHref = sub ? `/${sub}` : '/';
+  }
+  hiHref = clean;
+} else {
+  enHref = clean;
+  if (pair) {
+    hiHref = pair.hi;
+  } else {
+    // Un-translated routes link to Hindi home
     hiHref = '/hi';
   }
 }

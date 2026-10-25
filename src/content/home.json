@@ -82,5 +82,10 @@
     "label": "CHOOSE YOUR DOOR",
     "title": "Choose your door",
     "sub": "The building welcomes people at every stage of learning and building. Select the door that fits you."
+  },
+  "directContact": {
+    "label": "Direct Contact",
+    "text": "Prefer to speak directly? Call or message the centre guide in Chamba.",
+    "whatsappAction": "WhatsApp Us"
   }
 }

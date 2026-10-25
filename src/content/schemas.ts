@@ -304,6 +304,11 @@ export const homeSchema = z.object({
     title: z.string().min(1),
     sub: z.string().min(1),
   }),
+  directContact: z.object({
+    label: z.string().min(1),
+    text: z.string().min(1),
+    whatsappAction: z.string().min(1),
+  }),
 });
 export type HomeContent = z.infer<typeof homeSchema>;
 

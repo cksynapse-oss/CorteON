@@ -489,11 +489,10 @@ const doors = doorsRaw as DoorsContent;
         <span
           class="mb-1 block font-mono text-xs uppercase tracking-wider text-muted"
         >
-          सीधा संपर्क
+          {home.directContact.label}
         </span>
         <p class="font-body text-base text-ink">
-          सीधे बात करना चाहते हैं? चंबा में केंद्र के संस्थापक से फोन या
-          व्हाट्सएप पर बात करें।
+          {home.directContact.text}
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
@@ -503,7 +502,7 @@ const doors = doorsRaw as DoorsContent;
           target="_blank"
           rel="noopener noreferrer"
         >
-          व्हाट्सएप पर संपर्क करें
+          {home.directContact.whatsappAction}
         </a>
         <a
           href={`tel:+91${site.phone}`}

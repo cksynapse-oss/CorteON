@@ -480,10 +480,10 @@ const doors = doorsRaw as DoorsContent;
         <span
           class="mb-1 block font-mono text-xs uppercase tracking-wider text-muted"
         >
-          Direct Contact
+          {home.directContact.label}
         </span>
         <p class="font-body text-base text-ink">
-          Prefer to speak directly? Call or message the centre guide in Chamba.
+          {home.directContact.text}
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
@@ -493,7 +493,7 @@ const doors = doorsRaw as DoorsContent;
           target="_blank"
           rel="noopener noreferrer"
         >
-          WhatsApp Us
+          {home.directContact.whatsappAction}
         </a>
         <a
           href={`tel:${site.phone}`}

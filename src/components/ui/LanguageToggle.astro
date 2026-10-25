@@ -1,5 +1,7 @@
 ---
 import { getBilingualRoutePair } from '../../lib/i18n';
+import navEn from '../../content/navigation.json';
+import navHi from '../../content/hi/navigation.json';
 
 interface Props {
   currentPath?: string;
@@ -15,6 +17,7 @@ const {
 
 // Determine current locale
 const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
+const navigation = isHindi ? navHi : navEn;
 
 // Compute counterpart routes using data-driven bilingual registry
 const clean = currentPath.replace(/\/$/, '') || '/';
@@ -51,7 +54,7 @@ if (hiHref.length > 1 && hiHref.endsWith('/')) {
 ---
 
 <nav
-  aria-label="Language selection"
+  aria-label={navigation.languageToggle.navAriaLabel}
   class:list={[
     'inline-flex select-none items-center rounded-pill border p-0.5 font-mono text-xs',
     onDark
@@ -62,9 +65,10 @@ if (hiHref.length > 1 && hiHref.endsWith('/')) {
 >
   <a
     href={enHref}
-    aria-label="Switch to English"
+    aria-label={navigation.languageToggle.enAriaLabel}
     aria-current={!isHindi ? 'page' : undefined}
     lang="en"
+    hreflang="en"
     class:list={[
       'inline-flex items-center justify-center rounded-pill px-2.5 py-1 transition-colors focus-visible:outline-2 focus-visible:outline-spark',
       !isHindi
@@ -81,9 +85,10 @@ if (hiHref.length > 1 && hiHref.endsWith('/')) {
 
   <a
     href={hiHref}
-    aria-label="हिन्दी में देखें (Switch to Hindi)"
+    aria-label={navigation.languageToggle.hiAriaLabel}
     aria-current={isHindi ? 'page' : undefined}
     lang="hi"
+    hreflang="hi"
     class:list={[
       'inline-flex items-center justify-center rounded-pill px-2.5 py-1 transition-colors focus-visible:outline-2 focus-visible:outline-spark',
       isHindi

@@ -33,7 +33,7 @@ const { floors, class: className = '' } = Astro.props;
       <a
         href="#all-floors"
         data-floor-target="all"
-        aria-pressed="true"
+        aria-current="true"
         class="floor-tab-btn inline-flex items-center gap-1.5 rounded-pill border border-ink bg-ink px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-wider text-paper transition-colors hover:border-spark-ink hover:bg-spark-ink hover:text-paper focus-visible:outline-2 focus-visible:outline-spark"
       >
         <span>All</span>
@@ -44,7 +44,6 @@ const { floors, class: className = '' } = Astro.props;
           <a
             href={`#floor-${floor.id}`}
             data-floor-target={floor.id}
-            aria-pressed="false"
             class="floor-tab-btn hover:bg-surface-dim/40 inline-flex items-center gap-1.5 rounded-pill border border-hair bg-paper px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-wider text-ink transition-colors hover:border-ink focus-visible:outline-2 focus-visible:outline-spark"
           >
             <span>Floor {floor.shortName}</span>
@@ -73,11 +72,12 @@ const { floors, class: className = '' } = Astro.props;
       buttons.forEach((btn) => {
         const btnTarget = btn.getAttribute('data-floor-target');
         const isActive = btnTarget === target;
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
         if (isActive) {
+          btn.setAttribute('aria-current', 'true');
           btn.classList.add('border-ink', 'bg-ink', 'text-paper');
           btn.classList.remove('border-hair', 'bg-paper', 'text-ink');
         } else {
+          btn.removeAttribute('aria-current');
           btn.classList.remove('border-ink', 'bg-ink', 'text-paper');
           btn.classList.add('border-hair', 'bg-paper', 'text-ink');
         }

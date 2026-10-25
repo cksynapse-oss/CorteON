@@ -313,7 +313,7 @@ const openProblems = openProblemsRaw as OpenProblemsContent;
                 <span class="font-mono text-xs font-semibold tracking-wider text-spark-glow">
                   [{prob.id.toUpperCase()}]
                 </span>
-                <StatusChip status={prob.status} />
+                <StatusChip status={prob.status} onDark={true} />
               </div>
 
               <h3 class="font-serif text-xl font-normal leading-snug text-paper sm:text-2xl">

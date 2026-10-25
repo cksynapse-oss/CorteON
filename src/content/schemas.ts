@@ -49,6 +49,43 @@ export const siteSchema = z.object({
 });
 export type SiteContent = z.infer<typeof siteSchema>;
 
+export const navigationSchema = z.object({
+  main: z.array(
+    z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    })
+  ),
+  actions: z.array(
+    z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+      variant: z.string().optional(),
+    })
+  ),
+  footer: z.array(
+    z.object({
+      label: z.string().min(1),
+      href: z.string().min(1),
+    })
+  ),
+  floors: z.array(
+    z.object({
+      id: z.string().min(1),
+      shortName: z.string().min(1),
+      name: z.string().min(1),
+      status: z.string().min(1),
+      href: z.string().min(1),
+    })
+  ),
+  languageToggle: z.object({
+    navAriaLabel: z.string().min(1),
+    enAriaLabel: z.string().min(1),
+    hiAriaLabel: z.string().min(1),
+  }),
+});
+export type NavigationContent = z.infer<typeof navigationSchema>;
+
 export const programmeTrackSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(1),

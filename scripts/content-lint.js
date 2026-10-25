@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   siteSchema,
+  navigationSchema,
   programmesSchema,
   floorsSchema,
   principlesSchema,
@@ -415,7 +416,8 @@ lintFile('hi/programmes.json', programmesSchema);
 lintFile('hi/faq.json', faqSchema);
 lintFile('hi/enquiry.json', enquirySchema);
 lintFile('hi/doors.json', doorsSchema);
-lintFile('hi/navigation.json', null);
+lintFile('navigation.json', navigationSchema);
+lintFile('hi/navigation.json', navigationSchema);
 lintFile('illustrative/tutor-problem.json', tutorProblemSchema);
 lintFile('illustrative/question-board.json', questionBoardSchema);
 lintFile('illustrative/venture-problems.json', ventureProblemBoardSchema);

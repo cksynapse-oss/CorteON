@@ -43,5 +43,10 @@
       "status": "LIVE NOW",
       "href": "/building#floor-g"
     }
-  ]
+  ],
+  "languageToggle": {
+    "navAriaLabel": "Language selection",
+    "enAriaLabel": "EN – Switch to English",
+    "hiAriaLabel": "हिन्दी – Switch to Hindi"
+  }
 }

@@ -58,6 +58,13 @@ const tests = [
     type: 'Small red text / buttons (AA)',
   },
   {
+    name: 'Spark-ink on Surface-dim',
+    fg: '#B22C01',
+    bg: '#E9E3D8',
+    min: 4.5,
+    type: 'Small red text on card surface (AA)',
+  },
+  {
     name: 'Spark on Paper (>=24px)',
     fg: '#D9481F',
     bg: '#F3EEE4',

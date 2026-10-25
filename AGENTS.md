@@ -39,4 +39,4 @@ Tone: plain, specific, honest. Short sentences. Explain a term the first time. A
 - Do not refactor unrelated files. Do not delete content files.
 
 ## Commands
-`npm run dev` · `npm run build` · `npm run check` (astro check, eslint, prettier, content-lint, build, link-check, axe, lighthouse-ci) · `npm run content-lint`
+`npm run dev` · `npm run build` · `npm run check` (fast gate: astro check, eslint, prettier, test:contrast, content-lint, build, link-check) · `npm run check:full` (full gate: npm run check + headless browser axe + lighthouse-ci) · `npm run content-lint`

@@ -13,10 +13,11 @@
     "test:contrast": "node scripts/test-contrast.js",
     "content-lint": "node scripts/content-lint.js",
     "content-lint:prod": "node scripts/content-lint.js --prod",
-    "link-check": "node scripts/stub-check.js link-check",
-    "axe": "node scripts/stub-check.js axe",
-    "lighthouse-ci": "node scripts/stub-check.js lighthouse-ci",
-    "check": "astro check && eslint . && prettier --check . && npm run test:contrast && npm run content-lint && npm run build && npm run link-check && npm run axe && npm run lighthouse-ci"
+    "link-check": "node scripts/link-check.js",
+    "axe": "node scripts/axe-check.js",
+    "lighthouse-ci": "lhci autorun",
+    "check": "astro check && eslint . && prettier --check . && npm run test:contrast && npm run content-lint && npm run build && npm run link-check",
+    "check:full": "npm run check && npm run axe && npm run lighthouse-ci"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -30,8 +31,12 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
+    "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.15.1",
     "eslint": "^9.21.0",
     "eslint-plugin-astro": "^1.3.1",
+    "linkinator": "^8.1.0",
+    "playwright": "^1.64.1",
     "prettier": "^3.5.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.11",

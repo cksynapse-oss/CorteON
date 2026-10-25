@@ -53,6 +53,7 @@ export function trackEvent(
       (window.location.hostname === 'localhost' ||
         window.sessionStorage?.getItem('synapse_debug'))
     ) {
+      // eslint-disable-next-line no-console
       console.log(`[Synapse Analytics] ${name}`, props);
     }
   } catch {

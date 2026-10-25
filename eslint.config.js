@@ -5,6 +5,23 @@ export default [
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
+    rules: {
+      'no-console': 'warn',
+    },
+  },
+  {
+    files: ['functions/api/**'],
+    rules: {
+      'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
+    },
+  },
+  {
+    files: ['scripts/**'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+  {
     ignores: [
       'dist/**',
       '.astro/**',

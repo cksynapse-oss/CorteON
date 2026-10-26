@@ -1,63 +1,153 @@
 /**
- * Synapse admissions sheet receiver.
- * Set SHEET_ID to the ID between /d/ and /edit in your spreadsheet URL.
- * Deploy as Web app; execute as you; access: Anyone.
+ * Corteon Form Submissions — Google Apps Script Web App
+ *
+ * Persists submissions from corteon.in (/api/submit) to Google Sheets.
+ * Handles both "waitlist" and "contributor" forms.
+ *
+ * Setup:
+ * 1. Open Google Sheets (https://sheets.new) and name it "Corteon Submissions".
+ * 2. In the menu, go to: Extensions > Apps Script.
+ * 3. Replace all code in the editor with this file and Save (Ctrl+S / Cmd+S).
+ * 4. Click "Deploy" > "New deployment".
+ * 5. Click the gear icon next to "Select type" and choose "Web app".
+ * 6. Set:
+ *    - Execute as: "Me"
+ *    - Who has access: "Anyone"
+ * 7. Click "Deploy" and authorize permissions.
+ * 8. Copy the Web app URL (https://script.google.com/macros/s/.../exec).
  */
-const SHEET_ID = '1GFDoG5nRKzT4OSMPRhvBc5CVSCgdD6PbNJJMlZJh3m8';
-const SHEET_NAME = 'Enquiries';
-const HEADERS = [
-  'Timestamp','Student name','Class or status','Track of interest',
-  'Parent or guardian name','WhatsApp number','Village or town',
-  'Best time for a call','Parent or guardian consent','Status'
-];
-const VALID_STATUSES = ['Class 11','Class 12','12th pass or dropper','Graduate'];
-const VALID_TRACKS = [
-  'Engineering and Research (PCM)',
-  'Medical and Allied Health (PCB)',
-  'CUET UG General Test and English',
-  'CUET UG Arts and Commerce, and UPSC NDA Army wing',
-  'Communication and Business learning courses',
-  'Not sure yet'
-];
-const VALID_TIMES = ['Morning','Afternoon','Evening'];
-function output(obj) {
-  return ContentService.createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-function doGet(e) {
-  return output({ok: true, message: 'Synapse admissions receiver is active'});
-}
-function clean(v, max) {
-  return String(v ?? '').trim().slice(0, max).replace(/^([=+@\-\t\r])/,'\'$1');
-}
+
+const OWNER_EMAIL = 'ckshandil3@gmail.com'; // Notification recipient
+
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents || '{}');
-    if (data.website) return output({ok:false,error:'Invalid submission'});
-    const expected = ['student','status','track','parent','phone','location','call'];
-    if (expected.some(key => !data[key] || !String(data[key]).trim()))
-      return output({ok:false,error:'Missing required details'});
-    if (!/^[6-9]\d{9}$/.test(String(data.phone).trim()))
-      return output({ok:false,error:'Invalid mobile number'});
-    if (!VALID_STATUSES.includes(data.status) || !VALID_TRACKS.includes(data.track) || !VALID_TIMES.includes(data.call))
-      return output({ok:false,error:'Invalid choice'});
-    if (data.consent !== true) return output({ok:false,error:'Consent required'});
-    const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
-    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
-    if (!sheet) sheet = spreadsheet.insertSheet(SHEET_NAME);
-    const lock = LockService.getScriptLock();
-    lock.waitLock(20000);
+    if (!e || !e.postData || !e.postData.contents) {
+      return createJsonResponse({ ok: false, error: 'Missing request body' });
+    }
+
+    let data;
     try {
-      if (sheet.getLastRow() === 0) sheet.appendRow(HEADERS);
-      sheet.appendRow([
-        new Date(),clean(data.student,100),clean(data.status,50),clean(data.track,150),
-        clean(data.parent,100),"'" + String(data.phone).trim(),clean(data.location,120),
-        clean(data.call,30),'Yes','New'
+      data = JSON.parse(e.postData.contents);
+    } catch (err) {
+      return createJsonResponse({ ok: false, error: 'Invalid JSON: ' + err.message });
+    }
+
+    const type = String(data.type || 'unknown').toLowerCase();
+    const timestamp = new Date();
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+
+    // 1. Record into master "All Submissions" tab
+    const masterSheet = getOrCreateSheet(ss, 'All Submissions', [
+      'Timestamp (IST)',
+      'Type',
+      'Name',
+      'Email',
+      'Area',
+      'Interest / Notes',
+      'Message'
+    ]);
+    masterSheet.appendRow([
+      formatDate(timestamp),
+      type,
+      data.name || '',
+      data.email || '',
+      data.area || '',
+      data.interest || '',
+      data.message || ''
+    ]);
+
+    // 2. Also record into dedicated tab for easy filtering
+    if (type === 'waitlist') {
+      const waitlistSheet = getOrCreateSheet(ss, 'Waitlist', [
+        'Timestamp (IST)',
+        'Email',
+        'Interest / Notes'
       ]);
-    } finally {lock.releaseLock();}
-    return output({ok:true});
-  } catch (error) {
-    console.error(error);
-    return output({ok:false,error:'Server error'});
+      waitlistSheet.appendRow([
+        formatDate(timestamp),
+        data.email || '',
+        data.interest || ''
+      ]);
+    } else if (type === 'contributor') {
+      const contributorSheet = getOrCreateSheet(ss, 'Contributors', [
+        'Timestamp (IST)',
+        'Name',
+        'Email',
+        'Area',
+        'Message'
+      ]);
+      contributorSheet.appendRow([
+        formatDate(timestamp),
+        data.name || '',
+        data.email || '',
+        data.area || '',
+        data.message || ''
+      ]);
+    }
+
+    // 3. Send email notification to owner (safe fallback)
+    try {
+      sendNotificationEmail(data, timestamp);
+    } catch (mailErr) {
+      console.warn('Mail notification skipped:', mailErr);
+    }
+
+    return createJsonResponse({ ok: true, timestamp: timestamp.toISOString() });
+  } catch (err) {
+    return createJsonResponse({ ok: false, error: err.toString() });
   }
+}
+
+function doGet(e) {
+  return createJsonResponse({
+    ok: true,
+    service: 'Corteon Form Submission Webhook',
+    status: 'ACTIVE',
+    timestamp: new Date().toISOString()
+  });
+}
+
+function getOrCreateSheet(ss, sheetName, headers) {
+  let sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    sheet = ss.insertSheet(sheetName);
+    sheet.appendRow(headers);
+    const range = sheet.getRange(1, 1, 1, headers.length);
+    range.setFontWeight('bold');
+    range.setBackground('#1C2554');
+    range.setFontColor('#FFFFFF');
+    sheet.setFrozenRows(1);
+    for (let c = 1; c <= headers.length; c++) {
+      sheet.autoResizeColumn(c);
+    }
+  }
+  return sheet;
+}
+
+function formatDate(date) {
+  return Utilities.formatDate(date, 'Asia/Kolkata', 'yyyy-MM-dd HH:mm:ss');
+}
+
+function sendNotificationEmail(data, timestamp) {
+  const isContributor = data.type === 'contributor';
+  const subject = `[Corteon] New ${isContributor ? 'Contributor Application' : 'Waitlist Signup'}: ${data.email}`;
+  let body = `New submission on corteon.in:\n\n` +
+    `Type: ${data.type}\n` +
+    `Email: ${data.email}\n`;
+  if (data.name) body += `Name: ${data.name}\n`;
+  if (data.area) body += `Area: ${data.area}\n`;
+  if (data.interest) body += `Interest: ${data.interest}\n`;
+  if (data.message) body += `Message:\n${data.message}\n`;
+  body += `\nTime: ${formatDate(timestamp)} IST\n`;
+
+  MailApp.sendEmail({
+    to: OWNER_EMAIL,
+    subject: subject,
+    body: body
+  });
+}
+
+function createJsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj))
+    .setMimeType(ContentService.MimeType.JSON);
 }

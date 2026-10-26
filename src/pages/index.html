@@ -152,10 +152,7 @@ footer{padding:32px 0 44px;border-top:1px solid var(--ln);font-size:.92rem}foote
 <footer><div class="w"><img src="assets/logo.png" alt="Corteon" style="height:24px"><span class="m">Early-stage exploration. Nothing here is a finished product.</span></div></footer>
 
 <script>
-/* ---- CONFIG: edit before going live ---- */
-const ENDPOINT = "";  // Formspree URL or your own API; receives JSON incl. a "type" field. Empty = email fallback.
-const EMAIL = "hello@example.com"; // replace with your real address
-/* ---------------------------------------- */
+const ENDPOINT = "/api/submit";
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 if(matchMedia("(prefers-reduced-motion:reduce)").matches)$$("animate,animateMotion").forEach(e=>e.remove());
 const st=$("#stage"),I={a:["Week 1 · Idea","“Rank what I read by how much it resolves.” A sketch in the margin.","Linked to the week 12 question, eleven weeks later."],
@@ -180,7 +177,6 @@ sc.oninput=upd;upd();
 $$("form").forEach(f=>f.onsubmit=async e=>{e.preventDefault();const m=f.querySelector(".note");m.className="note";const d=Object.fromEntries(new FormData(f));d.type=f.dataset.type;
  if(!/^\S+@\S+\.\S+$/.test(d.email||"")){m.textContent="Enter a valid email, like you@example.com.";m.className="note e";return}
  if(d.type==="contributor"&&(!d.name||!d.area||!d.message)){m.textContent="Fill in your name, area and how you’d like to help.";m.className="note e";return}
- if(!ENDPOINT){location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Corteon "+d.type)+"&body="+encodeURIComponent(Object.entries(d).map(x=>x.join(": ")).join("\n"));m.textContent="Your email app should open. Send the message to finish.";return}
  m.textContent="Sending…";
  try{const x=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});if(!x.ok)throw 0;f.reset();m.textContent=d.type==="waitlist"?"You’re on the list. We’ll write when there’s something real to try.":"Thank you. We’ll be in touch."}
  catch(_){m.textContent="That didn’t go through. Check your connection and try again.";m.className="note e"}});

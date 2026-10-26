@@ -1,189 +1,148 @@
 /**
- * Synapse Enquiry Webhook — Google Apps Script
+ * Corteon Form Submissions — Google Apps Script Web App
  *
- * Receives enquiry submissions from corteon.in (/api/enquire),
- * records them into a Google Sheet ("Enquiries"), and sends an immediate
- * notification email to the owner at cksynapse@mail.com.
+ * Persists submissions from corteon.in (/api/submit) to Google Sheets.
+ * Handles both "waitlist" and "contributor" forms.
  *
- * -----------------------------------------------------------------------------
- * SETUP INSTRUCTIONS (Takes ~2 minutes):
- * -----------------------------------------------------------------------------
- * 1. Open Google Sheets (https://sheets.new) and name the spreadsheet:
- *    "Synapse Admissions & Enquiries"
- * 2. In the menu, go to: Extensions > Apps Script
- * 3. Delete any default code in Code.gs and paste this entire file.
- * 4. Click the "Save" icon (or Ctrl+S / Cmd+S).
- * 5. Click "Deploy" > "New deployment" (top right blue button).
- * 6. Click the gear icon next to "Select type" and select "Web app".
- * 7. Fill in the deployment configuration:
- *    - Description: "Synapse Enquiry Webhook v1"
- *    - Execute as: "Me (your Google account)"
+ * Setup:
+ * 1. Open Google Sheets (https://sheets.new) and name it "Corteon Submissions".
+ * 2. In the menu, go to: Extensions > Apps Script.
+ * 3. Replace all code in the editor with this file and Save (Ctrl+S / Cmd+S).
+ * 4. Click "Deploy" > "New deployment".
+ * 5. Click the gear icon next to "Select type" and choose "Web app".
+ * 6. Set:
+ *    - Execute as: "Me"
  *    - Who has access: "Anyone"
- * 8. Click "Deploy".
- * 9. Review and grant permissions (Google will ask to authorize accessing
- *    Spreadsheets and sending emails via your account).
- * 10. Copy the Web app URL (format: https://script.google.com/macros/s/.../exec).
- * 11. In Cloudflare Pages project settings, add the environment variable:
- *     APPS_SCRIPT_URL = <copied_url>
- * -----------------------------------------------------------------------------
+ * 7. Click "Deploy" and authorize permissions.
+ * 8. Copy the Web app URL (https://script.google.com/macros/s/.../exec).
  */
 
-const OWNER_EMAIL = 'cksynapse@mail.com';
-const SHEET_NAME = 'Enquiries';
+const OWNER_EMAIL = 'ckshandil3@gmail.com'; // Notification recipient
 
-/**
- * Handle incoming HTTP POST requests from /api/enquire
- */
 function doPost(e) {
   try {
     if (!e || !e.postData || !e.postData.contents) {
-      return createJsonResponse({
-        ok: false,
-        error: 'Missing request body',
-      });
+      return createJsonResponse({ ok: false, error: 'Missing request body' });
     }
 
     let data;
     try {
       data = JSON.parse(e.postData.contents);
-    } catch (parseErr) {
+    } catch (err) {
       return createJsonResponse({
         ok: false,
-        error: 'Invalid JSON payload: ' + parseErr.message,
+        error: 'Invalid JSON: ' + err.message,
       });
     }
 
-    // Required fields verification
-    if (!data.name || !data.phone) {
-      return createJsonResponse({
-        ok: false,
-        error: 'Name and phone are required fields.',
-      });
-    }
-
-    // Token verification (Requirement 5)
-    // Configure APPS_SCRIPT_TOKEN in Script Properties (File > Project properties > Script properties)
-    const expectedToken =
-      PropertiesService.getScriptProperties().getProperty('APPS_SCRIPT_TOKEN');
-    if (expectedToken && (!data.token || data.token !== expectedToken)) {
-      return createJsonResponse({
-        ok: false,
-        error: 'Unauthorized: invalid or missing security token.',
-      });
-    }
-
+    const type = String(data.type || 'unknown').toLowerCase();
     const timestamp = new Date();
-    const sheet = getOrCreateSheet();
-    const source = String(data.source || 'web');
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
 
-    // Append new row
-    sheet.appendRow([
-      timestamp,
-      data.door || 'parent',
-      data.doorTitle || 'A parent or student',
+    // 1. Record into master "All Submissions" tab
+    const masterSheet = getOrCreateSheet(ss, 'All Submissions', [
+      'Timestamp (IST)',
+      'Type',
+      'Name',
+      'Email',
+      'Area',
+      'Interest / Notes',
+      'Message',
+    ]);
+    masterSheet.appendRow([
+      formatDate(timestamp),
+      type,
       data.name || '',
-      "'" + String(data.phone || ''), // Leading apostrophe preserves phone string formatting in Sheets
       data.email || '',
-      data.stageOrSubject || '',
-      data.interestOrExam || '',
+      data.area || '',
+      data.interest || '',
       data.message || '',
-      source,
-      'New',
     ]);
 
-    // Send email notification to owner
-    sendEmailNotification(data, timestamp);
+    // 2. Also record into dedicated tab for easy filtering
+    if (type === 'waitlist') {
+      const waitlistSheet = getOrCreateSheet(ss, 'Waitlist', [
+        'Timestamp (IST)',
+        'Email',
+        'Interest / Notes',
+      ]);
+      waitlistSheet.appendRow([
+        formatDate(timestamp),
+        data.email || '',
+        data.interest || '',
+      ]);
+    } else if (type === 'contributor') {
+      const contributorSheet = getOrCreateSheet(ss, 'Contributors', [
+        'Timestamp (IST)',
+        'Name',
+        'Email',
+        'Area',
+        'Message',
+      ]);
+      contributorSheet.appendRow([
+        formatDate(timestamp),
+        data.name || '',
+        data.email || '',
+        data.area || '',
+        data.message || '',
+      ]);
+    }
 
-    return createJsonResponse({
-      ok: true,
-      timestamp: timestamp.toISOString(),
-      message: 'Enquiry recorded successfully.',
-    });
+    // 3. Send email notification to owner (safe fallback)
+    try {
+      sendNotificationEmail(data, timestamp);
+    } catch (mailErr) {
+      console.warn('Mail notification skipped:', mailErr);
+    }
+
+    return createJsonResponse({ ok: true, timestamp: timestamp.toISOString() });
   } catch (err) {
-    return createJsonResponse({
-      ok: false,
-      error: err.toString(),
-    });
+    return createJsonResponse({ ok: false, error: err.toString() });
   }
 }
 
-/**
- * Handle HTTP GET request (health check / verification)
- */
 function doGet(e) {
   return createJsonResponse({
     ok: true,
-    service: 'Synapse Enquiry Webhook',
+    service: 'Corteon Form Submission Webhook',
     status: 'ACTIVE',
     timestamp: new Date().toISOString(),
   });
 }
 
-/**
- * Get or create the "Enquiries" worksheet with formatted column headers
- */
-function getOrCreateSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  let sheet = ss.getSheetByName(SHEET_NAME);
-
+function getOrCreateSheet(ss, sheetName, headers) {
+  let sheet = ss.getSheetByName(sheetName);
   if (!sheet) {
-    sheet = ss.insertSheet(SHEET_NAME);
-    const headers = [
-      'Timestamp',
-      'Door ID',
-      'Door Title',
-      'Name',
-      'Phone/WhatsApp',
-      'Email',
-      'Stage / Subject / District',
-      'Interest / Track / Space',
-      'Message',
-      'Source',
-      'Status',
-    ];
+    sheet = ss.insertSheet(sheetName);
     sheet.appendRow(headers);
-
-    // Header formatting: bold text, light background, frozen header row
-    const headerRange = sheet.getRange(1, 1, 1, headers.length);
-    headerRange.setFontWeight('bold');
-    headerRange.setBackground('#F3EEE4');
-    headerRange.setFontColor('#15130F');
+    const range = sheet.getRange(1, 1, 1, headers.length);
+    range.setFontWeight('bold');
+    range.setBackground('#1C2554');
+    range.setFontColor('#FFFFFF');
     sheet.setFrozenRows(1);
-
-    // Auto-fit initial column widths
-    for (let col = 1; col <= headers.length; col++) {
-      sheet.autoResizeColumn(col);
+    for (let c = 1; c <= headers.length; c++) {
+      sheet.autoResizeColumn(c);
     }
   }
-
   return sheet;
 }
 
-/**
- * Send email notification to owner
- */
-function sendEmailNotification(data, timestamp) {
-  const doorTitle = data.doorTitle || data.door || 'General Enquiry';
-  const isTest = data.source === 't18-test';
-  const prefix = isTest ? '[TEST - T18] ' : '';
-  const subject = `${prefix}[Synapse Enquiry] ${doorTitle} - ${data.name}`;
+function formatDate(date) {
+  return Utilities.formatDate(date, 'Asia/Kolkata', 'yyyy-MM-dd HH:mm:ss');
+}
 
-  const body =
-    `New enquiry received for Synapse:\n\n` +
-    `Door: ${doorTitle} (${data.door || 'parent'})\n` +
-    `Name: ${data.name}\n` +
-    `Phone / WhatsApp: ${data.phone}\n` +
-    (data.source ? `Source: ${data.source}\n` : '') +
-    (data.email ? `Email: ${data.email}\n` : '') +
-    (data.stageOrSubject
-      ? `Stage / Subject / District: ${data.stageOrSubject}\n`
-      : '') +
-    (data.interestOrExam
-      ? `Interest / Track / Space: ${data.interestOrExam}\n`
-      : '') +
-    (data.message ? `Message / Questions:\n${data.message}\n` : '') +
-    `\nSubmitted At: ${timestamp.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST\n` +
-    `Callback window promised: within 24 hours\n`;
+function sendNotificationEmail(data, timestamp) {
+  const isContributor = data.type === 'contributor';
+  const subject = `[Corteon] New ${isContributor ? 'Contributor Application' : 'Waitlist Signup'}: ${data.email}`;
+  let body =
+    `New submission on corteon.in:\n\n` +
+    `Type: ${data.type}\n` +
+    `Email: ${data.email}\n`;
+  if (data.name) body += `Name: ${data.name}\n`;
+  if (data.area) body += `Area: ${data.area}\n`;
+  if (data.interest) body += `Interest: ${data.interest}\n`;
+  if (data.message) body += `Message:\n${data.message}\n`;
+  body += `\nTime: ${formatDate(timestamp)} IST\n`;
 
   MailApp.sendEmail({
     to: OWNER_EMAIL,
@@ -192,9 +151,6 @@ function sendEmailNotification(data, timestamp) {
   });
 }
 
-/**
- * Helper to construct JSON response
- */
 function createJsonResponse(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
     ContentService.MimeType.JSON

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corteon: tools for sustained human thinking</title>
+<meta name="description" content="AI can answer a question. Can it help you make progress on a problem? Corteon is exploring AI that keeps hold of your thinking over time.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%231C2554' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23E2652A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1C2554;--or:#E2652A;--ord:#B4491A;--mist:#ECEEF0;--sage:#6F8F7E;--sl:#8A93B5;--ln:rgba(28,37,84,.18);--serif:"Playfair Display",Georgia,serif;--sans:"Hanken Grotesk",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--mist);color:var(--navy);font:400 1.06rem/1.6 var(--sans)}
+p{margin:0}a{color:inherit}:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.w{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:96px 0;border-top:1px solid var(--ln)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2.3rem,5.4vw,4.2rem);max-width:17ch}h2{font-size:clamp(1.8rem,3.6vw,2.7rem);max-width:20ch}h3{font-size:1.35rem}
+.m{color:rgba(28,37,84,.78)}.lede{font-size:1.2rem;max-width:54ch;margin-top:22px}
+header .w{display:flex;justify-content:space-between;align-items:center;padding-top:20px;padding-bottom:20px}
+header img{height:34px;width:auto;display:block}
+nav{display:flex;gap:26px;font-size:.95rem}nav a{text-decoration:none}nav a:hover{color:var(--ord)}
+.btn{display:inline-block;padding:13px 26px;border:1.5px solid var(--navy);border-radius:999px;font:600 1rem var(--sans);text-decoration:none;cursor:pointer;background:transparent;color:var(--navy);transition:.2s}
+.btn.f{background:var(--navy);color:#fff}.btn:hover{background:var(--or);border-color:var(--or);color:#fff}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.panel{background:#fff;border:1px solid var(--ln);border-radius:16px;padding:20px}
+svg{display:block;width:100%;height:auto}
+.bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.tog{display:inline-flex;border:1.5px solid var(--navy);border-radius:999px;overflow:hidden}
+.tog button{font:500 .92rem var(--sans);padding:8px 16px;border:0;background:0;color:var(--navy);cursor:pointer}
+.tog button[aria-pressed=true]{background:var(--navy);color:#fff}
+.ax{stroke:var(--navy);stroke-width:1.5;fill:none}
+.lb{font:500 14px var(--sans);fill:var(--navy);text-anchor:middle}.lb.s{font-size:12px;fill:#5b638a}.lb.o{fill:var(--ord);font-weight:600}
+.nd{fill:#fff;stroke:var(--navy);stroke-width:2.5;cursor:pointer;transition:.2s}
+g[data-k]{cursor:pointer;transform-box:fill-box;transform-origin:center;animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}
+g[data-k]:hover .nd,g[data-k]:focus-visible .nd{stroke:var(--or)}
+g[data-k]:nth-of-type(2){animation-delay:.25s}g[data-k]:nth-of-type(3){animation-delay:.5s}g[data-k]:nth-of-type(4){animation-delay:.75s}
+@keyframes pop{from{transform:scale(0);opacity:0}}
+.th{stroke:var(--navy);stroke-width:2.5;fill:none;stroke-dasharray:1 11;stroke-linecap:round;opacity:.55}
+.th2{stroke:var(--navy);stroke-width:2.5;fill:none;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s ease}
+.stage.on .th2{stroke-dashoffset:0}
+.wi{opacity:0;transition:opacity .6s .3s}.stage.on .wi{opacity:1}
+.bridge{stroke:var(--or);stroke-width:2.5;fill:none;stroke-dasharray:8 8;animation:flow 1.2s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.pulse{fill:none;stroke:var(--or);stroke-width:2.5;transform-box:fill-box;transform-origin:center;animation:pr 2s ease-out infinite}
+@keyframes pr{from{transform:scale(.8);opacity:1}to{transform:scale(1.7);opacity:0}}
+.insp{margin-top:6px;padding:14px 4px 2px;border-top:1px solid var(--ln);min-height:5.2em}
+.insp b{font-family:var(--serif);font-size:1.1rem}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+.three .panel{padding:16px 16px 22px}.three h3{margin:14px 0 6px}
+.row{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:center;margin-top:72px}
+.row.r{grid-template-columns:1.1fr 1fr}.row.r>div:first-child{order:2}
+.tag{display:inline-flex;align-items:center;gap:8px;font:600 .9rem var(--sans);color:var(--ord);margin-bottom:10px}
+.tag i{width:10px;height:10px;border-radius:50%;background:var(--or)}
+input[type=range]{width:100%;accent-color:var(--or);margin-top:6px}
+.tr{display:grid;gap:10px}.tr div{display:grid;grid-template-columns:20px 1fr;gap:10px;padding:12px 14px;border:1px solid var(--ln);border-radius:12px;font-size:.95rem}
+.tr div:first-child{border-color:var(--or);background:#FFF6F1}.tr i{width:12px;height:12px;border-radius:50%;background:var(--sl);margin-top:6px}.tr div:first-child i{background:var(--or)}
+.tr b{display:block}
+.pull{font-family:var(--serif);font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.3;max-width:30ch;margin-top:56px}
+.forms{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+form{display:grid;gap:14px;margin-top:16px}label{display:grid;gap:6px;font-weight:500;font-size:.92rem}
+input,select,textarea{font:400 1rem var(--sans);padding:12px 13px;border:1.5px solid var(--navy);border-radius:10px;background:#fff;color:var(--navy);width:100%}
+.note{font-size:.92rem;min-height:1.4em}.note.e{color:#9A2B16}
+footer{padding:32px 0 44px;border-top:1px solid var(--ln);font-size:.92rem}footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+@media(max-width:860px){nav a:not(:last-child){display:none}.three,.forms,.row,.row.r{grid-template-columns:1fr}.row{gap:24px;margin-top:56px}.row.r>div:first-child{order:0}section{padding:64px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="w"><a href="#top" aria-label="Corteon home"><img src="assets/logo.png" alt="Corteon"></a>
+<nav><a href="#problem">The problem</a><a href="#approach">Our approach</a><a class="btn" href="#join" style="padding:8px 18px">Get involved</a></nav></div></header>
+
+<main id="top">
+<div class="w" style="padding-top:48px;padding-bottom:88px">
+<h1>AI can answer a question. Can it help you make progress on a problem?</h1>
+<p class="lede m">Complex work unfolds over weeks. Ideas change, assumptions go untested, and connections get lost between sessions and tools. We’re exploring how AI could help people sustain their thinking, not just reply to the latest prompt.</p>
+<div class="cta"><a class="btn f" href="#join">Join the waitlist</a><a class="btn" href="#join">Contribute to the project</a></div>
+
+<div class="panel stage" id="stage" style="margin-top:52px">
+<div class="bar"><p class="m">Twelve weeks of one person’s work on one problem. Select any point.</p>
+<div class="tog" role="group" aria-label="View"><button type="button" aria-pressed="true" data-on="0">Today</button><button type="button" aria-pressed="false" data-on="1">With continuity</button></div></div>
+<svg viewBox="0 -20 900 380" role="group" aria-label="Timeline of ideas, assumptions, evidence and a next question">
+<path class="ax" d="M40 330H860M110 324v12M270 324v12M520 324v12M790 324v12"/>
+<path id="th" class="th" d="M110 200C170 200 200 110 270 110S450 230 520 230 700 140 790 140"/>
+<path class="th2 wi" style="opacity:1" pathLength="1" d="M110 200C170 200 200 110 270 110S450 230 520 230 700 140 790 140"/>
+<g class="wi"><path class="bridge" d="M122 174C300-30 640-30 778 114"/><path d="M496 218C430 150 350 128 296 116" stroke="#6F8F7E" stroke-width="3" fill="none"/>
+<circle r="6.5" fill="#E2652A"><animateMotion dur="8s" repeatCount="indefinite"><mpath href="#th"/></animateMotion></circle></g>
+<g data-k="a" tabindex="0" role="button" aria-label="Week 1 idea"><circle class="nd" cx="110" cy="200" r="26"/><path d="M98 200h24M110 188v24" stroke="#1C2554" stroke-width="2.5" stroke-linecap="round"/></g>
+<g data-k="b" tabindex="0" role="button" aria-label="Week 3 assumption"><circle class="wi pulse" cx="270" cy="110" r="26"/><circle class="nd" cx="270" cy="110" r="26" stroke-dasharray="5 5"/><text x="270" y="121" text-anchor="middle" font-family="Playfair Display,serif" font-size="30" font-weight="700" fill="#E2652A">?</text></g>
+<g data-k="c" tabindex="0" role="button" aria-label="Week 7 evidence"><circle class="nd" cx="520" cy="230" r="26" style="fill:#DCE7E0;stroke:#6F8F7E"/><path d="M508 232l8 8 14-18" stroke="#4d6b5b" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>
+<g data-k="d" tabindex="0" role="button" aria-label="Week 12 next question"><circle class="nd" cx="790" cy="140" r="26"/><circle cx="790" cy="140" r="10" fill="#E2652A"/></g>
+<text class="lb" x="110" y="252">Idea</text><text class="lb" x="270" y="162">Assumption</text><text class="lb" x="520" y="282">Evidence</text><text class="lb" x="790" y="192">Next question</text>
+<text class="lb s" x="110" y="354">Week 1</text><text class="lb s" x="270" y="354">Week 3</text><text class="lb s" x="520" y="354">Week 7</text><text class="lb s" x="790" y="354">Week 12</text>
+<g class="wi"><text class="lb o" x="450" y="-2">Same question, eleven weeks apart</text><text class="lb o" x="270" y="180">untested for nine weeks</text><text class="lb o" x="420" y="168">challenges it</text></g>
+</svg>
+<div class="insp" id="insp" aria-live="polite"><b>Pick a point on the timeline.</b><p class="m">Each one is a fragment of thinking: an idea, an assumption, evidence or a question.</p></div>
+<p class="m" style="font-size:.86rem;margin-top:10px">Conceptual illustration of the idea we’re exploring, not a screenshot of a finished product.</p>
+</div></div>
+
+<section id="problem"><div class="w">
+<h2>Where thinking gets lost</h2>
+<p class="lede m">Modern AI tools are built for single turns. You ask, you get an answer, and the thread resets. Real problems don’t fit in one chat window.</p>
+<div class="three">
+<div class="panel"><svg viewBox="0 0 280 150" role="img" aria-label="A thought tries to cross from chat to sketch to voice note and fades"><g fill="#fff" stroke="#1C2554" stroke-width="2"><rect x="8" y="45" width="72" height="60" rx="8"/><rect x="104" y="45" width="72" height="60" rx="8"/><rect x="200" y="45" width="72" height="60" rx="8"/></g><g class="lb" style="font-size:13px"><text x="44" y="80">Chat</text><text x="140" y="80">Sketch</text><text x="236" y="80">Voice</text></g><path d="M82 75h20M178 75h20" stroke="#8A93B5" stroke-dasharray="3 5" stroke-width="2"/>
+<circle cy="125" r="7" fill="#E2652A"><animate attributeName="cx" values="30;140;236" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.6;0" dur="4s" repeatCount="indefinite"/></circle></svg>
+<h3>Thinking doesn’t happen in one prompt</h3><p class="m">Chats, sketches and voice notes each hold a piece. None of them know about the others.</p></div>
+<div class="panel"><svg viewBox="0 0 280 150" role="img" aria-label="Three decisions resting on one unchecked assumption"><g fill="#fff" stroke="#1C2554" stroke-width="2"><rect x="30" y="14" width="64" height="34" rx="6"/><rect x="108" y="14" width="64" height="34" rx="6"/><rect x="186" y="14" width="64" height="34" rx="6"/></g><path d="M62 50v38M140 50v38M218 50v38" stroke="#8A93B5" stroke-width="2"/><rect x="60" y="90" width="160" height="40" rx="8" fill="#fff" stroke="#1C2554" stroke-width="2.5" stroke-dasharray="6 5"/><circle class="pulse" cx="140" cy="110" r="16"/><text x="140" y="121" text-anchor="middle" font-family="Playfair Display,serif" font-size="30" font-weight="700" fill="#E2652A">?</text></svg>
+<h3>Context and reasons decay</h3><p class="m">The assumption three decisions rest on gets said once in passing and never checked.</p></div>
+<div class="panel"><svg id="sim" viewBox="0 0 280 150" role="img" aria-label="Many similar notes cluster together while the one that matters sits far away"><circle cx="90" cy="75" r="62" fill="#ECEEF0"/><circle cx="238" cy="42" r="8" fill="#E2652A"/><circle class="pulse" cx="238" cy="42" r="8"/><text class="lb s" x="90" y="146">sounds similar</text><text class="lb o" x="238" y="76">what matters</text></svg>
+<h3>Similar isn’t the same as useful</h3><p class="m">Finding a related note doesn’t tell you which uncertainty is blocking you.</p></div>
+</div>
+<p class="pull">The missing piece isn’t more information. It’s something that tracks where your understanding actually stands.</p>
+</div></section>
+
+<section id="approach"><div class="w">
+<h2>A system that works with how your thinking evolves</h2>
+<p class="lede m">These are design hypotheses we’re working to test, not promises of solved intelligence.</p>
+
+<div class="row"><div><span class="tag"><i></i>Capture</span><h3>Keep how a thought formed, not just the words</h3><p class="m" style="margin-top:12px">Thinking rarely starts as clean prose. Sketch while talking, or send a twenty-second voice note on a walk. Corteon keeps the timing and the strokes so you can replay the reasoning.</p></div>
+<div class="panel"><svg viewBox="0 0 420 220" role="img" aria-label="Scrubbable sketch with a voice waveform"><g fill="none" stroke="#1C2554" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path id="ink" d="M40 60h90v60H40zM130 90C170 90 190 60 230 60M230 60l-12-8M230 60l-10 12M250 40h96v60h-96zM296 130c0 22 0 30 0 42M296 184v2"/></g><circle id="pen" r="7" fill="#E2652A"/>
+<g id="wave" fill="#8A93B5"></g></svg>
+<input id="scrub" type="range" min="0" max="100" value="55" aria-label="Scrub the reasoning replay"><p class="m" id="said" style="font-size:.95rem;min-height:3em"></p></div></div>
+
+<div class="row r"><div><span class="tag"><i></i>Preserve</span><h3>Track how ideas rest on each other</h3><p class="m" style="margin-top:12px">Instead of flat folders, Corteon follows how an idea depends on an assumption, where evidence supports or contradicts it, and what is still unresolved. Every claim links back to its source.</p></div>
+<div class="panel"><svg viewBox="0 0 420 240" role="img" aria-label="Idea depends on assumption, evidence challenges it, next question follows"><g fill="none" stroke-width="2.5"><path d="M84 62C130 62 160 110 192 120" stroke="#1C2554"/><path d="M326 62C290 72 250 100 222 114" stroke="#6F8F7E"/><path class="bridge" d="M222 136C262 160 290 180 310 190"/></g>
+<g stroke="#1C2554" stroke-width="2.5" fill="#fff"><circle cx="60" cy="62" r="24"/><circle cx="350" cy="56" r="24" fill="#DCE7E0" stroke="#6F8F7E"/><circle cx="336" cy="196" r="24"/><circle cx="208" cy="128" r="24" stroke-dasharray="5 5"/></g>
+<circle class="pulse" cx="208" cy="128" r="24"/><circle cx="336" cy="196" r="9" fill="#E2652A"/><text x="208" y="139" text-anchor="middle" font-family="Playfair Display,serif" font-size="28" font-weight="700" fill="#E2652A">?</text>
+<g class="lb"><text x="60" y="108">Idea</text><text x="350" y="102">Evidence</text><text x="208" y="176">Assumption</text><text x="336" y="242">Next question</text></g></svg></div></div>
+
+<div class="row"><div><span class="tag"><i></i>Surface</span><h3>Stay quiet until there’s something worth saying</h3><p class="m" style="margin-top:12px">No notification flood and no chat essays. At most three suggestions at a time: a missing bridge across time, a hidden bottleneck, or a concrete next question. You can inspect and dismiss each one.</p></div>
+<div class="panel tr"><div><i></i><span><b>Bottleneck: a three-week-old assumption</b><span class="m">Your architecture relies on it. Last Tuesday’s reading challenges it. Untested for nine weeks, touches three decisions.</span></span></div>
+<div><i></i><span><b>Missing bridge</b><span class="m">Today’s sketch echoes a note from eleven weeks ago.</span></span></div>
+<div><i></i><span><b>Next question</b><span class="m">Compare rankings with and without the context-switching penalty.</span></span></div></div></div>
+</div></section>
+
+<section id="join"><div class="w">
+<h2>Two ways in</h2>
+<p class="lede m">Corteon is in early exploration. There’s no product to download yet. These forms are how we find the people to build it with.</p>
+<div class="forms">
+<div class="panel"><span class="tag"><i></i>Early access</span><h3>Join the waitlist</h3>
+<form data-type="waitlist" novalidate><label>Email<input type="email" name="email" autocomplete="email" required></label>
+<label>What draws you to this? (optional)<input name="interest"></label><button class="btn f" type="submit">Join the waitlist</button><p class="note" role="status" aria-live="polite"></p></form></div>
+<div class="panel"><span class="tag"><i></i>Builders and collaborators</span><h3>Contribute</h3>
+<form data-type="contributor" novalidate><label>Name<input name="name" autocomplete="name" required></label><label>Email<input type="email" name="email" autocomplete="email" required></label>
+<label>Area<select name="area" required><option value="">Choose one</option><option>Engineering</option><option>Research</option><option>Design</option><option>Product or domain expertise</option><option>Curious collaborator</option><option>Other</option></select></label>
+<label>How would you like to help?<textarea name="message" rows="3" required></textarea></label><button class="btn f" type="submit">Send to the team</button><p class="note" role="status" aria-live="polite"></p></form></div>
+</div>
+<p class="m" style="font-size:.9rem;margin-top:18px">We’ll only use your details to contact you about Corteon, and you can ask us to remove them at any time.</p>
+</div></section>
+</main>
+<footer><div class="w"><img src="assets/logo.png" alt="Corteon" style="height:24px"><span class="m">Early-stage exploration. Nothing here is a finished product.</span></div></footer>
+
+<script>
+/* ---- CONFIG: edit before going live ---- */
+const ENDPOINT = "";  // Formspree URL or your own API; receives JSON incl. a "type" field. Empty = email fallback.
+const EMAIL = "hello@example.com"; // replace with your real address
+/* ---------------------------------------- */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+if(matchMedia("(prefers-reduced-motion:reduce)").matches)$$("animate,animateMotion").forEach(e=>e.remove());
+const st=$("#stage"),I={a:["Week 1 · Idea","“Rank what I read by how much it resolves.” A sketch in the margin.","Linked to the week 12 question, eleven weeks later."],
+b:["Week 3 · Assumption","“Assuming one confidence score is enough…” Said in passing, by voice.","Flagged: untested for nine weeks, and three decisions depend on it."],
+c:["Week 7 · Evidence","A paper shows one score can’t tell “never seen” from “contradicted”.","Linked: it challenges the week 3 assumption."],
+d:["Week 12 · Next question","Does a two-part belief beat plain search on fifty notes?","Surfaced because it tests the flagged assumption."]};
+const show=k=>{const [t,a,b]=I[k];$("#insp").innerHTML="<b>"+t+"</b><p class='m'>"+a+(st.classList.contains("on")?" <span style='color:var(--ord)'>"+b+"</span>":"")+"</p>";st.dataset.k=k};
+$$("[data-k]").forEach(g=>{g.onclick=()=>show(g.dataset.k);g.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();show(g.dataset.k)}}});
+$$(".tog button").forEach(b=>b.onclick=()=>{st.classList.toggle("on",b.dataset.on==="1");$$(".tog button").forEach(x=>x.setAttribute("aria-pressed",x===b));if(st.dataset.k)show(st.dataset.k)});
+/* similarity cluster */
+const sim=$("#sim");let sd=7,r=()=>(sd=(sd*9301+49297)%233280)/233280,h="";
+for(let i=0;i<22;i++){const a=r()*6.28,d=Math.sqrt(r())*52;h+=`<circle cx="${90+Math.cos(a)*d}" cy="${75+Math.sin(a)*d}" r="5" fill="#8A93B5" opacity=".85"/>`}
+sim.insertAdjacentHTML("beforeend",h);
+/* reasoning replay */
+const ink=$("#ink"),L=ink.getTotalLength(),pen=$("#pen"),sc=$("#scrub"),said=$("#said"),W=$("#wave");
+ink.style.strokeDasharray=L;let wb="";for(let i=0;i<46;i++){const v=6+Math.abs(Math.sin(i*1.7)*Math.cos(i*.6))*22;wb+=`<rect class="wb" x="${30+i*8}" y="${205-v}" width="4" height="${v}" rx="2"/>`}W.innerHTML=wb;
+const T=[[8,"“Okay, so the idea is to rank what I read…”"],[40,"“…which depends on this score being enough.”"],[78,"“Wait, what if that assumption breaks over weeks?”"]];
+const upd=()=>{const v=sc.value/100;ink.style.strokeDashoffset=L*(1-v);const p=ink.getPointAtLength(L*v);pen.setAttribute("cx",p.x);pen.setAttribute("cy",p.y);
+ said.textContent=[...T].reverse().find(t=>sc.value>=t[0])?.[1]||"";$$(".wb").forEach((b,i)=>b.setAttribute("fill",i/46<=v?"#E2652A":"#8A93B5"))};
+sc.oninput=upd;upd();
+/* forms */
+$$("form").forEach(f=>f.onsubmit=async e=>{e.preventDefault();const m=f.querySelector(".note");m.className="note";const d=Object.fromEntries(new FormData(f));d.type=f.dataset.type;
+ if(!/^\S+@\S+\.\S+$/.test(d.email||"")){m.textContent="Enter a valid email, like you@example.com.";m.className="note e";return}
+ if(d.type==="contributor"&&(!d.name||!d.area||!d.message)){m.textContent="Fill in your name, area and how you’d like to help.";m.className="note e";return}
+ if(!ENDPOINT){location.href="mailto:"+EMAIL+"?subject="+encodeURIComponent("Corteon "+d.type)+"&body="+encodeURIComponent(Object.entries(d).map(x=>x.join(": ")).join("\n"));m.textContent="Your email app should open. Send the message to finish.";return}
+ m.textContent="Sending…";
+ try{const x=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(d)});if(!x.ok)throw 0;f.reset();m.textContent=d.type==="waitlist"?"You’re on the list. We’ll write when there’s something real to try.":"Thank you. We’ll be in touch."}
+ catch(_){m.textContent="That didn’t go through. Check your connection and try again.";m.className="note e"}});
+</script>
+</body>
+</html>

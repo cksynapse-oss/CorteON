@@ -12,3 +12,5 @@ AGENTS.md
 README.md
 CNAME
 package-lock.json
+src/pages/index.html
+src/pages/_index.synapse.astro

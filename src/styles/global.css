@@ -18,13 +18,11 @@
 /* Nocturnal / Dark contextual sections */
 .theme-ink,
 [data-theme='ink'] {
-  --paper: #15130f;
-  --ink: #f3eee4;
   --muted: #a29d91;
   --hair: #3a362e;
   --spark: #ff6338;
-  background-color: var(--paper);
-  color: var(--ink);
+  background-color: var(--ink);
+  color: var(--paper);
 }
 
 html {

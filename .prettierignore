@@ -1,6 +1,7 @@
 dist/
 node_modules/
 .astro/
+.wrangler/
 legacy/
 synapse web/
 reference/

@@ -11,13 +11,15 @@
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
     "test:contrast": "node scripts/test-contrast.js",
+    "test:screenshot": "node scripts/test-screenshot.js",
     "content-lint": "node scripts/content-lint.js",
     "content-lint:prod": "node scripts/content-lint.js --prod",
     "link-check": "node scripts/link-check.js",
+    "smoke:api": "node scripts/smoke-api.js",
     "axe": "node scripts/axe-check.js",
     "lighthouse-ci": "lhci autorun",
     "check": "astro check && eslint . && prettier --check . && npm run test:contrast && npm run content-lint && npm run build && npm run link-check",
-    "check:full": "npm run check && npm run axe && npm run lighthouse-ci"
+    "check:full": "npm run check && npm run test:screenshot && npm run smoke:api && npm run axe && npm run lighthouse-ci"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

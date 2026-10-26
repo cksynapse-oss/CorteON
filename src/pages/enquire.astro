@@ -846,9 +846,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           submitButton.textContent = 'Sending...';
         }
 
-        await waitForTurnstileToken(form);
-
         try {
+          await waitForTurnstileToken(form);
+
           const formData = new FormData(form);
           const response = await fetch('/api/enquire', {
             method: 'POST',
@@ -858,9 +858,18 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
             body: formData,
           });
 
-          const data = await response.json();
+          let data: {
+            ok?: boolean;
+            error?: string;
+            whatsappFallbackUrl?: string;
+          } | null = null;
+          try {
+            data = await response.json();
+          } catch {
+            data = null;
+          }
 
-          if (response.ok && data.ok) {
+          if (response.ok && data?.ok) {
             // Hide form and display confirmation smoothly
             if (formView) formView.classList.add('hidden');
             if (confirmationView) {
@@ -869,13 +878,29 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
               confirmationView.scrollIntoView({ behavior: 'smooth' });
             }
           } else {
-            throw new Error(data.error || 'Failed to submit enquiry.');
+            const err =
+              data?.error ||
+              'We could not submit your enquiry right now. Please message us on WhatsApp.';
+            if (clientErrorAlert && clientErrorText) {
+              clientErrorText.textContent = err;
+              if (clientErrorWhatsappBtn) {
+                if (data?.whatsappFallbackUrl) {
+                  clientErrorWhatsappBtn.href = data.whatsappFallbackUrl;
+                } else {
+                  updateWhatsAppLink();
+                }
+              }
+              clientErrorAlert.classList.remove('hidden');
+              clientErrorAlert.scrollIntoView({ behavior: 'smooth' });
+            }
           }
-        } catch (err) {
+        } catch {
           if (clientErrorAlert && clientErrorText) {
             clientErrorText.textContent =
-              (err instanceof Error ? err.message : '') ||
               'We could not submit your enquiry right now. Please message us on WhatsApp.';
+            if (clientErrorWhatsappBtn) {
+              updateWhatsAppLink();
+            }
             clientErrorAlert.classList.remove('hidden');
             clientErrorAlert.scrollIntoView({ behavior: 'smooth' });
           }

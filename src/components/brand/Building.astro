@@ -1734,9 +1734,10 @@ const {
   .building {
     display: block;
     width: 100%;
-    --ink: var(--ink);
-    --paper: var(--paper);
-    --spark: var(--spark);
+    background: transparent;
+    --ink: #15130f;
+    --paper: #f3eee4;
+    --spark: #d9481f;
   }
 
   /* Active floor styles following docs/ILLUSTRATIONS.md Section 23 */
@@ -1767,14 +1768,15 @@ const {
     }
   }
 
-  /* Nocturnal ink canvas contextual token overrides */
+  /* Nocturnal ink canvas contextual token overrides (docs/ILLUSTRATIONS.md line 33) */
   :global(.theme-ink) .building,
   :global([data-theme='ink']) .building,
   :global(.dark) .building,
   .building.theme-ink {
-    --ink: var(--ink);
-    --paper: var(--paper);
-    --spark: var(--spark);
+    background: transparent;
+    --ink: #f3eee4;
+    --paper: #15130f;
+    --spark: #d9481f;
   }
 </style>
 

@@ -694,9 +694,9 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
           submitButton.textContent = 'Sending...';
         }
 
-        await waitForTurnstileToken(form);
-
         try {
+          await waitForTurnstileToken(form);
+
           const formData = new FormData(form);
           const response = await fetch('/api/enquire', {
             method: 'POST',
@@ -706,16 +706,28 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
             body: formData,
           });
 
-          const data = await response.json();
+          let data: {
+            ok?: boolean;
+            error?: string;
+            whatsappFallbackUrl?: string;
+          } | null = null;
+          try {
+            data = await response.json();
+          } catch {
+            data = null;
+          }
 
-          if (response.ok && data.ok) {
+          if (response.ok && data?.ok) {
             if (formContainer) formContainer.classList.add('hidden');
             if (confirmationEl) {
               confirmationEl.classList.remove('hidden');
               confirmationEl.focus();
+              confirmationEl.scrollIntoView({ behavior: 'smooth' });
             }
           } else {
-            const err = data.error || 'Please fill in all required fields.';
+            const err =
+              data?.error ||
+              'We could not submit your application right now. Please message us on WhatsApp.';
             const clientErrorText =
               document.getElementById('client-error-text');
             const errWhatsappBtn = document.getElementById(
@@ -726,8 +738,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
             } else if (clientErrorAlert) {
               clientErrorAlert.textContent = err;
             }
-            if (errWhatsappBtn && data.whatsappFallbackUrl) {
-              errWhatsappBtn.href = data.whatsappFallbackUrl;
+            if (errWhatsappBtn) {
+              if (data?.whatsappFallbackUrl) {
+                errWhatsappBtn.href = data.whatsappFallbackUrl;
+              } else {
+                updateWhatsAppLink();
+              }
             }
             if (clientErrorAlert) {
               clientErrorAlert.classList.remove('hidden');
@@ -736,14 +752,34 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
                 block: 'nearest',
               });
             }
-            if (submitButton) {
-              submitButton.disabled = false;
-              submitButton.textContent = originalBtnText;
-            }
           }
         } catch {
-          // If network error, fall back to native submission
-          form.submit();
+          const err =
+            'We could not submit your application right now. Please message us on WhatsApp.';
+          const clientErrorText = document.getElementById('client-error-text');
+          const errWhatsappBtn = document.getElementById(
+            'client-error-whatsapp-btn'
+          ) as HTMLAnchorElement | null;
+          if (clientErrorText) {
+            clientErrorText.textContent = err;
+          } else if (clientErrorAlert) {
+            clientErrorAlert.textContent = err;
+          }
+          if (errWhatsappBtn) {
+            updateWhatsAppLink();
+          }
+          if (clientErrorAlert) {
+            clientErrorAlert.classList.remove('hidden');
+            clientErrorAlert.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+            });
+          }
+        } finally {
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalBtnText;
+          }
         }
       });
     })();

@@ -2,6 +2,7 @@
 dist/
 node_modules/
 .astro/
+.wrangler/
 
 # Environment & caches
 .env
@@ -10,6 +11,7 @@ node_modules/
 .turbo
 .parcel-cache
 .lighthouseci/
+.screenshots/
 
 # OS
 .DS_Store

@@ -10,7 +10,7 @@ export default [
     },
   },
   {
-    files: ['functions/api/**'],
+    files: ['functions/api/**', 'src/lib/enquiry.ts', 'worker/**'],
     rules: {
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
     },
@@ -25,6 +25,7 @@ export default [
     ignores: [
       'dist/**',
       '.astro/**',
+      '.wrangler/**',
       'legacy/**',
       'synapse web/**',
       'reference/**',

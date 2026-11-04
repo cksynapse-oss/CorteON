@@ -69,7 +69,7 @@ footer{padding:32px 0 44px;border-top:1px solid var(--ln);font-size:.92rem}foote
 </head>
 <body>
 <header><div class="w"><a href="#top" aria-label="Corteon home"><img src="assets/logo.png" alt="Corteon"></a>
-<nav><a href="#problem">The problem</a><a href="#approach">Our approach</a><a class="btn" href="#join" style="padding:8px 18px">Get involved</a></nav></div></header>
+<nav><a href="#problem">The problem</a><a href="#approach">Our approach</a><a href="/tutor">Tutor demo</a><a class="btn" href="#join" style="padding:8px 18px">Get involved</a></nav></div></header>
 
 <main id="top">
 <div class="w" style="padding-top:48px;padding-bottom:88px">
@@ -132,6 +132,12 @@ footer{padding:32px 0 44px;border-top:1px solid var(--ln);font-size:.92rem}foote
 <div class="panel tr"><div><i></i><span><b>Bottleneck: a three-week-old assumption</b><span class="m">Your architecture relies on it. Last Tuesday’s reading challenges it. Untested for nine weeks, touches three decisions.</span></span></div>
 <div><i></i><span><b>Missing bridge</b><span class="m">Today’s sketch echoes a note from eleven weeks ago.</span></span></div>
 <div><i></i><span><b>Next question</b><span class="m">Compare rankings with and without the context-switching penalty.</span></span></div></div></div>
+
+<div class="panel" style="margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;background:#fff">
+<div><span class="tag"><i></i>Interactive Demo</span><h3 style="margin:2px 0 6px">Experience Socratic practice in action</h3>
+<p class="m" style="max-width:54ch">Explore our prototype tutor: hints before answers, confidence calibration, and verifiable reasoning.</p></div>
+<a class="btn" href="/tutor" style="padding:10px 22px">Open Tutor Demo &rarr;</a>
+</div>
 </div></section>
 
 <section id="join"><div class="w">
@@ -149,7 +155,7 @@ footer{padding:32px 0 44px;border-top:1px solid var(--ln);font-size:.92rem}foote
 <p class="m" style="font-size:.9rem;margin-top:18px">We’ll only use your details to contact you about Corteon, and you can ask us to remove them at any time.</p>
 </div></section>
 </main>
-<footer><div class="w"><img src="assets/logo.png" alt="Corteon" style="height:24px"><span class="m">Early-stage exploration. Nothing here is a finished product.</span></div></footer>
+<footer><div class="w"><img src="assets/logo.png" alt="Corteon" style="height:24px"><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><a href="/tutor" style="text-decoration:none;font-weight:500">Tutor demo</a><span class="m">Early-stage exploration. Nothing here is a finished product.</span></div></div></footer>
 
 <script>
 const ENDPOINT = "/api/submit";

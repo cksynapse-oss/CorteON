@@ -1,0 +1,1130 @@
+---
+import tutorProblemRaw from '../../content/illustrative/tutor-problem.json';
+import type { TutorProblemContent } from '../../content/schemas';
+import StatusChip from '../ui/StatusChip.astro';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+const tutor = tutorProblemRaw as TutorProblemContent;
+
+// Socratic stages for reasoning progression
+const proofStages = [
+  {
+    step: 1,
+    id: 'stage-factors',
+    title: '01. Prime Factors',
+    formula: '6 = 2 × 3',
+    status: 'Active',
+  },
+  {
+    step: 2,
+    id: 'stage-multiple',
+    title: '02. Multiple Definition',
+    formula: 'n = 6k',
+    status: 'Pending',
+  },
+  {
+    step: 3,
+    id: 'stage-regrouping',
+    title: '03. Factor Regrouping',
+    formula: 'n = 2(3k) & 3(2k)',
+    status: 'Pending',
+  },
+  {
+    step: 4,
+    id: 'stage-verification',
+    title: '04. Transfer Check',
+    formula: '15 = 3 × 5',
+    status: 'Pending',
+  },
+];
+
+// Verification question data (Foundational conceptual transfer)
+const verificationQuestion = {
+  question:
+    'Transfer Check: Using the exact same reasoning, if a whole number n is divisible by 15, must it be divisible by both 3 and 5?',
+  options: [
+    {
+      id: 'opt-1',
+      text: 'Yes: 15 breaks into prime factors 3 × 5. So n = 15k = 3(5k) and 5(3k), proving divisibility by both.',
+      isCorrect: true,
+      feedback:
+        'Correct. Because 3 and 5 are the prime factors of 15, every multiple of 15 inherits both factors as whole-number multiples.',
+    },
+    {
+      id: 'opt-2',
+      text: 'No: only if n is an odd number, because 15 is odd.',
+      isCorrect: false,
+      feedback:
+        'Not quite. 30 is even and divisible by 15; it is also divisible by 3 and 5. Divisibility depends on factor structure, not parity.',
+    },
+    {
+      id: 'opt-3',
+      text: 'No: 15 must be prime for this property to apply.',
+      isCorrect: false,
+      feedback:
+        'Incorrect. Composite numbers pass their prime factors down to all their multiples.',
+    },
+  ],
+};
+---
+
+<div
+  class={`relative overflow-hidden rounded border border-hair-ink bg-ink text-paper ${className}`}
+  data-component="interactive-tutor"
+>
+  {/* SECTION A: DESK BANNER & CALIBRATED TELEMETRY */}
+  <header class="border-b border-hair-ink p-5 sm:p-8">
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <span
+          class="inline-flex items-center rounded-pill border border-hair-ink px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+        >
+          {tutor.name}
+        </span>
+        <StatusChip status={tutor.status} onDark={true} />
+        <span
+          class="border-spark-glow/40 bg-spark-glow/10 rounded-pill border px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider text-spark-glow"
+        >
+          Interactive Study Desk v0.1
+        </span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="h-2 w-2 rounded-full bg-spark-glow" aria-hidden="true"
+        ></span>
+        <span
+          class="font-mono text-xs uppercase tracking-widest text-muted-on-ink"
+        >
+          Socratic Practice Mode
+        </span>
+      </div>
+    </div>
+
+    {/* Stage Progress Ribbon */}
+    <div class="border-hair-ink/70 mt-6 border-t pt-5">
+      <div class="mb-2 flex items-center justify-between">
+        <span
+          class="font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+        >
+          Proof Progression Ledger
+        </span>
+        <span
+          id="proof-progress-readout"
+          class="font-mono text-xs text-spark-glow"
+        >
+          Stage 1 of 4: Uncovering Factors
+        </span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3" role="list">
+        {
+          proofStages.map((stage) => (
+            <div
+              id={`stage-card-${stage.step}`}
+              class={`stage-tracker-card rounded border p-3 transition-colors ${
+                stage.step === 1
+                  ? 'bg-spark-glow/10 border-spark-glow text-paper'
+                  : 'border-hair-ink/60 bg-ink/40 text-muted-on-ink'
+              }`}
+              role="listitem"
+            >
+              <div class="flex items-start justify-between gap-1 font-mono text-xs">
+                <span class="font-semibold leading-tight">{stage.title}</span>
+                <span
+                  id={`stage-badge-${stage.step}`}
+                  class="ml-1 shrink-0 whitespace-nowrap text-[10px] uppercase tracking-wider"
+                >
+                  {stage.step === 1 ? 'Active' : 'Pending'}
+                </span>
+              </div>
+              <div class="mt-1 font-mono text-xs opacity-80">
+                {stage.formula}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Real-time Telemetry Metrics */}
+    <div
+      class="border-hair-ink/40 mt-4 grid grid-cols-2 gap-2 border-t pt-4 sm:grid-cols-3 sm:gap-3"
+      aria-label="Practice telemetry"
+    >
+      <div class="border-hair-ink/50 bg-ink/30 rounded border px-3 py-2">
+        <span
+          class="block font-mono text-[11px] uppercase tracking-wider text-muted-on-ink"
+        >
+          Hints Consulted
+        </span>
+        <span
+          id="telemetry-hints"
+          class="font-mono text-sm font-semibold text-paper"
+        >
+          0 of 3 Used
+        </span>
+      </div>
+
+      <div class="border-hair-ink/50 bg-ink/30 rounded border px-3 py-2">
+        <span
+          class="block font-mono text-[11px] uppercase tracking-wider text-muted-on-ink"
+        >
+          Stated Confidence
+        </span>
+        <span
+          id="telemetry-confidence"
+          class="font-mono text-sm font-semibold text-spark-glow"
+        >
+          50% (Working Hypothesis)
+        </span>
+      </div>
+
+      <div
+        class="border-hair-ink/50 bg-ink/30 col-span-2 rounded border px-3 py-2 sm:col-span-1"
+      >
+        <span
+          class="block font-mono text-[11px] uppercase tracking-wider text-muted-on-ink"
+        >
+          Calibration State
+        </span>
+        <span
+          id="telemetry-calibration"
+          class="font-mono text-sm font-semibold text-paper"
+        >
+          Reflective Explorer
+        </span>
+      </div>
+    </div>
+  </header>
+
+  {/* SECTION B: TWO-COLUMN EDITORIAL STUDY DESK */}
+  <div
+    class="grid grid-cols-1 divide-y divide-hair-ink lg:grid-cols-12 lg:divide-x lg:divide-y-0"
+  >
+    {/* LEFT PANE: THE REASONING SLATE & HINT LADDER (7 cols) */}
+    <div class="p-5 sm:p-8 lg:col-span-7">
+      {/* Problem Formulation Card */}
+      <div class="bg-ink/70 mb-6 rounded border border-hair-ink p-5 sm:p-6">
+        <div
+          class="mb-2 flex items-center justify-between font-mono text-xs uppercase tracking-wider"
+        >
+          <span class="text-spark-glow">{tutor.domain}</span>
+          <span class="text-muted-on-ink">{tutor.problemTitle}</span>
+        </div>
+
+        <h2
+          class="font-serif text-2xl font-normal leading-snug text-paper sm:text-3xl"
+        >
+          {tutor.problemStatement}
+        </h2>
+
+        <div
+          class="border-hair-ink/70 bg-ink/50 mt-4 rounded border p-3.5 font-mono text-xs leading-relaxed text-muted-on-ink"
+        >
+          <span class="font-semibold text-paper">Premise:</span> Let <span
+            class="text-paper">n</span
+          > be any integer. If 6 divides <span class="text-paper">n</span> (written
+          6 | n), demonstrate why both 2 | n and 3 | n must hold without testing individual
+          numbers.
+        </div>
+      </div>
+
+      {/* Socratic Hint Ladder */}
+      <div class="mb-6">
+        <div class="mb-3 flex items-center justify-between">
+          <div>
+            <span
+              class="block font-mono text-xs font-semibold uppercase tracking-wider text-muted-on-ink"
+            >
+              Socratic Hint Ladder
+            </span>
+            <span class="text-muted-on-ink/80 font-body text-xs">
+              Guidance reveals questions, not finished answers.
+            </span>
+          </div>
+          <span
+            id="hint-status-label"
+            class="font-mono text-xs text-spark-glow"
+          >
+            3 Inquiries Available
+          </span>
+        </div>
+
+        <div class="space-y-2.5" id="hint-ladder-container">
+          {
+            tutor.hints.map((hint) => (
+              <div
+                class="hint-card bg-ink/40 rounded border border-hair-ink p-3.5 transition-colors"
+                data-step={hint.step}
+                id={`hint-card-${hint.step}`}
+              >
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
+                    <span class="font-semibold text-spark-glow">
+                      {hint.label}
+                    </span>
+                    <span class="text-muted-on-ink">·</span>
+                    <span class="text-paper">{hint.title}</span>
+                  </div>
+                  <span
+                    class="hint-lock-badge shrink-0 font-mono text-xs text-muted-on-ink"
+                    id={`hint-badge-${hint.step}`}
+                  >
+                    Locked
+                  </span>
+                </div>
+                <div
+                  class="hint-body border-hair-ink/60 mt-2 hidden border-t pt-2 font-body text-sm leading-relaxed text-muted-on-ink"
+                  id={`hint-content-${hint.step}`}
+                >
+                  <p>{hint.content}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="mt-3 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            id="btn-reveal-hint"
+            class="hover:bg-hair-ink/30 inline-flex min-h-[36px] items-center justify-center rounded-pill border border-paper px-4 py-1.5 font-sans text-xs font-medium uppercase tracking-[0.12em] text-paper transition-colors hover:border-spark-glow hover:text-spark-glow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+          >
+            Request Socratic Hint
+          </button>
+          <span
+            class="font-mono text-xs text-muted-on-ink"
+            id="hint-action-caption"
+          >
+            Requests guide reasoning step by step.
+          </span>
+        </div>
+      </div>
+
+      {/* The Learner's Explanation Slate */}
+      <form
+        id="tutor-reasoning-form"
+        class="space-y-4"
+        onsubmit="return false;"
+      >
+        <div>
+          <div class="mb-2 flex items-center justify-between">
+            <label
+              for="learner-reasoning-text"
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-muted-on-ink"
+            >
+              Your Reasoning Slate
+            </label>
+            <span class="font-mono text-xs text-muted-on-ink"
+              >Construct your proof</span
+            >
+          </div>
+
+          <textarea
+            id="learner-reasoning-text"
+            rows="4"
+            class="bg-ink/90 placeholder:text-muted-on-ink/50 w-full rounded border border-hair-ink p-3.5 font-body text-sm leading-relaxed text-paper focus:border-spark-glow focus:outline-none focus:ring-1 focus:ring-spark-glow"
+            placeholder="State your explanation in your own words. Focus on the factors of 6 and how an arbitrary multiple n = 6k can be rewritten..."
+          ></textarea>
+        </div>
+
+        {/* Quick Sample Archetypes for Demo Testing */}
+        <div>
+          <span
+            class="mb-1.5 block font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+          >
+            Test Archetypes (Select to load sample student responses):
+          </span>
+          <div class="flex flex-wrap gap-2">
+            <button
+              type="button"
+              class="sample-reasoning-btn bg-ink/40 rounded-pill border border-hair-ink px-3 py-1 font-mono text-xs text-muted-on-ink transition-colors hover:border-spark-glow hover:text-spark-glow"
+              data-text="6 can be broken down into prime factors 2 and 3. Therefore, any multiple of 6 must contain both 2 and 3 as factors."
+              data-conf="50"
+            >
+              Archetype 1: Prime Factors Argument
+            </button>
+            <button
+              type="button"
+              class="sample-reasoning-btn bg-ink/40 rounded-pill border border-hair-ink px-3 py-1 font-mono text-xs text-muted-on-ink transition-colors hover:border-spark-glow hover:text-spark-glow"
+              data-text="If n is divisible by 6, then n = 6k for some integer k. Since 6 = 2 * 3, we have n = (2 * 3)k. By associativity, n = 2(3k) which proves 2 divides n, and n = 3(2k) which proves 3 divides n."
+              data-conf="85"
+            >
+              Archetype 2: Formal Algebraic Proof
+            </button>
+            <button
+              type="button"
+              class="sample-reasoning-btn bg-ink/40 rounded-pill border border-hair-ink px-3 py-1 font-mono text-xs text-muted-on-ink transition-colors hover:border-spark-glow hover:text-spark-glow"
+              data-text="Because 6 is an even number and 3 goes into 6."
+              data-conf="30"
+            >
+              Archetype 3: Intuitive Observation
+            </button>
+          </div>
+        </div>
+
+        {/* Confidence Calibration Instrument */}
+        <div class="bg-ink/50 rounded border border-hair-ink p-4">
+          <div class="mb-2 flex items-center justify-between">
+            <label
+              for="confidence-calibration-slider"
+              class="font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+            >
+              {tutor.calibration.label}
+            </label>
+            <output
+              id="confidence-output-val"
+              for="confidence-calibration-slider"
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+            >
+              50% (Working Hypothesis)
+            </output>
+          </div>
+
+          <input
+            id="confidence-calibration-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="50"
+            step="5"
+            class="h-2 w-full cursor-pointer appearance-none rounded-full bg-hair-ink accent-spark hover:accent-spark-glow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+            aria-describedby="confidence-subtext"
+          />
+
+          {/* Qualitative tick marks */}
+          <div
+            class="text-muted-on-ink/80 mt-2 flex justify-between font-mono text-[10px]"
+          >
+            <span>0% Guess</span>
+            <span>25% Intuition</span>
+            <span>50% Hypothesis</span>
+            <span>75% Reasoned</span>
+            <span>100% Airtight</span>
+          </div>
+
+          <p
+            id="confidence-subtext"
+            class="mt-2 font-body text-xs text-muted-on-ink"
+          >
+            {tutor.calibration.sub}
+          </p>
+        </div>
+
+        {/* Action Controls */}
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <button
+            type="button"
+            id="btn-submit-reasoning"
+            class="inline-flex min-h-[44px] items-center justify-center rounded-pill border border-paper bg-paper px-6 py-2.5 font-sans text-xs font-medium uppercase tracking-[0.14em] text-ink transition-colors hover:border-spark-glow hover:bg-spark-glow focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+          >
+            Submit Explanation to Guide
+          </button>
+
+          <button
+            type="button"
+            id="btn-restart-tutor"
+            class="inline-flex min-h-[40px] items-center justify-center rounded-pill border border-hair-ink px-4 py-2 font-sans text-xs font-medium uppercase tracking-[0.12em] text-muted-on-ink transition-colors hover:border-paper hover:text-paper focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spark"
+          >
+            Restart Slate
+          </button>
+        </div>
+      </form>
+    </div>
+
+    {/* RIGHT PANE: SOCRATIC MARGIN & PEDAGOGICAL EVALUATION (5 cols) */}
+    <div class="flex flex-col justify-between p-5 sm:p-8 lg:col-span-5">
+      <div>
+        <div
+          class="mb-4 flex items-center justify-between border-b border-hair-ink pb-3"
+        >
+          <div class="flex items-center gap-2">
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+            >
+              Socratic Margin & Feedback
+            </span>
+          </div>
+          <span
+            class="font-mono text-xs uppercase tracking-wider text-muted-on-ink"
+          >
+            Pedagogical Ledger
+          </span>
+        </div>
+
+        {/* Margin Note Entries (aria-live polite) */}
+        <div
+          id="dialogue-messages-container"
+          class="space-y-4 overflow-y-auto pr-1"
+          style="max-height: 480px;"
+          aria-live="polite"
+        >
+          {/* Initial Socratic Margin Note */}
+          <div class="bg-ink/70 rounded border border-hair-ink p-4">
+            <div
+              class="mb-1 flex items-center justify-between font-mono text-xs"
+            >
+              <span class="font-semibold text-spark-glow">Guide Note</span>
+              <span class="text-muted-on-ink">Step 01 Inquiry</span>
+            </div>
+            <p class="font-body text-sm leading-relaxed text-paper">
+              Welcome. Before checking any hints, examine what makes up the
+              number 6. How would you explain why 6 cannot be formed without 2
+              and 3? Rate your confidence on the dial and write down your first
+              step.
+            </p>
+          </div>
+        </div>
+
+        {/* Understanding Verification (Revealed on Completion) */}
+        <div
+          id="verification-box"
+          class="border-spark-glow/70 bg-ink/90 mt-6 hidden rounded border p-5 transition-all"
+          aria-live="polite"
+        >
+          <div class="mb-2 flex items-center justify-between">
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+            >
+              Verification Challenge
+            </span>
+            <span class="font-mono text-xs text-muted-on-ink"
+              >Conceptual Transfer</span
+            >
+          </div>
+
+          <p class="font-serif text-base text-paper sm:text-lg">
+            {verificationQuestion.question}
+          </p>
+
+          <div class="mt-4 space-y-2.5">
+            {
+              verificationQuestion.options.map((opt) => (
+                <button
+                  type="button"
+                  class="verification-opt-btn bg-ink/40 w-full rounded border border-hair-ink p-3 text-left font-body text-sm text-muted-on-ink transition-colors hover:border-spark-glow hover:text-paper focus-visible:outline-2 focus-visible:outline-spark"
+                  data-correct={opt.isCorrect ? 'true' : 'false'}
+                  data-feedback={opt.feedback}
+                >
+                  {opt.text}
+                </button>
+              ))
+            }
+          </div>
+
+          <div
+            id="verification-result-note"
+            class="mt-3 hidden rounded border border-hair-ink p-3 font-body text-sm leading-relaxed"
+          >
+          </div>
+        </div>
+
+        {/* Mastery Dossier (Completion Summary) */}
+        <div
+          id="mastery-dossier"
+          class="bg-ink/60 mt-6 hidden rounded border border-hair-ink p-5 transition-all"
+        >
+          <div
+            class="mb-3 flex items-center justify-between border-b border-hair-ink pb-2"
+          >
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+            >
+              Proof Summary & Calibration
+            </span>
+            <span class="font-mono text-xs text-paper">Verified ✓</span>
+          </div>
+
+          <div class="space-y-2 font-mono text-xs text-muted-on-ink">
+            <div>
+              <span class="text-paper">Formal Proof:</span> Since 6 = 2 × 3, any multiple
+              n = 6k can be rewritten as n = 2(3k) and n = 3(2k).
+            </div>
+            <div id="dossier-calibration-text" class="text-spark-glow">
+              Calibration: Accurate calibration between certainty and proof.
+            </div>
+            <div
+              class="text-muted-on-ink/80 border-hair-ink/40 border-t pt-1 text-[11px]"
+            >
+              Next step in the gurukul: Write out the general theorem for any
+              product of coprime factors on paper for your guide.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Institutional Human Standard Footer */}
+      <div class="mt-8 border-t border-hair-ink pt-4">
+        <div class="flex items-center gap-2">
+          <span
+            class="h-1.5 w-1.5 rounded-full bg-spark-glow"
+            aria-hidden="true"></span>
+          <span
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-paper"
+          >
+            Human Standard
+          </span>
+        </div>
+        <p class="mt-1 font-body text-xs leading-relaxed text-muted-on-ink">
+          {tutor.humanRule}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* STATIC FALLBACK FOR JAVASCRIPT-DISABLED BROWSERS */}
+  <noscript>
+    <div class="bg-ink/90 border-t border-hair-ink p-6 sm:p-8">
+      <div
+        class="mb-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-spark-glow"
+      >
+        <span>Static Socratic Sequence (JavaScript Off)</span>
+      </div>
+      <p class="font-body text-sm leading-relaxed text-muted-on-ink">
+        Because JavaScript is disabled in your browser, the interactive dialogue
+        is presented as a complete static proof ladder:
+      </p>
+
+      <div class="mt-4 space-y-4">
+        <div class="rounded border border-hair-ink p-4">
+          <h3
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+          >
+            Step 1: Prime Factorization
+          </h3>
+          <p class="mt-1 font-body text-sm text-paper">
+            The integer 6 is composite: 6 = 2 × 3, where 2 and 3 are prime
+            numbers.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair-ink p-4">
+          <h3
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+          >
+            Step 2: Multiple Definition
+          </h3>
+          <p class="mt-1 font-body text-sm text-paper">
+            If a whole number n is divisible by 6, then by definition n = 6k for
+            some whole number k.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair-ink p-4">
+          <h3
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-glow"
+          >
+            Step 3: Conclusion & Factor Regrouping
+          </h3>
+          <p class="mt-1 font-body text-sm text-paper">
+            Substituting 6 = 2 × 3 into the multiple equation: n = (2 × 3)k. By
+            associativity: n = 2(3k), proving n is divisible by 2; and n =
+            3(2k), proving n is divisible by 3.
+          </p>
+        </div>
+      </div>
+    </div>
+  </noscript>
+</div>
+
+<script>
+  // Progressive Client-Side Socratic Engine (Deterministic State Machine)
+  document.addEventListener('DOMContentLoaded', () => {
+    const root = document.querySelector('[data-component="interactive-tutor"]');
+    if (!root) return;
+
+    // Elements
+    const slider = root.querySelector(
+      '#confidence-calibration-slider'
+    ) as HTMLInputElement | null;
+    const confidenceOutput = root.querySelector('#confidence-output-val');
+    const teleHints = root.querySelector('#telemetry-hints');
+    const teleConf = root.querySelector('#telemetry-confidence');
+    const teleCalib = root.querySelector('#telemetry-calibration');
+    const progressReadout = root.querySelector('#proof-progress-readout');
+    const reasoningInput = root.querySelector(
+      '#learner-reasoning-text'
+    ) as HTMLTextAreaElement | null;
+    const btnSubmit = root.querySelector('#btn-submit-reasoning');
+    const btnRevealHint = root.querySelector('#btn-reveal-hint');
+    const btnRestart = root.querySelector('#btn-restart-tutor');
+    const messagesContainer = root.querySelector(
+      '#dialogue-messages-container'
+    );
+    const verificationBox = root.querySelector('#verification-box');
+    const masteryDossier = root.querySelector('#mastery-dossier');
+    const dossierCalibText = root.querySelector('#dossier-calibration-text');
+    const sampleBtns = root.querySelectorAll('.sample-reasoning-btn');
+    const hintBadge1 = root.querySelector('#hint-badge-01');
+    const hintBadge2 = root.querySelector('#hint-badge-02');
+    const hintBadge3 = root.querySelector('#hint-badge-03');
+    const hintContent1 = root.querySelector('#hint-content-01');
+    const hintContent2 = root.querySelector('#hint-content-02');
+    const hintContent3 = root.querySelector('#hint-content-03');
+    const hintActionCaption = root.querySelector('#hint-action-caption');
+    const verificationOptions = root.querySelectorAll('.verification-opt-btn');
+    const verificationResult = root.querySelector('#verification-result-note');
+
+    // State
+    let currentStep = 1; // 1: factors, 2: multiple, 3: conclusion, 4: verified
+    let hintsRevealed = 0;
+    let confidenceVal = slider ? parseInt(slider.value, 10) : 50;
+    let submissionCount = 0;
+
+    // Calibration Qualitative Classification
+    const getCalibrationProfile = (val: number) => {
+      if (val < 25)
+        return {
+          label: 'Intuitive Guess',
+          desc: 'Working through initial ideas',
+        };
+      if (val < 60)
+        return {
+          label: 'Working Hypothesis',
+          desc: 'Careful step-by-step reasoning',
+        };
+      if (val < 85)
+        return {
+          label: 'Reasoned Proof',
+          desc: 'Structured logical deduction',
+        };
+      return {
+        label: 'Formal Certainty',
+        desc: 'Ready to defend proof algebraically',
+      };
+    };
+
+    // Update Stage Tracker Cards
+    const updateStageLedger = () => {
+      for (let s = 1; s <= 4; s++) {
+        const card = root.querySelector(`#stage-card-${s}`);
+        const badge = root.querySelector(`#stage-badge-${s}`);
+        if (!card || !badge) continue;
+
+        if (s < currentStep) {
+          card.className =
+            'stage-tracker-card rounded border p-3 transition-colors border-spark-glow/70 bg-spark-glow/15 text-paper';
+          badge.textContent = 'Completed ✓';
+          badge.className =
+            'text-[10px] uppercase tracking-wider text-spark-glow shrink-0 whitespace-nowrap ml-1';
+        } else if (s === currentStep) {
+          card.className =
+            'stage-tracker-card rounded border p-3 transition-colors border-spark-glow bg-spark-glow/10 text-paper';
+          badge.textContent = 'Active';
+          badge.className =
+            'text-[10px] uppercase tracking-wider text-spark-glow font-bold shrink-0 whitespace-nowrap ml-1';
+        } else {
+          card.className =
+            'stage-tracker-card rounded border p-3 transition-colors border-hair-ink/60 bg-ink/40 text-muted-on-ink';
+          badge.textContent = 'Pending';
+          badge.className =
+            'text-[10px] uppercase tracking-wider text-muted-on-ink shrink-0 whitespace-nowrap ml-1';
+        }
+      }
+
+      if (progressReadout) {
+        if (currentStep === 1)
+          progressReadout.textContent =
+            'Stage 1 of 4: Uncovering Factors (6 = 2 × 3)';
+        else if (currentStep === 2)
+          progressReadout.textContent =
+            'Stage 2 of 4: Defining the Multiple (n = 6k)';
+        else if (currentStep === 3)
+          progressReadout.textContent =
+            'Stage 3 of 4: Factor Regrouping n = 2(3k)';
+        else
+          progressReadout.textContent =
+            'Stage 4 of 4: Conceptual Transfer Verified';
+      }
+    };
+
+    // Update Telemetry Displays
+    const updateTelemetry = () => {
+      const profile = getCalibrationProfile(confidenceVal);
+      if (teleConf) {
+        teleConf.textContent = `${confidenceVal}% (${profile.label})`;
+      }
+      if (teleHints) {
+        teleHints.textContent = `${hintsRevealed} of 3 Used`;
+      }
+      if (teleCalib) {
+        teleCalib.textContent = profile.label;
+      }
+      updateStageLedger();
+    };
+
+    // Slider Event
+    if (slider && confidenceOutput) {
+      slider.addEventListener('input', () => {
+        confidenceVal = parseInt(slider.value, 10);
+        const profile = getCalibrationProfile(confidenceVal);
+        confidenceOutput.textContent = `${confidenceVal}% (${profile.label})`;
+        updateTelemetry();
+      });
+    }
+
+    // Quick Sample Buttons
+    sampleBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const text = btn.getAttribute('data-text');
+        const conf = btn.getAttribute('data-conf');
+        if (reasoningInput && text) {
+          reasoningInput.value = text;
+          reasoningInput.focus();
+        }
+        if (conf && slider && confidenceOutput) {
+          slider.value = conf;
+          confidenceVal = parseInt(conf, 10);
+          const profile = getCalibrationProfile(confidenceVal);
+          confidenceOutput.textContent = `${confidenceVal}% (${profile.label})`;
+          updateTelemetry();
+        }
+      });
+    });
+
+    // Append Editorial Margin Entry
+    const appendMarginNote = (
+      category: string,
+      title: string,
+      content: string,
+      isUser = false
+    ) => {
+      if (!messagesContainer) return;
+      const noteDiv = document.createElement('div');
+      noteDiv.className = isUser
+        ? 'rounded border border-hair-ink/80 bg-hair-ink/20 p-4 transition-all'
+        : 'rounded border border-hair-ink bg-ink/70 p-4 transition-all';
+
+      const headerDiv = document.createElement('div');
+      headerDiv.className =
+        'mb-1.5 flex items-center justify-between font-mono text-xs';
+
+      const categorySpan = document.createElement('span');
+      categorySpan.className = isUser
+        ? 'font-semibold text-paper'
+        : 'font-semibold text-spark-glow';
+      categorySpan.textContent = category;
+
+      const titleSpan = document.createElement('span');
+      titleSpan.className = 'text-muted-on-ink';
+      titleSpan.textContent = title;
+
+      headerDiv.appendChild(categorySpan);
+      headerDiv.appendChild(titleSpan);
+
+      const textP = document.createElement('div');
+      textP.className =
+        'font-body text-sm leading-relaxed text-paper space-y-1.5';
+      textP.innerHTML = content;
+
+      noteDiv.appendChild(headerDiv);
+      noteDiv.appendChild(textP);
+
+      messagesContainer.appendChild(noteDiv);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    };
+
+    // Reveal Next Hint Handler
+    const revealNextHint = () => {
+      if (hintsRevealed >= 3) return;
+      hintsRevealed++;
+
+      if (hintsRevealed === 1) {
+        hintContent1?.classList.remove('hidden');
+        if (hintBadge1) {
+          hintBadge1.textContent = 'Unlocked';
+          hintBadge1.className =
+            'hint-lock-badge font-mono text-xs text-spark-glow';
+        }
+        appendMarginNote(
+          'Guide Note',
+          'Hint 01 · Prime Factors',
+          '<strong>Prime Factors:</strong> 6 breaks down into 2 × 3. Every multiple of 6 must inherit whatever factors build 6. <em>Ponder:</em> What does this tell you about 2 and 3 as divisors?'
+        );
+      } else if (hintsRevealed === 2) {
+        hintContent2?.classList.remove('hidden');
+        if (hintBadge2) {
+          hintBadge2.textContent = 'Unlocked';
+          hintBadge2.className =
+            'hint-lock-badge font-mono text-xs text-spark-glow';
+        }
+        if (currentStep < 2) currentStep = 2;
+        appendMarginNote(
+          'Guide Note',
+          'Hint 02 · Multiple Definition',
+          '<strong>Multiple Formulation:</strong> “Divisible by 6” means <em>n = 6k</em> where <em>k</em> is any integer. Substitute 6 with <em>(2 × 3)</em> in this equation. <em>Ponder:</em> How can you regroup the parentheses?'
+        );
+      } else if (hintsRevealed === 3) {
+        hintContent3?.classList.remove('hidden');
+        if (hintBadge3) {
+          hintBadge3.textContent = 'Unlocked';
+          hintBadge3.className =
+            'hint-lock-badge font-mono text-xs text-spark-glow';
+        }
+        if (currentStep < 3) currentStep = 3;
+        appendMarginNote(
+          'Guide Note',
+          'Hint 03 · Regrouping Terms',
+          '<strong>Associative Regrouping:</strong> Group the factors: <em>n = 2(3k)</em> and <em>n = 3(2k)</em>. Because 3k and 2k are integers, <em>n</em> is certified as a multiple of 2 and 3.'
+        );
+        if (btnRevealHint) {
+          btnRevealHint.setAttribute('disabled', 'true');
+          btnRevealHint.classList.add('opacity-40', 'cursor-not-allowed');
+        }
+        if (hintActionCaption) {
+          hintActionCaption.textContent = 'All 3 socratic hints unlocked.';
+        }
+      }
+
+      updateTelemetry();
+    };
+
+    if (btnRevealHint) {
+      btnRevealHint.addEventListener('click', revealNextHint);
+    }
+
+    // Submit Explanation Handler
+    if (btnSubmit) {
+      btnSubmit.addEventListener('click', () => {
+        const text = reasoningInput ? reasoningInput.value.trim() : '';
+        if (!text) {
+          appendMarginNote(
+            'Guide Note',
+            'Inquiry Prompt',
+            'Please draft your explanation or select one of the test archetypes to inspect.'
+          );
+          return;
+        }
+
+        submissionCount++;
+        // Display Learner Submission with Stated Confidence
+        appendMarginNote(
+          'Learner Slate',
+          `Stated Certainty: ${confidenceVal}%`,
+          `<div class="italic text-paper/90">“${text}”</div>`,
+          true
+        );
+
+        // Analyze text deterministically for mathematical concepts
+        const lower = text.toLowerCase();
+        const hasFactors =
+          lower.includes('factor') ||
+          lower.includes('prime') ||
+          lower.includes('2 and 3') ||
+          lower.includes('2 * 3') ||
+          lower.includes('2 × 3');
+        const hasAlgebraic =
+          lower.includes('6k') ||
+          lower.includes('multiple') ||
+          lower.includes('n =') ||
+          lower.includes('integer k');
+        const hasGrouping =
+          lower.includes('2(3k)') ||
+          lower.includes('3(2k)') ||
+          lower.includes('associativ') ||
+          lower.includes('group');
+
+        let established = '';
+        let missing = '';
+        let probe = '';
+
+        if (hasAlgebraic && hasGrouping) {
+          currentStep = 3;
+          established =
+            'Formal algebraic definition of multiples (<em>n = 6k</em>) and associative regrouping into <em>2(3k)</em> and <em>3(2k)</em>.';
+          missing = 'None; your structural proof is mathematically complete.';
+          probe =
+            'Proceed to the verification check below to confirm conceptual transfer on a fresh problem.';
+        } else if (hasFactors) {
+          currentStep = 2;
+          established =
+            'Prime factor decomposition: you correctly noted that 2 and 3 are the prime building blocks of 6.';
+          missing =
+            'Formal algebraic connection showing how an arbitrary multiple <em>n = 6k</em> carries these factors.';
+          probe =
+            'Can you express an arbitrary multiple of 6 as an equation with an integer variable <em>k</em>?';
+        } else {
+          currentStep = 1;
+          established =
+            'Valid intuitive observation: recognizing that 6 has 2 and 3 embedded in it.';
+          missing =
+            'Mathematical proof requires moving beyond specific examples to general factors.';
+          probe =
+            'What are the two prime numbers that multiply together to make 6? Check Hint 01 if needed.';
+        }
+
+        // Add Socratic Critique Note
+        const critiqueHtml = `
+          <div><span class="font-mono text-xs text-spark-glow font-semibold">Established:</span> ${established}</div>
+          <div><span class="font-mono text-xs text-muted-on-ink font-semibold">Missing Link:</span> ${missing}</div>
+          <div><span class="font-mono text-xs text-paper font-semibold">Next Inquiry:</span> ${probe}</div>
+        `;
+        appendMarginNote(
+          'Socratic Analysis',
+          `Evaluation (Stage ${currentStep} of 4)`,
+          critiqueHtml
+        );
+
+        // If completed or high confidence submission, present verification challenge
+        if (currentStep >= 2 || hintsRevealed >= 2 || submissionCount >= 2) {
+          if (verificationBox) {
+            verificationBox.classList.remove('hidden');
+          }
+          appendMarginNote(
+            'Guide Note',
+            'Stage 4 · Verification Challenge',
+            '<strong>Understanding Verification Unlocked:</strong> Test whether your proof technique transfers to another multiple.'
+          );
+        }
+
+        updateTelemetry();
+      });
+    }
+
+    // Verification Option Handler
+    verificationOptions.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const isCorrect = btn.getAttribute('data-correct') === 'true';
+        const feedback = btn.getAttribute('data-feedback');
+
+        // Style selected button
+        verificationOptions.forEach((b) => {
+          b.classList.remove(
+            'border-spark-glow',
+            'bg-spark-glow/20',
+            'text-paper'
+          );
+          b.setAttribute('disabled', 'true');
+        });
+        btn.classList.add(
+          isCorrect ? 'border-spark-glow' : 'border-paper',
+          isCorrect ? 'bg-spark-glow/20' : 'bg-hair-ink/40',
+          'text-paper'
+        );
+
+        if (verificationResult && feedback) {
+          verificationResult.classList.remove('hidden');
+          verificationResult.className = isCorrect
+            ? 'mt-3 rounded border border-spark-glow/60 bg-spark-glow/10 p-3 font-body text-sm leading-relaxed text-paper'
+            : 'mt-3 rounded border border-hair-ink bg-hair-ink/30 p-3 font-body text-sm leading-relaxed text-muted-on-ink';
+          verificationResult.innerHTML = `<strong>${isCorrect ? 'Understanding Verified:' : 'Concept Clarification:'}</strong> ${feedback}`;
+        }
+
+        if (isCorrect) {
+          currentStep = 4;
+          updateTelemetry();
+
+          // Show Mastery Dossier
+          if (masteryDossier) {
+            masteryDossier.classList.remove('hidden');
+          }
+
+          // Evaluate calibration
+          if (dossierCalibText) {
+            if (confidenceVal >= 60 && hintsRevealed <= 1) {
+              dossierCalibText.textContent = `Calibration: Well-calibrated (${confidenceVal}% certainty backed by rapid deduction and ${hintsRevealed} hints).`;
+            } else if (confidenceVal < 50 && hintsRevealed <= 1) {
+              dossierCalibText.textContent = `Calibration: Cautious calibration (${confidenceVal}% stated certainty, though your reasoning was strong).`;
+            } else {
+              dossierCalibText.textContent = `Calibration: Calibrated through iterative hints (${hintsRevealed} hints consulted to reach formal proof).`;
+            }
+          }
+
+          appendMarginNote(
+            'Guide Note',
+            'Exercise Complete',
+            `<strong>Demonstration Completed.</strong> You proved why 6 | n implies 2 | n and 3 | n, and verified the principle transfers to 15 | n. In the live gurukul, this leads directly to the offline no-device check.`
+          );
+        }
+      });
+    });
+
+    // Reset Slate Handler
+    if (btnRestart) {
+      btnRestart.addEventListener('click', () => {
+        currentStep = 1;
+        hintsRevealed = 0;
+        submissionCount = 0;
+        confidenceVal = 50;
+
+        if (slider) slider.value = '50';
+        if (confidenceOutput)
+          confidenceOutput.textContent = '50% (Working Hypothesis)';
+        if (reasoningInput) reasoningInput.value = '';
+
+        // Reset Hint ladder cards
+        hintContent1?.classList.add('hidden');
+        hintContent2?.classList.add('hidden');
+        hintContent3?.classList.add('hidden');
+
+        if (hintBadge1) {
+          hintBadge1.textContent = 'Locked';
+          hintBadge1.className =
+            'hint-lock-badge font-mono text-xs text-muted-on-ink';
+        }
+        if (hintBadge2) {
+          hintBadge2.textContent = 'Locked';
+          hintBadge2.className =
+            'hint-lock-badge font-mono text-xs text-muted-on-ink';
+        }
+        if (hintBadge3) {
+          hintBadge3.textContent = 'Locked';
+          hintBadge3.className =
+            'hint-lock-badge font-mono text-xs text-muted-on-ink';
+        }
+
+        if (btnRevealHint) {
+          btnRevealHint.removeAttribute('disabled');
+          btnRevealHint.classList.remove('opacity-40', 'cursor-not-allowed');
+        }
+        if (hintActionCaption) {
+          hintActionCaption.textContent =
+            'Requests guide reasoning step by step.';
+        }
+
+        // Reset verification & mastery box
+        if (verificationBox) verificationBox.classList.add('hidden');
+        if (masteryDossier) masteryDossier.classList.add('hidden');
+        if (verificationResult) {
+          verificationResult.classList.add('hidden');
+          verificationResult.innerHTML = '';
+        }
+        verificationOptions.forEach((b) => {
+          b.removeAttribute('disabled');
+          b.classList.remove(
+            'border-spark-glow',
+            'bg-spark-glow/20',
+            'border-paper',
+            'text-paper'
+          );
+        });
+
+        // Reset dialogue margin notes
+        if (messagesContainer) {
+          messagesContainer.innerHTML = `
+            <div class="rounded border border-hair-ink bg-ink/70 p-4">
+              <div class="mb-1 flex items-center justify-between font-mono text-xs">
+                <span class="font-semibold text-spark-glow">Guide Note</span>
+                <span class="text-muted-on-ink">Step 01 Inquiry</span>
+              </div>
+              <p class="font-body text-sm leading-relaxed text-paper">
+                Slate reset. Before checking any hints, examine what makes up the number 6. How would you
+                explain why 6 cannot be formed without 2 and 3? Rate your confidence on the dial and write down your
+                first step.
+              </p>
+            </div>
+          `;
+        }
+
+        updateTelemetry();
+      });
+    }
+
+    // Initialize
+    updateTelemetry();
+  });
+</script>

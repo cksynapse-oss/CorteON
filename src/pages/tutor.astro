@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+import Button from '../components/ui/Button.astro';
+import InteractiveTutor from '../components/brand/InteractiveTutor.astro';
+import site from '../content/site.json';
+import programmesRaw from '../content/programmes.json';
+import type { ProgrammesContent } from '../content/schemas';
+
+const programmes = programmesRaw as ProgrammesContent;
+const tutorRules = programmes.tutorIntro?.rules || [];
+---
+
+<BaseLayout
+  title={`Corteon Tutor — Socratic Study Desk — ${site.name}`}
+  description="A demonstration of Corteon's learning rules: socratic hint ladders, confidence calibration, progressive reasoning, and verification before the human standard."
+>
+  {/* SECTION 1: HERO HEADER (Monograph Paper Canvas) */}
+  <Section theme="paper" padding="md" class="border-b border-hair">
+    <div class="max-w-4xl">
+      <div class="mb-3 flex flex-wrap items-center gap-3">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-spark-ink"
+        >
+          Illustrative Study Desk
+        </span>
+        <StatusChip status="DIRECTION" />
+        <span
+          class="rounded-pill border border-hair px-2.5 py-0.5 font-mono text-xs text-muted"
+        >
+          Deterministic Demonstration
+        </span>
+      </div>
+
+      {/* Exactly ONE <h1> on this page (AGENTS.md Rule 10) */}
+      <h1
+        class="mb-4 font-serif text-display-lg-mobile font-normal leading-[1.08] tracking-[-0.02em] text-ink sm:text-display-lg"
+      >
+        Socratic Practice: <span class="italic text-spark-ink"
+          >Hints Before Answers</span
+        >
+      </h1>
+
+      <p
+        class="max-w-3xl font-body text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        AI can answer a question immediately, but instant answers short-circuit
+        learning. Corteon is exploring tools that help students sustain their
+        thinking: asking how sure you are, tracking your calibration, offering
+        hints that guide rather than reveal, and verifying genuine conceptual
+        understanding.
+      </p>
+
+      <div class="mt-6 flex flex-wrap gap-4">
+        <Button variant="primary" size="sm" href="#workspace">
+          Open Study Desk
+        </Button>
+        <Button variant="secondary" size="sm" href="/programmes">
+          View Programmes in Chamba
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 2: INTERACTIVE STUDY DESK WORKSPACE */}
+  <Section
+    id="workspace"
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+  >
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <span
+          class="block font-mono text-xs uppercase tracking-widest text-muted"
+        >
+          Interactive Prototype
+        </span>
+        <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+          Foundational Mathematical Reasoning
+        </h2>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-3 text-right">
+        <span
+          class="block font-mono text-xs uppercase tracking-wider text-muted"
+        >
+          Status: Direction
+        </span>
+        <span class="font-mono text-xs text-spark-ink">
+          Obviously Fictional Demo
+        </span>
+      </div>
+    </div>
+
+    {/* The Interactive Tutor Terminal */}
+    <InteractiveTutor />
+  </Section>
+
+  {/* SECTION 3: THE FOUR CORTEON TEACHING RULES */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mb-10 max-w-3xl">
+      <span
+        class="mb-2 block font-mono text-xs uppercase tracking-widest text-spark-ink"
+      >
+        Pedagogical Architecture
+      </span>
+      <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+        The Four Rules of Corteon
+      </h2>
+      <p class="mt-3 font-body text-base leading-relaxed text-muted">
+        Software should not replace the struggle of learning. Corteon is
+        designed around four strict constraints that ensure the learner remains
+        the author of their own understanding.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        tutorRules.map((rule) => (
+          <div class="flex flex-col justify-between rounded border border-hair bg-paper p-6">
+            <div>
+              <span class="mb-3 block font-mono text-xs uppercase tracking-widest text-spark-ink">
+                Rule {rule.number}
+              </span>
+              <h3 class="mb-2 font-serif text-xl font-normal text-ink">
+                {rule.title}
+              </h3>
+              <p class="font-body text-sm leading-relaxed text-muted">
+                {rule.detail}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Human Standard callout */}
+    <div
+      class="mt-8 rounded border border-dashed border-hair bg-paper p-6 sm:p-8"
+    >
+      <div
+        class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <div>
+          <span
+            class="mb-1 block font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+          >
+            The Human Standard
+          </span>
+          <p class="font-body text-base text-ink">
+            In development. In the actual classroom, the no-device quiz run by
+            humans always wins.
+          </p>
+        </div>
+        <Button variant="secondary" size="sm" href="/enquire">
+          Enquire About Admission
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

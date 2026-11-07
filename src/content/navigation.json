@@ -1,24 +1,19 @@
 {
   "main": [
-    { "label": "The Idea", "href": "/idea" },
-    { "label": "The Building", "href": "/building" },
-    { "label": "Programmes", "href": "/programmes" },
-    { "label": "Fellowship", "href": "/fellowship" },
-    { "label": "Centres", "href": "/centres" }
+    { "label": "Home", "href": "/" },
+    { "label": "Courses", "href": "/courses" },
+    { "label": "Chamba Ventures", "href": "/ventures" },
+    { "label": "For Schools & Colleges", "href": "/schools-colleges" },
+    { "label": "FAQ", "href": "/faq" },
+    { "label": "Contact", "href": "/contact" }
   ],
-  "actions": [
-    { "label": "Teach with us", "href": "/fellowship", "variant": "ghost" },
-    { "label": "Enquire", "href": "/enquire", "variant": "primary" }
-  ],
+  "actions": [{ "label": "Enquire", "href": "/contact", "variant": "primary" }],
   "footer": [
-    { "label": "The Idea", "href": "/idea" },
-    { "label": "The Building", "href": "/building" },
-    { "label": "Programmes", "href": "/programmes" },
-    { "label": "Fellowship", "href": "/fellowship" },
-    { "label": "Centres", "href": "/centres" },
-    { "label": "Passport", "href": "/passport" },
-    { "label": "Library", "href": "/library" },
-    { "label": "Venture", "href": "/venture" },
+    { "label": "Courses", "href": "/courses" },
+    { "label": "Chamba Ventures", "href": "/ventures" },
+    { "label": "For Schools & Colleges", "href": "/schools-colleges" },
+    { "label": "FAQ", "href": "/faq" },
+    { "label": "Contact", "href": "/contact" },
     { "label": "Privacy", "href": "/privacy" }
   ],
   "floors": [

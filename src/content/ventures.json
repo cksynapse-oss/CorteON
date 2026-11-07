@@ -1,0 +1,82 @@
+{
+  "heading": "Work on real projects in Chamba.",
+  "subheading": "The Business Development programme includes a three-month internship on one of four venture areas connected to Chamba. Participants work on defined business tasks, receive guidance and build a record of practical work.",
+  "ventures": [
+    {
+      "id": "chamba-rumal-apparel",
+      "title": "Chamba Rumal & Heritage Apparel",
+      "status": "Brand and product development in progress",
+      "statusChip": "in progress",
+      "description": "Work with local artisans to explore contemporary products that use Chamba Rumal embroidery. The product direction may include embroidered T-shirts and shirts, followed by Chamba chappal, wool coats and other locally rooted apparel/accessories.",
+      "possibleWork": [
+        "Customer and product research",
+        "Product ideas and sampling",
+        "Artisan coordination",
+        "Costing and unit economics",
+        "Quality documentation",
+        "Product photography",
+        "Catalogue preparation",
+        "Social media and storytelling",
+        "Order handling and customer feedback"
+      ],
+      "accuracyNote": "Do not show a mock-up as a product already available for purchase. Use actual product photographs only when the product exists and the relevant artisan/owner has consented to publication."
+    },
+    {
+      "id": "chamba-travel-experiences",
+      "title": "Chamba Travel & Experiences",
+      "status": "Network and service model in development",
+      "statusChip": "in development",
+      "description": "Develop a local chain of hospitality and visitor experiences around Chamba. The idea includes local guiding, homestay/B&B operations, property presentation, customer acquisition and experiences that help visitors connect with the area.",
+      "possibleWork": [
+        "Mapping local experiences",
+        "Creating itineraries",
+        "Writing property/experience listings",
+        "Guest communication templates",
+        "Photography coordination",
+        "Online marketing and local outreach",
+        "Booking enquiry processes",
+        "Guide and hospitality training"
+      ],
+      "accuracyNote": "This is an experience model being developed. Synapse does not currently operate an existing commercial hotel or booking engine."
+    },
+    {
+      "id": "synapse-education",
+      "title": "Synapse Education",
+      "status": "Current education brand; expansion planned across Himachal Pradesh",
+      "statusChip": "active operation",
+      "description": "Support the education operation and its growth: teaching assistance, organising batches, student onboarding, school/college outreach, event coordination and admissions support.",
+      "possibleWork": [
+        "Class schedules and batch coordination",
+        "Learner communication",
+        "Course operations and session logistics",
+        "Workshop operations",
+        "Enquiry follow-up",
+        "Content coordination",
+        "Support for future centre expansion"
+      ],
+      "accuracyNote": "Strong participants may be considered for future roles as centres expand, depending on business needs. A job is not guaranteed."
+    },
+    {
+      "id": "chamba-fmcg-agro",
+      "title": "Chamba FMCG & Agro-Products",
+      "status": "Concept and product definition in development",
+      "statusChip": "in development",
+      "description": "Explore a packaged consumer-products business using local produce and food traditions. Areas to research include Chamba apples, Chamba chukh, aam papad, local beans/rajma and Himalayan berries.",
+      "possibleWork": [
+        "Product and customer research",
+        "Producer and supplier mapping",
+        "Sample testing and tasting logs",
+        "Costing and margin models",
+        "Packaging concepts",
+        "Brand positioning",
+        "Distribution research"
+      ],
+      "accuracyNote": "This is a venture area being explored, not a claim that all listed products are currently packaged, certified or available for sale. Labeled in development."
+    }
+  ],
+  "cta": {
+    "title": "Want to work on one of these projects?",
+    "description": "The Business Development programme is open to students enrolled in a bachelor’s programme. Enquire to understand the six-month structure, available project areas, current batch and selection process.",
+    "buttonLabel": "Enquire about the internship"
+  }
+}

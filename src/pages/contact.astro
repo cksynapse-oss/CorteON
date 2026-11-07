@@ -1,0 +1,209 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+
+import site from '../content/site.json';
+import { getFormUrl, isFormConfigured } from '../config/forms';
+
+const queryEnquiry = Astro.url.searchParams.get('enquiry') || '';
+
+const generalFormUrl = getFormUrl('courseGeneral');
+const isGeneralExternal = isFormConfigured('courseGeneral');
+---
+
+<BaseLayout
+  title={`Contact & Admissions — ${site.name}`}
+  description="Talk to Synapse in Chamba, Himachal Pradesh. Reach out by phone, WhatsApp or email to enquire about online courses, batches and trial classes."
+>
+  {/* Header */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+      >
+        Chamba, Himachal Pradesh
+      </span>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        Talk to Synapse
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        Tell us what you are studying, which exam you are preparing for or which
+        skill you want to build. We will help you find the relevant course and
+        share the next batch details.
+      </p>
+
+      {
+        queryEnquiry && (
+          <div class="border-spark-ink/40 bg-hair/30 mt-6 inline-block rounded border px-4 py-2 font-mono text-xs text-ink">
+            Enquiry Intent:{' '}
+            <span class="font-semibold text-spark-ink">{queryEnquiry}</span>
+          </div>
+        )
+      }
+    </div>
+  </Section>
+
+  {/* Contact Grid */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {/* Office & Visiting Details */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-8"
+        >
+          <div>
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+            >
+              Office Location
+            </span>
+            <h2 class="mt-2 font-serif text-2xl font-normal text-ink">
+              Synapse Centre
+            </h2>
+            <div
+              class="mt-4 space-y-3 font-sans text-sm leading-relaxed text-muted"
+            >
+              <p>
+                <strong>Address:</strong><br />
+                {site.place}, India
+              </p>
+              <p>
+                <strong>Delivery Mode:</strong><br />
+                All classes are conducted online. The Chamba office serves as our
+                local base for coordination, student admissions, and venture operations.
+              </p>
+              <p>
+                <strong>Batch Timings:</strong><br />
+                {site.hours}
+              </p>
+            </div>
+          </div>
+
+          <div class="border-hair/80 mt-8 border-t pt-6">
+            <span class="font-mono text-xs text-muted">
+              Owner Callback: {site.callbackWindow}
+            </span>
+          </div>
+        </div>
+
+        {/* Direct Communication Channels */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-8"
+        >
+          <div>
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+            >
+              Direct Contact
+            </span>
+            <h2 class="mt-2 font-serif text-2xl font-normal text-ink">
+              Call, WhatsApp, or Write
+            </h2>
+
+            <div class="mt-6 space-y-5">
+              <div>
+                <span class="block font-mono text-xs text-muted"
+                  >Phone / WhatsApp</span
+                >
+                <a
+                  href={`tel:+91${site.phone}`}
+                  class="mt-1 inline-block font-sans text-lg font-semibold text-ink hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+                >
+                  {site.phoneDisplay}
+                </a>
+              </div>
+
+              <div>
+                <span class="block font-mono text-xs text-muted"
+                  >WhatsApp Message</span
+                >
+                <a
+                  href={`https://wa.me/91${site.phone}?text=${encodeURIComponent(
+                    queryEnquiry
+                      ? `Hello Synapse, I want to enquire about ${queryEnquiry}.`
+                      : 'Hello Synapse, I want to enquire about your courses in Chamba.'
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-1 inline-block font-sans text-base font-semibold text-spark-ink hover:underline focus-visible:outline-2 focus-visible:outline-spark"
+                >
+                  Open WhatsApp Chat →
+                </a>
+              </div>
+
+              <div>
+                <span class="block font-mono text-xs text-muted">Email</span>
+                <a
+                  href={`mailto:${site.email}`}
+                  class="mt-1 inline-block font-sans text-base font-semibold text-ink hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+                >
+                  {site.email}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="border-hair/80 mt-8 border-t pt-6">
+            <Button
+              href={generalFormUrl}
+              target={isGeneralExternal ? '_blank' : undefined}
+              rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="md"
+              class="w-full justify-center"
+            >
+              <span>Submit Course Enquiry Form</span>
+              {
+                isGeneralExternal && (
+                  <svg
+                    class="ml-1 h-3.5 w-3.5 opacity-80"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                    />
+                  </svg>
+                )
+              }
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* Trial Class Notice */}
+  <Section theme="paper" padding="lg">
+    <div
+      class="bg-hair/20 mx-auto max-w-3xl rounded border border-hair p-8 text-center sm:p-10"
+    >
+      <h3 class="font-serif text-2xl font-normal text-ink">
+        Trial Classes Before Payment
+      </h3>
+      <p
+        class="mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-muted"
+      >
+        Every student can attend one or two trial classes before making any
+        payment commitment. There are no online checkout gateways on this
+        website. All batch details and payment instructions are shared
+        personally by the team after your trial session.
+      </p>
+      <div class="mt-6">
+        <Button href="/courses" variant="secondary" size="md">
+          Explore all courses
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

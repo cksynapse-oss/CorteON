@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import VentureCard from '../components/brand/VentureCard.astro';
+import Button from '../components/ui/Button.astro';
+
+import venturesData from '../content/ventures.json';
+import site from '../content/site.json';
+import type { VentureItem } from '../content/schemas';
+import { getFormUrl, isFormConfigured } from '../config/forms';
+
+const ventures = (venturesData.ventures || []) as VentureItem[];
+
+const formUrl = getFormUrl('internshipApplication');
+const isExternal = isFormConfigured('internshipApplication');
+---
+
+<BaseLayout
+  title={`Chamba Ventures & Internship Projects — ${site.name}`}
+  description={venturesData.subheading}
+>
+  {/* Hero */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+      >
+        Business Development · Venture Internship
+      </span>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        {venturesData.heading}
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {venturesData.subheading}
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Apply for Internship</span>
+        </Button>
+        <Button
+          href="/courses/business-development"
+          variant="secondary"
+          size="lg"
+        >
+          View Business Curriculum
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* Ventures Grid */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mb-10">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Four Project Areas
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        Current Venture Tracks
+      </h2>
+      <p class="mt-2 max-w-2xl font-sans text-sm text-muted">
+        Internship projects are grounded in local Chamba enterprise
+        opportunities. Each project carries an honest status label reflecting
+        its development phase.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      {ventures.map((venture) => <VentureCard venture={venture} />)}
+    </div>
+  </Section>
+
+  {/* Internship Principles */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div
+      class="bg-hair/20 mx-auto max-w-3xl rounded border border-hair p-8 sm:p-10"
+    >
+      <h2 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+        How the 6-Month Programme Works
+      </h2>
+      <div class="mt-6 space-y-4 font-sans text-sm leading-relaxed text-muted">
+        <p>
+          <strong>Phase 1 (Months 1–3):</strong> Intensive business learning covering
+          customer discovery, product design, costing, pricing, marketing, sales,
+          and operations.
+        </p>
+        <p>
+          <strong>Phase 2 (Months 4–6):</strong> Mentored internship where you execute
+          real projects under the supervision of Synapse guides and local entrepreneurs.
+        </p>
+        <p>
+          <strong>Certificate & Continuation:</strong> Participants receive the Synapse
+          Learning & Internship Certificate upon completing published requirements.
+          Strong candidates may be considered for future opportunities as Synapse
+          expands.
+        </p>
+        <p class="border-hair/80 border-t pt-4 text-xs italic text-muted">
+          Note: No job is guaranteed. Stipend terms are being finalised; no
+          guaranteed stipend is advertised until formally approved.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* Closing CTA */}
+  <Section theme="paper" padding="lg">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-headline-sm font-normal text-ink">
+        {venturesData.cta.title}
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl font-sans text-base text-muted">
+        {venturesData.cta.description}
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>{venturesData.cta.buttonLabel}</span>
+        </Button>
+        <Button href="/contact" variant="secondary" size="lg">
+          Ask a question
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

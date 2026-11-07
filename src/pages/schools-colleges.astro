@@ -1,0 +1,257 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+
+import site from '../content/site.json';
+import { getFormUrl, isFormConfigured } from '../config/forms';
+
+const formUrl = getFormUrl('institutionEnquiry');
+const isExternal = isFormConfigured('institutionEnquiry');
+---
+
+<BaseLayout
+  title={`For Schools & Colleges — ${site.name}`}
+  description="Bring a Synapse learning session to your institution. Interactive workshops in communication, AI literacy, entrance baseline diagnostics, and group enrolment."
+>
+  {/* Hero */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+      >
+        Institutional Collaborations
+      </span>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        Bring a Synapse learning session to your institution.
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        We work with schools and colleges to introduce students to communication
+        skills, applied AI, entrance preparation and practical business
+        development. Institutions can enquire about a demonstration session, a
+        student baseline day, an information session or group enrolment.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Enquire for a school or college</span>
+        </Button>
+        <Button href="/contact" variant="secondary" size="lg">
+          Talk to our team
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* What We Can Offer */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mb-10">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Engagement Modes
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        What We Can Offer
+      </h2>
+      <p class="mt-2 max-w-2xl font-sans text-sm text-muted">
+        Tailored sessions for students across schools, degree colleges, and
+        vocational institutions.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      {/* 1. Intro Demo */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <span class="font-mono text-xs font-bold text-spark-ink">01</span>
+          <h3 class="mt-2 font-serif text-2xl font-normal text-ink">
+            Introductory Session or Demonstration
+          </h3>
+          <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+            A focused interactive session for students on communication and
+            clear expression, AI awareness and practical tool use, career and
+            entrance-exam planning, or an introduction to business development.
+          </p>
+        </div>
+        <div
+          class="border-hair/60 mt-6 border-t pt-4 font-mono text-xs text-muted"
+        >
+          Online or in-person discussion by coordination
+        </div>
+      </div>
+
+      {/* 2. Baseline Day */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <span class="font-mono text-xs font-bold text-spark-ink">02</span>
+          <h3 class="mt-2 font-serif text-2xl font-normal text-ink">
+            Entrance Baseline Day
+          </h3>
+          <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+            A structured diagnostic activity covering selected areas such as
+            logical reasoning, reading comprehension, communication, and
+            arithmetic to help students benchmark their foundational starting
+            point.
+          </p>
+        </div>
+        <div
+          class="border-hair/60 mt-6 border-t pt-4 font-mono text-xs text-muted"
+        >
+          Format and batch size agreed with institution
+        </div>
+      </div>
+
+      {/* 3. BD Info Session */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <span class="font-mono text-xs font-bold text-spark-ink">03</span>
+          <h3 class="mt-2 font-serif text-2xl font-normal text-ink">
+            Business Development Info Session
+          </h3>
+          <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+            An orientation session for college students explaining the six-month
+            programme: the first three months of learning, the three-month
+            Chamba venture internship, deliverables, and the application
+            process.
+          </p>
+        </div>
+        <div
+          class="border-hair/60 mt-6 border-t pt-4 font-mono text-xs text-muted"
+        >
+          Ideal for final-year & degree students
+        </div>
+      </div>
+
+      {/* 4. Group Enrolment */}
+      <div
+        class="flex flex-col justify-between rounded border border-hair bg-paper p-6 sm:p-8"
+      >
+        <div>
+          <span class="font-mono text-xs font-bold text-spark-ink">04</span>
+          <h3 class="mt-2 font-serif text-2xl font-normal text-ink">
+            Group Enrolment
+          </h3>
+          <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+            Institutions can enquire about group participation in Synapse
+            courses. Group pricing and customised batch scheduling are shared
+            after the institution's specific cohort size and goals are
+            understood.
+          </p>
+        </div>
+        <div
+          class="border-hair/60 mt-6 border-t pt-4 font-mono text-xs text-muted"
+        >
+          Custom batch schedules available
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* Engagement Flow */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mb-10 text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Collaboration Steps
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        How an Institutional Engagement Begins
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded border border-hair bg-paper p-6">
+        <span class="font-mono text-xs font-bold text-spark-ink">Step 1</span>
+        <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+          Submit Enquiry
+        </h3>
+        <p class="mt-2 font-sans text-sm text-muted">
+          The school or college representative fills out the partnership enquiry
+          form.
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span class="font-mono text-xs font-bold text-spark-ink">Step 2</span>
+        <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+          Direct Follow-up
+        </h3>
+        <p class="mt-2 font-sans text-sm text-muted">
+          Synapse contacts the nominated coordinator to discuss objectives and
+          student groups.
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span class="font-mono text-xs font-bold text-spark-ink">Step 3</span>
+        <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+          Agree on Details
+        </h3>
+        <p class="mt-2 font-sans text-sm text-muted">
+          Both sides finalise student count, topic, date, format, and logistical
+          requirements.
+        </p>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <span class="font-mono text-xs font-bold text-spark-ink">Step 4</span>
+        <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+          Confirm Plan
+        </h3>
+        <p class="mt-2 font-sans text-sm text-muted">
+          Synapse confirms the session schedule, links, or group enrolment
+          roster.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* Closing CTA */}
+  <Section theme="paper" padding="lg">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-headline-sm font-normal text-ink">
+        Partner with Synapse
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl font-sans text-base text-muted">
+        Reach out to discuss a demonstration session, student workshop, or group
+        admissions for your school or college.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Submit Institutional Enquiry</span>
+        </Button>
+        <Button href="/contact" variant="secondary" size="lg">
+          Contact via WhatsApp / Phone
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

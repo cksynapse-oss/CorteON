@@ -17,14 +17,14 @@ const navigation = isHindi ? navHi : navEn;
 const site = isHindi ? siteHi : siteEn;
 const homeHref = isHindi ? '/hi' : '/';
 const mainLinks = navigation.main;
-const teachAction = navigation.actions[0] || {
-  label: 'Teach with us',
-  href: '/fellowship',
-};
-const enquireAction = navigation.actions[1] || {
+const enquireAction = navigation.actions.find(
+  (a) => a.label.toLowerCase() === 'enquire'
+) || {
   label: 'Enquire',
-  href: '/enquire',
+  href: '/contact',
 };
+const brandName =
+  (site as unknown as { shortName?: string }).shortName || site.name;
 ---
 
 <header
@@ -42,7 +42,7 @@ const enquireAction = navigation.actions[1] || {
       <span
         class="font-serif text-headline-sm font-normal tracking-tight text-ink transition-colors group-hover:text-spark-ink md:text-headline-md"
       >
-        {site.name}
+        {brandName}
       </span>
       <span aria-hidden="true" class="flex items-center text-spark">
         <svg
@@ -65,7 +65,10 @@ const enquireAction = navigation.actions[1] || {
     </a>
 
     <!-- Desktop Navigation Links -->
-    <nav aria-label="Main Navigation" class="hidden items-center gap-8 lg:flex">
+    <nav
+      aria-label="Main Navigation"
+      class="hidden items-center gap-6 lg:flex xl:gap-8"
+    >
       {
         mainLinks.map((link) => {
           const isActive =
@@ -91,9 +94,6 @@ const enquireAction = navigation.actions[1] || {
     <!-- Desktop Action Buttons -->
     <div class="hidden items-center gap-3 lg:flex">
       <LanguageToggle currentPath={currentPath} />
-      <Button href={teachAction.href} variant="ghost" size="sm">
-        {teachAction.label}
-      </Button>
       <Button href={enquireAction.href} variant="primary" size="sm">
         {enquireAction.label}
       </Button>
@@ -176,14 +176,6 @@ const enquireAction = navigation.actions[1] || {
             <div class="my-2 h-px w-full bg-hair" aria-hidden="true"></div>
 
             <div class="flex flex-col gap-3 pt-2">
-              <Button
-                href={teachAction.href}
-                variant="ghost"
-                size="sm"
-                class="w-full text-center"
-              >
-                {teachAction.label}
-              </Button>
               <Button
                 href={enquireAction.href}
                 variant="primary"

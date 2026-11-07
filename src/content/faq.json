@@ -2,42 +2,115 @@
   "status": "LIVE NOW",
   "source": "owner-confirmed",
   "heading": "Frequently Asked Questions",
-  "sub": "Clear answers about the Learning Commons, admission, and how classes run in Chamba.",
+  "sub": "Clear, direct answers about Synapse courses, batch timings, fees, and enrolment.",
   "items": [
     {
-      "id": "tracks",
-      "question": "What launch tracks and entrance exams are covered?",
-      "answer": "We offer four launch tracks: PCM (JEE Main/Advanced, IAT, NEST, CUET PCM, NDA, AIIMS Paramedical PCM), PCB (NEET UG, AIIMS Nursing, AIIMS Paramedical PCB, NEST, IAT, CUET PCB), CUET UG General Test + English, and CUET UG Arts/Commerce + NDA Army."
+      "id": "who-can-join",
+      "category": "General",
+      "question": "Who can join Synapse courses?",
+      "answer": "School students, competitive-exam aspirants and college students can join different programmes. Course eligibility is listed on each course page. Business Development is designed for students enrolled in a bachelor’s programme."
     },
     {
-      "id": "schedule",
-      "question": "What is the daily schedule and weekly rhythm?",
-      "answer": "Classes run Monday to Saturday, from 3:30 PM to 6:30 PM. Each student attends five days a week, with one rotating weekday off, and Sunday off."
+      "id": "location",
+      "category": "General",
+      "question": "Where are the classes held?",
+      "answer": "Classes are online. The Synapse office is behind the Post Office in Chamba, Himachal Pradesh."
     },
     {
-      "id": "fees",
-      "question": "What are the fees?",
-      "answer": "Fees are shared when you enquire. We do not publish fee figures or take online payments on this site."
+      "id": "delivery-mode",
+      "category": "General",
+      "question": "Are the courses online or offline?",
+      "answer": "All classes are online. The Chamba office is the local base for enquiries and coordination; regular classroom teaching is not currently offered there."
     },
     {
-      "id": "baseline",
-      "question": "What is the entrance baseline for children?",
-      "answer": "The entrance baseline is a short diagnostic on reasoning, reading and arithmetic. It is running now. It places learners so guides know where to begin; it never excludes anyone."
+      "id": "batch-dates",
+      "category": "Admissions",
+      "question": "When do the next batches begin?",
+      "answer": "Batch dates are shared during the enquiry process. Contact Synapse for the next available batch and trial-class timing."
     },
     {
-      "id": "how-it-runs",
-      "question": "How are classes conducted inside the centre?",
-      "answer": "Students learn in small groups with a guide who knows every student. Instead of one-way lectures, sessions use a flip-slot model where concepts are introduced and students solve problems with immediate guidance. Every class ends with a practice test on what was just taught, and doubts are solved in a separate short session."
+      "id": "trial-class",
+      "category": "Admissions",
+      "question": "Can I attend a class before enrolling?",
+      "answer": "Yes. One or two trial classes are arranged before you decide whether to continue. The course fee is collected after the trial if you choose to enrol."
     },
     {
-      "id": "admission",
-      "question": "How does admission work?",
-      "answer": "Submit an enquiry on this site or message us on WhatsApp at 8287248119. The centre owner calls back personally {callbackWindow} to discuss your learning goals and arrange a visit to the centre behind the Post Office in Chamba."
+      "id": "timings",
+      "category": "General",
+      "question": "What are the class timings?",
+      "answer": "College-level batches are generally planned before 3:00 PM. School-level batches are generally planned after 3:00 PM. Exact timings depend on the course and batch and are confirmed after enquiry."
     },
     {
-      "id": "tutor",
-      "question": "What is Corteon and is it available now?",
-      "answer": "Corteon is the AI tutor and practice engine Synapse is building. Its status is in development (DIRECTION) and it is not available to the public. In our classrooms, the no-device quiz run by humans always wins."
+      "id": "foundation-pack-scope",
+      "category": "Courses & Pricing",
+      "question": "Is the Foundation Pack one subject or three?",
+      "answer": "It includes all three foundation subjects: General Awareness, Logical Reasoning and Quantitative Aptitude. The price is ₹599 per month."
+    },
+    {
+      "id": "question-bank-inclusion",
+      "category": "Courses & Pricing",
+      "question": "Is the Question Bank included in the Foundation Pack?",
+      "answer": "No. The Question Bank is a separate add-on at ₹499 one-time for six months of access. Ask Synapse to confirm that your target exam pack is available."
+    },
+    {
+      "id": "multiple-subjects",
+      "category": "Courses & Pricing",
+      "question": "Can I take more than one subject class?",
+      "answer": "Yes. You can enquire about one or more of Physics, Chemistry, Biology and Mathematics. Each subject is ₹599 per month."
+    },
+    {
+      "id": "communication-languages",
+      "category": "Courses & Pricing",
+      "question": "Is the Communication course only for English?",
+      "answer": "No. It covers both English and Hindi. Learners practise speaking, listening, reading and writing in both languages."
+    },
+    {
+      "id": "ai-coding-prerequisite",
+      "category": "Courses & Pricing",
+      "question": "Do I need coding experience for AI Literacy?",
+      "answer": "No. The course is designed for learners who want to understand and apply AI tools. Coding is not a prerequisite."
+    },
+    {
+      "id": "internship-work",
+      "category": "Internship & Careers",
+      "question": "What happens during the Business Development internship?",
+      "answer": "After three months of structured learning, participants work for three months on one selected Chamba venture, with guidance and regular reviews. The work depends on the project brief and the venture’s current stage."
+    },
+    {
+      "id": "job-guarantee",
+      "category": "Internship & Careers",
+      "question": "Will the Business Development programme guarantee a job?",
+      "answer": "No. Participants who meet the published requirements receive a Synapse Learning & Internship Certificate. Selected participants may be considered for further work or roles, but a job is not guaranteed."
+    },
+    {
+      "id": "stipend-policy",
+      "category": "Internship & Careers",
+      "question": "Is the internship paid? Is there a stipend?",
+      "answer": "Stipend terms are being finalised. Synapse will share any approved stipend policy, including the amount and eligibility conditions, before enrolment. Do not advertise a guaranteed stipend until those terms are formally approved."
+    },
+    {
+      "id": "certificates",
+      "category": "Courses & Pricing",
+      "question": "What certificate will I receive?",
+      "answer": "The Business Development programme includes a Synapse Learning & Internship Certificate for participants who complete the stated programme requirements. AI Literacy may include a course completion certificate under its published requirements. These are Synapse-issued certificates, not university degrees or third-party accreditation."
+    },
+    {
+      "id": "exam-guarantee",
+      "category": "Admissions",
+      "question": "Does Synapse guarantee exam selection or a particular score?",
+      "answer": "No. Synapse provides instruction, practice, tests and progress feedback. Exam outcomes depend on many factors and no rank, score or selection is guaranteed."
+    },
+    {
+      "id": "parent-enquiry",
+      "category": "Admissions",
+      "question": "Can parents enquire or observe a class?",
+      "answer": "Yes. Parents can submit an enquiry on behalf of a student. A parent/guardian may request to observe a suitable class by coordinating with Synapse."
+    },
+    {
+      "id": "payments",
+      "category": "Admissions",
+      "question": "How do I pay?",
+      "answer": "There is no payment checkout on the website. After the trial class, Synapse will explain the fee and available payment method before enrolment."
     }
   ]
 }

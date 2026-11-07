@@ -1,0 +1,688 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import Button from '../../components/ui/Button.astro';
+
+import coursesData from '../../content/courses.json';
+import site from '../../content/site.json';
+import type { CourseItem } from '../../content/schemas';
+import { getFormUrl, isFormConfigured, type FormKey } from '../../config/forms';
+
+export function getStaticPaths() {
+  const courses = (coursesData.courses || []) as CourseItem[];
+  return courses.map((course) => ({
+    params: { id: course.id },
+    props: { course },
+  }));
+}
+
+interface Props {
+  course: CourseItem;
+}
+
+const { course } = Astro.props;
+
+// Form URL resolution
+const formKeyMap: Record<string, FormKey> = {
+  'foundation-pack': 'foundationPack',
+  'question-bank': 'questionBank',
+  'subject-classes': 'subjectClasses',
+  communication: 'communication',
+  'business-development': 'businessDevelopment',
+  'ai-literacy': 'aiLiteracy',
+  'ai-business-combo': 'aiBusinessCombo',
+};
+
+const formKey = formKeyMap[course.id] || 'courseGeneral';
+const formUrl = getFormUrl(formKey);
+const isExternalForm = isFormConfigured(formKey);
+
+const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
+---
+
+<BaseLayout
+  title={`${course.title} — ${site.name}`}
+  description={course.subtitle ||
+    `Detailed syllabus, schedule, fees and enrolment for ${course.title} at Synapse.`}
+>
+  {/* Course Hero */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl">
+      <nav aria-label="Breadcrumb" class="mb-6 font-mono text-xs text-muted">
+        <a
+          href="/courses"
+          class="hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+          >Courses</a
+        >
+        <span class="mx-2" aria-hidden="true">/</span>
+        <span class="text-ink">{course.title}</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-2">
+        {
+          course.audience.map((aud) => (
+            <span class="bg-hair/50 rounded-sm px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              {aud}
+            </span>
+          ))
+        }
+        {
+          course.duration && (
+            <span class="font-mono text-xs text-muted">
+              · Duration: {course.duration}
+            </span>
+          )
+        }
+      </div>
+
+      <h1
+        class="mt-4 font-serif text-display-xl-mobile font-normal text-ink sm:text-display-lg"
+      >
+        {course.title}
+      </h1>
+
+      {
+        course.subtitle && (
+          <p class="mt-2 font-serif text-xl italic text-muted sm:text-2xl">
+            {course.subtitle}
+          </p>
+        )
+      }
+
+      {/* Pricing Strip */}
+      <div
+        class="bg-hair/20 my-8 flex flex-wrap items-baseline gap-4 rounded border border-hair p-6"
+      >
+        <div>
+          <span class="font-serif text-3xl font-semibold text-ink sm:text-4xl">
+            {formattedPrice}
+          </span>
+          <span class="font-sans text-sm font-medium text-muted">
+            / {course.billing}
+          </span>
+        </div>
+
+        {
+          course.total_at_listed_monthly_rate_inr && (
+            <div class="border-l border-hair pl-4 font-mono text-xs text-muted">
+              Total 6-month programme: ₹
+              {course.total_at_listed_monthly_rate_inr.toLocaleString('en-IN')}
+            </div>
+          )
+        }
+
+        {
+          course.monthly_saving_inr && (
+            <div class="border-l border-hair pl-4 font-mono text-xs font-semibold text-spark-ink">
+              Saves ₹{course.monthly_saving_inr}/month vs separate enrolment
+            </div>
+          )
+        }
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternalForm ? '_blank' : undefined}
+          rel={isExternalForm ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Enquire about this course</span>
+          {
+            isExternalForm && (
+              <svg
+                class="ml-1 h-4 w-4 opacity-80"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            )
+          }
+        </Button>
+
+        <Button href="/contact" variant="secondary" size="lg">
+          Ask a question
+        </Button>
+      </div>
+
+      <p class="mt-3 font-sans text-xs text-muted">
+        Online classes · 1–2 trial classes before payment · Exact batch times
+        confirmed on enquiry
+      </p>
+    </div>
+  </Section>
+
+  {/* What is Included Overview */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl">
+      <h2 class="font-serif text-headline-sm font-normal text-ink">
+        What is included
+      </h2>
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {
+          course.includes.map((item) => (
+            <div class="flex items-start gap-3 rounded border border-hair bg-paper p-4">
+              <span
+                class="mt-1 h-2 w-2 shrink-0 rounded-full bg-spark"
+                aria-hidden="true"
+              />
+              <span class="font-sans text-sm leading-relaxed text-ink">
+                {item}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  {/* Course-Specific Detailed Curriculum Sections */}
+
+  {/* 1. Foundation Pack: 28 Units across 3 Modules */}
+  {
+    course.id === 'foundation-pack' &&
+      typeof course.modules === 'object' &&
+      !Array.isArray(course.modules) && (
+        <Section theme="paper" padding="lg" class="border-b border-hair">
+          <div class="mx-auto max-w-4xl space-y-12">
+            <div>
+              <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+                Structured 12-Week Syllabus
+              </span>
+              <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+                28 Structured Units Across Three Subjects
+              </h2>
+              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+                Learning rhythm: Concept lesson → guided examples → practice set
+                → weekly test → review of mistakes. Current affairs are revised
+                weekly. The teacher may combine or revisit units according to
+                batch pace.
+              </p>
+            </div>
+
+            {/* General Awareness */}
+            {course.modules.general_awareness && (
+              <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+                <div class="flex items-baseline justify-between border-b border-hair pb-4">
+                  <h3 class="font-serif text-2xl font-normal text-ink">
+                    A. General Awareness
+                  </h3>
+                  <span class="font-mono text-xs font-semibold text-spark-ink">
+                    10 Units
+                  </span>
+                </div>
+                <ol class="mt-6 space-y-3 font-sans text-sm text-muted">
+                  {course.modules.general_awareness.map((unit, index) => (
+                    <li class="flex items-start gap-3">
+                      <span class="font-mono text-xs font-bold text-spark-ink">
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <span class="text-ink">{unit}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {/* Reasoning */}
+            {course.modules.reasoning && (
+              <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+                <div class="flex items-baseline justify-between border-b border-hair pb-4">
+                  <h3 class="font-serif text-2xl font-normal text-ink">
+                    B. Logical and Analytical Reasoning
+                  </h3>
+                  <span class="font-mono text-xs font-semibold text-spark-ink">
+                    8 Units
+                  </span>
+                </div>
+                <ol class="mt-6 space-y-3 font-sans text-sm text-muted">
+                  {course.modules.reasoning.map((unit, index) => (
+                    <li class="flex items-start gap-3">
+                      <span class="font-mono text-xs font-bold text-spark-ink">
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <span class="text-ink">{unit}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {/* Quantitative Aptitude */}
+            {course.modules.quantitative_aptitude && (
+              <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+                <div class="flex items-baseline justify-between border-b border-hair pb-4">
+                  <h3 class="font-serif text-2xl font-normal text-ink">
+                    C. Quantitative Aptitude
+                  </h3>
+                  <span class="font-mono text-xs font-semibold text-spark-ink">
+                    10 Units
+                  </span>
+                </div>
+                <ol class="mt-6 space-y-3 font-sans text-sm text-muted">
+                  {course.modules.quantitative_aptitude.map((unit, index) => (
+                    <li class="flex items-start gap-3">
+                      <span class="font-mono text-xs font-bold text-spark-ink">
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <span class="text-ink">{unit}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+              <strong>Exam relevance:</strong> CUET General Test, NDA, NIFT GAT,
+              CLAT, IPMAT, NCHMCT and selected entrance tests. The exact
+              syllabus differs by exam; this pack covers common foundation areas
+              across these examinations.
+            </div>
+          </div>
+        </Section>
+      )
+  }
+
+  {/* 2. Question Bank Details */}
+  {
+    course.id === 'question-bank' && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-8">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              Structured Practice & Diagnostics
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Exam Question Bank & Performance Profile
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">
+                Practice Modes
+              </h3>
+              <ul class="mt-4 space-y-2.5 font-sans text-sm text-muted">
+                <li>• Topic-wise and chapter-wise practice sets</li>
+                <li>• Mixed practice sets under timed conditions</li>
+                <li>• Progressive hints before showing full solutions</li>
+                <li>
+                  • Revision reminders for questions due for another attempt
+                </li>
+              </ul>
+            </div>
+
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">
+                Learner Performance Profile
+              </h3>
+              <ul class="mt-4 space-y-2.5 font-sans text-sm text-muted">
+                <li>• Accuracy and speed indicators per topic</li>
+                <li>• Error log tracking recurring misconceptions</li>
+                <li>• Weekly push list of focus areas for improvement</li>
+                <li>
+                  • Periodic teacher review comparing digital and paper results
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Availability Note:</strong> Question Bank packs are
+            organised by exam. Enquire with your target exam and we will confirm
+            the pack currently available.
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* 3. Subject Classes Details */}
+  {
+    course.id === 'subject-classes' && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-8">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              NCERT Foundation + Entrance Depth
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Physics · Chemistry · Biology · Mathematics
+            </h2>
+            <p class="mt-3 font-sans text-sm text-muted">
+              ₹599 per subject per month. School-level batches planned after
+              3:00 PM.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">Physics</h3>
+              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+                Kinematics, laws of motion, work-energy, rotational dynamics,
+                gravitation, thermodynamics, electrostatics, current
+                electricity, magnetism, optics and modern physics. Graded
+                numerical drills and conceptual problem solving.
+              </p>
+            </div>
+
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">Chemistry</h3>
+              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+                Physical Chemistry (stoichiometry, thermodynamics, equilibrium,
+                kinetics), Inorganic Chemistry (periodic trends, bonding,
+                coordination), and Organic Chemistry (reaction mechanisms,
+                functional groups, biomolecules).
+              </p>
+            </div>
+
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">Biology</h3>
+              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+                Diversity in living organisms, cell biology, plant physiology,
+                human physiology, genetics, evolution, biotechnology, ecology
+                and environmental science. NCERT line-by-line reading and
+                assertion-reason practice.
+              </p>
+            </div>
+
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">
+                Mathematics
+              </h3>
+              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+                Common Class 11–12 core: sets, relations, functions,
+                trigonometry, coordinate geometry, calculus (derivatives,
+                integrals, differential equations), vectors, 3D geometry and
+                probability, with entrance extensions.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Exam Tracks:</strong> Tailored depth for Board Exams, CUET,
+            NEET, and JEE. Each batch is confirmed by the teacher prior to
+            enrolment.
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* 4. Communication Details */}
+  {
+    course.id === 'communication' && Array.isArray(course.modules) && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-8">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              Ten-Week Structure · English + Hindi
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Speak with Confidence. Write Clearly. Explain Your Idea.
+            </h2>
+            <p class="mt-3 font-sans text-sm text-muted">
+              Separate school (Classes 8–12) and college cohorts. Real speaking,
+              listening, reading, and writing activities side by side.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {course.modules.map((mod, index) => (
+              <div class="rounded border border-hair bg-paper p-5">
+                <span class="font-mono text-xs font-bold text-spark-ink">
+                  Week {index + 1}
+                </span>
+                <h3 class="mt-1 font-serif text-lg font-normal text-ink">
+                  {mod}
+                </h3>
+              </div>
+            ))}
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Final Showcase:</strong> The course concludes with a
+            five-minute talk or presentation. Parents are invited to attend for
+            school batches.
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* 5. Business Development + Internship Details */}
+  {
+    course.id === 'business-development' && Array.isArray(course.modules) && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-10">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              6-Month College Programme
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Three Months Learning. Three Months Working on a Real Chamba
+              Venture.
+            </h2>
+            <p class="mt-3 font-sans text-sm text-muted">
+              For students enrolled in a bachelor’s programme. ₹899/month for
+              all six months (total fee ₹5,394).
+            </p>
+          </div>
+
+          {/* Phase 1 */}
+          <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+            <div class="flex items-baseline justify-between border-b border-hair pb-4">
+              <h3 class="font-serif text-2xl font-normal text-ink">
+                Phase 1 — Core Business Learning (Months 1–3)
+              </h3>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                10 Modules
+              </span>
+            </div>
+            <ol class="mt-6 grid grid-cols-1 gap-3 font-sans text-sm text-muted sm:grid-cols-2">
+              {course.modules.map((mod, index) => (
+                <li class="flex items-start gap-2.5">
+                  <span class="font-mono text-xs font-bold text-spark-ink">
+                    {String(index + 1).padStart(2, '0')}.
+                  </span>
+                  <span class="text-ink">{mod}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          {/* Phase 2 */}
+          <div class="rounded border border-hair bg-paper p-6 sm:p-8">
+            <h3 class="font-serif text-2xl font-normal text-ink">
+              Phase 2 — Mentored Venture Internship (Months 4–6)
+            </h3>
+            <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
+              Participants work on one selected Chamba venture project (such as
+              Chamba Rumal apparel, travel experiences, or local products) with
+              guidance from the Synapse team and local practitioners.
+            </p>
+            <ul class="mt-4 space-y-2 font-sans text-sm text-muted">
+              <li>• Defined project brief and nominated supervisor</li>
+              <li>• Weekly review sessions and constructive feedback</li>
+              <li>• Portfolio of practical deliverables created by you</li>
+              <li>
+                • Synapse Learning & Internship Certificate on successful
+                completion
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Policy Note:</strong> Stipend terms are being finalised and
+            will be communicated prior to enrolment. No guaranteed job or
+            placement. Selected participants may be considered for continued
+            roles as Synapse expands.
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* 6. Applied AI Literacy Details */}
+  {
+    course.id === 'ai-literacy' && course.units && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-8">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              12-Week Applied Curriculum
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Understand AI. Use It Well. Apply It to Real Work.
+            </h2>
+            <p class="mt-3 font-sans text-sm text-muted">
+              No coding experience required. Progression from foundational
+              awareness to practical workflows and responsible use.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            {course.units.map((unit) => (
+              <div class="rounded border border-hair bg-paper p-6">
+                <div class="flex items-baseline justify-between">
+                  <h3 class="font-serif text-xl font-normal text-ink">
+                    {unit.name}
+                  </h3>
+                  <span class="font-mono text-xs font-semibold text-spark-ink">
+                    Weeks {unit.weeks}
+                  </span>
+                </div>
+                <p class="mt-2 font-sans text-sm text-muted">
+                  {unit.name === 'Understand AI' &&
+                    'What AI and language models do, tokens, context windows, model limitations, hallucinations, and verifying outputs.'}
+                  {unit.name === 'Use AI Well' &&
+                    'Prompting instructions, structured outputs, research assistance, data/spreadsheets, multimodal tools, and study workflows.'}
+                  {unit.name === 'Apply AI to Real Work' &&
+                    'Workflows for small business: content, product catalogues, customer replies, booking enquiries, and no-code tools.'}
+                  {unit.name === 'Use AI Responsibly' &&
+                    'Data privacy, copyright, responsible content use, deepfakes, scams, and academic/workplace integrity.'}
+                  {unit.name === 'Capstone' &&
+                    'Build and present a practical AI-assisted workflow for a real scenario (e.g. homestay enquiry management or product cataloguing).'}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Certificate:</strong> Synapse course completion certificate
+            awarded under published completion criteria. No third-party
+            accreditation claims.
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* 7. AI + Business Combo Details */}
+  {
+    course.id === 'ai-business-combo' && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl space-y-8">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+              Combined Track
+            </span>
+            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
+              Applied AI Literacy + Business Development
+            </h2>
+            <p class="mt-3 font-sans text-sm text-muted">
+              For college students who want to master practical AI tools while
+              learning how to build and operate a business.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">
+                Applied AI Literacy
+              </h3>
+              <span class="font-mono text-xs text-spark-ink">
+                12 Weeks Duration
+              </span>
+              <p class="mt-3 font-sans text-sm text-muted">
+                Learn prompt engineering, research workflows, data handling, and
+                automation.
+              </p>
+              <div class="mt-4">
+                <a
+                  href="/courses/ai-literacy"
+                  class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+                >
+                  View AI syllabus →
+                </a>
+              </div>
+            </div>
+
+            <div class="rounded border border-hair bg-paper p-6">
+              <h3 class="font-serif text-xl font-normal text-ink">
+                Business Development
+              </h3>
+              <span class="font-mono text-xs text-spark-ink">
+                6 Months (3m study + 3m internship)
+              </span>
+              <p class="mt-3 font-sans text-sm text-muted">
+                10 business modules followed by a mentored internship on a real
+                Chamba venture.
+              </p>
+              <div class="mt-4">
+                <a
+                  href="/courses/business-development"
+                  class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+                >
+                  View Business syllabus →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
+            <strong>Tuition & Savings:</strong> ₹1,499 per month while enrolled
+            in the combined programme. Saves ₹299/month compared to taking both
+            programmes separately (₹899 + ₹899 = ₹1,798).
+          </div>
+        </div>
+      </Section>
+    )
+  }
+
+  {/* Common Closing CTA for Course Detail */}
+  <Section theme="paper" padding="lg">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-headline-sm font-normal text-ink">
+        Ready to get started?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl font-sans text-base text-muted">
+        Submit the short enquiry form to join the next trial class or receive
+        available batch times.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={formUrl}
+          target={isExternalForm ? '_blank' : undefined}
+          rel={isExternalForm ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Enquire about {course.title}</span>
+        </Button>
+        <Button href="/courses" variant="secondary" size="lg">
+          View all courses
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

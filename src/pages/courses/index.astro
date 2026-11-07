@@ -1,0 +1,367 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/ui/Section.astro';
+import CourseCard from '../../components/brand/CourseCard.astro';
+import Button from '../../components/ui/Button.astro';
+
+import coursesData from '../../content/courses.json';
+import site from '../../content/site.json';
+import type { CourseItem } from '../../content/schemas';
+import { getFormUrl, isFormConfigured } from '../../config/forms';
+
+const courses = (coursesData.courses || []) as CourseItem[];
+
+const generalFormUrl = getFormUrl('courseGeneral');
+const isGeneralExternal = isFormConfigured('courseGeneral');
+---
+
+<BaseLayout
+  title={`Courses & Programmes — ${site.name}`}
+  description="Explore our seven structured courses with transparent fees: Foundation Pack, Question Bank, Class 11–12 Subject Classes, Communication, AI Literacy and Business Development + Internship."
+>
+  {/* Header */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+      >
+        Structured Curricula · Transparent Fees
+      </span>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        Courses & Programmes
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        Every course has a published curriculum, clear pricing, and live online
+        batches. One or two trial classes are arranged before you confirm and
+        pay.
+      </p>
+
+      {/* Quick Jump Anchors */}
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        <a
+          href="#school"
+          class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          School Students (8–12)
+        </a>
+        <a
+          href="#exam"
+          class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          Exam Aspirants
+        </a>
+        <a
+          href="#college"
+          class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          College & Ventures
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  {/* All Courses Grid */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mb-12">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Complete Catalogue
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        All Seven Offers
+      </h2>
+      <p class="mt-2 font-sans text-sm text-muted">
+        Select any course to view its full syllabus or submit an enquiry.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+      {courses.map((course) => <CourseCard course={course} />)}
+    </div>
+  </Section>
+
+  {/* Audience Groups for Easy Filtering */}
+  <Section theme="paper" padding="lg" class="border-b border-hair" id="school">
+    <div class="mb-8">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Audience Guide
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        For School Students (Classes 8–12)
+      </h2>
+      <p class="mt-2 max-w-2xl font-sans text-sm text-muted">
+        Foundational concepts, board preparation, and core communication skills.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Class 11–12 Subject Classes
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹599 per subject / month
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          NCERT-based Physics, Chemistry, Biology and Mathematics classes for
+          board examinations and entrance tests.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/subject-classes"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View syllabus →
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Communication: English + Hindi
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹599 / month (10 weeks)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          Speaking, listening, reading, and practical writing in both languages
+          with confidence.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/communication"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View syllabus →
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">Foundation Pack</h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹599 / month (12 weeks)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          General Awareness, Logical Reasoning, and Quantitative Aptitude for
+          early competitive exam foundation.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/foundation-pack"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View syllabus →
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section theme="paper" padding="lg" class="border-b border-hair" id="exam">
+    <div class="mb-8">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Audience Guide
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        For Entrance-Exam Aspirants
+      </h2>
+      <p class="mt-2 max-w-2xl font-sans text-sm text-muted">
+        CUET, NEET, JEE, NDA, and competitive examination preparation.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">Foundation Pack</h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹599 / month (12 weeks)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          All three core areas in one pack: General Awareness (10 units),
+          Reasoning (8 units), Quantitative Aptitude (10 units).
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/foundation-pack"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View syllabus →
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Exam Question Bank & Performance Profile
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹499 one-time (6 months access)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          Exam-pattern practice sets, accuracy and speed tracking, weak-area
+          identification and periodic teacher review.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/question-bank"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View details →
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section theme="paper" padding="lg" class="border-b border-hair" id="college">
+    <div class="mb-8">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Audience Guide
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        For College Students & Graduates
+      </h2>
+      <p class="mt-2 max-w-2xl font-sans text-sm text-muted">
+        Practical industry skills, applied AI workflows, and business building
+        in Chamba.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Business Development + Internship
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹899 / month (6 months)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          3 months structured learning + 3 months mentored internship on a real
+          Chamba venture. Synapse Certificate on completion.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/business-development"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View programme →
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          Applied AI Literacy
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹899 / month (12 weeks)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          Understand, use, and apply AI tools to study, research, and workplace
+          tasks. No coding experience needed.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/ai-literacy"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View curriculum →
+          </a>
+        </div>
+      </div>
+
+      <div class="rounded border border-hair bg-paper p-6">
+        <h3 class="font-serif text-xl font-normal text-ink">
+          AI Literacy + Business Development
+        </h3>
+        <p class="mt-1 font-mono text-xs text-spark-ink">
+          ₹1,499 / month (Combined)
+        </p>
+        <p class="mt-3 font-sans text-sm text-muted">
+          Both tracks taken together. Saves ₹299/month compared to enrolling
+          separately.
+        </p>
+        <div class="mt-4">
+          <a
+            href="/courses/ai-business-combo"
+            class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+          >
+            View combo details →
+          </a>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* Common Pricing Principles */}
+  <Section theme="paper" padding="lg">
+    <div
+      class="bg-hair/20 mx-auto max-w-3xl rounded border border-hair p-8 sm:p-10"
+    >
+      <h3 class="font-serif text-2xl font-normal text-ink">
+        How pricing and payments work
+      </h3>
+      <ul class="mt-4 space-y-3 font-sans text-sm text-muted">
+        <li class="flex items-start gap-2">
+          <span
+            class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+            aria-hidden="true"></span>
+          <span
+            ><strong>Transparent rates:</strong> Every fee is published above. No
+            hidden charges or automatic recurring checkout subscriptions.</span
+          >
+        </li>
+        <li class="flex items-start gap-2">
+          <span
+            class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+            aria-hidden="true"></span>
+          <span
+            ><strong>Trial classes:</strong> Attend one or two trial classes before
+            payment so you know the course is right for you.</span
+          >
+        </li>
+        <li class="flex items-start gap-2">
+          <span
+            class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+            aria-hidden="true"></span>
+          <span
+            ><strong>No website checkout:</strong> Every CTA is an enquiry. Payment
+            arrangements are shared after your trial class.</span
+          >
+        </li>
+      </ul>
+
+      <div class="mt-8">
+        <Button
+          href={generalFormUrl}
+          target={isGeneralExternal ? '_blank' : undefined}
+          rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="md"
+        >
+          <span>Enquire about any course</span>
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

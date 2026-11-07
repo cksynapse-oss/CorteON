@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Accordion from '../components/ui/Accordion.astro';
+import Button from '../components/ui/Button.astro';
+
+import faqData from '../content/faq.json';
+import site from '../content/site.json';
+import type { FaqItem } from '../content/schemas';
+
+const faqItems = (faqData.items || []) as (FaqItem & { category?: string })[];
+
+// Group by category if available
+const categories = Array.from(
+  new Set(faqItems.map((item) => item.category || 'General'))
+);
+---
+
+<BaseLayout
+  title={`Frequently Asked Questions — ${site.name}`}
+  description={faqData.sub}
+>
+  {/* Header */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+      >
+        Common Questions & Practical Answers
+      </span>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        {faqData.heading}
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        {faqData.sub}
+      </p>
+    </div>
+  </Section>
+
+  {/* FAQ Categories & Accordions */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-3xl space-y-12">
+      {
+        categories.map((cat) => {
+          const itemsInCat = faqItems.filter(
+            (item) => (item.category || 'General') === cat
+          );
+          return (
+            <div>
+              <div class="mb-4 border-b border-hair pb-2">
+                <h2 class="font-serif text-2xl font-normal text-ink">{cat}</h2>
+              </div>
+              <Accordion items={itemsInCat} />
+            </div>
+          );
+        })
+      }
+    </div>
+  </Section>
+
+  {/* Closing CTA */}
+  <Section theme="paper" padding="lg">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-headline-sm font-normal text-ink">
+        Still have a question?
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl font-sans text-base text-muted">
+        We are happy to explain course syllabi, batch timings, or trial classes
+        directly.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="/contact" variant="primary" size="lg">
+          Talk to Synapse
+        </Button>
+        <Button
+          href={`https://wa.me/91${site.phone}?text=${encodeURIComponent('Hello Synapse, I have a question about courses and admissions.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
+          size="lg"
+        >
+          Message on WhatsApp
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

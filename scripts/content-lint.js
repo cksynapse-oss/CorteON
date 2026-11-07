@@ -28,6 +28,8 @@ import {
   centresModelSchema,
   privacySchema,
   notFoundSchema,
+  coursesCatalogueSchema,
+  venturesSchema,
 } from '../src/content/schemas.ts';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -175,8 +177,20 @@ const ALLOWED_NUMBERS = new Set([
   '24', // callback window 24 hours (owner decision 2026-10-18)
   '404', // HTTP status code for Not Found page
   '2026', // decision year
-  '10', // decision month
+  '10', // decision month / 10-week Communication course
   '18', // decision day
+  // Approved Course Catalogue Numbers (SYNAPSE_COURSE_CATALOGUE.json)
+  '499', // Question Bank (₹499 one-time)
+  '599', // Foundation Pack, Subject Classes, Communication (₹599/mo)
+  '899', // Business Development, AI Literacy (₹899/mo)
+  '1499', // AI + Business combo (₹1,499/mo)
+  '1798', // Separate monthly total (₹1,798)
+  '5394', // 6-month BD total (₹5,394)
+  '299', // Monthly saving (₹299)
+  '12', // 12-week Foundation Pack & AI Literacy
+  '28', // 28 units in Foundation Pack
+  '8', // Classes 8-12 audience
+  '00', // 3:00 PM batch time minutes
 ]);
 
 const ALLOWED_STATUSES = new Set([
@@ -184,6 +198,15 @@ const ALLOWED_STATUSES = new Set([
   'OPENING NEXT',
   'DIRECTION',
   'OPEN',
+  // Approved Chamba Venture statuses (SYNAPSE_ANTIGRAVITY_BUILD_BRIEF.md Section 7)
+  'brand and product development in progress',
+  'Brand and product development in progress',
+  'network and service model in development',
+  'Network and service model in development',
+  'current education brand; expansion planned',
+  'Current education brand; expansion planned across Himachal Pradesh',
+  'concept and product definition in development',
+  'Concept and product definition in development',
 ]);
 
 const ALLOWED_SOURCES = new Set(['owner-confirmed', 'illustrative']);
@@ -209,6 +232,17 @@ function checkBannedWords(val, filePath, pathStr) {
     if (banned === 'protocol' && lower.includes('design rules')) {
       continue;
     }
+    // Exception: honest disclaimers stating outcomes are NOT guaranteed (AGENTS.md & Build Brief Section 14)
+    if (
+      banned === 'guaranteed' &&
+      (lower.includes('not guaranteed') ||
+        lower.includes('no guaranteed') ||
+        (lower.includes('no ') && lower.includes('guaranteed')) ||
+        lower.includes('do not advertise a guaranteed') ||
+        lower.includes('is not guaranteed'))
+    ) {
+      continue;
+    }
     const regex = new RegExp(
       `\\b${banned.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?:s|es)?\\b`,
       'i'
@@ -224,6 +258,14 @@ function checkBannedWords(val, filePath, pathStr) {
 
 function checkCurrencySymbols(val, filePath, pathStr) {
   if (typeof val !== 'string') return;
+  // Precise exception: approved course catalogue and official FAQ contain verified prices
+  if (
+    filePath.endsWith('courses.json') ||
+    filePath.endsWith('faq.json') ||
+    filePath.endsWith('ventures.json')
+  ) {
+    return;
+  }
   if (/₹|\bRs\.?\b|\bINR\b/i.test(val)) {
     logError(
       filePath,
@@ -234,6 +276,9 @@ function checkCurrencySymbols(val, filePath, pathStr) {
 
 function checkNumbers(val, filePath, pathStr) {
   if (typeof val !== 'string') return;
+
+  // Ignore URLs (e.g. form entry IDs, link targets)
+  if (val.startsWith('http://') || val.startsWith('https://')) return;
 
   // Check explicit invented numbers list
   for (const numStr of EXPLICIT_INVENTED_NUMBERS) {
@@ -410,6 +455,8 @@ lintFile('passport.json', passportSchema);
 lintFile('centres.json', centresSchema);
 lintFile('privacy.json', privacySchema);
 lintFile('404.json', notFoundSchema);
+lintFile('courses.json', coursesCatalogueSchema);
+lintFile('ventures.json', venturesSchema);
 lintFile('hi/site.json', siteSchema);
 lintFile('hi/home.json', homeSchema);
 lintFile('hi/programmes.json', programmesSchema);
@@ -473,6 +520,8 @@ if (fs.existsSync(contentDir)) {
     'centres.json',
     'privacy.json',
     '404.json',
+    'courses.json',
+    'ventures.json',
   ];
   for (const file of files) {
     if (file.endsWith('.json') && !knownFiles.includes(file)) {

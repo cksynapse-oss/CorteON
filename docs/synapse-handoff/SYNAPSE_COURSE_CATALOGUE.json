@@ -1,0 +1,320 @@
+{
+  "brand": {
+    "name": "Synapse — Centre for Learning & Innovation",
+    "location": "Chamba, Himachal Pradesh, India",
+    "delivery_mode": "Online classes",
+    "office": "Behind the Post Office, Chamba",
+    "phone": "8287248119",
+    "public_email_from_reference": "cksynapse@mail.com",
+    "forms_owner_email": "ck.synapse@gmail.com"
+  },
+  "pricing_rules": {
+    "currency": "INR",
+    "website_payments_enabled": false,
+    "foundation_pack_includes_all_three_modules": true,
+    "foundation_communication_bundle_publish": false,
+    "institution_group_pricing": "Enquire; not yet fixed"
+  },
+  "courses": [
+    {
+      "id": "foundation-pack",
+      "title": "Foundation Pack",
+      "subtitle": "General Awareness · Logical Reasoning · Quantitative Aptitude",
+      "audience": [
+        "competitive-exam aspirants",
+        "school learners building foundations"
+      ],
+      "duration": "12 weeks",
+      "price_inr": 599,
+      "billing": "monthly",
+      "includes": [
+        "28 structured units across three subjects",
+        "practice sets",
+        "weekly tests",
+        "weekly current-affairs digest",
+        "progress reviews"
+      ],
+      "modules": {
+        "general_awareness": [
+          "Indian History",
+          "Polity and Constitution",
+          "Geography",
+          "Indian Economy",
+          "General Science",
+          "Environment and Ecology",
+          "Static General Knowledge",
+          "Art, Culture and Regional Knowledge",
+          "Current Affairs",
+          "Revision and Mixed Tests"
+        ],
+        "reasoning": [
+          "Series",
+          "Coding-Decoding, Analogy and Classification",
+          "Relations, Direction and Ranking",
+          "Syllogism and Venn Diagrams",
+          "Arrangements and Puzzles",
+          "Clocks, Calendars, Cubes and Dice",
+          "Non-verbal Reasoning",
+          "Critical Reasoning and Data Sufficiency"
+        ],
+        "quantitative_aptitude": [
+          "Number System and Simplification",
+          "Percentages",
+          "Ratio, Proportion and Partnership",
+          "Profit, Loss and Discount",
+          "Simple and Compound Interest",
+          "Averages, Mixtures and Alligation",
+          "Time and Work",
+          "Time, Speed and Distance",
+          "Algebra, Geometry and Mensuration Basics",
+          "Data Interpretation"
+        ]
+      }
+    },
+    {
+      "id": "question-bank",
+      "title": "Exam Question Bank & Performance Profile",
+      "audience": [
+        "exam aspirants"
+      ],
+      "duration": "6 months access",
+      "price_inr": 499,
+      "billing": "one-time",
+      "includes": [
+        "topic-wise and chapter-wise practice where available",
+        "mixed and timed tests",
+        "hints before full answers",
+        "accuracy and speed profile",
+        "weak-topic list and weekly push list",
+        "revision reminders",
+        "periodic teacher review"
+      ],
+      "availability_note": "Confirm the exact exam pack before enrolment. Do not claim every exam pack is available."
+    },
+    {
+      "id": "subject-classes",
+      "title": "Class 11–12 Subject Classes",
+      "subtitle": "Physics · Chemistry · Biology · Mathematics",
+      "audience": [
+        "Class 11–12 students"
+      ],
+      "duration": "ongoing by batch / academic session",
+      "price_inr": 599,
+      "billing": "per subject per month",
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Mathematics"
+      ],
+      "exam_tracks": [
+        "CUET",
+        "NEET",
+        "JEE",
+        "Board preparation"
+      ],
+      "includes": [
+        "NCERT-based live online classes",
+        "chapter tests",
+        "weekly tests",
+        "doubt sessions",
+        "error log"
+      ]
+    },
+    {
+      "id": "communication",
+      "title": "Communication: English + Hindi",
+      "audience": [
+        "school students Classes 8–12",
+        "college students"
+      ],
+      "duration": "10 weeks",
+      "price_inr": 599,
+      "billing": "monthly",
+      "includes": [
+        "speaking, listening, reading and writing in both languages",
+        "public speaking and confidence practice",
+        "practical writing",
+        "group discussion and interview basics",
+        "five-minute final showcase"
+      ],
+      "modules": [
+        "Speak Without Fear",
+        "Listening and Responding",
+        "English in Use",
+        "Hindi in Use",
+        "Reading and Vocabulary",
+        "Practical Writing",
+        "Storytelling and Idea Expression",
+        "Presenting and Pitching",
+        "Group Discussion and Interview Basics",
+        "Final Showcase"
+      ]
+    },
+    {
+      "id": "business-development",
+      "title": "Business Development + Internship",
+      "audience": [
+        "students enrolled in a bachelor's programme"
+      ],
+      "duration": "6 months: 3 months learning + 3 months internship",
+      "price_inr": 899,
+      "billing": "monthly for all 6 months",
+      "total_at_listed_monthly_rate_inr": 5394,
+      "includes": [
+        "10 learning modules",
+        "three-month internship on one selected Chamba venture",
+        "weekly reviews",
+        "portfolio of practical work",
+        "Synapse Learning & Internship Certificate on completion"
+      ],
+      "modules": [
+        "Business Basics and the Founder’s Mindset",
+        "Finding a Niche and Talking to Customers",
+        "Market Research",
+        "Product Development",
+        "Costing and Pricing",
+        "Branding and Storytelling",
+        "Marketing and Distribution",
+        "Sales and Customer Handling",
+        "Operations and Basic Finance",
+        "Pitching and Project Planning"
+      ],
+      "stipend_policy": "Not confirmed. Do not advertise a guaranteed stipend until written terms are approved.",
+      "job_policy": "No guaranteed job or placement."
+    },
+    {
+      "id": "ai-literacy",
+      "title": "Applied AI Literacy",
+      "audience": [
+        "primarily college students",
+        "school students may enquire"
+      ],
+      "prerequisite": "No coding experience required",
+      "duration": "12 weeks",
+      "price_inr": 899,
+      "billing": "monthly",
+      "includes": [
+        "AI foundations",
+        "effective prompting and iteration",
+        "research and verification",
+        "data and spreadsheet tasks",
+        "multimodal tools",
+        "practical workflows",
+        "responsible AI",
+        "capstone"
+      ],
+      "units": [
+        {
+          "name": "Understand AI",
+          "weeks": "1–3"
+        },
+        {
+          "name": "Use AI Well",
+          "weeks": "4–6"
+        },
+        {
+          "name": "Apply AI to Real Work",
+          "weeks": "7–9"
+        },
+        {
+          "name": "Use AI Responsibly",
+          "weeks": "10–11"
+        },
+        {
+          "name": "Capstone",
+          "weeks": "12"
+        }
+      ],
+      "external_framework_claims": false
+    },
+    {
+      "id": "ai-business-combo",
+      "title": "AI Literacy + Business Development",
+      "audience": [
+        "college students"
+      ],
+      "duration_note": "AI Literacy is 12 weeks; Business Development is 6 months.",
+      "price_inr": 1499,
+      "billing": "monthly while enrolled in the combined programme",
+      "separate_monthly_total_inr": 1798,
+      "monthly_saving_inr": 299,
+      "includes": [
+        "Applied AI Literacy",
+        "Business Development + Internship"
+      ]
+    }
+  ],
+  "ventures": [
+    {
+      "id": "chamba-rumal-apparel",
+      "title": "Chamba Rumal & Heritage Apparel",
+      "status": "brand and product development in progress",
+      "description": "Explore contemporary apparel and accessories using Chamba Rumal embroidery with local artisans.",
+      "possible_work": [
+        "product research",
+        "artisan coordination",
+        "costing",
+        "sampling",
+        "quality documentation",
+        "photography",
+        "catalogue",
+        "marketing",
+        "orders"
+      ]
+    },
+    {
+      "id": "chamba-travel-experiences",
+      "title": "Chamba Travel & Experiences",
+      "status": "network and service model in development",
+      "description": "Develop a local hospitality and experience network including guiding, B&B operations, property marketing and customer acquisition.",
+      "possible_work": [
+        "experience mapping",
+        "itinerary design",
+        "property listings",
+        "guest communication",
+        "marketing",
+        "booking enquiry workflows"
+      ]
+    },
+    {
+      "id": "synapse-education",
+      "title": "Synapse Education",
+      "status": "current education brand; expansion planned",
+      "description": "Support classes, student onboarding, outreach, batch organisation and future centre operations.",
+      "possible_work": [
+        "teaching assistance",
+        "batch scheduling",
+        "admissions",
+        "outreach",
+        "workshop operations"
+      ]
+    },
+    {
+      "id": "chamba-fmcg-agro",
+      "title": "Chamba FMCG & Agro-Products",
+      "status": "concept and product definition in development",
+      "description": "Explore products using apples, chukh, aam papad, local beans/rajma and Himalayan berries.",
+      "possible_work": [
+        "product research",
+        "supplier mapping",
+        "sample testing",
+        "costing",
+        "packaging concepts",
+        "distribution research"
+      ]
+    }
+  ],
+  "form_keys": {
+    "courseGeneral": "PASTE_GOOGLE_FORM_COURSE_GENERAL_URL",
+    "foundationPack": "PASTE_PREFILLED_FOUNDATION_FORM_URL",
+    "questionBank": "PASTE_PREFILLED_QUESTION_BANK_FORM_URL",
+    "subjectClasses": "PASTE_PREFILLED_SUBJECT_CLASSES_FORM_URL",
+    "communication": "PASTE_PREFILLED_COMMUNICATION_FORM_URL",
+    "businessDevelopment": "PASTE_PREFILLED_BUSINESS_DEVELOPMENT_FORM_URL",
+    "aiLiteracy": "PASTE_PREFILLED_AI_LITERACY_FORM_URL",
+    "aiBusinessCombo": "PASTE_PREFILLED_AI_BUSINESS_COMBO_FORM_URL",
+    "internshipApplication": "PASTE_INTERNSHIP_APPLICATION_FORM_URL",
+    "institutionEnquiry": "PASTE_INSTITUTION_FORM_URL"
+  }
+}

@@ -31,7 +31,8 @@ export const postalAddressSchema = z.object({
 export type PostalAddress = z.infer<typeof postalAddressSchema>;
 
 export const siteSchema = z.object({
-  name: z.union([z.literal('Synapse'), z.literal('सिनेप्स')]),
+  name: z.string().min(1),
+  shortName: z.string().optional(),
   tagline: z.string().min(1),
   subline: z.string().min(1),
   domain: z.literal('corteon.in'),
@@ -40,6 +41,8 @@ export const siteSchema = z.object({
   phone: z.string().regex(/^\d{10}$/),
   phoneDisplay: z.string().min(1),
   email: z.string().email(),
+  formsOwnerEmail: z.string().email().optional(),
+  deliveryMode: z.string().optional(),
   hours: z.string().min(1),
   hoursDetail: z.string().min(1),
   callbackWindow: z.string().min(1),
@@ -69,15 +72,17 @@ export const navigationSchema = z.object({
       href: z.string().min(1),
     })
   ),
-  floors: z.array(
-    z.object({
-      id: z.string().min(1),
-      shortName: z.string().min(1),
-      name: z.string().min(1),
-      status: z.string().min(1),
-      href: z.string().min(1),
-    })
-  ),
+  floors: z
+    .array(
+      z.object({
+        id: z.string().min(1),
+        shortName: z.string().min(1),
+        name: z.string().min(1),
+        status: z.string().min(1),
+        href: z.string().min(1),
+      })
+    )
+    .optional(),
   languageToggle: z.object({
     navAriaLabel: z.string().min(1),
     enAriaLabel: z.string().min(1),
@@ -180,6 +185,7 @@ export type ProgrammesContent = z.infer<typeof programmesSchema>;
 
 export const faqItemSchema = z.object({
   id: z.string().min(1),
+  category: z.string().optional(),
   question: z.string().min(1),
   answer: z.string().min(1),
 });
@@ -1137,4 +1143,71 @@ export const notFoundSchema = z.object({
   ),
   contactNotice: z.string().min(1),
 });
+
+export const courseItemSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  subtitle: z.string().optional(),
+  audience: z.array(z.string().min(1)),
+  prerequisite: z.string().optional(),
+  duration: z.string().optional(),
+  duration_note: z.string().optional(),
+  price_inr: z.number().positive(),
+  billing: z.string().min(1),
+  total_at_listed_monthly_rate_inr: z.number().optional(),
+  separate_monthly_total_inr: z.number().optional(),
+  monthly_saving_inr: z.number().optional(),
+  includes: z.array(z.string().min(1)),
+  modules: z
+    .union([z.record(z.array(z.string())), z.array(z.string())])
+    .optional(),
+  units: z
+    .array(
+      z.object({
+        name: z.string().min(1),
+        weeks: z.string().min(1),
+      })
+    )
+    .optional(),
+  subjects: z.array(z.string()).optional(),
+  exam_tracks: z.array(z.string()).optional(),
+  availability_note: z.string().optional(),
+  stipend_policy: z.string().optional(),
+  job_policy: z.string().optional(),
+  external_framework_claims: z.boolean().optional(),
+});
+export type CourseItem = z.infer<typeof courseItemSchema>;
+
+export const coursesCatalogueSchema = z.object({
+  brand: z.record(z.any()),
+  pricing_rules: z.record(z.any()),
+  courses: z.array(courseItemSchema).min(1),
+  ventures: z.array(z.any()).optional(),
+  form_keys: z.record(z.string()).optional(),
+});
+export type CoursesCatalogue = z.infer<typeof coursesCatalogueSchema>;
+
+export const ventureItemSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  status: z.string().min(1),
+  statusChip: z.string().optional(),
+  description: z.string().min(1),
+  possibleWork: z.array(z.string().min(1)),
+  accuracyNote: z.string().optional(),
+});
+export type VentureItem = z.infer<typeof ventureItemSchema>;
+
+export const venturesSchema = z.object({
+  heading: z.string().min(1),
+  subheading: z.string().min(1),
+  ventures: z.array(ventureItemSchema).min(1),
+  cta: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+    buttonLabel: z.string().min(1),
+  }),
+});
+export type VenturesContent = z.infer<typeof venturesSchema>;
+
 export type NotFoundContent = z.infer<typeof notFoundSchema>;

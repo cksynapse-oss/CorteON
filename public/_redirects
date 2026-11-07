@@ -39,3 +39,9 @@
 # Thank You / Success State
 /thank-you.html /enquire 301
 /thank-you /enquire 301
+
+# Language Redirects (English-only site)
+/hi / 301
+/hi/programmes /courses 301
+/hi/enquire /contact 301
+/hi/* / 301

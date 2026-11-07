@@ -1,10 +1,7 @@
 ---
-import siteEn from '../../content/site.json';
-import siteHi from '../../content/hi/site.json';
-import navEn from '../../content/navigation.json';
-import navHi from '../../content/hi/navigation.json';
+import site from '../../content/site.json';
+import navigation from '../../content/navigation.json';
 import Button from '../ui/Button.astro';
-import LanguageToggle from '../ui/LanguageToggle.astro';
 
 interface Props {
   currentPath?: string;
@@ -12,10 +9,7 @@ interface Props {
 }
 
 const { currentPath = Astro.url.pathname, class: className = '' } = Astro.props;
-const isHindi = currentPath === '/hi' || currentPath.startsWith('/hi/');
-const navigation = isHindi ? navHi : navEn;
-const site = isHindi ? siteHi : siteEn;
-const homeHref = isHindi ? '/hi' : '/';
+const homeHref = '/';
 const mainLinks = navigation.main;
 const enquireAction = navigation.actions.find(
   (a) => a.label.toLowerCase() === 'enquire'
@@ -93,16 +87,13 @@ const brandName =
 
     <!-- Desktop Action Buttons -->
     <div class="hidden items-center gap-3 lg:flex">
-      <LanguageToggle currentPath={currentPath} />
       <Button href={enquireAction.href} variant="primary" size="sm">
         {enquireAction.label}
       </Button>
     </div>
 
-    <!-- Mobile Navigation Toggle and Language Switcher -->
+    <!-- Mobile Navigation Toggle -->
     <div class="flex items-center gap-2 lg:hidden">
-      <LanguageToggle currentPath={currentPath} />
-
       <details id="mobile-nav-details" class="group/details relative">
         <summary
           aria-label="Toggle navigation menu"

@@ -13,7 +13,6 @@ import NavBar from '../components/brand/NavBar.astro';
 import Footer from '../components/brand/Footer.astro';
 import FloorGauge from '../components/brand/FloorGauge.astro';
 import site from '../content/site.json';
-import hiSite from '../content/hi/site.json';
 import type { SiteContent } from '../content/schemas';
 
 interface Props {
@@ -21,7 +20,7 @@ interface Props {
   description?: string;
   image?: string;
   ogImageAlt?: string;
-  lang?: 'en' | 'hi';
+  lang?: string;
   theme?: 'paper' | 'ink';
   activeFloor?: 'g' | '1' | '2' | null;
   hideNav?: boolean;
@@ -30,16 +29,14 @@ interface Props {
   noindex?: boolean;
 }
 
-const isPathHindi =
-  Astro.url.pathname === '/hi' || Astro.url.pathname.startsWith('/hi/');
-const activeSite = (isPathHindi ? hiSite : site) as unknown as SiteContent;
+const activeSite = site as unknown as SiteContent;
 
 const {
   title = `${activeSite.name} — A modern gurukul in Chamba`,
   description = activeSite.tagline,
   image = '/og-image.png',
   ogImageAlt = activeSite.ogImageAlt,
-  lang = isPathHindi ? 'hi' : 'en',
+  lang = 'en',
   theme = 'paper',
   activeFloor = null,
   hideNav = false,
@@ -54,29 +51,6 @@ const siteUrl = Astro.site
 const cleanPath = Astro.url.pathname.replace(/\/$/, '');
 const canonicalUrl = cleanPath ? `${siteUrl}${cleanPath}` : `${siteUrl}/`;
 const ogImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
-
-/**
- * Hreflang Rule:
- * In Phase 1 launch, only three core routes have true 1:1 Hindi equivalents:
- * 1. Home ('/' <-> '/hi')
- * 2. Programmes ('/programmes' <-> '/hi/programmes')
- * 3. Enquire ('/enquire' <-> '/hi/enquire')
- *
- * Per Google / W3C specifications, hreflang alternates MUST point only to
- * genuine reciprocal translations of the exact same content. Routes without a
- * translated Hindi equivalent (e.g. /fellowship, /building, /idea) deliberately
- * omit hreflang alternate tags to avoid crawl errors and misleading indexation.
- */
-import { getBilingualRoutePair } from '../lib/i18n';
-
-const matchingBilingualPair = getBilingualRoutePair(cleanPath);
-const isBilingualRoute = !!matchingBilingualPair;
-const enCanonicalUrl = matchingBilingualPair
-  ? `${siteUrl}${matchingBilingualPair.en === '/' ? '/' : matchingBilingualPair.en}`
-  : canonicalUrl;
-const hiCanonicalUrl = matchingBilingualPair
-  ? `${siteUrl}${matchingBilingualPair.hi}`
-  : '';
 
 const isDevRoute =
   noindex ||
@@ -163,15 +137,6 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    {
-      isBilingualRoute && (
-        <>
-          <link rel="alternate" hreflang="en" href={enCanonicalUrl} />
-          <link rel="alternate" hreflang="hi" href={hiCanonicalUrl} />
-          <link rel="alternate" hreflang="x-default" href={enCanonicalUrl} />
-        </>
-      )
-    }
     {
       isDevRoute ? (
         <meta name="robots" content="noindex, nofollow" />

@@ -14,13 +14,13 @@
       "id": "location",
       "category": "General",
       "question": "Where are the classes held?",
-      "answer": "Classes are online. The Synapse office is behind the Post Office in Chamba, Himachal Pradesh."
+      "answer": "Classes are held offline at our learning centre behind the Post Office in Chamba, Himachal Pradesh."
     },
     {
       "id": "delivery-mode",
       "category": "General",
       "question": "Are the courses online or offline?",
-      "answer": "All classes are online. The Chamba office is the local base for enquiries and coordination; regular classroom teaching is not currently offered there."
+      "answer": "All regular batches are offline classroom learning conducted at our Chamba centre. Students attend classes in person with structured guidance, practice sessions, and peer discussion."
     },
     {
       "id": "batch-dates",

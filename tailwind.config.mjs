@@ -13,6 +13,12 @@ export default {
         spark: 'var(--spark)',
         'spark-ink': 'var(--spark-ink)',
         'spark-glow': 'var(--spark-glow)',
+        'brand-blue': '#244FCC',
+        'brand-yellow': '#FFC857',
+        'brand-coral': '#F17655',
+        'brand-teal': '#319A85',
+        'brand-navy': '#0A1128',
+        'brand-warm-white': '#FFF9EF',
       },
       fontFamily: {
         serif: ['"EB Garamond"', 'Garamond', 'Georgia', 'serif'],

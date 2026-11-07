@@ -1,8 +1,8 @@
 {
   "name": "Synapse — Centre for Learning & Innovation",
   "shortName": "Synapse",
-  "tagline": "Prepare for exams. Build skills. Do real work.",
-  "subline": "Structured online courses for school students, competitive-exam aspirants and college students in Chamba and beyond.",
+  "tagline": "Opportunity should not depend on geography.",
+  "subline": "Structured offline classroom programmes for school students, competitive-exam aspirants and college students at our learning centre in Chamba, Himachal Pradesh.",
   "domain": "corteon.in",
   "place": "Behind the Post Office, Chamba, Himachal Pradesh",
   "address": {
@@ -15,9 +15,9 @@
   "phoneDisplay": "+91 82872 48119",
   "email": "cksynapse@mail.com",
   "formsOwnerEmail": "ck.synapse@gmail.com",
-  "deliveryMode": "Online classes",
+  "deliveryMode": "Offline classroom learning in Chamba",
   "hours": "Batches planned before 3:00 PM (college) & after 3:00 PM (school)",
-  "hoursDetail": "Online batches run throughout the week. College-level batches are scheduled before 3:00 PM; school-level batches are scheduled after 3:00 PM.",
+  "hoursDetail": "Classroom batches run at our learning centre in Chamba behind the Post Office. College-level batches are scheduled before 3:00 PM; school-level batches are scheduled after 3:00 PM.",
   "callbackWindow": "within 24 hours",
   "ogImageAlt": "Synapse — Centre for Learning & Innovation in Chamba, Himachal Pradesh",
   "status": "LIVE NOW",

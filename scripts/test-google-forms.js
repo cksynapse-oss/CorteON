@@ -99,7 +99,8 @@ async function testForm(item) {
 
     // Check title
     const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
-    const pageTitle = titleMatch ? titleMatch[1].trim() : 'Unknown';
+    const rawTitle = titleMatch ? titleMatch[1].trim() : 'Unknown';
+    const pageTitle = rawTitle.replace(/&amp;/g, '&');
     console.log(`Page Title: "${pageTitle}"`);
 
     if (
@@ -128,6 +129,7 @@ async function testForm(item) {
       // In Google forms, prefill data is stored in FB_PUBLIC_LOAD_DATA_
       const containsPrefilled =
         html.includes(item.prefilledCheck) ||
+        html.includes(item.prefilledCheck.replace(/&/g, '&amp;')) ||
         html.includes(encodeURIComponent(item.prefilledCheck));
 
       if (containsPrefilled) {

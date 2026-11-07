@@ -35,30 +35,30 @@ const isGeneralExternal = isFormConfigured('courseGeneral');
       <p
         class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
       >
-        Every course has a published curriculum, clear pricing, and live online
-        batches. One or two trial classes are arranged before you confirm and
-        pay.
+        Every course has a published curriculum, clear pricing, and offline
+        classroom batches at our Chamba centre. One or two trial classes are
+        arranged before you confirm and pay.
       </p>
 
       {/* Quick Jump Anchors */}
       <div class="mt-8 flex flex-wrap justify-center gap-2">
         <a
-          href="#school"
+          href="#school-students"
           class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
         >
-          School Students (8–12)
+          School Students (11–12)
         </a>
         <a
-          href="#exam"
+          href="#college-exams"
           class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
         >
-          Exam Aspirants
+          College & Exam Aspirants
         </a>
         <a
-          href="#college"
+          href="#business-development"
           class="rounded-pill border border-hair bg-paper px-4 py-2 font-mono text-xs font-medium text-muted transition-colors hover:border-ink hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
         >
-          College & Ventures
+          Employability & Business
         </a>
       </div>
     </div>
@@ -88,7 +88,13 @@ const isGeneralExternal = isFormConfigured('courseGeneral');
   </Section>
 
   {/* Audience Groups for Easy Filtering */}
-  <Section theme="paper" padding="lg" class="border-b border-hair" id="school">
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="school-students"
+  >
+    <div id="school"></div>
     <div class="mb-8">
       <span
         class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
@@ -169,7 +175,13 @@ const isGeneralExternal = isFormConfigured('courseGeneral');
     </div>
   </Section>
 
-  <Section theme="paper" padding="lg" class="border-b border-hair" id="exam">
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="college-exams"
+  >
+    <div id="exam"></div>
     <div class="mb-8">
       <span
         class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
@@ -229,7 +241,13 @@ const isGeneralExternal = isFormConfigured('courseGeneral');
     </div>
   </Section>
 
-  <Section theme="paper" padding="lg" class="border-b border-hair" id="college">
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="business-development"
+  >
+    <div id="college"></div>
     <div class="mb-8">
       <span
         class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"

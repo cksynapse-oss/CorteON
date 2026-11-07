@@ -1,0 +1,457 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+
+import site from '../content/site.json';
+import { getFormUrl, isFormConfigured } from '../config/forms';
+
+const generalFormUrl = getFormUrl('courseGeneral');
+const isExternal = isFormConfigured('courseGeneral');
+---
+
+<BaseLayout
+  title={`About Synapse — ${site.name}`}
+  description="Why Synapse was founded in Chamba: expanding access to entrance examination preparation, communication skills, AI literacy, and practical business development."
+>
+  {/* Hero Section */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="inline-flex items-center gap-2">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Our Purpose & Story
+        </span>
+        <StatusChip status="LIVE NOW" />
+      </div>
+      <h1
+        class="mt-4 font-serif text-display-lg-mobile font-normal text-ink sm:text-display-lg"
+      >
+        Opportunity should not depend on geography.
+      </h1>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        Synapse is a centre for learning and innovation based in Chamba,
+        Himachal Pradesh. We bring structured entrance-examination preparation,
+        communication skills, AI literacy, and practical business experience
+        closer to students and young people in the district.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={generalFormUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Enquire about programmes</span>
+        </Button>
+        <Button href="/contact" variant="secondary" size="lg">
+          Visit our Chamba centre
+        </Button>
+      </div>
+    </div>
+  </Section>
+
+  {/* Visual Banner */}
+  <div class="border-b border-hair bg-paper">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div class="relative overflow-hidden rounded border border-hair bg-paper">
+        <img
+          src="/images/chamba-landscape.webp"
+          alt="Panoramic view of Chamba town and the Ravi river valley in Himachal Pradesh"
+          class="h-72 w-full object-cover sm:h-96"
+          loading="eager"
+        />
+        <div
+          class="bg-paper/95 border-t border-hair p-4 sm:flex sm:items-center sm:justify-between sm:p-5"
+        >
+          <div>
+            <p class="font-sans text-sm font-semibold text-ink">
+              Chamba, Himachal Pradesh
+            </p>
+            <p class="mt-0.5 font-sans text-xs text-muted">
+              Behind the Post Office, Chamba · Offline learning centre serving
+              school and college students across the district.
+            </p>
+          </div>
+          <span
+            class="mt-2 inline-block font-mono text-xs text-spark-ink sm:mt-0"
+          >
+            Offline classroom learning
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Why Synapse Exists */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        The Local Context
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        Why Synapse was started in Chamba
+      </h2>
+
+      <div
+        class="mt-6 space-y-4 font-sans text-base leading-relaxed text-muted"
+      >
+        <p>
+          Talent exists everywhere. Access to opportunity does not. In mountain
+          districts like Chamba, students and young graduates face specific
+          educational challenges:
+        </p>
+        <ul class="list-disc space-y-2 pl-5 text-ink">
+          <li>
+            <strong>Entrance exam preparation gap:</strong> School students often
+            have access to board-level coaching, but lack structured preparation for
+            competitive entrance examinations like JEE, NEET, and CUET that determine
+            college admissions.
+          </li>
+          <li>
+            <strong>College aptitude & competitive opportunities:</strong> College
+            students preparing for postgraduate entrance tests, national eligibility
+            tests, and public examinations often study in isolation without structured
+            aptitude training or systematic question practice.
+          </li>
+          <li>
+            <strong>Modern skills & economic pathways:</strong> Young graduates need
+            practical capabilities—applied AI tools, professional communication, market
+            research, and business development—to build local enterprises or work
+            effectively in modern organizations.
+          </li>
+        </ul>
+        <p>
+          Synapse was founded to bridge these gaps right here in Chamba, so
+          students do not have to leave their hometown merely to access
+          high-quality academic guidance, modern technological tools, and
+          practical project experience.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* Three Pathways */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+        >
+          Curriculum Framework
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          Three Distinct Learning Pathways
+        </h2>
+        <p class="mx-auto mt-2 max-w-2xl font-sans text-sm text-muted">
+          Our programmes are structured around who the learner is and where they
+          want to go next.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {/* Pathway A */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark"
+            >
+              Pathway A
+            </span>
+            <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+              School Students (Class 11–12)
+            </h3>
+            <p class="mt-1 font-sans text-xs font-medium text-muted">
+              Prepare for what comes after school
+            </p>
+            <p class="mt-4 font-sans text-sm leading-relaxed text-muted">
+              Classroom instruction in Physics, Chemistry, Biology, and
+              Mathematics focusing on concept clarity, numerical
+              problem-solving, and entrance-level practice (JEE, NEET, CUET),
+              supplemented by communication skills and applied AI literacy.
+            </p>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <p class="font-mono text-xs font-semibold text-ink">
+              Subject classes: ₹599/subject/mo
+            </p>
+            <a
+              href="/courses#school-students"
+              class="mt-2 inline-flex items-center gap-1 font-sans text-xs font-medium text-spark hover:underline"
+            >
+              View school programmes →
+            </a>
+          </div>
+        </div>
+
+        {/* Pathway B */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark"
+            >
+              Pathway B
+            </span>
+            <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+              College Students & Exam Aspirants
+            </h3>
+            <p class="mt-1 font-sans text-xs font-medium text-muted">
+              Your next opportunity begins with preparation
+            </p>
+            <p class="mt-4 font-sans text-sm leading-relaxed text-muted">
+              A comprehensive Foundation Pack covering General Awareness,
+              Logical Reasoning, and Quantitative Aptitude for CUET UG/PG, UGC
+              NET, and state examinations, paired with topic-wise exam question
+              banks and speed-accuracy tracking.
+            </p>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <p class="font-mono text-xs font-semibold text-ink">
+              Foundation Pack: ₹599/mo
+            </p>
+            <a
+              href="/courses#college-exams"
+              class="mt-2 inline-flex items-center gap-1 font-sans text-xs font-medium text-spark hover:underline"
+            >
+              View college programmes →
+            </a>
+          </div>
+        </div>
+
+        {/* Pathway C */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <span
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark"
+            >
+              Pathway C
+            </span>
+            <h3 class="mt-2 font-serif text-xl font-normal text-ink">
+              Employability & Business Development
+            </h3>
+            <p class="mt-1 font-sans text-xs font-medium text-muted">
+              Learn practical skills. Gain experience. Become work-ready.
+            </p>
+            <p class="mt-4 font-sans text-sm leading-relaxed text-muted">
+              A six-month programme combining three months of classroom learning
+              (market research, customer discovery, costing, branding, sales)
+              with three months of mentored internship on real Chamba ventures.
+            </p>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <p class="font-mono text-xs font-semibold text-ink">
+              6-month programme: ₹899/mo
+            </p>
+            <a
+              href="/courses#business-development"
+              class="mt-2 inline-flex items-center gap-1 font-sans text-xs font-medium text-spark hover:underline"
+            >
+              View business programmes →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* Connection to Local Ventures */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-10 md:grid-cols-2 md:items-center">
+        <div>
+          <span
+            class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+          >
+            Practical Application
+          </span>
+          <h2
+            class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+          >
+            Connecting classroom learning to real local ventures
+          </h2>
+          <p class="mt-4 font-sans text-base leading-relaxed text-muted">
+            Education is most effective when it connects to genuine practical
+            work. Through our business development pathway, learners intern on
+            real local venture initiatives in Chamba:
+          </p>
+          <ul class="mt-4 space-y-3 font-sans text-sm text-muted">
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-spark"></span>
+              <span>
+                <strong class="text-ink"
+                  >Chamba Rumal & Heritage Apparel:</strong
+                >
+                Contemporary apparel and accessories working with local embroidery
+                artisans.
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-spark"></span>
+              <span>
+                <strong class="text-ink">Chamba Travel & Experiences:</strong>
+                Himalayan hospitality network, homestay operations, and local trail
+                mapping.
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-spark"></span>
+              <span>
+                <strong class="text-ink">Synapse Education:</strong>
+                Teaching assistance, batch operations, and educational outreach in
+                the district.
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="mt-1 h-2 w-2 rounded-full bg-spark"></span>
+              <span>
+                <strong class="text-ink">Chamba FMCG & Agro-Products:</strong>
+                Value-added mountain produce including apple products, chukh, and
+                local beans.
+              </span>
+            </li>
+          </ul>
+
+          <div class="mt-6">
+            <Button href="/ventures" variant="secondary" size="md">
+              Learn more about Chamba ventures
+            </Button>
+          </div>
+        </div>
+
+        <div>
+          <div class="overflow-hidden rounded border border-hair bg-paper">
+            <img
+              src="/images/about-synapse.webp"
+              alt="Synapse mentors and learners working together in an offline classroom"
+              class="h-80 w-full object-cover"
+              loading="lazy"
+            />
+            <div class="border-t border-hair bg-paper p-4">
+              <p class="font-sans text-xs font-semibold text-ink">
+                Mentored Practical Experience
+              </p>
+              <p class="mt-0.5 font-sans text-xs text-muted">
+                Learners work on supplier mapping, customer discovery, pricing,
+                and digital catalogues under guide supervision.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* Offline Learning Centre */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <span
+        class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+      >
+        Physical Campus
+      </span>
+      <h2
+        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        Our Offline Centre in Chamba
+      </h2>
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted"
+      >
+        Synapse operates from our dedicated classroom space located behind the
+        Post Office in Chamba. Classes are conducted offline with dedicated
+        study desks, interactive instruction, and regular doubt resolution.
+      </p>
+
+      <div class="mt-8 grid gap-4 text-left sm:grid-cols-3">
+        <div class="rounded border border-hair bg-paper p-5">
+          <p class="font-mono text-xs font-semibold uppercase text-spark-ink">
+            Timings
+          </p>
+          <p class="mt-2 font-serif text-lg font-normal text-ink">
+            Structured Batches
+          </p>
+          <p class="mt-1 font-sans text-xs text-muted">
+            College-level batches run before 3:00 PM; school-level batches run
+            after 3:00 PM.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-5">
+          <p class="font-mono text-xs font-semibold uppercase text-spark-ink">
+            Trial Class
+          </p>
+          <p class="mt-2 font-serif text-lg font-normal text-ink">
+            Experience First
+          </p>
+          <p class="mt-1 font-sans text-xs text-muted">
+            Attend a classroom trial session to understand our teaching approach
+            before confirming enrolment.
+          </p>
+        </div>
+
+        <div class="rounded border border-hair bg-paper p-5">
+          <p class="font-mono text-xs font-semibold uppercase text-spark-ink">
+            Location
+          </p>
+          <p class="mt-2 font-serif text-lg font-normal text-ink">
+            Behind the Post Office
+          </p>
+          <p class="mt-1 font-sans text-xs text-muted">
+            Easily accessible central location in Chamba for daily commuting
+            students.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* CTA Section */}
+  <Section theme="paper" padding="lg">
+    <div
+      class="mx-auto max-w-4xl rounded border border-hair bg-paper p-8 text-center shadow-sm sm:p-12"
+    >
+      <h2
+        class="font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+      >
+        Find the right next step for your learning.
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl font-sans text-sm text-muted">
+        Whether you are preparing for a competitive entrance test, mastering
+        modern AI tools, or seeking practical business experience in Chamba, our
+        team is here to guide you.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        <Button
+          href={generalFormUrl}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Submit an enquiry</span>
+        </Button>
+        <Button href="/courses" variant="secondary" size="lg">
+          Explore all programmes
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

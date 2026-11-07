@@ -1,17 +1,18 @@
 {
   "main": [
     { "label": "Home", "href": "/" },
-    { "label": "Courses", "href": "/courses" },
+    { "label": "Programmes", "href": "/courses" },
     { "label": "Chamba Ventures", "href": "/ventures" },
-    { "label": "For Schools & Colleges", "href": "/schools-colleges" },
-    { "label": "FAQ", "href": "/faq" },
+    { "label": "For Institutions", "href": "/schools-colleges" },
+    { "label": "About Synapse", "href": "/about" },
     { "label": "Contact", "href": "/contact" }
   ],
   "actions": [{ "label": "Enquire", "href": "/contact", "variant": "primary" }],
   "footer": [
-    { "label": "Courses", "href": "/courses" },
+    { "label": "Programmes", "href": "/courses" },
     { "label": "Chamba Ventures", "href": "/ventures" },
-    { "label": "For Schools & Colleges", "href": "/schools-colleges" },
+    { "label": "For Institutions", "href": "/schools-colleges" },
+    { "label": "About Synapse", "href": "/about" },
     { "label": "FAQ", "href": "/faq" },
     { "label": "Contact", "href": "/contact" },
     { "label": "Privacy", "href": "/privacy" }

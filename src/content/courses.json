@@ -2,7 +2,7 @@
   "brand": {
     "name": "Synapse — Centre for Learning & Innovation",
     "location": "Chamba, Himachal Pradesh, India",
-    "delivery_mode": "Online classes",
+    "delivery_mode": "Offline classroom learning in Chamba",
     "office": "Behind the Post Office, Chamba",
     "phone": "8287248119",
     "public_email_from_reference": "cksynapse@mail.com",
@@ -100,7 +100,7 @@
       "subjects": ["Physics", "Chemistry", "Biology", "Mathematics"],
       "exam_tracks": ["CUET", "NEET", "JEE", "Board preparation"],
       "includes": [
-        "NCERT-based live online classes",
+        "Offline classroom teaching with concept clarity, numerical problem-solving and entrance-level practice (JEE, NEET, CUET)",
         "chapter tests",
         "weekly tests",
         "doubt sessions",

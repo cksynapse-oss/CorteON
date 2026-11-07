@@ -3,24 +3,32 @@
 @tailwind utilities;
 
 :root {
-  /* Design Tokens (docs/BUILD_PLAN.md Section 4 & docs/DESIGN.md) */
-  --paper: #f3eee4;
-  --ink: #15130f;
-  --muted: #5c574b;
-  --muted-on-ink: #a29d91;
-  --hair: #d8d0bf;
-  --hair-ink: #3a362e;
-  --spark: #d9481f;
-  --spark-ink: #b22c01;
-  --spark-glow: #ff6338;
+  /* Design Tokens — Synapse Visual Identity (Warm, energetic, inviting) */
+  --paper: #fff9ef; /* Warm white canvas */
+  --ink: #0a1128; /* Deep readable navy text */
+  --muted: #475569; /* Accessible slate navy (> 5:1 contrast) */
+  --muted-on-ink: #94a3b8;
+  --hair: #e6dcce; /* Soft warm border */
+  --hair-ink: #1e293b;
+  --spark: #244fcc; /* Principal Royal Blue */
+  --spark-ink: #1a3db3; /* High-contrast Royal Blue */
+  --spark-glow: #3b82f6;
+
+  /* Brand Accents */
+  --brand-blue: #244fcc;
+  --brand-yellow: #ffc857;
+  --brand-coral: #f17655;
+  --brand-teal: #319a85;
+  --brand-navy: #0a1128;
+  --brand-warm-white: #fff9ef;
 }
 
 /* Nocturnal / Dark contextual sections */
 .theme-ink,
 [data-theme='ink'] {
-  --muted: #a29d91;
-  --hair: #3a362e;
-  --spark: #ff6338;
+  --muted: #94a3b8;
+  --hair: #1e293b;
+  --spark: #ffc857;
   background-color: var(--ink);
   color: var(--paper);
 }

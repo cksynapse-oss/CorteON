@@ -100,6 +100,7 @@ const PAGES_TO_TEST = [
     name: 'schools-colleges',
     titleSnippet: 'Schools',
   },
+  { path: '/about', name: 'about', titleSnippet: 'About' },
   { path: '/faq', name: 'faq', titleSnippet: 'Frequently Asked Questions' },
   { path: '/contact', name: 'contact', titleSnippet: 'Contact' },
   { path: '/enquire', name: 'enquire', titleSnippet: 'Admissions' },
@@ -234,6 +235,25 @@ async function main() {
           );
         }
 
+        // Scroll down to trigger lazy loading of images, then scroll back up
+        await page.evaluate(async () => {
+          await new Promise((resolve) => {
+            let totalHeight = 0;
+            const distance = 500;
+            const timer = setInterval(() => {
+              const scrollHeight = document.body.scrollHeight;
+              window.scrollBy(0, distance);
+              totalHeight += distance;
+              if (totalHeight >= scrollHeight) {
+                clearInterval(timer);
+                window.scrollTo(0, 0);
+                resolve();
+              }
+            }, 30);
+          });
+        });
+        await page.waitForTimeout(300);
+
         // Check images
         const brokenImages = await page.evaluate(() => {
           const imgs = Array.from(document.querySelectorAll('img'));
@@ -274,7 +294,7 @@ async function main() {
 
   await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
   const homeCourseButtons = await page.$$eval(
-    '#courses article a[href*="docs.google.com"]',
+    'a[href*="docs.google.com"]',
     (els) => els.map((e) => ({ text: e.innerText.trim(), href: e.href }))
   );
   console.log(

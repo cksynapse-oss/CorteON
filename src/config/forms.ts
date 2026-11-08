@@ -1,10 +1,11 @@
 /**
  * Google Forms configuration for Synapse enquiry and application workflows.
  *
- * Source of truth: docs/synapse-handoff/SYNAPSE_ANTIGRAVITY_BUILD_BRIEF.md (Section 11 & 13)
- * Form ownership account: cksynapse@gmail.com
+ * Source of truth: docs/synapse-handoff/SYNAPSE_ANTIGRAVITY_BUILD_BRIEF.md & Latest Business Brief
+ * Form ownership account: cksynapse@gmail.com (canonical Google account)
+ * Designated public contact email: cksynapse@gmail.com
  *
- * Provisioned & Verified via Google Apps Script (2026-11-07).
+ * Provisioned & Verified via Google Apps Script.
  */
 
 export const FORM_URLS = {
@@ -15,7 +16,19 @@ export const FORM_URLS = {
   questionBank:
     'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Exam+Question+Bank+%26+Performance+Profile',
   subjectClasses:
-    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+Subject+Classes',
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+Regular+Subject+Classes',
+  subjectClassesEntrance:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+JEE+and+NEET+Preparation',
+  schoolAiLiteracy:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=AI+Literacy+for+School+Students',
+  schoolBusiness:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Business+Development+for+School+Students',
+  schoolCommunication:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Communication+Skills+for+School+Students',
+  cuetPg:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=CUET+PG+Subject+Preparation',
+  netPrep:
+    'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=UGC+NET+Subject+Preparation',
   communication:
     'https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Communication+%E2%80%94+English+%2B+Hindi',
   businessDevelopment:

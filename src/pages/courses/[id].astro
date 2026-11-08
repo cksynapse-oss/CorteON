@@ -27,6 +27,12 @@ const formKeyMap: Record<string, FormKey> = {
   'foundation-pack': 'foundationPack',
   'question-bank': 'questionBank',
   'subject-classes': 'subjectClasses',
+  'subject-classes-entrance': 'subjectClassesEntrance',
+  'school-ai-literacy': 'schoolAiLiteracy',
+  'school-business-development': 'schoolBusiness',
+  'school-communication': 'schoolCommunication',
+  'cuet-pg-prep': 'cuetPg',
+  'net-prep': 'netPrep',
   communication: 'communication',
   'business-development': 'businessDevelopment',
   'ai-literacy': 'aiLiteracy',
@@ -37,7 +43,9 @@ const formKey = formKeyMap[course.id] || 'courseGeneral';
 const formUrl = getFormUrl(formKey);
 const isExternalForm = isFormConfigured(formKey);
 
-const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
+const formattedPrice = course.price_inr
+  ? `₹${course.price_inr.toLocaleString('en-IN')}`
+  : course.price_display || 'Enquire';
 ---
 
 <BaseLayout
@@ -97,9 +105,13 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
           <span class="font-serif text-3xl font-semibold text-ink sm:text-4xl">
             {formattedPrice}
           </span>
-          <span class="font-sans text-sm font-medium text-muted">
-            / {course.billing}
-          </span>
+          {
+            course.billing && (
+              <span class="font-sans text-sm font-medium text-muted">
+                / {course.billing}
+              </span>
+            )
+          }
         </div>
 
         {
@@ -185,9 +197,37 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
     </div>
   </Section>
 
-  {/* Course-Specific Detailed Curriculum Sections */}
+  {/* Subjects List if available */}
+  {
+    course.subjects && course.subjects.length > 0 && (
+      <Section theme="paper" padding="lg" class="border-b border-hair">
+        <div class="mx-auto max-w-4xl">
+          <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
+            Subject Options
+          </span>
+          <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink">
+            Available Subject Modules
+          </h2>
+          <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {course.subjects.map((subj) => (
+              <div class="rounded border border-hair bg-paper p-4 text-center">
+                <span class="font-sans text-base font-medium text-ink">
+                  {subj}
+                </span>
+              </div>
+            ))}
+          </div>
+          {course.availability_note && (
+            <p class="mt-4 font-sans text-xs text-muted">
+              * {course.availability_note}
+            </p>
+          )}
+        </div>
+      </Section>
+    )
+  }
 
-  {/* 1. Foundation Pack: 28 Units across 3 Modules */}
+  {/* Foundation Pack Syllabus Details */}
   {
     course.id === 'foundation-pack' &&
       typeof course.modules === 'object' &&
@@ -204,8 +244,7 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
               <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
                 Learning rhythm: Concept lesson → guided examples → practice set
                 → weekly test → review of mistakes. Current affairs are revised
-                weekly. The teacher may combine or revisit units according to
-                batch pace.
+                weekly.
               </p>
             </div>
 
@@ -280,19 +319,12 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
                 </ol>
               </div>
             )}
-
-            <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-              <strong>Exam relevance:</strong> CUET General Test, NDA, NIFT GAT,
-              CLAT, IPMAT, NCHMCT and selected entrance tests. The exact
-              syllabus differs by exam; this pack covers common foundation areas
-              across these examinations.
-            </div>
           </div>
         </Section>
       )
   }
 
-  {/* 2. Question Bank Details */}
+  {/* Question Bank Details */}
   {
     course.id === 'question-bank' && (
       <Section theme="paper" padding="lg" class="border-b border-hair">
@@ -335,339 +367,66 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
               </ul>
             </div>
           </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Availability Note:</strong> Question Bank packs are
-            organised by exam. Enquire with your target exam and we will confirm
-            the pack currently available.
-          </div>
         </div>
       </Section>
     )
   }
 
-  {/* 3. Subject Classes Details */}
+  {/* Business Development Details */}
   {
-    course.id === 'subject-classes' && (
-      <Section theme="paper" padding="lg" class="border-b border-hair">
-        <div class="mx-auto max-w-4xl space-y-8">
-          <div>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
-              NCERT Foundation + Entrance Depth
-            </span>
-            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
-              Physics · Chemistry · Biology · Mathematics
-            </h2>
-            <p class="mt-3 font-sans text-sm text-muted">
-              ₹599 per subject per month. School-level batches planned after
-              3:00 PM.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-            <div class="rounded border border-hair bg-paper p-6">
-              <h3 class="font-serif text-xl font-normal text-ink">Physics</h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Kinematics, laws of motion, work-energy, rotational dynamics,
-                gravitation, thermodynamics, electrostatics, current
-                electricity, magnetism, optics and modern physics. Graded
-                numerical drills and conceptual problem solving.
-              </p>
-            </div>
-
-            <div class="rounded border border-hair bg-paper p-6">
-              <h3 class="font-serif text-xl font-normal text-ink">Chemistry</h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Physical Chemistry (stoichiometry, thermodynamics, equilibrium,
-                kinetics), Inorganic Chemistry (periodic trends, bonding,
-                coordination), and Organic Chemistry (reaction mechanisms,
-                functional groups, biomolecules).
-              </p>
-            </div>
-
-            <div class="rounded border border-hair bg-paper p-6">
-              <h3 class="font-serif text-xl font-normal text-ink">Biology</h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Diversity in living organisms, cell biology, plant physiology,
-                human physiology, genetics, evolution, biotechnology, ecology
-                and environmental science. NCERT line-by-line reading and
-                assertion-reason practice.
-              </p>
-            </div>
-
-            <div class="rounded border border-hair bg-paper p-6">
-              <h3 class="font-serif text-xl font-normal text-ink">
-                Mathematics
-              </h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Common Class 11–12 core: sets, relations, functions,
-                trigonometry, coordinate geometry, calculus (derivatives,
-                integrals, differential equations), vectors, 3D geometry and
-                probability, with entrance extensions.
-              </p>
-            </div>
-          </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Exam Tracks:</strong> Tailored depth for Board Exams, CUET,
-            NEET, and JEE. Each batch is confirmed by the teacher prior to
-            enrolment.
-          </div>
-        </div>
-      </Section>
-    )
-  }
-
-  {/* 4. Communication Details */}
-  {
-    course.id === 'communication' && Array.isArray(course.modules) && (
-      <Section theme="paper" padding="lg" class="border-b border-hair">
-        <div class="mx-auto max-w-4xl space-y-8">
-          <div>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
-              Ten-Week Structure · English + Hindi
-            </span>
-            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
-              Speak with Confidence. Write Clearly. Explain Your Idea.
-            </h2>
-            <p class="mt-3 font-sans text-sm text-muted">
-              Separate school (Classes 8–12) and college cohorts. Real speaking,
-              listening, reading, and writing activities side by side.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {course.modules.map((mod, index) => (
-              <div class="rounded border border-hair bg-paper p-5">
-                <span class="font-mono text-xs font-bold text-spark-ink">
-                  Week {index + 1}
-                </span>
-                <h3 class="mt-1 font-serif text-lg font-normal text-ink">
-                  {mod}
-                </h3>
-              </div>
-            ))}
-          </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Final Showcase:</strong> The course concludes with a
-            five-minute talk or presentation. Parents are invited to attend for
-            school batches.
-          </div>
-        </div>
-      </Section>
-    )
-  }
-
-  {/* 5. Business Development + Internship Details */}
-  {
-    course.id === 'business-development' && Array.isArray(course.modules) && (
+    course.id === 'business-development' && (
       <Section theme="paper" padding="lg" class="border-b border-hair">
         <div class="mx-auto max-w-4xl space-y-10">
           <div>
             <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
-              6-Month College Programme
+              6-Month Programme Structure
             </span>
             <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
-              Three Months Learning. Three Months Working on a Real Chamba
-              Venture.
+              Three Months Learn · Three Months Build
             </h2>
             <p class="mt-3 font-sans text-sm text-muted">
-              For students enrolled in a bachelor’s programme. ₹899/month for
-              all six months (total fee ₹5,394).
+              ₹899/month for all six months (total fee ₹5,394).
             </p>
           </div>
 
-          {/* Phase 1 */}
-          <div class="rounded border border-hair bg-paper p-6 sm:p-8">
-            <div class="flex items-baseline justify-between border-b border-hair pb-4">
-              <h3 class="font-serif text-2xl font-normal text-ink">
-                Phase 1 — Core Business Learning (Months 1–3)
-              </h3>
-              <span class="font-mono text-xs font-semibold text-spark-ink">
-                10 Modules
-              </span>
-            </div>
-            <ol class="mt-6 grid grid-cols-1 gap-3 font-sans text-sm text-muted sm:grid-cols-2">
-              {course.modules.map((mod, index) => (
-                <li class="flex items-start gap-2.5">
-                  <span class="font-mono text-xs font-bold text-spark-ink">
-                    {String(index + 1).padStart(2, '0')}.
-                  </span>
-                  <span class="text-ink">{mod}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
-
-          {/* Phase 2 */}
-          <div class="rounded border border-hair bg-paper p-6 sm:p-8">
-            <h3 class="font-serif text-2xl font-normal text-ink">
-              Phase 2 — Mentored Venture Internship (Months 4–6)
-            </h3>
-            <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-              Participants work on one selected Chamba venture project (such as
-              Chamba Rumal apparel, travel experiences, or local products) with
-              guidance from the Synapse team and local practitioners.
-            </p>
-            <ul class="mt-4 space-y-2 font-sans text-sm text-muted">
-              <li>• Defined project brief and nominated supervisor</li>
-              <li>• Weekly review sessions and constructive feedback</li>
-              <li>• Portfolio of practical deliverables created by you</li>
-              <li>
-                • Synapse Learning & Internship Certificate on successful
-                completion
-              </li>
-            </ul>
-          </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Policy Note:</strong> Stipend terms are being finalised and
-            will be communicated prior to enrolment. No guaranteed job or
-            placement. Selected participants may be considered for continued
-            roles as Synapse expands.
-          </div>
-        </div>
-      </Section>
-    )
-  }
-
-  {/* 6. Applied AI Literacy Details */}
-  {
-    course.id === 'ai-literacy' && course.units && (
-      <Section theme="paper" padding="lg" class="border-b border-hair">
-        <div class="mx-auto max-w-4xl space-y-8">
-          <div>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
-              12-Week Applied Curriculum
-            </span>
-            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
-              Understand AI. Use It Well. Apply It to Real Work.
-            </h2>
-            <p class="mt-3 font-sans text-sm text-muted">
-              No coding experience required. Progression from foundational
-              awareness to practical workflows and responsible use.
-            </p>
-          </div>
-
-          <div class="space-y-4">
-            {course.units.map((unit) => (
-              <div class="rounded border border-hair bg-paper p-6">
-                <div class="flex items-baseline justify-between">
-                  <h3 class="font-serif text-xl font-normal text-ink">
-                    {unit.name}
-                  </h3>
-                  <span class="font-mono text-xs font-semibold text-spark-ink">
-                    Weeks {unit.weeks}
-                  </span>
-                </div>
-                <p class="mt-2 font-sans text-sm text-muted">
-                  {unit.name === 'Understand AI' &&
-                    'What AI and language models do, tokens, context windows, model limitations, hallucinations, and verifying outputs.'}
-                  {unit.name === 'Use AI Well' &&
-                    'Prompting instructions, structured outputs, research assistance, data/spreadsheets, multimodal tools, and study workflows.'}
-                  {unit.name === 'Apply AI to Real Work' &&
-                    'Workflows for small business: content, product catalogues, customer replies, booking enquiries, and no-code tools.'}
-                  {unit.name === 'Use AI Responsibly' &&
-                    'Data privacy, copyright, responsible content use, deepfakes, scams, and academic/workplace integrity.'}
-                  {unit.name === 'Capstone' &&
-                    'Build and present a practical AI-assisted workflow for a real scenario (e.g. homestay enquiry management or product cataloguing).'}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Certificate:</strong> Synapse course completion certificate
-            awarded under published completion criteria. No third-party
-            accreditation claims.
-          </div>
-        </div>
-      </Section>
-    )
-  }
-
-  {/* 7. AI + Business Combo Details */}
-  {
-    course.id === 'ai-business-combo' && (
-      <Section theme="paper" padding="lg" class="border-b border-hair">
-        <div class="mx-auto max-w-4xl space-y-8">
-          <div>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink">
-              Combined Track
-            </span>
-            <h2 class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md">
-              Applied AI Literacy + Business Development
-            </h2>
-            <p class="mt-3 font-sans text-sm text-muted">
-              For college students who want to master practical AI tools while
-              learning how to build and operate a business.
-            </p>
-          </div>
-
-          <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div class="rounded border border-hair bg-paper p-6">
               <h3 class="font-serif text-xl font-normal text-ink">
-                Applied AI Literacy
+                Months 1–3: Learn
               </h3>
-              <span class="font-mono text-xs text-spark-ink">
-                12 Weeks Duration
-              </span>
-              <p class="mt-3 font-sans text-sm text-muted">
-                Learn prompt engineering, research workflows, data handling, and
-                automation.
+              <p class="mt-2 font-sans text-xs text-muted">
+                Business fundamentals, customer discovery, market research,
+                product development, costing and pricing, branding and
+                positioning, marketing, sales, and operations.
               </p>
-              <div class="mt-4">
-                <a
-                  href="/courses/ai-literacy"
-                  class="font-sans text-xs font-semibold text-spark-ink hover:underline"
-                >
-                  View AI syllabus →
-                </a>
-              </div>
             </div>
 
             <div class="rounded border border-hair bg-paper p-6">
               <h3 class="font-serif text-xl font-normal text-ink">
-                Business Development
+                Months 4–6: Build
               </h3>
-              <span class="font-mono text-xs text-spark-ink">
-                6 Months (3m study + 3m internship)
-              </span>
-              <p class="mt-3 font-sans text-sm text-muted">
-                10 business modules followed by a mentored internship on a real
-                Chamba venture.
+              <p class="mt-2 font-sans text-xs text-muted">
+                Students collaborate in interdisciplinary teams on actual
+                venture challenges and create real project deliverables across
+                Chamba ventures.
               </p>
-              <div class="mt-4">
-                <a
-                  href="/courses/business-development"
-                  class="font-sans text-xs font-semibold text-spark-ink hover:underline"
-                >
-                  View Business syllabus →
-                </a>
-              </div>
             </div>
-          </div>
-
-          <div class="bg-hair/20 rounded border border-hair p-5 font-sans text-xs text-muted">
-            <strong>Tuition & Savings:</strong> ₹1,499 per month while enrolled
-            in the combined programme. Saves ₹299/month compared to taking both
-            programmes separately (₹899 + ₹899 = ₹1,798).
           </div>
         </div>
       </Section>
     )
   }
 
-  {/* Common Closing CTA for Course Detail */}
+  {/* Closing CTA */}
   <Section theme="paper" padding="lg">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-serif text-headline-sm font-normal text-ink">
         Ready to get started?
       </h2>
       <p class="mx-auto mt-3 max-w-xl font-sans text-base text-muted">
-        Submit the short enquiry form to join the next trial class or receive
-        available batch times.
+        Attend 1–2 trial classes at our learning centre in Chamba. Meet the
+        guides, review the materials, and decide if the programme is right for
+        you.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <Button
@@ -677,10 +436,10 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
           variant="primary"
           size="lg"
         >
-          <span>Enquire about {course.title}</span>
+          <span>Enquire now</span>
         </Button>
-        <Button href="/courses" variant="secondary" size="lg">
-          View all courses
+        <Button href="/contact" variant="secondary" size="lg">
+          Talk to our team
         </Button>
       </div>
     </div>

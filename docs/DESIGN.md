@@ -229,3 +229,29 @@ The design system employs a soft, precise shape language grounded in architectur
 ### Lists & Archival Indexes
 - **Structure**: Continuous stacked list rows separated by full-width 1px `#D8D0BF` hairlines.
 - **Interaction**: Row hover triggers a subtle background shift to `#EBE5D8` alongside vermilion coloring on leading index numerals.
+
+## Synapse Redesign & Learning-to-Build Architecture (November 2026 Update)
+
+### 1. Visual Direction & Brand Hierarchy
+- **Brand Dual Structure**: Synapse represents the offline learning centre and enterprise innovation hub in Chamba. Corteon represents the adaptive dialogue engine and socratic tutor technology arm.
+- **Core Proposition**: *Learn. Apply. Build. Create.*
+- **Aesthetic Tone**: Monograph-inspired editorial education. Rejects disposable SaaS card aesthetics, fluorescent gradients, and fake AI startup gloss in favor of high-contrast serif typography, calm neutral paper surfaces, and deliberate vermilion spark accents.
+
+### 2. Four-Stage Connected Storytelling Flow
+The central narrative moves sequentially across four interconnected stages:
+1. **LEARN**: Academic foundations & essential capabilities (School subjects, CUET PG, UGC NET, AI literacy, Communication).
+2. **APPLY**: Practical tool workflows, prompt engineering, fact-checking, and collaborative assignments.
+3. **BUILD**: Interdisciplinary venture challenges on real Chamba projects (artisan apparel, hospitality, education, FMCG agro).
+4. **CREATE**: Tangible products, services, businesses, and local economic opportunities.
+
+### 3. Clear Audience Pathways
+- **/school**: Dedicated school students hub. Explicitly delineates Regular Subject Classes (₹599/sub/mo, board + CUET) from JEE/NEET Entrance Preparation (₹799/sub/mo). Highlights 6-month capability programmes (AI Literacy, Business Development, Communication Skills).
+- **/college**: Dedicated degree & competitive exam hub. Subject-specific modules across 9 disciplines for CUET PG and UGC NET. Highlights the Foundation Pack (₹599/mo), Question Bank (₹499 one-time), and 6-month professional programmes.
+- **/schools-colleges**: Institutional partnerships for schools, providing 4 clear services: AI Literacy, Robotics & ATL Lab sessions (using existing infrastructure), Business Development, and Communication Skills.
+- **/ventures**: The learning-to-build operational model detailing the 4 stages (Interns → Learning Cohorts → Interdisciplinary Collaboration → Actual Deliverables) across the 4 Chamba venture tracks.
+
+### 4. Technical & Accessibility Guardrails
+- **Responsive Geometry**: Full fluid typography and layout scaling seamlessly down to 360px mobile viewports without horizontal overflow.
+- **Contrast**: All text combinations adhere to WCAG AA (minimum 4.5:1 for body text, 3:1 for large headlines).
+- **No-JS Readability**: All content, course descriptions, pricing details, and navigation structures remain fully readable and interactive with client-side JavaScript disabled.
+- **Performance**: High-efficiency local WebP imagery, zero heavy external third-party script bloat, no autoplay video.

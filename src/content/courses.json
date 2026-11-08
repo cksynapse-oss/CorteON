@@ -5,7 +5,7 @@
     "delivery_mode": "Offline classroom learning in Chamba",
     "office": "Behind the Post Office, Chamba",
     "phone": "8287248119",
-    "public_email_from_reference": "cksynapse@mail.com",
+    "public_email_from_reference": "cksynapse@gmail.com",
     "forms_owner_email": "ck.synapse@gmail.com"
   },
   "pricing_rules": {
@@ -17,22 +17,185 @@
   },
   "courses": [
     {
+      "id": "subject-classes",
+      "title": "Class 11–12 Regular Subject Classes",
+      "subtitle": "Physics · Chemistry · Biology · Mathematics · Economics · Accountancy",
+      "audience": ["School students (Classes 11–12)"],
+      "duration": "until board examination",
+      "price_inr": 599,
+      "billing": "per subject per month",
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Mathematics",
+        "Economics",
+        "Accountancy"
+      ],
+      "exam_tracks": ["Board preparation", "CUET"],
+      "includes": [
+        "Board preparation and CUET preparation included in regular fee",
+        "Offline classroom teaching with concept clarity and numerical problem-solving",
+        "Regular chapter tests and weekly tests",
+        "Individual doubt clearance and error log tracking",
+        "Complete coverage of chosen subjects: Physics, Chemistry, Biology, Mathematics, Economics, Accountancy"
+      ],
+      "availability_note": "Fees are ₹599 per subject per month (not per student for all subjects). Classes continue until the relevant board examination."
+    },
+    {
+      "id": "subject-classes-entrance",
+      "title": "Class 11–12 JEE & NEET Preparation",
+      "subtitle": "Physics · Chemistry · Mathematics (JEE) or Biology (NEET)",
+      "audience": [
+        "School students (Classes 11–12)",
+        "Competitive-exam aspirants"
+      ],
+      "duration": "until entrance examination",
+      "price_inr": 799,
+      "billing": "per subject per month",
+      "subjects": ["Physics", "Chemistry", "Mathematics", "Biology"],
+      "exam_tracks": ["JEE", "NEET"],
+      "includes": [
+        "Additional entrance-focused preparation until the relevant entrance examination",
+        "Intensive numerical problem-solving and entrance speed drills",
+        "Targeted combinations: Physics, Chemistry and Mathematics for JEE; Physics, Chemistry and Biology for NEET",
+        "Full-length entrance mock tests and previous-year question analysis",
+        "Doubt resolution and weak-topic reinforcement"
+      ],
+      "availability_note": "Entrance preparation is ₹799 per subject per month until the relevant examination. It is distinct from the regular ₹599 subject class."
+    },
+    {
+      "id": "school-ai-literacy",
+      "title": "AI Literacy for School Students",
+      "subtitle": "Understand AI, practical tools, verification, and responsible learning workflows",
+      "audience": ["School students (Classes 8–12)"],
+      "duration": "6 months",
+      "price_inr": null,
+      "price_display": "Enquire",
+      "billing": "pricing to be confirmed",
+      "includes": [
+        "Understand artificial intelligence and how modern systems work",
+        "Effective prompting and interactive learning tools",
+        "Information verification, fact-checking, and critical evaluation",
+        "Applying AI tools to school projects, revision, and study schedules",
+        "Responsible use, digital ethics, and awareness of limits"
+      ],
+      "availability_note": "Six-month structured programme. Contact Synapse to enquire about school batch timings and fee schedule."
+    },
+    {
+      "id": "school-business-development",
+      "title": "Business Development for School Students",
+      "subtitle": "Customer discovery, product fundamentals, and practical market research",
+      "audience": ["School students (Classes 9–12)"],
+      "duration": "6 months",
+      "price_inr": null,
+      "price_display": "Enquire",
+      "billing": "pricing to be confirmed",
+      "includes": [
+        "Discovering real problems and customer needs",
+        "Business fundamentals and product ideation",
+        "Market research, customer interviews, and survey design",
+        "Costing, pricing basics, marketing, and sales",
+        "Team challenges and hands-on business operations"
+      ],
+      "availability_note": "Six-month structured programme. Enquire for school batch allocation and orientation."
+    },
+    {
+      "id": "school-communication",
+      "title": "Communication Skills for School Students",
+      "subtitle": "English and Hindi expression, public speaking, writing, and presentation",
+      "audience": ["School students (Classes 8–12)"],
+      "duration": "6 months",
+      "price_inr": null,
+      "price_display": "Enquire",
+      "billing": "pricing to be confirmed",
+      "includes": [
+        "Overcoming hesitation in English and Hindi speaking",
+        "Active listening, structured reading, and clear writing",
+        "Public speaking, classroom presentations, and speech craft",
+        "Group discussion dynamics and persuasive arguments",
+        "Building confidence in articulating and expressing ideas"
+      ],
+      "availability_note": "Six-month structured programme. Enquire for school batch allocation and schedule."
+    },
+    {
+      "id": "cuet-pg-prep",
+      "title": "CUET PG Subject Preparation",
+      "subtitle": "Postgraduate entrance coaching across 9 university subject disciplines",
+      "audience": ["College students", "Graduates"],
+      "duration": "examination-specific",
+      "price_inr": null,
+      "price_display": "Enquire",
+      "billing": "examination-specific",
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Zoology",
+        "Mathematics",
+        "Botany",
+        "Economics",
+        "History",
+        "Geography",
+        "Psychology"
+      ],
+      "exam_tracks": ["CUET PG"],
+      "includes": [
+        "Comprehensive subject-specific postgraduate syllabus coverage",
+        "9 disciplines available: Physics, Chemistry, Zoology, Mathematics, Botany, Economics, History, Geography, Psychology",
+        "Previous-year question analysis and high-yield topic drills",
+        "Timed mock entrance examinations with detailed solution reviews",
+        "Personalised doubt clearance and guidance on central university admissions"
+      ],
+      "availability_note": "Enrolment continues until the CUET PG entrance examination. Enquire for discipline-specific batch timings and fee schedule."
+    },
+    {
+      "id": "net-prep",
+      "title": "UGC NET Subject Preparation",
+      "subtitle": "National eligibility coaching for Lectureship and Junior Research Fellowship",
+      "audience": ["Postgraduates", "College graduates"],
+      "duration": "examination-specific",
+      "price_inr": null,
+      "price_display": "Enquire",
+      "billing": "examination-specific",
+      "subjects": [
+        "Physics",
+        "Chemistry",
+        "Zoology",
+        "Mathematics",
+        "Botany",
+        "Economics",
+        "History",
+        "Geography",
+        "Psychology"
+      ],
+      "exam_tracks": ["UGC NET", "CSIR NET"],
+      "includes": [
+        "Paper 1 teaching aptitude, research methodology, and reasoning",
+        "Specialised Paper 2 conceptual coverage across 9 disciplines",
+        "Comprehensive previous-year paper solving and error logs",
+        "Subject-matter test series and analytical revision modules",
+        "Mentorship on cut-off trends and Junior Research Fellowship criteria"
+      ],
+      "availability_note": "Enrolment continues until the relevant NET examination. Enquire for discipline batch timings and fee schedule."
+    },
+    {
       "id": "foundation-pack",
       "title": "Foundation Pack",
       "subtitle": "General Awareness · Logical Reasoning · Quantitative Aptitude",
       "audience": [
         "competitive-exam aspirants",
-        "school learners building foundations"
+        "college students building foundations"
       ],
       "duration": "12 weeks",
       "price_inr": 599,
       "billing": "monthly",
       "includes": [
         "28 structured units across three subjects",
-        "practice sets",
-        "weekly tests",
-        "weekly current-affairs digest",
-        "progress reviews"
+        "Practice sets and weekly tests",
+        "Weekly current-affairs digest and progress reviews",
+        "General Awareness: History, Polity, Geography, Economy, Science",
+        "Logical Reasoning: Syllogisms, Puzzles, Coding-Decoding, Arrangements",
+        "Quantitative Aptitude: Arithmetic, Algebra, Geometry, Data Interpretation"
       ],
       "modules": {
         "general_awareness": [
@@ -74,148 +237,91 @@
     {
       "id": "question-bank",
       "title": "Exam Question Bank & Performance Profile",
-      "audience": ["exam aspirants"],
+      "audience": ["Competitive-exam aspirants", "College students"],
       "duration": "6 months access",
       "price_inr": 499,
       "billing": "one-time",
       "includes": [
-        "topic-wise and chapter-wise practice where available",
-        "mixed and timed tests",
-        "hints before full answers",
-        "accuracy and speed profile",
-        "weak-topic list and weekly push list",
-        "revision reminders",
-        "periodic teacher review"
+        "Topic-wise and chapter-wise practice questions",
+        "Mixed and timed tests with solution analysis",
+        "Hints before full answers to develop reasoning",
+        "Accuracy and speed profile tracking",
+        "Weak-topic identification and revision reminders",
+        "Periodic teacher review sessions"
       ],
       "availability_note": "Confirm the exact exam pack before enrolment. Do not claim every exam pack is available."
     },
     {
-      "id": "subject-classes",
-      "title": "Class 11–12 Subject Classes",
-      "subtitle": "Physics · Chemistry · Biology · Mathematics",
-      "audience": ["Class 11–12 students"],
-      "duration": "ongoing by batch / academic session",
-      "price_inr": 599,
-      "billing": "per subject per month",
-      "subjects": ["Physics", "Chemistry", "Biology", "Mathematics"],
-      "exam_tracks": ["CUET", "NEET", "JEE", "Board preparation"],
-      "includes": [
-        "Offline classroom teaching with concept clarity, numerical problem-solving and entrance-level practice (JEE, NEET, CUET)",
-        "chapter tests",
-        "weekly tests",
-        "doubt sessions",
-        "error log"
-      ]
-    },
-    {
-      "id": "communication",
-      "title": "Communication: English + Hindi",
-      "audience": ["school students Classes 8–12", "college students"],
-      "duration": "10 weeks",
-      "price_inr": 599,
+      "id": "ai-literacy",
+      "title": "Applied AI Literacy",
+      "subtitle": "Foundations, prompt engineering, verification, workflows, and automation",
+      "audience": ["College students", "Graduates"],
+      "duration": "6 months",
+      "price_inr": 899,
       "billing": "monthly",
       "includes": [
-        "speaking, listening, reading and writing in both languages",
-        "public speaking and confidence practice",
-        "practical writing",
-        "group discussion and interview basics",
-        "five-minute final showcase"
+        "AI foundations and understanding modern AI architecture",
+        "Effective prompting and structured reasoning methods",
+        "Research, verification, and fact-checking methods",
+        "AI-assisted writing, reporting, and qualitative synthesis",
+        "Data and spreadsheet applications for business and study",
+        "Multimodal AI tools and automated office workflows",
+        "Responsible AI usage, ethics, and hands-on capstone projects"
       ],
-      "modules": [
-        "Speak Without Fear",
-        "Listening and Responding",
-        "English in Use",
-        "Hindi in Use",
-        "Reading and Vocabulary",
-        "Practical Writing",
-        "Storytelling and Idea Expression",
-        "Presenting and Pitching",
-        "Group Discussion and Interview Basics",
-        "Final Showcase"
-      ]
+      "availability_note": "Six-month comprehensive programme. Emphasis on applying AI to real tasks rather than memorising tool names."
     },
     {
       "id": "business-development",
-      "title": "Business Development + Internship",
-      "audience": ["students enrolled in a bachelor's programme"],
-      "duration": "6 months: 3 months learning + 3 months internship",
-      "price_inr": 899,
-      "billing": "monthly for all 6 months",
-      "total_at_listed_monthly_rate_inr": 5394,
-      "includes": [
-        "10 learning modules",
-        "three-month internship on one selected Chamba venture",
-        "weekly reviews",
-        "portfolio of practical work",
-        "Synapse Learning & Internship Certificate on completion"
-      ],
-      "modules": [
-        "Business Basics and the Founder’s Mindset",
-        "Finding a Niche and Talking to Customers",
-        "Market Research",
-        "Product Development",
-        "Costing and Pricing",
-        "Branding and Storytelling",
-        "Marketing and Distribution",
-        "Sales and Customer Handling",
-        "Operations and Basic Finance",
-        "Pitching and Project Planning"
-      ],
-      "stipend_policy": "Not confirmed. Do not advertise a guaranteed stipend until written terms are approved.",
-      "job_policy": "No guaranteed job or placement."
-    },
-    {
-      "id": "ai-literacy",
-      "title": "Applied AI Literacy",
-      "audience": ["primarily college students", "school students may enquire"],
-      "prerequisite": "No coding experience required",
-      "duration": "12 weeks",
+      "title": "Business Development + Venture Internship",
+      "subtitle": "Months 1–3: Learn · Months 4–6: Build",
+      "audience": ["College students", "Graduates"],
+      "duration": "6 months",
       "price_inr": 899,
       "billing": "monthly",
+      "total_at_listed_monthly_rate_inr": 5394,
       "includes": [
-        "AI foundations",
-        "effective prompting and iteration",
-        "research and verification",
-        "data and spreadsheet tasks",
-        "multimodal tools",
-        "practical workflows",
-        "responsible AI",
-        "capstone"
+        "Months 1–3 Learn: Business fundamentals, customer discovery, market research, product development, costing, pricing, branding, marketing, sales, and operations",
+        "Months 4–6 Build: Mentored internship on actual Chamba venture projects",
+        "Interdisciplinary team collaboration with AI, commerce, and humanities learners",
+        "Real project deliverables: market research, product catalogues, customer interviews, websites, and sales",
+        "Synapse Business Development & Venture Internship Certificate"
       ],
-      "units": [
-        {
-          "name": "Understand AI",
-          "weeks": "1–3"
-        },
-        {
-          "name": "Use AI Well",
-          "weeks": "4–6"
-        },
-        {
-          "name": "Apply AI to Real Work",
-          "weeks": "7–9"
-        },
-        {
-          "name": "Use AI Responsibly",
-          "weeks": "10–11"
-        },
-        {
-          "name": "Capstone",
-          "weeks": "12"
-        }
+      "availability_note": "Six-month programme. Project allocation depends on capabilities, selection, availability, and venture requirements."
+    },
+    {
+      "id": "communication",
+      "title": "Communication Skills",
+      "subtitle": "English + Hindi professional speaking, writing, and presentation",
+      "audience": ["College students", "Graduates"],
+      "duration": "6 months",
+      "price_inr": 599,
+      "billing": "monthly",
+      "includes": [
+        "Bilingual fluency in English and Hindi",
+        "Professional writing, reporting, and correspondence",
+        "Public speaking, presentations, and pitch decks",
+        "Group discussion dynamics and interview preparation",
+        "Team communication, active listening, and workplace dialogue",
+        "Regular practical exercises and individual instructor feedback"
       ],
-      "external_framework_claims": false
+      "availability_note": "Six-month programme. Batch schedules scheduled before 3:00 PM for college students."
     },
     {
       "id": "ai-business-combo",
-      "title": "AI Literacy + Business Development",
-      "audience": ["college students"],
-      "duration_note": "AI Literacy is 12 weeks; Business Development is 6 months.",
+      "title": "AI Literacy + Business Development Combo",
+      "audience": ["College students", "Graduates"],
+      "duration": "6 months",
       "price_inr": 1499,
-      "billing": "monthly while enrolled in the combined programme",
+      "billing": "monthly",
       "separate_monthly_total_inr": 1798,
       "monthly_saving_inr": 299,
-      "includes": ["Applied AI Literacy", "Business Development + Internship"]
+      "includes": [
+        "Applied AI Literacy programme (6 months)",
+        "Business Development + Venture Internship (6 months)",
+        "Dual certificate track with real venture project integration",
+        "Monthly saving of ₹299 compared to enrolling separately"
+      ],
+      "availability_note": "Combined enrolment at ₹1,499 per month during active joint participation."
     }
   ],
   "ventures": [
@@ -223,58 +329,60 @@
       "id": "chamba-rumal-apparel",
       "title": "Chamba Rumal & Heritage Apparel",
       "status": "brand and product development in progress",
-      "description": "Explore contemporary apparel and accessories using Chamba Rumal embroidery with local artisans.",
+      "description": "Explore contemporary products and apparel developed in collaboration with local artisans.",
       "possible_work": [
         "product research",
         "artisan coordination",
+        "product development",
         "costing",
         "sampling",
-        "quality documentation",
         "photography",
-        "catalogue",
-        "marketing",
-        "orders"
+        "catalogue development",
+        "marketing and distribution"
       ]
     },
     {
       "id": "chamba-travel-experiences",
       "title": "Chamba Travel & Experiences",
       "status": "network and service model in development",
-      "description": "Develop a local hospitality and experience network including guiding, B&B operations, property marketing and customer acquisition.",
+      "description": "A local hospitality and experience network.",
       "possible_work": [
-        "experience mapping",
-        "itinerary design",
-        "property listings",
+        "experience discovery",
+        "itinerary development",
+        "homestay and property coordination",
+        "digital marketing",
+        "customer acquisition",
         "guest communication",
-        "marketing",
-        "booking enquiry workflows"
+        "booking workflows"
       ]
     },
     {
       "id": "synapse-education",
       "title": "Synapse Education",
       "status": "current education brand; expansion planned",
-      "description": "Support classes, student onboarding, outreach, batch organisation and future centre operations.",
+      "description": "Expanding educational programmes and learning operations.",
       "possible_work": [
-        "teaching assistance",
-        "batch scheduling",
-        "admissions",
+        "academic programmes",
+        "student onboarding",
         "outreach",
-        "workshop operations"
+        "teaching support",
+        "workshops",
+        "batch coordination",
+        "educational resources"
       ]
     },
     {
       "id": "chamba-fmcg-agro",
       "title": "Chamba FMCG & Agro-Products",
       "status": "concept and product definition in development",
-      "description": "Explore products using apples, chukh, aam papad, local beans/rajma and Himalayan berries.",
+      "description": "Explore products based on local resources and agricultural products: apples, chukh, aam papad, local beans and rajma, Himalayan berries.",
       "possible_work": [
         "product research",
         "supplier mapping",
-        "sample testing",
+        "sampling",
         "costing",
-        "packaging concepts",
-        "distribution research"
+        "packaging",
+        "distribution"
       ]
     }
   ],
@@ -282,7 +390,13 @@
     "courseGeneral": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform",
     "foundationPack": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Foundation+Pack+%E2%80%94+General+Awareness+%2B+Reasoning+%2B+Quantitative+Aptitude",
     "questionBank": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Exam+Question+Bank+%26+Performance+Profile",
-    "subjectClasses": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+Subject+Classes",
+    "subjectClasses": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+Regular+Subject+Classes",
+    "subjectClassesEntrance": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Class+11%E2%80%9312+JEE+and+NEET+Preparation",
+    "schoolAiLiteracy": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=AI+Literacy+for+School+Students",
+    "schoolBusiness": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Business+Development+for+School+Students",
+    "schoolCommunication": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Communication+Skills+for+School+Students",
+    "cuetPg": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=CUET+PG+Subject+Preparation",
+    "netPrep": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=UGC+NET+Subject+Preparation",
     "communication": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Communication+%E2%80%94+English+%2B+Hindi",
     "businessDevelopment": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Business+Development+%2B+Internship",
     "aiLiteracy": "https://docs.google.com/forms/d/e/1FAIpQLSd7W_keex3DcMpVVBxxCBcwKal0AkGL5n4KXj2EtlKi3q3_cQ/viewform?usp=pp_url&entry.1481896774=Applied+AI+Literacy",

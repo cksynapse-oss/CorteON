@@ -11,7 +11,8 @@ fs.mkdirSync(outDir, { recursive: true });
 
 async function main() {
   const browser = await chromium.launch({
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath:
+      '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
     headless: true,
   });
 
@@ -31,15 +32,20 @@ async function main() {
 
   // Scroll down to the building section
   const buildingSection = page.locator('section#building');
-  if (await buildingSection.count() > 0) {
+  if ((await buildingSection.count()) > 0) {
     await buildingSection.scrollIntoViewIfNeeded();
     await page.waitForTimeout(500);
-    await page.screenshot({ path: path.join(outDir, 'live-about-building-section.png') });
+    await page.screenshot({
+      path: path.join(outDir, 'live-about-building-section.png'),
+    });
     console.log('✓ Captured live-about-building-section.png');
   }
 
   // Also full page about
-  await page.screenshot({ path: path.join(outDir, 'live-about-fullpage.png'), fullPage: true });
+  await page.screenshot({
+    path: path.join(outDir, 'live-about-fullpage.png'),
+    fullPage: true,
+  });
   console.log('✓ Captured live-about-fullpage.png');
 
   // Test mobile 390
@@ -49,10 +55,12 @@ async function main() {
   console.log('✓ Captured live-home-mobile.png');
 
   await page.goto('https://corteon.in/about/', { waitUntil: 'networkidle' });
-  if (await buildingSection.count() > 0) {
+  if ((await buildingSection.count()) > 0) {
     await buildingSection.scrollIntoViewIfNeeded();
     await page.waitForTimeout(500);
-    await page.screenshot({ path: path.join(outDir, 'live-about-building-mobile.png') });
+    await page.screenshot({
+      path: path.join(outDir, 'live-about-building-mobile.png'),
+    });
     console.log('✓ Captured live-about-building-mobile.png');
   }
 
@@ -60,7 +68,7 @@ async function main() {
   console.log('All live captures complete!');
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });

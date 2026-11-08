@@ -1,0 +1,660 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/ui/Section.astro';
+import Button from '../components/ui/Button.astro';
+import StatusChip from '../components/ui/StatusChip.astro';
+
+import site from '../content/site.json';
+import { getFormUrl, isFormConfigured } from '../config/forms';
+
+const regularSubjectsFormUrl = getFormUrl('subjectClasses');
+const isRegularExternal = isFormConfigured('subjectClasses');
+
+const entranceSubjectsFormUrl = getFormUrl('subjectClassesEntrance');
+const isEntranceExternal = isFormConfigured('subjectClassesEntrance');
+
+const schoolAiFormUrl = getFormUrl('schoolAiLiteracy');
+const isSchoolAiExternal = isFormConfigured('schoolAiLiteracy');
+
+const schoolBusinessFormUrl = getFormUrl('schoolBusiness');
+const isSchoolBusinessExternal = isFormConfigured('schoolBusiness');
+
+const schoolCommFormUrl = getFormUrl('schoolCommunication');
+const isSchoolCommExternal = isFormConfigured('schoolCommunication');
+---
+
+<BaseLayout
+  title={`School Students — Subject Classes & Capability Programmes — ${site.name}`}
+  description="Structured offline classroom teaching in Chamba for Class 11–12: Physics, Chemistry, Biology, Mathematics, Economics, and Accountancy. Regular Board + CUET and JEE/NEET preparation, plus AI Literacy, Business Development, and Communication."
+>
+  {/* Hero Section */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-4xl text-center">
+      <div class="mb-4 inline-flex items-center gap-2">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          School Education · Classes 8–12
+        </span>
+        <StatusChip status="LIVE NOW" />
+      </div>
+
+      <h1
+        class="font-serif text-display-xl-mobile font-normal leading-[1.08] tracking-[-0.025em] text-ink sm:text-display-lg md:text-display-xl"
+      >
+        Strengthen academic foundations. Build practical capabilities.
+      </h1>
+
+      <p
+        class="mx-auto mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
+      >
+        At our Chamba learning centre behind the Post Office, school students
+        prepare for board and entrance examinations with rigorous concept
+        clarity, while developing essential real-world skills in AI literacy,
+        communication, and business development.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button href="#subject-classes" variant="primary" size="lg">
+          Explore Subject Classes
+        </Button>
+        <Button href="#capability-programmes" variant="secondary" size="lg">
+          Practical Programmes (6 Months)
+        </Button>
+      </div>
+
+      <p class="mt-4 font-sans text-xs text-muted">
+        Classroom batches scheduled after 3:00 PM · 1–2 trial classes before
+        payment
+      </p>
+    </div>
+  </Section>
+
+  {/* PART A: SUBJECT CLASSES & PRICING */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="subject-classes"
+  >
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Class 11–12 Subject Classes
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          Two Distinct Preparation Tracks
+        </h2>
+        <p
+          class="mx-auto mt-2 max-w-2xl font-sans text-sm leading-relaxed text-muted"
+        >
+          Choose between regular board preparation (with CUET foundation) or
+          dedicated entrance-exam preparation for JEE and NEET. Fees are charged
+          per subject per month, not per student for all subjects.
+        </p>
+      </div>
+
+      {/* Pricing Comparison Cards */}
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        {/* Track 1: Regular Subject Classes */}
+        <div
+          class="hover:border-ink/40 flex flex-col justify-between rounded border border-hair bg-paper p-8 shadow-sm transition-colors"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-ink"
+              >
+                Track 1
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                Until Board Exam
+              </span>
+            </div>
+
+            <h3
+              class="mt-4 font-serif text-2xl font-normal text-ink sm:text-3xl"
+            >
+              Regular Subject Classes
+            </h3>
+
+            <div class="my-6 border-y border-hair py-4">
+              <div class="flex items-baseline gap-2">
+                <span
+                  class="font-serif text-4xl font-semibold text-ink sm:text-5xl"
+                >
+                  ₹599
+                </span>
+                <span class="font-sans text-sm font-medium text-muted">
+                  / subject / month
+                </span>
+              </div>
+              <p class="mt-1 font-mono text-xs font-medium text-spark-ink">
+                Board preparation + CUET preparation included
+              </p>
+            </div>
+
+            <h4
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-ink"
+            >
+              What is included
+            </h4>
+            <ul class="mt-3 space-y-2.5 font-sans text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span>Complete NCERT and board syllabus coverage</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >CUET foundation problem-solving and aptitude integration</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span>Weekly concept tests and chapter review sets</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span>Individual doubt clearing and error log maintenance</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Classes continue monthly until the relevant board examination</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 border-t border-hair pt-6">
+            <Button
+              href={regularSubjectsFormUrl}
+              target={isRegularExternal ? '_blank' : undefined}
+              rel={isRegularExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="md"
+              class="w-full justify-center"
+            >
+              <span>Enquire for Regular Classes (₹599/mo)</span>
+            </Button>
+            <p class="mt-2 text-center font-sans text-[11px] text-muted">
+              Select any subject: Physics, Chemistry, Biology, Mathematics,
+              Economics, Accountancy
+            </p>
+          </div>
+        </div>
+
+        {/* Track 2: JEE / NEET Preparation */}
+        <div
+          class="border-spark/40 flex flex-col justify-between rounded border-2 bg-paper p-8 shadow-sm transition-colors hover:border-spark"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="bg-spark/10 rounded-pill px-3 py-1 font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
+              >
+                Track 2 · Entrance Focus
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                Until Entrance Exam
+              </span>
+            </div>
+
+            <h3
+              class="mt-4 font-serif text-2xl font-normal text-ink sm:text-3xl"
+            >
+              JEE / NEET Preparation
+            </h3>
+
+            <div class="my-6 border-y border-hair py-4">
+              <div class="flex items-baseline gap-2">
+                <span
+                  class="font-serif text-4xl font-semibold text-spark-ink sm:text-5xl"
+                >
+                  ₹799
+                </span>
+                <span class="font-sans text-sm font-medium text-muted">
+                  / subject / month
+                </span>
+              </div>
+              <p class="mt-1 font-mono text-xs text-muted">
+                Additional entrance-focused preparation until the examination
+              </p>
+            </div>
+
+            <h4
+              class="font-mono text-xs font-semibold uppercase tracking-wider text-ink"
+            >
+              What is included
+            </h4>
+            <ul class="mt-3 space-y-2.5 font-sans text-sm text-muted">
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Rigorous numerical problem-solving and competitive question
+                  drills</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Targeted subject combinations: PCM for JEE; PCB for NEET</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Full-length timed mock tests and previous-year question sets</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Error analysis, speed enhancement, and formula mastery</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span
+                  class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-spark"
+                  aria-hidden="true"></span>
+                <span
+                  >Preparation continues monthly until the relevant entrance
+                  examination</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 border-t border-hair pt-6">
+            <Button
+              href={entranceSubjectsFormUrl}
+              target={isEntranceExternal ? '_blank' : undefined}
+              rel={isEntranceExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="md"
+              class="w-full justify-center"
+            >
+              <span>Enquire for JEE/NEET Prep (₹799/mo)</span>
+            </Button>
+            <p class="mt-2 text-center font-sans text-[11px] text-muted">
+              Per subject per month · PCM for JEE · PCB for NEET
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Important Pricing Note */}
+      <div
+        class="bg-hair/20 mt-8 rounded border border-hair p-6 font-sans text-xs leading-relaxed text-muted"
+      >
+        <p>
+          <strong>Clarification on Subjects & Fees:</strong> Fees are charged per
+          subject per month (not per student for all subjects combined). For JEE,
+          the relevant subject combination includes Physics, Chemistry, and Mathematics.
+          For NEET, it includes Physics, Chemistry, and Biology. Regular subject classes
+          (₹599) include school board and CUET foundation; they do not include intensive
+          JEE or NEET entrance preparation (₹799). Duration continues until the respective
+          examination, not an arbitrary fixed duration.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  {/* ALL 6 SCHOOL SUBJECTS */}
+  <Section theme="paper" padding="lg" class="border-b border-hair">
+    <div class="mx-auto max-w-5xl">
+      <div class="mb-10 text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Curriculum Disciplines
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          All 6 School Subjects Available
+        </h2>
+        <p class="mt-2 font-sans text-sm text-muted">
+          Available for Class 11 and 12 students in Science and Commerce
+          streams.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Physics */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">01</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Science</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">Physics</h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Mechanics, thermodynamics, electrodynamics, optics, and modern
+            physics. Numerical drills and formula derivations for board and
+            entrance mastery.
+          </p>
+        </div>
+
+        {/* Chemistry */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">02</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Science</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+            Chemistry
+          </h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Physical, Inorganic, and Organic Chemistry. Reaction mechanisms,
+            periodic trends, stoichiometry, and NCERT assertion-reason sets.
+          </p>
+        </div>
+
+        {/* Biology */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">03</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Medical</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">Biology</h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Botany and Zoology: physiology, cell biology, genetics,
+            biotechnology, and ecology. NCERT line-by-line reading for board and
+            NEET accuracy.
+          </p>
+        </div>
+
+        {/* Mathematics */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">04</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Science / Commerce</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+            Mathematics
+          </h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Calculus, vectors, 3D geometry, probability, algebra, and
+            trigonometry. Step-by-step problem-solving methods and entrance
+            speed drills.
+          </p>
+        </div>
+
+        {/* Economics */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">05</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Commerce / Arts</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+            Economics
+          </h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Microeconomics, Macroeconomics, and Indian Economic Development.
+            Graphs, national income, budget analysis, and CUET conceptual sets.
+          </p>
+        </div>
+
+        {/* Accountancy */}
+        <div class="rounded border border-hair bg-paper p-6">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold text-spark-ink">06</span>
+            <span
+              class="rounded-sm bg-hair px-2 py-0.5 font-mono text-[11px] text-muted"
+              >Commerce</span
+            >
+          </div>
+          <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+            Accountancy
+          </h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Financial accounting, partnership accounting, company accounts, and
+            financial statement analysis. Ledger practice and balance-sheet
+            problem solving.
+          </p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* PART B: 3 STRUCTURED CAPABILITY PROGRAMMES (6 MONTHS) */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="capability-programmes"
+  >
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Practical Capability Building
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          Three Structured 6-Month Programmes for School Students
+        </h2>
+        <p
+          class="mx-auto mt-2 max-w-2xl font-sans text-sm leading-relaxed text-muted"
+        >
+          Education is not limited to textbook memorisation. We offer three
+          structured 6-month programmes designed to help school students develop
+          essential capabilities before stepping into college.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-8 md:grid-cols-3">
+        {/* Programme 1: AI Literacy */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
+              >
+                6 Months
+              </span>
+              <span class="font-mono text-xs text-muted">Classes 8–12</span>
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              AI Literacy
+            </h3>
+            <p class="mt-1 font-mono text-xs font-medium text-spark-ink">
+              Duration: 6 Months · Enquire for batch fees
+            </p>
+            <p class="mt-3 font-sans text-sm text-muted">
+              Understand artificial intelligence, use AI tools effectively for
+              learning, verify information, apply AI to school projects, and
+              understand responsible usage.
+            </p>
+            <ul class="mt-4 space-y-2 font-sans text-xs text-muted">
+              <li>• What AI models can and cannot do</li>
+              <li>• Effective prompting for studying & revision</li>
+              <li>• Fact-checking and verifying AI outputs</li>
+              <li>• Responsible AI usage and ethics</li>
+            </ul>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <Button
+              href={schoolAiFormUrl}
+              target={isSchoolAiExternal ? '_blank' : undefined}
+              rel={isSchoolAiExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="sm"
+              class="w-full justify-center"
+            >
+              Enquire about AI Literacy
+            </Button>
+          </div>
+        </div>
+
+        {/* Programme 2: Business Development */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
+              >
+                6 Months
+              </span>
+              <span class="font-mono text-xs text-muted">Classes 9–12</span>
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              Business Development
+            </h3>
+            <p class="mt-1 font-mono text-xs font-medium text-spark-ink">
+              Duration: 6 Months · Enquire for batch fees
+            </p>
+            <p class="mt-3 font-sans text-sm text-muted">
+              Learn customer discovery, business fundamentals, product
+              development, market research, pricing, marketing, sales, and
+              business operations through practical team assignments.
+            </p>
+            <ul class="mt-4 space-y-2 font-sans text-xs text-muted">
+              <li>• Discovering real problems and customer needs</li>
+              <li>• Product ideation and basic costing</li>
+              <li>• Simple market research & survey skills</li>
+              <li>• Team challenges and presentation skills</li>
+            </ul>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <Button
+              href={schoolBusinessFormUrl}
+              target={isSchoolBusinessExternal ? '_blank' : undefined}
+              rel={isSchoolBusinessExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="sm"
+              class="w-full justify-center"
+            >
+              Enquire about Business Dev
+            </Button>
+          </div>
+        </div>
+
+        {/* Programme 3: Communication Skills */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
+              >
+                6 Months
+              </span>
+              <span class="font-mono text-xs text-muted">Classes 8–12</span>
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              Communication Skills
+            </h3>
+            <p class="mt-1 font-mono text-xs font-medium text-spark-ink">
+              Duration: 6 Months · Enquire for batch fees
+            </p>
+            <p class="mt-3 font-sans text-sm text-muted">
+              Develop English and Hindi communication, speaking, listening,
+              reading, writing, public speaking, classroom presentations, and
+              group discussion confidence.
+            </p>
+            <ul class="mt-4 space-y-2 font-sans text-xs text-muted">
+              <li>• Speak without fear in both languages</li>
+              <li>• Practical writing and clear articulation</li>
+              <li>• Public speaking and speech presentation</li>
+              <li>• Group discussion basics and active listening</li>
+            </ul>
+          </div>
+          <div class="mt-6 border-t border-hair pt-4">
+            <Button
+              href={schoolCommFormUrl}
+              target={isSchoolCommExternal ? '_blank' : undefined}
+              rel={isSchoolCommExternal ? 'noopener noreferrer' : undefined}
+              variant="primary"
+              size="sm"
+              class="w-full justify-center"
+            >
+              Enquire about Communication
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  {/* TRIAL CLASS & ENROLMENT STEPS */}
+  <Section theme="paper" padding="lg">
+    <div
+      class="bg-hair/20 mx-auto max-w-3xl rounded border border-hair p-8 text-center sm:p-10"
+    >
+      <h3 class="font-serif text-2xl font-normal text-ink sm:text-3xl">
+        How to Enrol for School Classes
+      </h3>
+      <p
+        class="mx-auto mt-3 max-w-xl font-sans text-sm leading-relaxed text-muted"
+      >
+        1. Submit an enquiry for your chosen subjects or capability programme.<br
+        />
+        2. Our team contacts you to discuss batch availability and syllabus requirements.<br
+        />
+        3. Attend 1–2 trial classes at our Chamba centre before confirming.<br
+        />
+        4. Confirm enrolment with the teacher.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <Button
+          href={regularSubjectsFormUrl}
+          target={isRegularExternal ? '_blank' : undefined}
+          rel={isRegularExternal ? 'noopener noreferrer' : undefined}
+          variant="primary"
+          size="lg"
+        >
+          <span>Enquire for School Batches</span>
+        </Button>
+        <Button href="/contact" variant="secondary" size="lg">
+          Talk to our team
+        </Button>
+      </div>
+    </div>
+  </Section>
+</BaseLayout>

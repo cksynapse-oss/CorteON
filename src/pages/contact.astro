@@ -137,12 +137,26 @@ const isGeneralExternal = isFormConfigured('courseGeneral');
               </div>
 
               <div>
-                <span class="block font-mono text-xs text-muted">Email</span>
+                <span class="block font-mono text-xs text-muted"
+                  >Public Contact Email</span
+                >
                 <a
                   href={`mailto:${site.email}`}
                   class="mt-1 inline-block font-sans text-base font-semibold text-ink hover:text-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
                 >
                   {site.email}
+                </a>
+              </div>
+
+              <div>
+                <span class="block font-mono text-xs text-muted"
+                  >Forms & Administration</span
+                >
+                <a
+                  href={`mailto:${site.formsOwnerEmail}`}
+                  class="mt-1 inline-block font-sans text-sm font-medium text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+                >
+                  {site.formsOwnerEmail}
                 </a>
               </div>
             </div>

@@ -179,9 +179,10 @@ const ALLOWED_NUMBERS = new Set([
   '2026', // decision year
   '10', // decision month / 10-week Communication course
   '18', // decision day
-  // Approved Course Catalogue Numbers (SYNAPSE_COURSE_CATALOGUE.json)
+  // Approved Course Catalogue Numbers (SYNAPSE_COURSE_CATALOGUE.json & Antigravity Brief)
   '499', // Question Bank (₹499 one-time)
   '599', // Foundation Pack, Subject Classes, Communication (₹599/mo)
+  '799', // School JEE/NEET Entrance Preparation (₹799/subject/mo)
   '899', // Business Development, AI Literacy (₹899/mo)
   '1499', // AI + Business combo (₹1,499/mo)
   '1798', // Separate monthly total (₹1,798)

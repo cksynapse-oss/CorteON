@@ -6,7 +6,7 @@ Anything not written here does not go on the site. Mark owner decisions in secti
 - Name: Synapse. Tagline: "A modern gurukul for the age of AI. Learn, teach and build, under one roof." Domain: corteon.in.
 - Corteon = the AI tutor and practice engine Synapse is building. Status: in development (DIRECTION). Not available to the public.
 - Place: Behind the Post Office, Chamba, Himachal Pradesh. (No street name. "Court Road" was invented.)
-- Phone and WhatsApp: 8287248119. Email: cksynapse@mail.com. ("dispatch@synapse.org" was invented.)
+- Phone and WhatsApp: 8287248119. Email: cksynapse@gmail.com. ("dispatch@synapse.org" was invented.)
 - Classes: Monday to Saturday, 3:30 PM to 6:30 PM. Each student attends five days a week, with one rotating weekday off, Sunday off.
 - Launch tracks: PCM (JEE Main/Advanced, IAT, NEST, CUET PCM, NDA, AIIMS Paramedical PCM); PCB (NEET UG, AIIMS Nursing, AIIMS Paramedical PCB, NEST, IAT, CUET PCB); CUET UG General Test + English; CUET UG Arts/Commerce + NDA Army.
 - Fees: NOT shown anywhere on the site at launch (owner decision, 2026-10-18). Every programme says "Fees are shared when you enquire." Do not publish, estimate or hint at any amount.

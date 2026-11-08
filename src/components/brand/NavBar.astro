@@ -61,7 +61,7 @@ const brandName =
     <!-- Desktop Navigation Links -->
     <nav
       aria-label="Main Navigation"
-      class="hidden items-center gap-6 lg:flex xl:gap-8"
+      class="hidden items-center gap-4 lg:flex xl:gap-5"
     >
       {
         mainLinks.map((link) => {
@@ -72,10 +72,8 @@ const brandName =
             <a
               href={link.href}
               aria-current={isActive ? 'page' : undefined}
-              class={`rounded-sm py-1 font-sans text-xs font-medium uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-spark ${
-                isActive
-                  ? 'font-semibold text-spark-ink'
-                  : 'text-muted hover:text-ink'
+              class={`rounded-sm py-1 font-sans text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors focus-visible:outline-2 focus-visible:outline-spark ${
+                isActive ? 'text-spark-ink' : 'text-muted hover:text-ink'
               }`}
             >
               {link.label}

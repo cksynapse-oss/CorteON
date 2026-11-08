@@ -16,6 +16,12 @@ const formKeyMap: Record<string, FormKey> = {
   'foundation-pack': 'foundationPack',
   'question-bank': 'questionBank',
   'subject-classes': 'subjectClasses',
+  'subject-classes-entrance': 'subjectClassesEntrance',
+  'school-ai-literacy': 'schoolAiLiteracy',
+  'school-business-development': 'schoolBusiness',
+  'school-communication': 'schoolCommunication',
+  'cuet-pg-prep': 'cuetPg',
+  'net-prep': 'netPrep',
   communication: 'communication',
   'business-development': 'businessDevelopment',
   'ai-literacy': 'aiLiteracy',
@@ -27,7 +33,9 @@ const formUrl = getFormUrl(formKey);
 const isExternalForm = isFormConfigured(formKey);
 
 // Pricing display formatting
-const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
+const formattedPrice = course.price_inr
+  ? `₹${course.price_inr.toLocaleString('en-IN')}`
+  : course.price_display || 'Enquire';
 ---
 
 <article
@@ -83,9 +91,13 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
         <span class="font-serif text-3xl font-semibold text-ink sm:text-4xl">
           {formattedPrice}
         </span>
-        <span class="font-sans text-sm font-medium text-muted">
-          / {course.billing}
-        </span>
+        {
+          course.billing && (
+            <span class="font-sans text-sm font-medium text-muted">
+              / {course.billing}
+            </span>
+          )
+        }
       </div>
 
       {
@@ -175,7 +187,7 @@ const formattedPrice = `₹${course.price_inr.toLocaleString('en-IN')}`;
         href={`/courses/${course.id}`}
         class="inline-flex items-center justify-center font-sans text-xs font-semibold uppercase tracking-wider text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
       >
-        <span>View full syllabus</span>
+        <span>View details</span>
         <span aria-hidden="true" class="ml-1">→</span>
       </a>
     </div>

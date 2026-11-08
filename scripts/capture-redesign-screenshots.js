@@ -65,9 +65,12 @@ server.listen(0, '127.0.0.1', async () => {
 
   const pagesToCapture = [
     { path: '/', name: 'home' },
-    { path: '/about', name: 'about' },
+    { path: '/school', name: 'school' },
+    { path: '/college', name: 'college' },
     { path: '/courses', name: 'courses' },
+    { path: '/schools-colleges', name: 'institutions' },
     { path: '/ventures', name: 'ventures' },
+    { path: '/about', name: 'about' },
   ];
 
   for (const pageItem of pagesToCapture) {

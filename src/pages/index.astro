@@ -10,27 +10,23 @@ import { getFormUrl, isFormConfigured } from '../config/forms';
 const generalFormUrl = getFormUrl('courseGeneral');
 const isGeneralExternal = isFormConfigured('courseGeneral');
 
-// Specific forms
-const subjectClassesFormUrl = getFormUrl('subjectClasses');
-const foundationPackFormUrl = getFormUrl('foundationPack');
-const questionBankFormUrl = getFormUrl('questionBank');
-const communicationFormUrl = getFormUrl('communication');
-const businessDevFormUrl = getFormUrl('businessDevelopment');
+const regularSubjectsFormUrl = getFormUrl('subjectClasses');
+const cuetPgFormUrl = getFormUrl('cuetPg');
 const aiLiteracyFormUrl = getFormUrl('aiLiteracy');
-const comboFormUrl = getFormUrl('aiBusinessCombo');
-const internshipAppUrl = getFormUrl('internshipApplication');
+const businessDevFormUrl = getFormUrl('businessDevelopment');
+const commFormUrl = getFormUrl('communication');
 const institutionFormUrl = getFormUrl('institutionEnquiry');
 ---
 
 <BaseLayout
   title={`${site.name} — Centre for Learning & Innovation in Chamba`}
-  description="Opportunity should not depend on geography. Offline classroom learning in Chamba for entrance examination preparation, communication, AI literacy, and practical business development."
+  description="Learn what matters. Build what comes next. Offline education and innovation in Chamba: school subject classes, JEE/NEET, CUET PG, NET, Applied AI literacy, communication, business development, and local venture building."
 >
   {/* SECTION 1: HERO */}
   <Section theme="paper" padding="lg" class="border-b border-hair">
     <div class="mx-auto max-w-7xl">
       <div class="grid items-center gap-12 lg:grid-cols-12">
-        {/* Left Column: Core Message */}
+        {/* Left Column: Core Narrative */}
         <div class="text-left lg:col-span-7">
           <div class="mb-4 inline-flex items-center gap-2">
             <span
@@ -44,64 +40,38 @@ const institutionFormUrl = getFormUrl('institutionEnquiry');
           <h1
             class="font-serif text-display-xl-mobile font-normal leading-[1.08] tracking-[-0.025em] text-ink sm:text-display-lg md:text-display-xl"
           >
-            Opportunity should not depend on geography.
+            Learn what matters. Build what comes next.
           </h1>
 
           <p
             class="mt-4 font-mono text-sm font-semibold uppercase tracking-wider text-spark-ink sm:text-base"
           >
-            Learn. Prepare. Build. Work.
+            Learn. Apply. Build. Create.
           </p>
 
           <p
             class="mt-4 max-w-2xl font-sans text-base leading-relaxed text-muted sm:text-body-lg"
           >
-            Talent exists everywhere. Access to opportunity does not. Synapse
-            brings structured entrance-examination preparation, communication
-            skills, AI literacy and practical business experience closer to
-            students and young people in Chamba through focused offline
-            classroom instruction.
+            Structured education, practical skills and real-world opportunities
+            for students, institutions and emerging entrepreneurs. From academic
+            and competitive-exam preparation to AI literacy, communication,
+            business development and venture-building opportunities.
           </p>
 
           <div
             class="mt-6 flex items-center gap-3 border-l-2 border-spark pl-4"
           >
             <p class="font-sans text-xs italic text-muted sm:text-sm">
-              Better access to education. Better preparation for opportunity.
-              Better pathways to work.
+              Education that connects learning with practical work.
             </p>
           </div>
 
           <div class="mt-8 flex flex-wrap items-center gap-4">
-            <Button href="#pathways" variant="primary" size="lg">
-              Explore three pathways
+            <Button href="#programmes" variant="primary" size="lg">
+              Explore programmes
             </Button>
-            <Button
-              href={generalFormUrl}
-              target={isGeneralExternal ? '_blank' : undefined}
-              rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-              variant="secondary"
-              size="lg"
-            >
-              <span>Enquire now</span>
-              {
-                isGeneralExternal && (
-                  <svg
-                    class="ml-1.5 h-3.5 w-3.5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="2"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-                    />
-                  </svg>
-                )
-              }
+            <Button href="/schools-colleges" variant="secondary" size="lg">
+              Partner with us
             </Button>
           </div>
 
@@ -111,18 +81,18 @@ const institutionFormUrl = getFormUrl('institutionEnquiry');
           </p>
         </div>
 
-        {/* Right Column: Hero Visual */}
+        {/* Right Column: Hero Visual Card */}
         <div class="lg:col-span-5">
           <div
             class="relative overflow-hidden rounded border border-hair bg-paper shadow-sm"
           >
             <img
               src="/images/home-hero.webp"
-              alt="Panoramic view of Chamba town nestled in the Himalayas above the Ravi river"
+              alt="Panoramic view of Chamba nestled in the Himalayas above the Ravi river"
               class="h-80 w-full object-cover sm:h-96"
               loading="eager"
             />
-            <div class="bg-paper/95 border-t border-hair p-4 sm:p-5">
+            <div class="border-t border-hair bg-paper p-4 sm:p-5">
               <div class="flex items-center justify-between">
                 <div>
                   <p class="font-sans text-xs font-semibold uppercase text-ink">
@@ -145,1022 +115,876 @@ const institutionFormUrl = getFormUrl('institutionEnquiry');
     </div>
   </Section>
 
-  {/* SECTION 2: WHY SYNAPSE EXISTS */}
+  {/* SECTION 2: THE CENTRAL STORY (LEARN → APPLY → BUILD → CREATE) */}
   <Section theme="paper" padding="lg" class="border-b border-hair">
-    <div class="mx-auto max-w-4xl">
+    <div class="mx-auto max-w-6xl">
       <div class="text-center">
         <span
           class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
         >
-          The Problem We Are Solving
+          The Connected Model
         </span>
         <h2
           class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
         >
-          Why Synapse exists in Chamba
+          Four Connected Stages of Growth
         </h2>
         <p
           class="mx-auto mt-3 max-w-2xl font-sans text-base leading-relaxed text-muted"
         >
-          In a mountain district like Chamba, students and young people do not
-          always have access to the range of educational preparation, emerging
-          skills, and practical employment pathways available in larger cities.
-          We are building Synapse to expand access across three critical areas:
+          Education should not be limited to attending classes and taking exams.
+          Our model links academic foundations directly with hands-on practice,
+          interdisciplinary collaboration, and real-world venture building.
         </p>
       </div>
 
-      <div class="mt-10 grid gap-6 sm:grid-cols-3">
-        {/* Gap 1 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <div
-            class="bg-spark/10 flex h-10 w-10 items-center justify-center rounded-full font-mono text-sm font-bold text-spark"
-          >
-            01
+      {/* Connected 4-Stage Progressive Pipeline */}
+      <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {/* Stage 1: LEARN */}
+        <div
+          class="hover:border-ink/40 relative flex flex-col justify-between rounded border border-hair bg-paper p-6 transition-colors"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-spark-ink"
+                >01 · STAGE</span
+              >
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+                >Foundations</span
+              >
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              1. LEARN
+            </h3>
+            <p class="mt-2 font-sans text-xs font-medium text-spark-ink">
+              Academic foundations & essential capabilities
+            </p>
+            <p class="mt-3 font-sans text-xs leading-relaxed text-muted">
+              Students build rigorous subject understanding, competitive
+              entrance readiness, and essential modern literacies.
+            </p>
+            <ul
+              class="mt-4 space-y-1.5 border-t border-hair pt-3 font-sans text-xs text-muted"
+            >
+              <li>• School subject classes (Class 11–12)</li>
+              <li>• CUET PG & UGC NET preparation</li>
+              <li>• Applied AI literacy foundations</li>
+              <li>• English & Hindi communication</li>
+              <li>• Business development fundamentals</li>
+            </ul>
           </div>
-          <h3 class="mt-4 font-serif text-lg font-normal text-ink">
-            Entrance Exam Preparation for School Students
-          </h3>
-          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            School students in Class 11–12 need structured preparation for
-            competitive entrance examinations (JEE, NEET, CUET), not just
-            school-board syllabus completion. Concept clarity, numerical
-            problem-solving, and regular exam tests make the difference.
-          </p>
+          <div class="mt-6 border-t border-hair pt-3">
+            <span class="font-mono text-[11px] text-muted">Concept mastery</span
+            >
+          </div>
         </div>
 
-        {/* Gap 2 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <div
-            class="bg-spark/10 flex h-10 w-10 items-center justify-center rounded-full font-mono text-sm font-bold text-spark"
-          >
-            02
+        {/* Stage 2: APPLY */}
+        <div
+          class="hover:border-ink/40 relative flex flex-col justify-between rounded border border-hair bg-paper p-6 transition-colors"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-spark-ink"
+                >02 · STAGE</span
+              >
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+                >Practice</span
+              >
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              2. APPLY
+            </h3>
+            <p class="mt-2 font-sans text-xs font-medium text-spark-ink">
+              Practical activities & interactive drills
+            </p>
+            <p class="mt-3 font-sans text-xs leading-relaxed text-muted">
+              Students apply what they learn through hands-on assignments,
+              prompt workflows, and structured team exercises.
+            </p>
+            <ul
+              class="mt-4 space-y-1.5 border-t border-hair pt-3 font-sans text-xs text-muted"
+            >
+              <li>• AI tools and automation workflows</li>
+              <li>• Information research and fact-checking</li>
+              <li>• Customer and market discovery</li>
+              <li>• Collaborative team challenges</li>
+              <li>• Public speaking & presentations</li>
+            </ul>
           </div>
-          <h3 class="mt-4 font-serif text-lg font-normal text-ink">
-            Aptitude Foundations for College Aspirants
-          </h3>
-          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            College students need structured foundations in General Awareness,
-            Logical Reasoning, and Quantitative Aptitude for postgraduate
-            entrance (CUET PG), national eligibility tests (UGC NET), and
-            competitive career examinations.
-          </p>
+          <div class="mt-6 border-t border-hair pt-3">
+            <span class="font-mono text-[11px] text-muted"
+              >Practical assignments</span
+            >
+          </div>
         </div>
 
-        {/* Gap 3 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <div
-            class="bg-spark/10 flex h-10 w-10 items-center justify-center rounded-full font-mono text-sm font-bold text-spark"
-          >
-            03
+        {/* Stage 3: BUILD */}
+        <div
+          class="hover:border-ink/40 relative flex flex-col justify-between rounded border border-hair bg-paper p-6 transition-colors"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-spark-ink"
+                >03 · STAGE</span
+              >
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+                >Collaboration</span
+              >
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              3. BUILD
+            </h3>
+            <p class="mt-2 font-sans text-xs font-medium text-spark-ink">
+              Real projects & interdisciplinary teams
+            </p>
+            <p class="mt-3 font-sans text-xs leading-relaxed text-muted">
+              Students collaborate across disciplines on defined challenges for
+              local Chamba ventures.
+            </p>
+            <ul
+              class="mt-4 space-y-1.5 border-t border-hair pt-3 font-sans text-xs text-muted"
+            >
+              <li>• Product development & artisan sampling</li>
+              <li>• Costing, pricing, and accounting models</li>
+              <li>• Product photography & digital catalogues</li>
+              <li>• Websites, tools, and automation</li>
+              <li>• Marketing campaigns & direct sales</li>
+            </ul>
           </div>
-          <h3 class="mt-4 font-serif text-lg font-normal text-ink">
-            Employability & Local Economic Pathways
-          </h3>
-          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            Young graduates need practical capabilities—applied AI tools,
-            professional communication, market research, and business
-            development—connected to real local ventures so they can become
-            work-ready or build sustainable enterprises in Chamba.
-          </p>
+          <div class="mt-6 border-t border-hair pt-3">
+            <span class="font-mono text-[11px] text-muted"
+              >Venture execution</span
+            >
+          </div>
+        </div>
+
+        {/* Stage 4: CREATE */}
+        <div
+          class="border-spark/40 relative flex flex-col justify-between rounded border-2 bg-paper p-6 transition-colors hover:border-spark"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-xs font-bold text-spark-ink"
+                >04 · STAGE</span
+              >
+              <span
+                class="bg-spark/10 rounded-pill px-2.5 py-0.5 font-mono text-[11px] font-semibold text-spark-ink"
+                >Outcome</span
+              >
+            </div>
+            <h3 class="mt-4 font-serif text-2xl font-normal text-ink">
+              4. CREATE
+            </h3>
+            <p class="mt-2 font-sans text-xs font-medium text-spark-ink">
+              Useful products, services & local opportunities
+            </p>
+            <p class="mt-3 font-sans text-xs leading-relaxed text-muted">
+              The goal is to launch sustainable products, services, businesses,
+              and employment pathways rooted in Chamba.
+            </p>
+            <ul
+              class="mt-4 space-y-1.5 border-t border-hair pt-3 font-sans text-xs text-muted"
+            >
+              <li>• Artisan apparel & contemporary crafts</li>
+              <li>• Local travel networks & guest experiences</li>
+              <li>• Packaged regional agro-products</li>
+              <li>• Expanding educational access</li>
+              <li>• Work-ready graduates & entrepreneurs</li>
+            </ul>
+          </div>
+          <div class="mt-6 border-t border-hair pt-3">
+            <span class="font-mono text-[11px] font-semibold text-spark-ink"
+              >Tangible impact</span
+            >
+          </div>
         </div>
       </div>
     </div>
   </Section>
 
-  {/* SECTION 3: THREE LEARNING PATHWAYS OVERVIEW */}
+  {/* SECTION 3: HOMEPAGE AUDIENCE NAVIGATION */}
   <Section
     theme="paper"
     padding="lg"
     class="border-b border-hair"
-    id="pathways"
+    id="audience-navigation"
+  >
+    <div class="mx-auto max-w-6xl">
+      <div class="text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Personalised Entry Points
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          Where would you like to start?
+        </h2>
+        <p class="mx-auto mt-2 max-w-2xl font-sans text-sm text-muted">
+          Select your background or goal to explore the relevant programmes and
+          pathways.
+        </p>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Gateway 1 */}
+        <a
+          href="/school"
+          class="group rounded border border-hair bg-paper p-6 transition-all hover:border-ink hover:shadow-sm focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span class="font-mono text-xs font-semibold uppercase text-spark-ink"
+            >School Pathway</span
+          >
+          <h3
+            class="mt-2 font-serif text-xl font-normal text-ink group-hover:text-spark-ink"
+          >
+            I'm a school student or parent →
+          </h3>
+          <p class="mt-2 font-sans text-xs text-muted">
+            Class 11–12 regular subject classes (₹599/mo), JEE/NEET prep
+            (₹799/mo), AI Literacy, Business, and Communication.
+          </p>
+        </a>
+
+        {/* Gateway 2 */}
+        <a
+          href="/college"
+          class="group rounded border border-hair bg-paper p-6 transition-all hover:border-ink hover:shadow-sm focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span class="font-mono text-xs font-semibold uppercase text-spark-ink"
+            >College Pathway</span
+          >
+          <h3
+            class="mt-2 font-serif text-xl font-normal text-ink group-hover:text-spark-ink"
+          >
+            I'm a college student →
+          </h3>
+          <p class="mt-2 font-sans text-xs text-muted">
+            Applied AI Literacy (6 mo), Business Development + Internship (6
+            mo), Foundation Pack, and Communication Skills.
+          </p>
+        </a>
+
+        {/* Gateway 3 */}
+        <a
+          href="/college#cuet-net"
+          class="group rounded border border-hair bg-paper p-6 transition-all hover:border-ink hover:shadow-sm focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span class="font-mono text-xs font-semibold uppercase text-spark-ink"
+            >Entrance Prep</span
+          >
+          <h3
+            class="mt-2 font-serif text-xl font-normal text-ink group-hover:text-spark-ink"
+          >
+            I'm preparing for CUET PG or NET →
+          </h3>
+          <p class="mt-2 font-sans text-xs text-muted">
+            Subject-specific coaching across 9 disciplines, aptitude test
+            series, and dedicated question bank practice.
+          </p>
+        </a>
+
+        {/* Gateway 4 */}
+        <a
+          href="/schools-colleges"
+          class="group rounded border border-hair bg-paper p-6 transition-all hover:border-ink hover:shadow-sm focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span class="font-mono text-xs font-semibold uppercase text-spark-ink"
+            >Institutions</span
+          >
+          <h3
+            class="mt-2 font-serif text-xl font-normal text-ink group-hover:text-spark-ink"
+          >
+            I'm a school or institution →
+          </h3>
+          <p class="mt-2 font-sans text-xs text-muted">
+            Partner with Synapse for in-school AI classes, Robotics/ATL lab
+            sessions, business development, and communication.
+          </p>
+        </a>
+
+        {/* Gateway 5 */}
+        <a
+          href="/ventures"
+          class="group rounded border border-hair bg-paper p-6 transition-all hover:border-ink hover:shadow-sm focus-visible:outline-2 focus-visible:outline-spark sm:col-span-2 lg:col-span-2"
+        >
+          <span class="font-mono text-xs font-semibold uppercase text-spark-ink"
+            >Venture Building</span
+          >
+          <h3
+            class="mt-2 font-serif text-xl font-normal text-ink group-hover:text-spark-ink"
+          >
+            I want to work on ventures or internships →
+          </h3>
+          <p class="mt-2 font-sans text-xs text-muted">
+            Join our interdisciplinary teams executing on real Chamba venture
+            projects: artisan apparel, travel networks, education, and FMCG
+            agro-products.
+          </p>
+        </a>
+      </div>
+    </div>
+  </Section>
+
+  {/* SECTION 4: HOMEPAGE PROGRAMME OVERVIEW */}
+  <Section
+    theme="paper"
+    padding="lg"
+    class="border-b border-hair"
+    id="programmes"
   >
     <div class="mx-auto max-w-7xl">
       <div class="text-center">
         <span
           class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
         >
-          Clear Pathways for Every Learner
+          Transparent Curricula & Rates
         </span>
         <h2
           class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
         >
-          Choose your learning pathway
+          Major Programme Categories
         </h2>
         <p
           class="mx-auto mt-2 max-w-2xl font-sans text-base leading-relaxed text-muted"
         >
-          Find focused instruction tailored to your current academic stage and
-          future aspirations.
+          Every programme has a published duration, verified syllabus, and
+          offline classroom batches in Chamba.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-8 md:grid-cols-3">
-        {/* Gateway Card A */}
+      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Category 1: School Subject Classes */}
         <div
-          class="group flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper transition-all hover:border-spark hover:shadow-md"
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
         >
           <div>
-            <div class="relative h-48 overflow-hidden bg-hair">
-              <img
-                src="/images/pathway-school.webp"
-                alt="School science and mathematics classroom teaching on board in Chamba"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div
-                class="bg-paper/90 absolute left-3 top-3 rounded-pill px-3 py-1 font-mono text-[11px] font-semibold text-spark-ink shadow-sm"
-              >
-                Pathway A
-              </div>
-            </div>
-            <div class="p-6">
+            <div class="flex items-center justify-between">
               <span
-                class="font-mono text-xs font-semibold uppercase text-muted"
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
               >
-                School Students · Class 11–12
+                Class 11–12
               </span>
-              <h3 class="mt-2 font-serif text-xl font-normal text-ink">
-                Prepare for what comes after school.
-              </h3>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                Classroom instruction in Physics, Chemistry, Biology, and
-                Mathematics focusing on numerical problem-solving and entrance
-                exam readiness (JEE, NEET, CUET), complemented by English-Hindi
-                communication and AI literacy.
-              </p>
-            </div>
-          </div>
-          <div class="border-t border-hair bg-paper p-6">
-            <p class="font-mono text-xs font-semibold text-ink">
-              From ₹599/subject/month
-            </p>
-            <a
-              href="#school-programmes"
-              class="mt-3 inline-flex items-center gap-1 font-sans text-xs font-bold text-spark hover:underline"
-            >
-              <span>Explore school programmes</span>
-              <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Gateway Card B */}
-        <div
-          class="group flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper transition-all hover:border-spark hover:shadow-md"
-        >
-          <div>
-            <div class="relative h-48 overflow-hidden bg-hair">
-              <img
-                src="/images/pathway-college.webp"
-                alt="College student focused on competitive exam study and aptitude practice"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div
-                class="bg-paper/90 absolute left-3 top-3 rounded-pill px-3 py-1 font-mono text-[11px] font-semibold text-spark-ink shadow-sm"
-              >
-                Pathway B
-              </div>
-            </div>
-            <div class="p-6">
-              <span
-                class="font-mono text-xs font-semibold uppercase text-muted"
-              >
-                College Students & Aspirants
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                ₹599 or ₹799 / mo
               </span>
-              <h3 class="mt-2 font-serif text-xl font-normal text-ink">
-                Your next opportunity begins with preparation.
-              </h3>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                A structured Foundation Pack covering General Awareness, Logical
-                Reasoning, and Quantitative Aptitude across 28 units, with
-                topic-wise Exam Question Banks and speed-accuracy tracking for
-                CUET PG, NET, and state exams.
-              </p>
             </div>
-          </div>
-          <div class="border-t border-hair bg-paper p-6">
-            <p class="font-mono text-xs font-semibold text-ink">
-              Foundation Pack: ₹599/month
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              School Subject Classes
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              Physics, Chemistry, Biology, Mathematics, Economics, Accountancy.
+              Regular board + CUET (₹599/sub/mo) or JEE/NEET entrance
+              preparation (₹799/sub/mo).
             </p>
-            <a
-              href="#college-programmes"
-              class="mt-3 inline-flex items-center gap-1 font-sans text-xs font-bold text-spark hover:underline"
-            >
-              <span>Explore college programmes</span>
-              <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Gateway Card C */}
-        <div
-          class="group flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper transition-all hover:border-spark hover:shadow-md"
-        >
-          <div>
-            <div class="relative h-48 overflow-hidden bg-hair">
-              <img
-                src="/images/pathway-business.webp"
-                alt="Collaborative business team working on project planning and marketing in Chamba"
-                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div
-                class="bg-paper/90 absolute left-3 top-3 rounded-pill px-3 py-1 font-mono text-[11px] font-semibold text-spark-ink shadow-sm"
-              >
-                Pathway C
-              </div>
-            </div>
-            <div class="p-6">
-              <span
-                class="font-mono text-xs font-semibold uppercase text-muted"
-              >
-                Undergraduates & Graduates
-              </span>
-              <h3 class="mt-2 font-serif text-xl font-normal text-ink">
-                Learn practical skills. Gain experience. Become work-ready.
-              </h3>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                A six-month programme combining three months of classroom
-                learning (market research, customer discovery, costing,
-                branding, sales) with a three-month mentored internship on real
-                Chamba ventures.
-              </p>
-            </div>
-          </div>
-          <div class="border-t border-hair bg-paper p-6">
-            <p class="font-mono text-xs font-semibold text-ink">
-              6-Month Programme: ₹899/month
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: Until board or entrance examination
             </p>
-            <a
-              href="#business-programmes"
-              class="mt-3 inline-flex items-center gap-1 font-sans text-xs font-bold text-spark hover:underline"
-            >
-              <span>Explore business programmes</span>
-              <span aria-hidden="true">↓</span>
-            </a>
           </div>
-        </div>
-      </div>
-    </div>
-  </Section>
-
-  {/* SECTION 4: PROGRAMMES BY AUDIENCE */}
-  <Section theme="paper" padding="lg" class="border-b border-hair">
-    <div class="mx-auto max-w-7xl">
-      {/* 4A: School Students */}
-      <div id="school-programmes" class="mb-16 scroll-mt-20">
-        <div
-          class="mb-6 flex flex-wrap items-baseline justify-between gap-2 border-b border-hair pb-4"
-        >
-          <div>
-            <span
-              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
-            >
-              Pathway A
-            </span>
-            <h2
-              class="mt-1 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
-            >
-              Programmes for School Students (Class 11–12)
-            </h2>
-          </div>
-          <p class="font-sans text-xs text-muted">
-            Concept clarity · Problem-solving · JEE, NEET, CUET practice
-          </p>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-3">
-          {/* Card: Subject Classes */}
           <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
           >
-            <div>
+            <a
+              href="/school"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View school options →
+            </a>
+            <Button href={regularSubjectsFormUrl} variant="primary" size="sm">
+              Enquire
+            </Button>
+          </div>
+        </div>
+
+        {/* Category 2: CUET PG & NET Preparation */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+              >
+                Degree & Master's
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                Enquire
+              </span>
+            </div>
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              CUET PG & UGC NET
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              Specialised subject modules across 9 disciplines: Physics,
+              Chemistry, Zoology, Mathematics, Botany, Economics, History,
+              Geography, Psychology.
+            </p>
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: Examination-specific
+            </p>
+          </div>
+          <div
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
+          >
+            <a
+              href="/college#cuet-net"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View 9 disciplines →
+            </a>
+            <Button href={cuetPgFormUrl} variant="primary" size="sm">
+              Enquire
+            </Button>
+          </div>
+        </div>
+
+        {/* Category 3: Applied AI Literacy */}
+        <div
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+              >
+                Practical Skills
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                ₹899 / mo
+              </span>
+            </div>
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              Applied AI Literacy
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              AI foundations, prompt engineering, verification, data
+              spreadsheets, multimodal tools, and practical workflows for
+              learning and office tasks.
+            </p>
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: 6 Months
+            </p>
+          </div>
+          <div
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
+          >
+            <a
+              href="/courses/ai-literacy"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View syllabus →
+            </a>
+            <Button href={aiLiteracyFormUrl} variant="primary" size="sm">
+              Enquire
+            </Button>
+          </div>
+        </div>
+
+        {/* Category 4: Business Development + Internship */}
+        <div
+          class="border-spark/40 flex flex-col justify-between rounded border-2 bg-paper p-6 shadow-sm"
+        >
+          <div>
+            <div class="flex items-center justify-between">
               <span
                 class="bg-spark/10 rounded-pill px-2.5 py-0.5 font-mono text-[11px] font-semibold text-spark-ink"
               >
-                Entrance & Board Focus
+                Flagship
               </span>
-              <h3 class="mt-3 font-serif text-xl font-normal text-ink">
-                Class 11–12 Subject Classes
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹599 / subject / month
-              </p>
-              <p class="mt-3 font-sans text-xs text-muted">
-                Physics · Chemistry · Biology · Mathematics. Structured for
-                concept clarity, numerical problem-solving, chapter tests, and
-                competitive entrance examination practice (JEE, NEET, CUET).
-              </p>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                ₹899 / mo
+              </span>
             </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={subjectClassesFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="sm"
-                class="w-full justify-center"
-              >
-                Enquire for Subject Classes
-              </Button>
-              <a
-                href="/courses/subject-classes"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View full syllabus →
-              </a>
-            </div>
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              Business Development + Internship
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              Months 1–3 Learn (fundamentals, market research, sales, costing).
+              Months 4–6 Build (mentored internship on actual Chamba ventures).
+            </p>
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: 6 Months
+            </p>
           </div>
-
-          {/* Card: Communication */}
           <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
           >
-            <div>
-              <span
-                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
-              >
-                Bilingual Fluency
-              </span>
-              <h3 class="mt-3 font-serif text-xl font-normal text-ink">
-                Communication: English + Hindi
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹599 / month (10 weeks)
-              </p>
-              <p class="mt-3 font-sans text-xs text-muted">
-                Overcome hesitation in speaking. Structured practice in
-                speaking, listening, practical writing, group discussion basics,
-                and a final showcase presentation.
-              </p>
-            </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={communicationFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="sm"
-                class="w-full justify-center"
-              >
-                Enquire for Communication
-              </Button>
-              <a
-                href="/courses/communication"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View full syllabus →
-              </a>
-            </div>
-          </div>
-
-          {/* Card: AI Literacy */}
-          <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
-          >
-            <div>
-              <span
-                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
-              >
-                Modern Skills
-              </span>
-              <h3 class="mt-3 font-serif text-xl font-normal text-ink">
-                Applied AI Literacy
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹899 / month (12 weeks)
-              </p>
-              <p class="mt-3 font-sans text-xs text-muted">
-                No coding required. Learn effective prompting, academic research
-                verification, data handling, and AI tools for school projects
-                and everyday problem-solving.
-              </p>
-            </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={aiLiteracyFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="sm"
-                class="w-full justify-center"
-              >
-                Enquire for AI Literacy
-              </Button>
-              <a
-                href="/courses/ai-literacy"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View full syllabus →
-              </a>
-            </div>
+            <a
+              href="/courses/business-development"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View programme →
+            </a>
+            <Button href={businessDevFormUrl} variant="primary" size="sm">
+              Apply
+            </Button>
           </div>
         </div>
-      </div>
 
-      {/* 4B: College Students & Exam Aspirants */}
-      <div id="college-programmes" class="mb-16 scroll-mt-20">
+        {/* Category 5: Communication Skills */}
         <div
-          class="mb-6 flex flex-wrap items-baseline justify-between gap-2 border-b border-hair pb-4"
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
         >
           <div>
-            <span
-              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
-            >
-              Pathway B
-            </span>
-            <h2
-              class="mt-1 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
-            >
-              Programmes for College Students & Exam Aspirants
-            </h2>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+              >
+                Bilingual
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                ₹599 / mo
+              </span>
+            </div>
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              Communication Skills
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              English and Hindi speaking, professional writing, public speaking,
+              presentations, group discussion dynamics, and job interview
+              preparation.
+            </p>
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: 6 Months
+            </p>
           </div>
-          <p class="font-sans text-xs text-muted">
-            General Awareness · Logical Reasoning · Quantitative Aptitude · Exam
-            Banks
-          </p>
+          <div
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
+          >
+            <a
+              href="/courses/communication"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View syllabus →
+            </a>
+            <Button href={commFormUrl} variant="primary" size="sm">
+              Enquire
+            </Button>
+          </div>
         </div>
 
-        <div class="grid gap-6 md:grid-cols-2">
-          {/* Card: Foundation Pack */}
-          <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
-          >
-            <div>
-              <div class="flex items-center justify-between">
-                <span
-                  class="bg-spark/10 rounded-pill px-2.5 py-0.5 font-mono text-[11px] font-semibold text-spark-ink"
-                >
-                  All 3 Subjects Included
-                </span>
-                <span class="font-mono text-xs text-muted">12 Weeks</span>
-              </div>
-              <h3 class="mt-3 font-serif text-2xl font-normal text-ink">
-                Foundation Pack
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹599 / month · Includes all three modules
-              </p>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                28 structured units covering Indian History, Polity, Economy,
-                General Science, Logical Arrangements, Syllogisms, Arithmetic,
-                Algebra, and Data Interpretation. Essential foundation for CUET
-                UG/PG, UGC NET, and public competitive examinations.
-              </p>
-              <ul class="mt-4 space-y-1.5 font-sans text-xs text-muted">
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  General Awareness (10 units)
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  Logical Reasoning (8 units)
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  Quantitative Aptitude (10 units)
-                </li>
-              </ul>
-            </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={foundationPackFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="md"
-                class="w-full justify-center"
-              >
-                Enquire for Foundation Pack
-              </Button>
-              <a
-                href="/courses/foundation-pack"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View full 28-unit syllabus →
-              </a>
-            </div>
-          </div>
-
-          {/* Card: Question Bank */}
-          <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
-          >
-            <div>
-              <div class="flex items-center justify-between">
-                <span
-                  class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
-                >
-                  Practice & Performance
-                </span>
-                <span class="font-mono text-xs text-muted">
-                  6 Months Access
-                </span>
-              </div>
-              <h3 class="mt-3 font-serif text-2xl font-normal text-ink">
-                Exam Question Bank & Performance Profile
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹499 one-time · 6 months access
-              </p>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                Topic-wise and mixed timed practice sets with hints before full
-                answers. Tracks your accuracy and speed profile, highlights weak
-                topics, and includes periodic teacher review.
-              </p>
-              <p class="mt-3 font-sans text-xs italic text-muted">
-                Confirm your target examination pack during enquiry.
-              </p>
-            </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={questionBankFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="md"
-                class="w-full justify-center"
-              >
-                Enquire for Question Bank
-              </Button>
-              <a
-                href="/courses/question-bank"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View practice features →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 4C: Employability & Business Development */}
-      <div id="business-programmes" class="scroll-mt-20">
+        {/* Category 6: Institutional Offerings */}
         <div
-          class="mb-6 flex flex-wrap items-baseline justify-between gap-2 border-b border-hair pb-4"
+          class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
         >
           <div>
-            <span
-              class="font-mono text-xs font-semibold uppercase tracking-wider text-spark-ink"
-            >
-              Pathway C
-            </span>
-            <h2
-              class="mt-1 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
-            >
-              Employability & Business Development
-            </h2>
+            <div class="flex items-center justify-between">
+              <span
+                class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] text-muted"
+              >
+                For Schools
+              </span>
+              <span class="font-mono text-xs font-semibold text-spark-ink">
+                Customised
+              </span>
+            </div>
+            <h3 class="mt-3 font-serif text-xl font-normal text-ink">
+              Institutional Programmes
+            </h3>
+            <p class="mt-2 font-sans text-xs text-muted">
+              Four structured services: AI Literacy, Robotics & ATL lab
+              sessions, youth entrepreneurship classes, and bilingual
+              communication.
+            </p>
+            <p class="mt-3 font-mono text-[11px] text-muted">
+              Duration: Flexible by academic term
+            </p>
           </div>
-          <p class="font-sans text-xs text-muted">
-            Practical skills · Real Chamba ventures · Work experience
-          </p>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-2">
-          {/* Card: Business Development + Internship */}
           <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
+            class="mt-6 flex items-center justify-between border-t border-hair pt-4"
           >
-            <div>
-              <div class="flex items-center justify-between">
-                <span
-                  class="bg-spark/10 rounded-pill px-2.5 py-0.5 font-mono text-[11px] font-semibold text-spark-ink"
-                >
-                  3 Mo Learning + 3 Mo Internship
-                </span>
-                <span class="font-mono text-xs text-muted">6 Months Total</span>
-              </div>
-              <h3 class="mt-3 font-serif text-2xl font-normal text-ink">
-                Business Development + Internship
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹899 / month for all 6 months (Total ₹5,394)
-              </p>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                Designed for undergraduate and postgraduate students. Months 1–3
-                cover ten structured business modules: market research, customer
-                discovery, costing, branding, sales, operations, and pitching.
-                Months 4–6 are spent interning on one selected Chamba venture.
-              </p>
-              <div class="bg-paper/60 mt-4 rounded border border-hair p-3">
-                <p class="font-sans text-xs text-muted">
-                  <strong>Important:</strong> Synapse Learning & Internship Certificate
-                  on completion. No guaranteed job or placement. Stipend terms are
-                  being finalised and will be shared before enrolment.
-                </p>
-              </div>
-            </div>
-            <div
-              class="mt-6 flex flex-col gap-2 border-t border-hair pt-4 sm:flex-row"
+            <a
+              href="/schools-colleges"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
             >
-              <Button
-                href={businessDevFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="md"
-                class="flex-1 justify-center"
-              >
-                Enquire for Programme
-              </Button>
-              <Button
-                href={internshipAppUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="secondary"
-                size="md"
-                class="flex-1 justify-center"
-              >
-                Apply for Internship
-              </Button>
-            </div>
-          </div>
-
-          {/* Card: AI Literacy + Business Development Combo */}
-          <div
-            class="flex flex-col justify-between rounded border border-hair bg-paper p-6 shadow-sm"
-          >
-            <div>
-              <div class="flex items-center justify-between">
-                <span
-                  class="rounded-pill bg-hair px-2.5 py-0.5 font-mono text-[11px] font-semibold text-ink"
-                >
-                  Dual Skill Track · Save ₹299/mo
-                </span>
-                <span class="font-mono text-xs text-muted">Full Programme</span>
-              </div>
-              <h3 class="mt-3 font-serif text-2xl font-normal text-ink">
-                AI Literacy + Business Development Combo
-              </h3>
-              <p class="mt-1 font-mono text-xs font-bold text-spark">
-                ₹1,499 / month (Separate: ₹1,798/mo)
-              </p>
-              <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-                Combine the 12-week Applied AI Literacy course with the 6-month
-                Business Development + Internship programme. Learn to apply
-                modern AI workflows to market research, content creation,
-                customer support, and financial modelling for real ventures.
-              </p>
-              <ul class="mt-4 space-y-1.5 font-sans text-xs text-muted">
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  Applied AI tools & automated workflows
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  Ten core business development modules
-                </li>
-                <li class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-spark"></span>
-                  Three-month mentored venture internship
-                </li>
-              </ul>
-            </div>
-            <div class="mt-6 border-t border-hair pt-4">
-              <Button
-                href={comboFormUrl}
-                target={isGeneralExternal ? '_blank' : undefined}
-                rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-                variant="primary"
-                size="md"
-                class="w-full justify-center"
-              >
-                Enquire for AI + Business Combo
-              </Button>
-              <a
-                href="/courses/ai-business-combo"
-                class="mt-2 block text-center font-sans text-xs text-muted hover:text-ink hover:underline"
-              >
-                View combo details →
-              </a>
-            </div>
+              View 4 services →
+            </a>
+            <Button href={institutionFormUrl} variant="secondary" size="sm">
+              Partner
+            </Button>
           </div>
         </div>
       </div>
     </div>
   </Section>
 
-  {/* SECTION 5: LEARNING THAT CONNECTS TO REAL WORK (CHAMBA VENTURES) */}
+  {/* SECTION 5: CHAMBA VENTURES FEATURE (PART 6) */}
   <Section theme="paper" padding="lg" class="border-b border-hair">
-    <div class="mx-auto max-w-7xl">
+    <div class="mx-auto max-w-6xl">
       <div class="text-center">
         <span
           class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
         >
-          Practical Work Experience
+          The Venture-Building Differentiator
         </span>
         <h2
           class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
         >
-          Learning that connects to real work
+          Learn together. Build together. Create something real.
         </h2>
         <p
           class="mx-auto mt-3 max-w-2xl font-sans text-base leading-relaxed text-muted"
         >
-          During months 4–6 of the Business Development programme, participants
-          work on one of four Chamba ventures. Learners conduct market research,
-          discover customer needs, design product packaging, map suppliers, and
-          build distribution pipelines.
+          Students from AI literacy, business development, commerce, and
+          humanities collaborate with initial venture interns to execute on
+          actual projects in Chamba.
         </p>
       </div>
 
-      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {/* Venture 1 */}
         <div
-          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper shadow-sm"
+          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper"
         >
           <div>
             <img
               src="/images/chamba-rumal-artisan.webp"
-              alt="Artisan embroidering traditional Chamba Rumal heritage silk craft"
+              alt="Artisan hands embroidering traditional Chamba Rumal motifs"
               class="h-44 w-full object-cover"
               loading="lazy"
             />
             <div class="p-5">
               <span
-                class="font-mono text-[11px] font-semibold uppercase text-muted"
+                class="rounded-pill bg-hair px-2 py-0.5 font-mono text-[10px] uppercase text-muted"
               >
-                Heritage Craft & Design
+                In progress
               </span>
-              <h3 class="mt-1 font-serif text-lg font-normal text-ink">
+              <h3 class="mt-2 font-serif text-lg font-normal text-ink">
                 Chamba Rumal & Heritage Apparel
               </h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Contemporary apparel and lifestyle accessories using Chamba
-                Rumal double-sided silk embroidery (*dorukha*).
+              <p class="mt-1 font-sans text-xs leading-relaxed text-muted">
+                Contemporary apparel and accessories developed with local
+                artisans, respecting IP, attribution, and fair compensation.
               </p>
-              <div class="mt-3 border-t border-hair pt-3">
-                <p class="font-sans text-[11px] font-semibold text-ink">
-                  Tasks learners perform:
-                </p>
-                <p class="mt-1 font-sans text-[11px] text-muted">
-                  Artisan coordination, costing, product sampling, digital
-                  catalogues, and order tracking.
-                </p>
-              </div>
             </div>
+          </div>
+          <div class="border-t border-hair p-4">
+            <a
+              href="/ventures"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View venture details →
+            </a>
           </div>
         </div>
 
         {/* Venture 2 */}
         <div
-          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper shadow-sm"
+          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper"
         >
           <div>
             <img
               src="/images/chamba-hospitality.webp"
-              alt="Scenic Himalayan mountain homestay and travel hospitality in Chamba"
+              alt="Chamba valley homestay and Himalayan mountain lodge hospitality"
               class="h-44 w-full object-cover"
               loading="lazy"
             />
             <div class="p-5">
               <span
-                class="font-mono text-[11px] font-semibold uppercase text-muted"
+                class="rounded-pill bg-hair px-2 py-0.5 font-mono text-[10px] uppercase text-muted"
               >
-                Hospitality & Tourism
+                In development
               </span>
-              <h3 class="mt-1 font-serif text-lg font-normal text-ink">
+              <h3 class="mt-2 font-serif text-lg font-normal text-ink">
                 Chamba Travel & Experiences
               </h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Local hospitality network including guided walks, homestays,
-                property marketing, and visitor workflows.
+              <p class="mt-1 font-sans text-xs leading-relaxed text-muted">
+                A local hospitality and experience network covering itinerary
+                discovery, property coordination, and guest workflows.
               </p>
-              <div class="mt-3 border-t border-hair pt-3">
-                <p class="font-sans text-[11px] font-semibold text-ink">
-                  Tasks learners perform:
-                </p>
-                <p class="mt-1 font-sans text-[11px] text-muted">
-                  Experience mapping, itinerary design, host coordination, and
-                  booking enquiry handling.
-                </p>
-              </div>
             </div>
+          </div>
+          <div class="border-t border-hair p-4">
+            <a
+              href="/ventures"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View venture details →
+            </a>
           </div>
         </div>
 
         {/* Venture 3 */}
         <div
-          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper shadow-sm"
+          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper"
         >
           <div>
             <img
               src="/images/synapse-chamba-centre.webp"
-              alt="Synapse learning centre classroom desks and study space in Chamba"
+              alt="Synapse learning centre classroom environment in Chamba"
               class="h-44 w-full object-cover"
               loading="lazy"
             />
             <div class="p-5">
               <span
-                class="font-mono text-[11px] font-semibold uppercase text-muted"
+                class="bg-spark/10 rounded-pill px-2 py-0.5 font-mono text-[10px] font-semibold uppercase text-spark-ink"
               >
-                Education & Operations
+                Active operation
               </span>
-              <h3 class="mt-1 font-serif text-lg font-normal text-ink">
+              <h3 class="mt-2 font-serif text-lg font-normal text-ink">
                 Synapse Education
               </h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Expanding offline classroom programmes, student onboarding, and
-                academic outreach across Chamba.
+              <p class="mt-1 font-sans text-xs leading-relaxed text-muted">
+                Expanding offline educational programmes, batch coordination,
+                outreach, teaching support, and learning resources.
               </p>
-              <div class="mt-3 border-t border-hair pt-3">
-                <p class="font-sans text-[11px] font-semibold text-ink">
-                  Tasks learners perform:
-                </p>
-                <p class="mt-1 font-sans text-[11px] text-muted">
-                  Teaching assistance, batch scheduling, admissions management,
-                  and school workshop coordination.
-                </p>
-              </div>
             </div>
+          </div>
+          <div class="border-t border-hair p-4">
+            <a
+              href="/ventures"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View venture details →
+            </a>
           </div>
         </div>
 
         {/* Venture 4 */}
         <div
-          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper shadow-sm"
+          class="flex flex-col justify-between overflow-hidden rounded border border-hair bg-paper"
         >
           <div>
             <img
               src="/images/chamba-agro-products.webp"
-              alt="Fresh Himachal Pradesh apples being harvested in a mountain orchard"
+              alt="Himalayan mountain harvest including fresh apples and regional farm produce"
               class="h-44 w-full object-cover"
               loading="lazy"
             />
             <div class="p-5">
               <span
-                class="font-mono text-[11px] font-semibold uppercase text-muted"
+                class="rounded-pill bg-hair px-2 py-0.5 font-mono text-[10px] uppercase text-muted"
               >
-                Agro & Food Processing
+                In development
               </span>
-              <h3 class="mt-1 font-serif text-lg font-normal text-ink">
+              <h3 class="mt-2 font-serif text-lg font-normal text-ink">
                 Chamba FMCG & Agro-Products
               </h3>
-              <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-                Value-added food products using local apples, traditional chukh,
-                mountain rajma, and Himalayan wild berries.
+              <p class="mt-1 font-sans text-xs leading-relaxed text-muted">
+                Exploring products using apples, chukh, aam papad, local beans,
+                rajma, and wild Himalayan berries.
               </p>
-              <div class="mt-3 border-t border-hair pt-3">
-                <p class="font-sans text-[11px] font-semibold text-ink">
-                  Tasks learners perform:
-                </p>
-                <p class="mt-1 font-sans text-[11px] text-muted">
-                  Supplier mapping, sample testing, packaging research, costing,
-                  and local retail distribution.
-                </p>
-              </div>
             </div>
+          </div>
+          <div class="border-t border-hair p-4">
+            <a
+              href="/ventures"
+              class="font-sans text-xs font-semibold text-spark-ink hover:underline"
+            >
+              View venture details →
+            </a>
           </div>
         </div>
       </div>
 
-      <div class="mt-8 text-center">
-        <Button href="/ventures" variant="secondary" size="md">
-          Explore all Chamba ventures in detail
+      <div class="mt-10 text-center">
+        <Button href="/ventures" variant="secondary" size="lg">
+          Learn how the venture model works
         </Button>
       </div>
     </div>
   </Section>
 
-  {/* SECTION 6: HOW ENROLMENT WORKS */}
+  {/* SECTION 6: HOW IT WORKS (5 STEPS) */}
   <Section theme="paper" padding="lg" class="border-b border-hair">
-    <div class="mx-auto max-w-4xl text-center">
-      <span
-        class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
-      >
-        Simple, Transparent Process
-      </span>
-      <h2
-        class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
-      >
-        How enrolment works
-      </h2>
-      <p
-        class="mx-auto mt-3 max-w-xl font-sans text-base leading-relaxed text-muted"
-      >
-        Four straightforward steps from your first enquiry to your first
-        classroom session in Chamba.
-      </p>
+    <div class="mx-auto max-w-5xl">
+      <div class="text-center">
+        <span
+          class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
+        >
+          Straightforward Process
+        </span>
+        <h2
+          class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
+        >
+          How It Works
+        </h2>
+        <p class="mx-auto mt-2 max-w-2xl font-sans text-sm text-muted">
+          From first enquiry to attending your trial class and joining your
+          batch.
+        </p>
+      </div>
 
-      <div class="mt-12 grid gap-6 text-left sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
         {/* Step 1 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <span class="font-mono text-xs font-bold uppercase text-spark">
-            Step 01
-          </span>
+        <div class="rounded border border-hair bg-paper p-5">
+          <span class="font-mono text-xs font-bold text-spark-ink">Step 1</span>
           <h3 class="mt-2 font-serif text-lg font-normal text-ink">
-            Submit Enquiry
+            Choose a programme
           </h3>
           <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            Fill out our quick enquiry form with your academic details, target
-            examination, or skills of interest.
+            Select your academic subject, entrance track, or practical
+            capability course.
           </p>
         </div>
 
         {/* Step 2 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <span class="font-mono text-xs font-bold uppercase text-spark">
-            Step 02
-          </span>
+        <div class="rounded border border-hair bg-paper p-5">
+          <span class="font-mono text-xs font-bold text-spark-ink">Step 2</span>
           <h3 class="mt-2 font-serif text-lg font-normal text-ink">
-            Offline Trial Class
+            Enquire & discuss
           </h3>
           <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            Attend one or two trial classes at our learning centre behind the
-            Post Office to experience our classroom teaching.
+            Submit your enquiry online or via WhatsApp to discuss eligibility
+            and batch times.
           </p>
         </div>
 
         {/* Step 3 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <span class="font-mono text-xs font-bold uppercase text-spark">
-            Step 03
-          </span>
+        <div class="rounded border border-hair bg-paper p-5">
+          <span class="font-mono text-xs font-bold text-spark-ink">Step 3</span>
           <h3 class="mt-2 font-serif text-lg font-normal text-ink">
-            Confirm Batch
+            Attend trial class
           </h3>
           <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            Confirm your batch timing and schedule. College batches run before
-            3:00 PM; school batches run after 3:00 PM.
+            Attend 1–2 offline trial classes at our Chamba centre before making
+            any payment.
           </p>
         </div>
 
         {/* Step 4 */}
-        <div class="rounded border border-hair bg-paper p-6 shadow-sm">
-          <span class="font-mono text-xs font-bold uppercase text-spark">
-            Step 04
-          </span>
+        <div class="rounded border border-hair bg-paper p-5">
+          <span class="font-mono text-xs font-bold text-spark-ink">Step 4</span>
           <h3 class="mt-2 font-serif text-lg font-normal text-ink">
-            Start Learning
+            Confirm batch
           </h3>
           <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
-            Pay the published monthly fee and begin structured learning with
-            tests, doubt resolution, and mentor reviews.
+            Confirm your schedule directly with the guide. No automated online
+            subscriptions.
+          </p>
+        </div>
+
+        {/* Step 5 */}
+        <div class="rounded border border-hair bg-paper p-5">
+          <span class="font-mono text-xs font-bold text-spark-ink">Step 5</span>
+          <h3 class="mt-2 font-serif text-lg font-normal text-ink">
+            Start learning & building
+          </h3>
+          <p class="mt-2 font-sans text-xs leading-relaxed text-muted">
+            Strengthen foundations, master tools, and apply your skills to real
+            challenges.
           </p>
         </div>
       </div>
     </div>
   </Section>
 
-  {/* SECTION 7: FOR INSTITUTIONS */}
-  <Section theme="paper" padding="lg" class="border-b border-hair">
-    <div
-      class="mx-auto max-w-5xl rounded border border-hair bg-paper p-8 shadow-sm sm:p-12"
-    >
-      <div class="grid items-center gap-8 md:grid-cols-12">
-        <div class="md:col-span-8">
-          <span
-            class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-spark-ink"
-          >
-            Schools & Colleges
-          </span>
-          <h2
-            class="mt-2 font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
-          >
-            Partner with Synapse for your students
-          </h2>
-          <p class="mt-3 font-sans text-sm leading-relaxed text-muted">
-            We collaborate with local schools, degree colleges, and polytechnics
-            across Chamba to deliver entrance diagnostic baseline tests,
-            English-Hindi communication workshops, and introductory applied AI
-            sessions for entire classes.
-          </p>
-        </div>
-        <div class="flex flex-col gap-3 md:col-span-4 md:items-end">
-          <Button
-            href={institutionFormUrl}
-            target={isGeneralExternal ? '_blank' : undefined}
-            rel={isGeneralExternal ? 'noopener noreferrer' : undefined}
-            variant="primary"
-            size="md"
-          >
-            Institutional enquiry
-          </Button>
-          <a
-            href="/schools-colleges"
-            class="font-sans text-xs text-muted hover:text-ink hover:underline"
-          >
-            Read partnership details →
-          </a>
-        </div>
-      </div>
-    </div>
-  </Section>
-
-  {/* SECTION 8: FINAL CTA */}
+  {/* SECTION 7: DIRECT ADMISSIONS & ENQUIRY CTA */}
   <Section theme="paper" padding="lg">
     <div class="mx-auto max-w-4xl text-center">
       <h2
-        class="sm:text-display-sm font-serif text-headline-md font-normal text-ink"
+        class="font-serif text-headline-sm font-normal text-ink sm:text-headline-md"
       >
-        Find the right next step.
+        Ready to visit or enquire?
       </h2>
-      <p
-        class="mx-auto mt-4 max-w-xl font-sans text-base leading-relaxed text-muted"
-      >
-        Tell us about your educational goals or target examinations. We will
-        connect with you to arrange a trial class at our Chamba centre.
+      <p class="mx-auto mt-3 max-w-2xl font-sans text-base text-muted">
+        Our learning centre is located behind the Post Office in Chamba. Reach
+        out to reserve a trial seat or discuss your educational goals.
       </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-4">
@@ -1171,21 +995,19 @@ const institutionFormUrl = getFormUrl('institutionEnquiry');
           variant="primary"
           size="lg"
         >
-          <span>Submit an enquiry</span>
+          <span>Submit Course Enquiry</span>
         </Button>
         <Button href="/contact" variant="secondary" size="lg">
-          Visit or call us
+          Call or WhatsApp us
         </Button>
       </div>
 
       <div
-        class="mt-8 inline-flex items-center gap-4 font-mono text-xs text-muted"
+        class="mt-6 flex flex-wrap justify-center gap-6 font-mono text-xs text-muted"
       >
-        <span>Chamba, H.P.</span>
-        <span aria-hidden="true">·</span>
-        <span>Phone: 8287248119</span>
-        <span aria-hidden="true">·</span>
-        <span>Behind the Post Office</span>
+        <span>Phone: +91 {site.phone}</span>
+        <span>Email: {site.email}</span>
+        <span>Owner Callback: {site.callbackWindow}</span>
       </div>
     </div>
   </Section>

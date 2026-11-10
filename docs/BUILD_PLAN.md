@@ -129,3 +129,136 @@ Each task ends with `npm run check` green and screenshots at 390/768/1440.
 
 ## 14. Out of scope now
 Payments, user accounts, the Corteon app, a real Passport backend, a real Lane board, a CMS. Revisit when enquiries show demand.
+
+## 15. CEO Plan Review & Launch Hardening Roadmap (November 2026)
+
+### Scope Mode: HOLD SCOPE
+- **Focus**: Launch readiness, hardening, documentation reconciliation, SEO, analytics, accessibility, and production verification. No new feature bloat.
+
+### Reality Checks
+REALITY: premise-table pass Synapse marketing site in Chamba with 7 structured course offerings, verified facts in docs/CONTENT.md and docs/DESIGN.md docs/DESIGN.md:233
+REALITY: already-done pass Tasks T0 through T12 committed in 7a81719 and previous commits docs/BUILD_PLAN.md:106
+REALITY: surface-check pass All active routes verified against src/pages src/content/navigation.json:3
+REALITY: binding-decisions pass HOLD SCOPE selected; launch roadmap T13-T18 prioritized docs/BUILD_PLAN.md:101
+REALITY: numbers pass Fees confirmed in DESIGN.md (₹599/mo, ₹799/mo) and timings (Mon-Sat 3:30-6:30 PM) [measured: docs/DESIGN.md:250] docs/DESIGN.md:250
+REALITY: deferred-asks pass Payments and student portal deferred out of scope per BUILD_PLAN docs/BUILD_PLAN.md:130
+REALITY: pr-count pass Wave 1 covers pre-launch hardening T13-T16; Wave 2 covers T18 launch docs/BUILD_PLAN.md:104
+
+### Decision Ledger
+| ID | Owner | Contract & Evidence | Current | Proposed | Status | Exact Scope |
+|---|---|---|---|---|---|---|
+| D1 | docs/CONTENT.md | docs/DESIGN.md:233 vs AGENTS.md:6b,9b | Doc prohibition vs live fees/photos | Reconcile docs to November 2026 reality | approved | Update docs text |
+| D2 | public/_redirects | public/_redirects:27 vs NavBar.astro:18 | /contact -> /enquire 301 loop risk | Direct /enquire to /contact 301 | approved | Fix _redirects |
+| D3 | docs/BUILD_PLAN.md | Tasks T13-T18 | High-level checklist | Specific launch acceptance criteria | approved | Update T13-T18 AC |
+
+### Detailed Execution Waves for Remaining Tasks
+- **T13 SEO & Structured Data**: Complete meta title/descriptions, OpenGraph tags, sitemap.xml, robots.txt, and JSON-LD schema for LocalBusiness + EducationalOrganization for all active routes (`/`, `/school`, `/college`, `/courses`, `/schools-colleges`, `/ventures`, `/about`, `/contact`).
+- **T14 Privacy-Preserving Analytics**: Instrument click and submission events (`enquire_start`, `enquire_submit`, `whatsapp_click`, `call_click`, `door_select`).
+- **T15 A11y & Mobile Performance Gate**: Audit on 360px, 390px, 768px, and 1440px viewports. Verify WCAG AA color contrast and tab navigation.
+- **T16 Privacy Policy & 404 Polish**: Legal compliance with India's DPDP Act regarding minimal child data collection; rich recovery paths on 404 page.
+- **T17 Language Strategy**: Deploy English-only for launch; assess Hindi translation needs based on early enquiries.
+- **T18 Production Deployment & Go-Live**: Configure Cloudflare Pages DNS for `corteon.in`, verify production form webhooks on a real phone, configure Google Business Profile for local Chamba discovery.
+
+## 16. Design Plan Review: Designer's Eye Hardening (November 2026)
+
+### Scope & Philosophy
+- **Posture**: Designer's eye review for admissions marketing, trial class booking, and mobile responsiveness.
+- **Tokens Calibrated**: Paper `#F3EEE4`, Ink `#15130F`, Spark `#D9481F` / `#B22C01` / `#FF6338`, Hair `#D8D0BF`.
+- **Typography**: Self-hosted EB Garamond & Geist.
+- **Approved Decisions**:
+  1. **CourseCard Conversion Anchor**: Direct course-prefilled WhatsApp button ("Book trial on WhatsApp") on every course card.
+  2. **Form Interaction States**: Warm inline error card with 1-tap WhatsApp prefilled recovery and direct phone dialer.
+  3. **Emotional Arc & Confirmation**: Immediate post-submission confirmation detailing 24h founder callback, WhatsApp backup, and Day 1 trial class expectations.
+  4. **404 Wayfinding**: Update recovery links from `/programmes` & `/enquire` stubs to canonical `/courses` & `/contact` with School, College, and Ventures chips.
+  5. **Token Discipline**: Eradicate rogue `#CDC6B7` in `idea.astro`, brand social OG preview card in Paper/Ink/Spark.
+  6. **Responsive Syllabi**: Intentional mobile layout adapting desktop comparison tables into compact stacked cards with >=44px touch targets on viewports <640px.
+  7. **Mobile Thumb-Zone Bar**: Sticky bottom mobile action bar with direct "WhatsApp" and "Call" buttons on <640px.
+
+### Interaction State Coverage
+| Feature | Loading | Empty | Error | Success | Partial |
+|---|---|---|---|---|---|
+| `/contact` & `/enquire` Form | Button disabled, dots pulse, `Submitting...` | Contextual placeholder & visible label | Warm inline card: 1-tap WhatsApp prefill + phone dialer | Reassurance screen: 24h founder callback window + Day 1 prep | Red border on invalid field + inline helper text |
+| Course Catalogue (`/courses`) | Static pre-rendered | "Looking for another subject? Ask on WhatsApp" | Network retry with WhatsApp direct link | Active course details with trial booking pill | Highlights core vs entrance prep modules |
+
+### User Journey Storyboard
+| Step | User Does | User Feels | Plan Specifies |
+|---|---|---|---|
+| 1. Arrive | Lands on `/` or `/school` from local search/WhatsApp | Himalayan calm, dignified editorial gravity | Warm paper background, EB Garamond serif header, Chamba photo |
+| 2. Scan | Evaluates subject tracks and transparent fees | Reassured, no hidden coaching trap | Clear ₹599/mo or ₹799/mo pricing, 1-2 trial classes before payment |
+| 3. Act | Taps "Book trial on WhatsApp" or fills `/contact` | Zero friction, thumb-friendly | >=44px touch target, prefilled WhatsApp message or 4-field form |
+| 4. Confirm | Submits enquiry form | Respected, personally cared for | Instant confirmation: founder calls within 24h, what to bring on Day 1 |
+
+## Design Review Completion Summary
+
+```
+  +====================================================================+
+  |         DESIGN PLAN REVIEW — COMPLETION SUMMARY                    |
+  +====================================================================+
+  | System Audit         | DESIGN.md active, UI scope across 7 pages   |
+  | Step 0               | 7/10 initial, reviewed all 7 dimensions     |
+  | Pass 1  (Info Arch)  | 7/10 → 9/10 after fixes                     |
+  | Pass 2  (States)     | 6/10 → 9/10 after fixes                     |
+  | Pass 3  (Journey)    | 7/10 → 9/10 after fixes                     |
+  | Pass 4  (AI Slop)    | 7/10 → 9/10 after fixes                     |
+  | Pass 5  (Design Sys) | 7/10 → 9/10 after fixes                     |
+  | Pass 6  (Responsive) | 7/10 → 9/10 after fixes                     |
+  | Pass 7  (Decisions)  | 7 resolved, 0 deferred                      |
+  +--------------------------------------------------------------------+
+  | NOT in scope         | Custom motion libraries, dark mode toggle   |
+  | What already exists  | DESIGN.md tokens, Button/StatusChip/Card    |
+  | TODOS.md updates     | 0 items proposed                            |
+  | Approved Mockups     | 0 generated (API key unconfigured), 0 appr. |
+  | Decisions made       | 7 added to plan                             |
+  | Decisions deferred   | 0                                           |
+  | Overall design score | 6/10 → 9/10                                 |
+  +====================================================================+
+```
+
+### Unresolved Decisions
+NO UNRESOLVED DECISIONS
+
+## Implementation Tasks
+Synthesized from this review's findings. Checkbox as you ship.
+
+- [ ] **T-D1 (P1, human: ~1h / CC: ~10min)** — `CourseCard` — Add direct course-prefilled WhatsApp trial booking CTA
+  - Surfaced by: Pass 1: Information Architecture
+  - Files: `src/components/brand/CourseCard.astro`, `src/pages/courses/index.astro`, `src/pages/courses/[id].astro`
+  - Verify: Click WhatsApp button on course card; opens `https://wa.me/918287248119` with course prefilled.
+- [ ] **T-D2 (P1, human: ~1.5h / CC: ~15min)** — `EnquiryForm` — Implement warm error state and offline WhatsApp fallback
+  - Surfaced by: Pass 2: Interaction State Coverage
+  - Files: `src/pages/contact.astro`, `src/pages/enquire.astro`
+  - Verify: Disconnect network and submit form; user sees inline card with 1-tap WhatsApp prefill and direct phone call link.
+- [ ] **T-D3 (P1, human: ~1h / CC: ~10min)** — `PostSubmission` — Add trust-building confirmation screen with 24h callback promise and trial class prep
+  - Surfaced by: Pass 3: User Journey & Emotional Arc
+  - Files: `src/pages/contact.astro`, `src/pages/enquire.astro`
+  - Verify: Submit form; success screen highlights 24-hr founder callback, Day 1 trial class expectations, and WhatsApp confirmation.
+- [ ] **T-D4 (P2, human: ~30min / CC: ~5min)** — `404Page` — Update 404 links to canonical routes and add wayfinding chips
+  - Surfaced by: Pass 4: AI Slop & Authenticity
+  - Files: `src/content/404.json`, `src/pages/404.astro`
+  - Verify: Visit non-existent URL; recovery links point to `/courses` and `/contact` with chips for School, College, and Ventures.
+- [ ] **T-D5 (P2, human: ~45min / CC: ~10min)** — `DesignTokens` — Fix rogue hex #CDC6B7 and brand Paper/Ink/Spark OG social card
+  - Surfaced by: Pass 5: Design System Alignment
+  - Files: `src/pages/idea.astro`, `public/og-image.png`, `src/layouts/BaseLayout.astro`
+  - Verify: `grep -rn "#CDC6B7" src/` returns 0; OpenGraph card conforms to Paper `#F3EEE4`, Ink `#15130F`, Spark `#D9481F`.
+- [ ] **T-D6 (P1, human: ~1.5h / CC: ~15min)** — `ResponsiveSyllabi` — Adapt wide course tables to stacked mobile cards on <640px
+  - Surfaced by: Pass 6: Responsive & Accessibility
+  - Files: `src/pages/courses/index.astro`, `src/pages/courses/[id].astro`
+  - Verify: Inspect on 360px and 390px viewports; no horizontal scrollbar, all touch targets >= 44px.
+- [ ] **T-D7 (P1, human: ~1h / CC: ~10min)** — `MobileActionBar` — Add sticky bottom thumb-zone WhatsApp and Call bar on <640px
+  - Surfaced by: Pass 7: Unresolved Design Decisions
+  - Files: `src/layouts/BaseLayout.astro`, `src/components/brand/MobileActionBar.astro`
+  - Verify: View any page on mobile (<640px); sticky thumb-friendly bottom bar offers 1-tap WhatsApp and Phone dialer.
+
+## GSTACK REVIEW REPORT
+
+| Review | Trigger | Why | Runs | Status | Findings |
+|--------|---------|-----|------|--------|----------|
+| CEO Review | `/plan-ceo-review` | Scope & strategy | 1 | CLEAR | mode: HOLD_SCOPE, 0 critical gaps |
+| Outside Review | Codex | Independent 2nd opinion | 0 | unavailable | Codex CLI not installed; native fallback unavailable |
+| Eng Review | `/autoplan` | Architecture & tests (required) | 0 | pending | eng review required |
+| Design Review | `/plan-design-review` | UI/UX gaps | 1 | CLEAR | score: 6/10 → 9/10, 7 decisions |
+| DX Review | `/plan-devex-review` | Developer experience gaps | 0 | pending | not run |
+
+OUTSIDE COVERAGE: codex phase=plan-review status=unavailable (declined outside design voices; CLI not installed)
+VERDICT: CEO + DESIGN CLEARED — eng review required
+NO UNRESOLVED DECISIONS

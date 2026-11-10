@@ -13,13 +13,13 @@
       "variant": "primary"
     },
     {
-      "label": "View Programmes",
-      "href": "/programmes",
+      "label": "View All Courses",
+      "href": "/courses",
       "variant": "secondary"
     },
     {
-      "label": "Enquire about Admission",
-      "href": "/enquire",
+      "label": "Contact & Enquire",
+      "href": "/contact",
       "variant": "ghost"
     }
   ],

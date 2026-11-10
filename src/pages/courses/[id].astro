@@ -46,6 +46,10 @@ const isExternalForm = isFormConfigured(formKey);
 const formattedPrice = course.price_inr
   ? `₹${course.price_inr.toLocaleString('en-IN')}`
   : course.price_display || 'Enquire';
+
+const whatsappTrialUrl = `https://wa.me/91${site.phone}?text=${encodeURIComponent(
+  `Hi Synapse, I would like to book a trial class for ${course.title} in Chamba.`
+)}`;
 ---
 
 <BaseLayout
@@ -133,14 +137,23 @@ const formattedPrice = course.price_inr
       </div>
 
       <div class="flex flex-wrap items-center gap-4">
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-ink px-6 py-3 font-sans text-sm font-semibold text-paper transition-colors hover:bg-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span>Book trial on WhatsApp</span>
+        </a>
+
         <Button
           href={formUrl}
           target={isExternalForm ? '_blank' : undefined}
           rel={isExternalForm ? 'noopener noreferrer' : undefined}
-          variant="primary"
+          variant="secondary"
           size="lg"
         >
-          <span>Enquire about this course</span>
+          <span>Enquire via form</span>
           {
             isExternalForm && (
               <svg
@@ -161,7 +174,7 @@ const formattedPrice = course.price_inr
           }
         </Button>
 
-        <Button href="/contact" variant="secondary" size="lg">
+        <Button href="/contact" variant="ghost" size="lg">
           Ask a question
         </Button>
       </div>

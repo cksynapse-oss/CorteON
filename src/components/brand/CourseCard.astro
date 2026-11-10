@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import site from '../../content/site.json';
 import type { CourseItem } from '../../content/schemas';
 import { getFormUrl, isFormConfigured, type FormKey } from '../../config/forms';
 
@@ -31,6 +32,11 @@ const formKeyMap: Record<string, FormKey> = {
 const formKey = formKeyMap[course.id] || 'courseGeneral';
 const formUrl = getFormUrl(formKey);
 const isExternalForm = isFormConfigured(formKey);
+
+// WhatsApp trial booking URL prefilled with specific course title
+const whatsappTrialUrl = `https://wa.me/91${site.phone}?text=${encodeURIComponent(
+  `Hi Synapse, I would like to book a trial class for ${course.title} in Chamba.`
+)}`;
 
 // Pricing display formatting
 const formattedPrice = course.price_inr
@@ -154,38 +160,48 @@ const formattedPrice = course.price_inr
     <div
       class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
     >
-      <Button
-        href={formUrl}
-        target={isExternalForm ? '_blank' : undefined}
-        rel={isExternalForm ? 'noopener noreferrer' : undefined}
-        variant="primary"
-        size="sm"
-        class="w-full justify-center sm:w-auto"
-      >
-        <span>Enquire now</span>
-        {
-          isExternalForm && (
-            <svg
-              class="ml-1 h-3.5 w-3.5 opacity-80"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-              />
-            </svg>
-          )
-        }
-      </Button>
+      <div class="flex flex-wrap items-center gap-2">
+        <a
+          href={whatsappTrialUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center rounded-full bg-ink px-3.5 py-2 font-sans text-xs font-semibold text-paper transition-colors hover:bg-spark-ink focus-visible:outline-2 focus-visible:outline-spark"
+        >
+          <span>Book trial on WhatsApp</span>
+        </a>
+
+        <Button
+          href={formUrl}
+          target={isExternalForm ? '_blank' : undefined}
+          rel={isExternalForm ? 'noopener noreferrer' : undefined}
+          variant="secondary"
+          size="sm"
+        >
+          <span>Enquire form</span>
+          {
+            isExternalForm && (
+              <svg
+                class="ml-1 h-3 w-3 opacity-80"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                />
+              </svg>
+            )
+          }
+        </Button>
+      </div>
 
       <a
         href={`/courses/${course.id}`}
-        class="inline-flex items-center justify-center font-sans text-xs font-semibold uppercase tracking-wider text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
+        class="inline-flex items-center justify-center py-1 font-sans text-xs font-semibold uppercase tracking-wider text-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-spark"
       >
         <span>View details</span>
         <span aria-hidden="true" class="ml-1">→</span>

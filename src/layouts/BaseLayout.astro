@@ -12,6 +12,7 @@ import '../styles/global.css';
 import NavBar from '../components/brand/NavBar.astro';
 import Footer from '../components/brand/Footer.astro';
 import FloorGauge from '../components/brand/FloorGauge.astro';
+import MobileActionBar from '../components/brand/MobileActionBar.astro';
 import site from '../content/site.json';
 import type { SiteContent } from '../content/schemas';
 
@@ -26,6 +27,7 @@ interface Props {
   hideNav?: boolean;
   hideFooter?: boolean;
   hideGauge?: boolean;
+  hideActionBar?: boolean;
   noindex?: boolean;
 }
 
@@ -42,6 +44,7 @@ const {
   hideNav = false,
   hideFooter = false,
   hideGauge = false,
+  hideActionBar = false,
   noindex = false,
 } = Astro.props;
 
@@ -185,12 +188,18 @@ const jsonLd = {
 
     {!hideGauge && <FloorGauge activeFloor={activeFloor} />}
 
-    <main id="main-content" tabindex="-1" class="focus:outline-none">
+    <main
+      id="main-content"
+      tabindex="-1"
+      class="pb-16 focus:outline-none sm:pb-0"
+    >
       <slot />
     </main>
 
     <slot name="footer">
       {!hideFooter && <Footer currentPath={Astro.url.pathname} />}
     </slot>
+
+    {!hideActionBar && <MobileActionBar />}
   </body>
 </html>

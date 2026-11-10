@@ -46,6 +46,10 @@
 /thank-you.html /contact 301
 /thank-you /contact 301
 
+# Guidance & Counselling Shortcuts
+/counselling /#career-guidance 302
+/guidance /#career-guidance 302
+
 # Language Redirects (English-only site)
 /hi / 301
 /hi/programmes /courses 301

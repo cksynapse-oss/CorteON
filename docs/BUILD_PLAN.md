@@ -249,6 +249,10 @@ Synthesized from this review's findings. Checkbox as you ship.
   - Files: `src/layouts/BaseLayout.astro`, `src/components/brand/MobileActionBar.astro`
   - Verify: View any page on mobile (<640px); sticky thumb-friendly bottom bar offers 1-tap WhatsApp and Phone dialer.
 
+- [x] **T14** — `CareerGuidance` — Add Free In-Person Career Guidance & Counselling Spotlight on Homepage (Issue #1)
+  - Files: `src/pages/index.astro`, `public/_redirects`, `docs/specs/issue-1-career-guidance.md`
+  - Verify: Homepage features high-impact spotlight banner below Hero with 1-tap WhatsApp booking and phone call CTA. `npm run check` green.
+
 ## GSTACK REVIEW REPORT
 
 | Review | Trigger | Why | Runs | Status | Findings |
